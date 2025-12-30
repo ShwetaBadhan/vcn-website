@@ -23,7 +23,7 @@
             <div class="vcn-product-content">
               <div class="vcn-product-image">
                 <img
-                  src="http://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1757357918/npd/npd-ds-7b2ef1785bb33020b81fe0e5d8ef787c9fd3f58c.png"
+                  src="/img/products/ALPHACARE(HERBBLEND).jpg"
                   alt="Product Bottle"
                   class="vcn-product-bottle"
                 />
@@ -31,7 +31,7 @@
 
               <div class="vcn-product-info">
                 <span class="vcn-whole-body-product-label">Bestseller</span>
-                <h2 class="vcn-product-title">Daily Symbiotic</h2>
+                <h2 class="vcn-product-title">ALPHACARE BOOSTER</h2>
                 <p class="vcn-product-description">
                   Eases bloating, improves regularity, and supports digestive
                   health with 24 targeted probiotic strains + a novel

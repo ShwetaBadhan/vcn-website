@@ -36,64 +36,91 @@
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487644/library/nav/shop/DS01.png"
+                        src="/img/products/vspa-facescrub.jpg"
                         alt="Product"
                       />
-                      DS-01® Daily Synbiotic
+                      V-SPA FACE SCRUB
                     </a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755803988/library/nav/shop/DM02.png"
+                        src="/img/products/facecleanser.jpg"
                         alt="Product"
                       />
-                      DM-02™ Daily Multivitamin
+                      V-SPA FACE CLEANSER
                     </a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755804034/library/nav/shop/DED.png"
+                        src="/img/products/massagecream.jpg"
                         alt="Product"
                       />
-                      Daily Essentials Duo
+                      V-SPA MASSAGE CREAM
                     </a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755804048/library/nav/shop/AM02.png"
+                        src="/img/products/facepack.jpg"
                         alt="Product"
                       />
-                      AM-02™
+                     V-SPA FACE PACK
                     </a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755804062/library/nav/shop/PM02.png"
+                        src="/img/products/KLESTROPREMIUM.jpg"
                         alt="Product"
                       />
-                      PM-02™
+                      KLESTRO PREMIUM
                     </a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487661/library/nav/shop/PDS08.png"
+                        src="/img/products/ALPHACARE(SHILAJITRESIN).jpg"
                         alt="Product"
                       />
-                      PDS-08™
+                     ALPHACARE(SHILAJIT RESIN)
                     </a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487654/library/nav/shop/VS01.png"
+                        src="/img/products/ALPHACARE(HERBBLEND).jpg"
                         alt="Product"
                       />
-                      VS-01™
+                      ALPHACARE BOOSTER
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/product-details">
+                      <img
+                        src="/img/products/V-VEDATHICK&GROWHAIRTONIC.jpg"
+                        alt="Product"
+                      />
+                      V-VEDA THICK & GROW HAIR <br> TONIC
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/product-details">
+                      <img
+                        src="/img/products/V-VEDAURICARE.jpg"
+                        alt="Product"
+                      />
+                     V-VEDA URICARE
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/product-details">
+                      <img
+                        src="/img/products/V-VEDARELIEFAURA.jpg"
+                        alt="Product"
+                      />
+                     V-VEDA RELIEFAURA
                     </a>
                   </li>
                   <li class="dropdown-footer">
