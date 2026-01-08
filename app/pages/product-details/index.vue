@@ -243,7 +243,7 @@
         
       </div>
     </div>
-    <div class="row health-section-bg">
+    <div class="row mt-5">
      <div class="col-lg-3 health-section-below d-flex align-items-center justify-content-center">
   <video 
     src="https://assets.embeddables.com/Seed_DM02_Jar_RotateWeb_9530759748590603.webm"
@@ -297,7 +297,7 @@
     </div>
 
     </section>
- <div class="container py-5">
+ <div class="container-fluid py-5 health-section-bg">
   <!-- Section Header -->
   <div class="text-center mb-4">
     <h1 class="section-title-timeline">Benefits that build over time.</h1>
@@ -388,7 +388,7 @@
     </div>
   </div>
 </div>
- <section class="nutrients-section">
+ <section class="nutrients-section health-section-bg">
         <div class="container-fluid">
             <div class="row mb-5">
                 <div class="col-lg-6">
@@ -484,7 +484,7 @@
         </div>
     </section>
       <section class="comparison-section">
-    <div class="container comparison-container">
+    <div class="container-fluid comparison-container">
       <div class="row">
         <div class="col-lg-3">
           <h2 class="comparison-section-title">How DM-02™ Compares:</h2>
@@ -542,7 +542,7 @@
     </div>
   </section>
    <section class="testing-standards-wrapper">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row align-items-center g-4">
         <!-- Left Column: Headline & Description -->
         <div class="col-lg-5">
@@ -851,65 +851,7 @@
             </div>
         </div>
     </section>
- <section class="ds01-viacap-hero-area" id="ds01ViacapSection">
-        <div class="container-fluid">
-            <div class="ds01-flex-layout-container">
-                <!-- Left Side: Text Content -->
-                <div class="ds01-left-text-block">
-                    <h3 class="ds01-title-large-text">
-                        Many probiotics don't make it to the gut alive. DS-01® does.
-                    </h3>
-                    <a class="ds01-viacap-pill-badge" data-target="viacap-delivery-tech">
-                      
-                        ViaCap® Delivery Technology
-                    </a>
-                </div>
 
-                <!-- Right Side: Capsule Animation -->
-                <div class="ds01-right-visual-area">
-                    <div class="ds01-capsule-stage-box">
-                        <!-- Top Green Capsule -->
-                        <img src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1750392909/library/viacap/l-top-green.png" 
-                             alt="Outer Capsule Top" 
-                             class="ds01-green-cap-upper-part"
-                             id="ds01CapTop">
-
-                        <!-- Middle White Capsule -->
-                        <img src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1750392908/library/viacap/l-capsule.png" 
-                             alt="Inner Capsule" 
-                             class="ds01-white-cap-center-part"
-                             id="ds01CapCenter">
-
-                        <!-- Bottom Green Capsule -->
-                        <img src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1750392908/library/viacap/l-bottom-green.png" 
-                             alt="Outer Capsule Bottom" 
-                             class="ds01-green-cap-lower-part"
-                             id="ds01CapBottom">
-
-                        <!-- Connector Lines -->
-                        <div class="ds01-dotted-line-left" id="ds01LineLeft"></div>
-                        <div class="ds01-dotted-line-right" id="ds01LineRight"></div>
-
-                        <!-- Info Card - Left (Top) -->
-                        <div class="ds01-description-box-left" id="ds01InfoLeft">
-                            <div class="ds01-box-title-small">Prebiotic<br>Outer Capsule</div>
-                            <p class="ds01-box-text-content">
-                                Non-fermenting prebiotic releases in the upper GI tract.
-                            </p>
-                        </div>
-
-                        <!-- Info Card - Right (Bottom) -->
-                        <div class="ds01-description-box-right" id="ds01InfoRight">
-                            <div class="ds01-box-title-small">Probiotic<br>Inner Capsule</div>
-                            <p class="ds01-box-text-content">
-                                Delivers live bacteria to the colon where it's needed most.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <section class="gut-stats-main-section">
         <div class="container-fluid">
             <div class="row align-items-center">
@@ -939,7 +881,7 @@
         </div>
     </section>
 <section class="comparison-table-main-section">
-        <div class="container">
+        <div class="container-fluid">
             <h2 class="comparison-table-heading-title">
                 DS-01® outperforms<br>other probiotics.
             </h2>
@@ -1011,7 +953,7 @@
         </div>
     </section>
       <section class="strains-info-main-section">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <!-- Left Column: Image -->
                 <div class="col-lg-6 col-md-12">
@@ -1207,52 +1149,7 @@
         </div>
     </section>
    
-    <section class="formulation-section">
-      <div class="content-grid">
-        <!-- Left Content -->
-        <div class="left-content">
-          <h2>2-in-1 Formulation,<br />Superior Delivery</h2>
-          <p>
-            Seed's VivaGap® delivery system is engineered for targeted<br />release
-            along the GI tract.
-          </p>
-
-          <div class="toggle-container">
-            <button class="toggle-btn active">Probiotic</button>
-            <button class="toggle-btn">Multivitamin</button>
-          </div>
-        </div>
-
-        <!-- Center Divider with Info -->
-        <div class="center-divider">
-          <div class="capsule-wrapper">
-            <div class="capsule-info">
-              <h4>Outer Capsule—For You</h4>
-              <p>
-                Non-fermenting prebiotic<br />polyphenols in the upper GI<br />tract.
-              </p>
-            </div>
-
-            <div class="capsule-info">
-              <h4>Inner Capsule—</h4>
-              <p>
-                For Your Microbiome<br />Probiotic strains and live<br />bacteria
-                to the colon.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Product Image -->
-        <div class="product-container">
-          <img
-            src="/img/products/product-12.png"
-            alt="Product Bottle"
-            class="bottle-image"
-          />
-        </div>
-      </div>
-    </section>
+   
     <section class="vcn-new-product">
       <div class="container-fluid">
         <div class="row g-3">

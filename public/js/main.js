@@ -45,6 +45,8 @@ const swiper = new Swiper('.vcn-whole-body-swiper', {
       spaceBetween: 25,
     },
   },
+  // ✅ Add this to prevent height jump
+  autoHeight: true, // Optional: if you want dynamic height per slide
 });
 
 const testimonialswiper = new Swiper('.vcn-swiper-container', {

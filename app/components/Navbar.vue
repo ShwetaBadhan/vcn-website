@@ -36,7 +36,7 @@
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="/img/products/vspa-facescrub.jpg"
+                        src="/img/products/img1.png"
                         alt="Product"
                       />
                       V-SPA FACE SCRUB
@@ -45,7 +45,7 @@
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="/img/products/facecleanser.jpg"
+                        src="/img/products/img1.png"
                         alt="Product"
                       />
                       V-SPA FACE CLEANSER
@@ -54,7 +54,7 @@
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="/img/products/massagecream.jpg"
+                        src="/img/products/img1.png"
                         alt="Product"
                       />
                       V-SPA MASSAGE CREAM
@@ -63,7 +63,7 @@
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="/img/products/facepack.jpg"
+                        src="/img/products/img1.png"
                         alt="Product"
                       />
                      V-SPA FACE PACK
@@ -72,7 +72,7 @@
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="/img/products/KLESTROPREMIUM.jpg"
+                        src="/img/products/img1.png"
                         alt="Product"
                       />
                       KLESTRO PREMIUM
@@ -81,7 +81,7 @@
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="/img/products/ALPHACARE(SHILAJITRESIN).jpg"
+                        src="/img/products/img1.png"
                         alt="Product"
                       />
                      ALPHACARE(SHILAJIT RESIN)
@@ -90,7 +90,7 @@
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="/img/products/ALPHACARE(HERBBLEND).jpg"
+                        src="/img/products/img1.png"
                         alt="Product"
                       />
                       ALPHACARE BOOSTER
@@ -99,7 +99,7 @@
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="/img/products/V-VEDATHICK&GROWHAIRTONIC.jpg"
+                        src="/img/products/img1.png"
                         alt="Product"
                       />
                       V-VEDA THICK & GROW HAIR <br> TONIC
@@ -108,7 +108,7 @@
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="/img/products/V-VEDAURICARE.jpg"
+                        src="/img/products/img1.png"
                         alt="Product"
                       />
                      V-VEDA URICARE
@@ -117,7 +117,7 @@
                   <li>
                     <a class="dropdown-item" href="/product-details">
                       <img
-                        src="/img/products/V-VEDARELIEFAURA.jpg"
+                        src="/img/products/img1.png"
                         alt="Product"
                       />
                      V-VEDA RELIEFAURA

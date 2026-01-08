@@ -7,7 +7,7 @@
           <div class="product-card">
             <div class="product-image-wrapper">
               <img
-                src="/img/products/vspa-facescrub.jpg"
+                src="/img/products/img1.png"
                 alt="Daily Multivitamin"
                 class="product-image"
               />
@@ -41,7 +41,7 @@
           <div class="product-card">
             <div class="product-image-wrapper">
               <img
-                src="/img/products/facecleanser.jpg"
+                src="/img/products/img1.png"
                 alt="Daily Essentials Duo"
                 class="product-image"
               />
@@ -79,7 +79,7 @@
             <div class="product-image-wrapper">
               <span class="product-badge">NEW</span>
               <img
-                src="/img/products/massagecream.jpg"
+                src="/img/products/img1.png"
                 alt="Focus + Energy"
                 class="product-image"
               />
@@ -114,7 +114,7 @@
             <div class="product-image-wrapper">
               <span class="product-badge">NEW</span>
               <img
-                src="/img/products/facepack.jpg"
+                src="/img/products/img1.png"
                 alt="Sleep + Restore"
                 class="product-image"
               />
@@ -148,7 +148,7 @@
           <div class="product-card">
             <div class="product-image-wrapper">
               <img
-                src="/img/products/KLESTROPREMIUM.jpg"
+                src="/img/products/img1.png"
                 alt="Pediatric Synbiotic"
                 class="product-image"
               />
@@ -182,7 +182,7 @@
           <div class="product-card">
             <div class="product-image-wrapper">
               <img
-                src="/img/products/ALPHACARE(SHILAJITRESIN).jpg"
+                src="/img/products/img1.png"
                 alt="Vaginal Synbiotic"
                 class="product-image"
               />

@@ -599,6 +599,155 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   .login-link:hover {
     color: white;
   }
+  /* Large screens only */
+@media (min-width: 992px) {
+  .navbar {
+    padding-left: 80px !important;
+    padding-right: 80px !important;
+  }
+}
+
+/* Extra Large screens */
+@media (min-width: 1400px) {
+  .navbar {
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+  }
+}
+
+@media(min-width: 1400px){
+  .vcn-whole-body-section{
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+  }
+}
+@media(min-width: 1400px){
+  .hero-content{
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+    max-width: 850px !important;
+  }
+}
+@media(min-width: 1400px){
+  .vcn-cobiotics-section{
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+@media(min-width: 1400px){
+  .vcn-probiotic-info-section{
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+@media(min-width: 1400px){
+  .vcn-human-container{
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+@media(min-width: 1400px){
+  .vcn-testimonial-section{
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+@media(min-width: 1400px){
+  .vcn-stories-section{
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+@media(min-width: 1400px){
+  .vcn-product-section{
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+@media(min-width: 1400px){
+  .vcn-new-product{
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+@media(min-width: 1400px){
+  .product-detail-section{
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+@media(min-width: 1400px){
+  .health-section-bg{
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+@media(min-width: 1400px){
+  .comparison-section{
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+@media(min-width: 1400px){
+  .testing-standards-wrapper{
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+@media(min-width: 1400px){
+  .probiotic-hero-section{
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+@media(min-width: 1400px){
+  .ds01-difference-section{
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+@media(min-width: 1400px){
+  .gut-stats-main-section{
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+@media(min-width: 1400px){
+  .comparison-table-main-section {
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+@media(min-width: 1400px){
+  .strains-info-main-section {
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+@media(min-width: 1400px){
+  .reviews-section {
+    padding-left: 160px !important;
+    padding-right: 160px !important;
+   
+  }
+}
+
   /* ========== PRODUCT DETAILS PAGE OVERRIDES ========== */
 
   /* Desktop Nav Links - Green on product details page */
@@ -854,7 +1003,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .vcn-cobiotics-container {
-  max-width: 1400px;
+  /* max-width: 1400px; */
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1166,18 +1315,13 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .vcn-whole-body-container {
-  max-width: 1400px;
+  /* max-width: 1400px; */
   margin: 0 auto;
 }
 
 /* ========== HEADER CONTENT ========== */
 
 /* Section Styling */
-.vcn-whole-body-section {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 20px 40px;
-}
 
 .vcn-whole-body-container {
   width: 100%;
@@ -1240,202 +1384,196 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 /* Swiper Slider */
-.vcn-whole-body-swiper-container {
-  position: relative;
-  padding: 20px 0 60px 0;
-}
-
-.vcn-whole-body-swiper {
-  overflow: visible !important;
-}
-
-.vcn-whole-body-product-card {
-  background: var(--vcn-primary);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-
-  min-height: 350px; /* yeh reduce karo */
-}
-
-.vcn-whole-body-product-card:hover {
-  transform: scale(1.08);
-  background: rgba(69, 102, 60, 0.75);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-  z-index: 10;
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Product Badges */
-.vcn-whole-body-product-badges {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.vcn-whole-body-badge {
-  padding: 4px 14px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.vcn-whole-body-badge-bestseller {
-  background-color: #e9f0ca;
-  color: var(--vcn-footer);
-}
-
-.vcn-whole-body-badge-new {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: var(--vcn-white);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-/* Product Label */
-.vcn-whole-body-product-label {
-  display: inline-block;
-  padding: 6px 12px;
-  border: 1px solid var(--vcn-white);
-  border-radius: 20px;
-  font-size: 0.85rem;
-  color: var(--vcn-white);
-  font-weight: 500;
-  margin-bottom: 20px;
-}
-
-/* Product Image & Video Container */
-.vcn-whole-body-product-image {
-  position: relative;
-  width: 100%;
-  max-width: 300px;
-  height: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-/* Default image visible */
-.product-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  transition: opacity 0.4s ease;
-  position: relative;
-  z-index: 1;
-}
-
-/* Video invisible initially */
-.product-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Hover → Show video and hide image */
-.vcn-whole-body-product-card:hover .product-video {
-  opacity: 1;
-}
-
-.vcn-whole-body-product-card:hover .product-img {
-  opacity: 0;
-}
-
-.product-img,
-.product-video {
-  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Product Title */
-.vcn-whole-body-product-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--vcn-white);
-  line-height: 1.3;
-  margin: 20px 0;
-}
-
-/* Shop Button */
-.vcn-whole-body-shop-btn {
-  display: inline-block;
-  padding: 12px 32px;
-  background-color: var(--vcn-footer);
-  color: var(--vcn-white);
-  text-decoration: none;
-  border-radius: 25px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-  margin-bottom: 15px;
-  position: relative;
-}
-
-.vcn-whole-body-shop-btn::after {
-  content: "→";
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-
-.vcn-whole-body-product-card:hover .vcn-whole-body-shop-btn {
-  padding-right: 48px; /* space for arrow */
-}
-
-.vcn-whole-body-product-card:hover .vcn-whole-body-shop-btn::after {
-  opacity: 1;
-  right: 15px; /* smooth slide */
-}
-
-/* Button changes on card hover */
-.vcn-whole-body-product-card:hover .vcn-whole-body-shop-btn {
-  background-color: var(--vcn-white);
-  color: var(--vcn-primary);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-/* Product Price */
-.vcn-whole-body-product-price {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 500;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .vcn-whole-body-main-title {
-    font-size: 2rem;
+  .vcn-whole-body-swiper-container{
+    padding: 10px;
   }
+        .vcn-whole-body-product-card {
+            background: var(--vcn-primary);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            height: 100%;
+            /* margin-bottom: 30px; */
+        }
 
-  .vcn-whole-body-subtitle {
-    font-size: 1.2rem;
-  }
+      
 
-  .vcn-whole-body-product-image {
-    height: 200px;
-  }
-}
+        .vcn-whole-body-product-card:hover {
+            transform: scaleY(1.08);
+            background: rgba(69, 102, 60, 0.75);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .vcn-whole-body-product-card:hover {
+            z-index: 10;
+        }
+
+        /* Product Badges */
+        .vcn-whole-body-product-badges {
+            display: flex;
+            gap: 10px;
+            /* margin-bottom: 15px; */
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            width: 100%;
+        }
+
+        .vcn-whole-body-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .vcn-whole-body-badge-bestseller {
+            background-color: #e9f0ca;
+            color: var(--vcn-footer);
+        }
+
+        .vcn-whole-body-badge-new {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--vcn-white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Product Label */
+        .vcn-whole-body-product-label {
+            display: inline-block;
+            padding: 6px 12px;
+            border: 1px solid var(--vcn-white);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--vcn-white);
+            font-weight: 500;
+            /* margin-bottom: 15px; */
+        }
+
+        /* Product Title */
+        .vcn-whole-body-product-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--vcn-white);
+            line-height: 1.3;
+            /* margin: 15px 0; */
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Product Image & Video Container */
+        .vcn-whole-body-product-image {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            flex: 1;
+            /* margin: 15px 0; */
+        }
+
+        /* Default image visible */
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Video invisible initially */
+        .product-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Hover → Show video and hide image */
+        .vcn-whole-body-product-card:hover .product-video {
+            opacity: 1;
+        }
+
+        .vcn-whole-body-product-card:hover .product-img {
+            opacity: 0;
+        }
+
+        /* Shop Button */
+        .vcn-whole-body-shop-btn {
+            display: inline-block;
+            padding: 12px 32px;
+            background-color: var(--vcn-footer);
+            color: var(--vcn-white);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            /* margin-bottom: 12px; */
+            position: relative;
+            /* margin-top: auto; */
+        }
+
+        .vcn-whole-body-shop-btn::after {
+            content: "→";
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .vcn-whole-body-product-card:hover .vcn-whole-body-shop-btn {
+            padding-right: 48px;
+            background-color: var(--vcn-white);
+            color: var(--vcn-primary);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .vcn-whole-body-product-card:hover .vcn-whole-body-shop-btn::after {
+            opacity: 1;
+            right: 15px;
+        }
+
+        /* Product Price */
+        .vcn-whole-body-product-price {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .vcn-whole-body-product-image {
+                height: 250px;
+            }
+
+            .vcn-whole-body-product-title {
+                font-size: 1.1rem;
+                min-height: 40px;
+            }
+        }
 /* ========== PROBIOTIC INFO SECTION ========== */
 .vcn-probiotic-info-section {
   background-image: url("https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755552501/library/viacap/viacapbg.png");
@@ -1448,7 +1586,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .vcn-probiotic-container {
-  max-width: 1400px;
+  /* max-width: 1400px; */
   margin: 0 auto;
 }
 
@@ -1843,7 +1981,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .vcn-human-container {
-  max-width: 1300px;
+  /* max-width: 1300px; */
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2396,7 +2534,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .vcn-testimonial-container {
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 0 auto;
 }
 
@@ -2560,7 +2698,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .vcn-stories-container {
-  max-width: 1400px;
+  /* max-width: 1400px; */
   margin: 0 auto;
 }
 
@@ -4502,7 +4640,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .reviews-section {
-  max-width: 1400px;
+
   margin: 40px auto;
   padding: 40px 20px;
   background: white;
@@ -10407,7 +10545,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .comparison-container {
-  max-width: 1200px;
+
   margin: 0 auto;
 }
 

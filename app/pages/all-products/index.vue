@@ -9,64 +9,68 @@
       </h1>
     </div>
   </div>
+<section class="vcn-product-section py-5">
+  <div class="container-fluid">
+    <div class="row g-4">
 
-  <section class="vcn-product-section">
-    <div class="container-fluid">
-      <div class="row g-4 align-items-center">
-        <!-- Product Card Column -->
-        <div class="col-lg-9">
-          <div class="vcn-product-card">
-            <span class="vcn-whole-body-badge vcn-whole-body-badge-new"
-              >Bestseller</span
-            >
+      <!-- Product Card -->
+      <div class="col-lg-9">
+        <div class="vcn-product-card row align-items-center h-100">
 
-            <div class="vcn-product-content">
-              <div class="vcn-product-image">
-                <img
-                  src="/img/products/ALPHACARE(HERBBLEND).jpg"
-                  alt="Product Bottle"
-                  class="vcn-product-bottle"
-                />
-              </div>
+          <!-- Image -->
+          <div class="col-lg-4 position-relative">
+            
 
-              <div class="vcn-product-info">
-                <span class="vcn-whole-body-product-label">Bestseller</span>
-                <h2 class="vcn-product-title">ALPHACARE BOOSTER</h2>
-                <p class="vcn-product-description">
-                  Eases bloating, improves regularity, and supports digestive
-                  health with 24 targeted probiotic strains + a novel
-                  prebiotic.*
-                </p>
-                <div class="vcn-product-price">$49.99</div>
-                <div class="vcn-product-buttons">
-                  <!-- <a href="cart" class="vcn-btn-primary">Add to Cart</a> -->
-                  <a href="/product-details" class="vcn-btn-secondary"
-                    >Learn More</a
-                  >
-                </div>
-              </div>
+            <div class="vcn-product-image text-center">
+              <img
+                src="/img/products/img1.png"
+                alt="Product Bottle"
+                class="vcn-product-bottle"
+              />
             </div>
           </div>
-        </div>
 
-        <!-- Image Section Column -->
-        <div class="col-lg-3">
-          <div class="vcn-image-section">
-            <img
-              src="/img/about/about-3.webp"
-              alt="Fresh produce"
-              class="vcn-bg-image"
-            />
-            <div class="vcn-image-overlay">
-              <p class="vcn-image-text">
-                Is DS-01® the right probiotic for you? Take the Quiz
-              </p>
+          <!-- Content -->
+          <div class="col-lg-8">
+            <span class="vcn-whole-body-product-label">Bestseller</span>
+            <h2 class="vcn-product-title">ALPHACARE BOOSTER</h2>
+            <p class="vcn-product-description">
+              Eases bloating, improves regularity, and supports digestive
+              health with 24 targeted probiotic strains + a novel prebiotic.*
+            </p>
+
+            <div class="vcn-product-price">$49.99</div>
+
+            <div class="vcn-product-buttons">
+              <a href="/product-details" class="vcn-btn-secondary">
+                Learn More
+              </a>
             </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Image Section -->
+      <div class="col-lg-3">
+        <div class="vcn-image-section h-100">
+          <img
+            src="/img/about/about-3.webp"
+            alt="Fresh produce"
+            class="vcn-bg-image"
+          />
+
+          <div class="vcn-image-overlay">
+            <p class="vcn-image-text">
+              Is DS-01® the right probiotic for you? Take the Quiz
+            </p>
           </div>
         </div>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
   <allproductsProducts />
 </template>
