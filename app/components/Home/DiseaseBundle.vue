@@ -34,14 +34,16 @@
           <!-- Video Container -->
           <div class="video-container" id="videoContainer">
             <div class="vcn-human-image-wrapper">
-              <video
-                id="myVideo"
-                muted
-                loop
-                autoplay
-                width="800"
-                class="vcn-human-main-image"
-              ></video>
+             <video
+  id="myVideo"
+  muted
+  loop
+  autoplay
+  playsinline
+  preload="auto"
+  class="vcn-human-main-image"
+></video>
+
               <!-- <img
               src="/img/about/about-2.jpg"
               class="vcn-human-main-image"
@@ -75,7 +77,7 @@
                 </div>
                 <div class="disease-card-body">
                   <h3 class="disease-title">Acidity</h3>
-                  <a href="bundle-details.html" class="learn-more-btn"
+                  <a href="/bundle-details" class="learn-more-btn"
                     >LEARN MORE</a
                   >
                 </div>
@@ -93,7 +95,7 @@
                 </div>
                 <div class="disease-card-body">
                   <h3 class="disease-title">Thyroid</h3>
-                  <a href="bundle-details.html" class="learn-more-btn"
+                  <a href="/bundle-details" class="learn-more-btn"
                     >LEARN MORE</a
                   >
                 </div>
@@ -111,7 +113,7 @@
                 </div>
                 <div class="disease-card-body">
                   <h3 class="disease-title">Diabetes</h3>
-                  <a href="bundle-details.html" class="learn-more-btn"
+                  <a href="/bundle-details" class="learn-more-btn"
                     >LEARN MORE</a
                   >
                 </div>
@@ -129,7 +131,7 @@
                 </div>
                 <div class="disease-card-body">
                   <h3 class="disease-title">Fatty Liver</h3>
-                  <a href="bundle-details.html" class="learn-more-btn"
+                  <a href="/bundle-details" class="learn-more-btn"
                     >LEARN MORE</a
                   >
                 </div>
@@ -137,7 +139,7 @@
             </div>
 
             <div class="view-more-section">
-              <a href="diseases-bundle.html" class="view-more-btn">VIEW MORE</a>
+              <a href="/diseases-bundle" class="view-more-btn">VIEW MORE</a>
             </div>
           </div>
         </div>
@@ -145,3 +147,40 @@
     </section>
 
 </template>
+
+<script>
+export default {
+  mounted() {
+    const video = document.getElementById("myVideo");
+
+    if (!video) return;
+
+    const videoSrc =
+      "https://stream.mux.com/87tnV011w6GkwNzl7dxntQSNhpcVSJNgSQaqlj3iLTK00.m3u8?redundant_streams=true";
+
+    video.muted = true;
+    video.playsInline = true;
+    video.autoplay = true;
+
+    if (window.Hls && window.Hls.isSupported()) {
+      const hls = new window.Hls({
+        autoStartLoad: true,
+      });
+
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+
+      hls.on(window.Hls.Events.MANIFEST_PARSED, () => {
+        video.play().catch(() => {});
+      });
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      // Safari (iOS / macOS)
+      video.src = videoSrc;
+      video.addEventListener("loadedmetadata", () => {
+        video.play().catch(() => {});
+      });
+    }
+  },
+};
+
+</script>

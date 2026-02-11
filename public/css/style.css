@@ -2239,6 +2239,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   border-radius: 20px;
   padding: 40px;
   overflow-y: auto;
+  display: none;
 }
 
 .disease-bundles-container.active {
@@ -2246,6 +2247,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   transform: scale(1);
   pointer-events: all;
   position: relative;
+  display: block;
 }
 
 .vcn-human-container.fullscreen .disease-bundles-container.active {

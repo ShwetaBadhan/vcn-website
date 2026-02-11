@@ -67,7 +67,7 @@ Labs</h3>
               <p class="vcn-stories-card-description">
                 Because health is not just human.
               </p>
-              <a href="seedlabs.html" class="vcn-stories-card-btn">Read More</a>
+              <a href="/vcn-labs" class="vcn-stories-card-btn">Read More</a>
             </div>
           </div>
 
@@ -82,7 +82,7 @@ Labs</h3>
 
 
               </p>
-              <a href="product-details.html" class="vcn-stories-card-btn">Shop Now</a>
+              <a href="/product-details" class="vcn-stories-card-btn">Shop Now</a>
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@
             help cover nutrient gaps, reduce bloating, and promote healthy
             regularity.*
           </p>
-          <a href="product-details.html" class="vcn-cobiotics-cta-btn"
+          <a href="/product-details" class="vcn-cobiotics-cta-btn"
             >Shop Daily Essentials Duo</a
           >
         </div>

@@ -455,5 +455,21 @@ document.addEventListener('keydown', function(event) {
 });
 
 
+ const openBtn = document.getElementById("openBundles");
+    const closeBtn = document.getElementById("closeBtn");
+    const mainContainer = document.getElementById("mainContainer");
+    const videoContainer = document.getElementById("videoContainer");
+    const bundlesContainer = document.getElementById("bundlesContainer");
 
+    openBtn.addEventListener("click", () => { 
+      mainContainer.classList.add("fullscreen");
+      videoContainer.classList.add("hidden");
+      bundlesContainer.classList.add("active");
+    });
+
+    closeBtn.addEventListener("click", () => {
+      bundlesContainer.classList.remove("active");
+      videoContainer.classList.remove("hidden");
+      mainContainer.classList.remove("fullscreen");
+    });
 

@@ -16,7 +16,7 @@
           Seed's Co-Biotics nourish you and your microbiome to deliver targeted,
           daily benefits.
         </p>
-        <a href="products.html" class="hero-btn">Shop Now</a>
+        <a href="/all-products" class="hero-btn">Shop Now</a>
       </div>
     </section>
     <!-- herso section ends -->
