@@ -103,89 +103,34 @@
             <p class="subscribe-text">
               30-day risk-free guarantee. Free US shipping.
             </p>
+<div class="vcn-accordion">
+  <div
+    class="vcn-acc-item"
+    v-for="(item, index) in accordionItems"
+    :key="index"
+  >
+    <button
+      type="button"
+      class="vcn-acc-header"
+      @click="toggleAccordion(index)"
+    >
+      {{ item.title }}
+      <span class="vcn-acc-icon">
+        {{ activeIndex === index ? '−' : '+' }}
+      </span>
+    </button>
 
-            <div class="vcn-accordion">
-              <!-- Accordion Item 1 -->
-              <div class="vcn-acc-item">
-                <button class="vcn-acc-header">
-                  Uses  *
-                  <span class="vcn-acc-icon">−</span>
-                </button>
+    <div class="vcn-acc-body" v-if="activeIndex === index">
+      <ul class="vcn-benefits-list">
+        <li v-for="(point, i) in item.content" :key="i">
+          {{ point }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-                <div class="vcn-acc-body" style="display: block">
-                  <ul class="vcn-benefits-list">
-                    <li>Supports healthy blood sugar levels</li>
-                    <li>
-                      Improves glucose metabolism
-                    </li>
-                    <li>Boosts energy and detoxifies the body</li>
-                   
-                  </ul>
-                </div>
-              </div>
 
-              <!-- Accordion Item 2 -->
-              <div class="vcn-acc-item">
-                <button class="vcn-acc-header">
-                  Direction For Use
-                  <span class="vcn-acc-icon">+</span>
-                </button>
-
-                <div class="vcn-acc-body">
-                  <ul class="vcn-benefits-list">
-                    <li>Take 20–30 ml diluted in a glass of lukewarm water, twice daily, 30 minutes before meals or as directed by a physician.</li>
-                  
-                  </ul>
-                </div>
-              </div>
-              <!-- Accordion Item  3-->
-              <div class="vcn-acc-item">
-                <button class="vcn-acc-header">
-                  Cautions 
-                  <span class="vcn-acc-icon">+</span>
-                </button>
-
-                <div class="vcn-acc-body">
-                  <ul class="vcn-benefits-list">
-                    <li>For adults only. Consult your doctor if pregnant, nursing, or on diabetes medication. Do not exceed the recommended dose. Monitor blood sugar regularly.</li>
-                  
-                  </ul>
-                </div>
-              </div>
-              <!-- Accordion Item  4-->
-              <div class="vcn-acc-item">
-                <button class="vcn-acc-header">
-                  Primary Benefits  
-                  <span class="vcn-acc-icon">+</span>
-                </button>
-
-                <div class="vcn-acc-body">
-                  <ul class="vcn-benefits-list">
-                    <li>Blood sugar control</li>
-                    <li>Enhanced insulin function</li>
-                    <li>Improved metabolism</li>
-                    <li>Detoxification</li>
-                    <li>Kidney & liver support</li>
-                    <li>Natural energy booster</li>
-                  
-                  </ul>
-                </div>
-              </div>
-              <!-- Accordion Item  5-->
-              <div class="vcn-acc-item">
-                <button class="vcn-acc-header">
-                 Ingredients
-                  <span class="vcn-acc-icon">+</span>
-                </button>
-
-                <div class="vcn-acc-body">
-                  <ul class="vcn-benefits-list">
-                    <li>Charantin, Momordicin, Gymnemic acids, Tannins, Alkaloids, Flavonoids, Antioxidants, Fulvic acid, and natural phytonutrients.</li>
-                  
-                  </ul>
-                </div>
-              </div>
-            </div>
 
             <div class="bundle-card mt-5">
               <div class="bundle-image">
@@ -215,3 +160,52 @@
     </div>
   </section>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+
+const activeIndex = ref(null)
+
+const accordionItems = ref([
+  {
+    title: 'Uses *',
+    content: [
+      'Supports healthy blood sugar levels',
+      'Improves glucose metabolism',
+      'Boosts energy and detoxifies the body',
+    ],
+  },
+  {
+    title: 'Direction For Use',
+    content: [
+      'Take 20–30 ml diluted in lukewarm water, twice daily before meals.',
+    ],
+  },
+  {
+    title: 'Cautions',
+    content: [
+      'For adults only. Consult doctor if pregnant or on medication.',
+    ],
+  },
+  {
+    title: 'Primary Benefits',
+    content: [
+      'Blood sugar control',
+      'Enhanced insulin function',
+      'Improved metabolism',
+      'Detoxification',
+    ],
+  },
+  {
+    title: 'Ingredients',
+    content: [
+      'Charantin, Momordicin, Gymnemic acids, antioxidants.',
+    ],
+  },
+])
+
+const toggleAccordion = (index) => {
+  activeIndex.value = activeIndex.value === index ? null : index
+}
+</script>
+

@@ -3908,7 +3908,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 .vcn-acc-body {
   padding: 5px 0 15px 0;
   /* border-bottom: 1px solid #ddd; */
-  display: none;
+  /* display: none; */
 }
 
 /* BULLET LIST */
