@@ -278,7 +278,7 @@
                   <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
                 </div>
               </div>
-              <a href="YOUR_DELHI_MAPS_URL" target="_blank" class="office-maps-btn">
+              <a href="https://maps.app.goo.gl/vmrjPjwU42DTeKn56" target="_blank" class="office-maps-btn">
                 📍 View on Google Maps →
               </a>
             </div>
@@ -334,7 +334,7 @@
                   <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
                 </div>
               </div>
-              <a href="YOUR_MUMBAI_MAPS_URL" target="_blank" class="office-maps-btn">
+              <a href="https://maps.app.goo.gl/NW8HrZd9rnr7NNmE9" target="_blank" class="office-maps-btn">
                 📍 View on Google Maps →
               </a>
             </div>
@@ -390,7 +390,7 @@
                   <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
                 </div>
               </div>
-              <a href="YOUR_BANGALORE_MAPS_URL" target="_blank" class="office-maps-btn">
+              <a href="https://maps.app.goo.gl/RdNP2Bs3yrySrywQ7" target="_blank" class="office-maps-btn">
                 📍 View on Google Maps →
               </a>
             </div>
@@ -445,7 +445,7 @@
                   <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
                 </div>
               </div>
-              <a href="YOUR_BANGALORE_MAPS_URL" target="_blank" class="office-maps-btn">
+              <a href="https://maps.app.goo.gl/VPj6nXCdQq9AN2GEA" target="_blank" class="office-maps-btn">
                 📍 View on Google Maps →
               </a>
             </div>
@@ -500,7 +500,7 @@
                   <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
                 </div>
               </div>
-              <a href="YOUR_BANGALORE_MAPS_URL" target="_blank" class="office-maps-btn">
+              <a href="https://maps.app.goo.gl/VPj6nXCdQq9AN2GEA" target="_blank" class="office-maps-btn">
                 📍 View on Google Maps →
               </a>
             </div>
@@ -555,7 +555,7 @@
                   <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
                 </div>
               </div>
-              <a href="YOUR_BANGALORE_MAPS_URL" target="_blank" class="office-maps-btn">
+              <a href="https://maps.app.goo.gl/VPj6nXCdQq9AN2GEA" target="_blank" class="office-maps-btn">
                 📍 View on Google Maps →
               </a>
             </div>
@@ -610,7 +610,7 @@
                   <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
                 </div>
               </div>
-              <a href="YOUR_BANGALORE_MAPS_URL" target="_blank" class="office-maps-btn">
+              <a href="https://maps.app.goo.gl/VPj6nXCdQq9AN2GEA" target="_blank" class="office-maps-btn">
                 📍 View on Google Maps →
               </a>
             </div>
@@ -665,7 +665,7 @@
                   <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
                 </div>
               </div>
-              <a href="YOUR_BANGALORE_MAPS_URL" target="_blank" class="office-maps-btn">
+              <a href="https://maps.app.goo.gl/VPj6nXCdQq9AN2GEA" target="_blank" class="office-maps-btn">
                 📍 View on Google Maps →
               </a>
             </div>
@@ -720,7 +720,7 @@
                   <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
                 </div>
               </div>
-              <a href="YOUR_BANGALORE_MAPS_URL" target="_blank" class="office-maps-btn">
+              <a href="https://maps.app.goo.gl/VPj6nXCdQq9AN2GEA" target="_blank" class="office-maps-btn">
                 📍 View on Google Maps →
               </a>
             </div>
@@ -775,7 +775,7 @@
                   <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
                 </div>
               </div>
-              <a href="YOUR_BANGALORE_MAPS_URL" target="_blank" class="office-maps-btn">
+              <a href="https://maps.app.goo.gl/VPj6nXCdQq9AN2GEA" target="_blank" class="office-maps-btn">
                 📍 View on Google Maps →
               </a>
             </div>
