@@ -5,11 +5,12 @@
         <!-- Left Column: Headline & Description -->
         <div class="col-lg-5">
           <h2 class="testing-main-title">
-            Rigorous testing that sets a higher standard.
+            Ayurvedic purity that sets a higher standard.
           </h2>
           <p class="testing-description-text">
-            DM-02™ is screened as a full formula for allergens, contaminants,
-            and pesticides—because what's not in your supplement matters, too.
+            DBT Care Plus is screened as a full formula for purity, potency
+            and safety — because what goes into your herbal juice matters
+            as much as what stays out.*
           </p>
         </div>
 
@@ -25,8 +26,9 @@
                     alt=""
                   />
                 </div>
-                <p class="testing-feature-description">
-                  Formulated without gluten, soy, dairy, and corn
+                 <p class="testing-feature-description">
+                  Formulated with 100% natural Ayurvedic herbs — no synthetic
+                  chemicals or artificial additives
                 </p>
               </div>
             </div>
@@ -40,9 +42,11 @@
                     alt=""
                   />
                 </div>
-                <p class="testing-feature-description">
-                  Tested for heavy metals and free of glyphosate and AMPA
+                               <p class="testing-feature-description">
+                  Free from preservatives, binders <br> and harmful
+                  chemical substances
                 </p>
+
               </div>
             </div>
 
@@ -55,9 +59,10 @@
                     alt=""
                   />
                 </div>
-                <div class="testing-feature-description">
-                  Formulated to comply with Prop. 65
-                </div>
+                <p class="testing-feature-description">
+                  Manufactured in a GMP certified facility
+                  ensuring consistent quality and safety
+                </p>
               </div>
             </div>
           </div>

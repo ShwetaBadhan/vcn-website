@@ -6,7 +6,7 @@
         <div class="col-lg-6 col-md-12">
           <div class="strains-product-image-container">
             <img
-              src="https://assets.embeddables.com/Frame17393323731_3356911832620697.png"
+              src="/img/products/New-Project.png"
               alt="Probiotic Capsule"
               class="w-100"
             />
@@ -17,21 +17,21 @@
         <div class="col-lg-6 col-md-12">
           <div class="strains-content-wrapper-right">
             <h2 class="strains-main-heading-text">
-              Strains that work harder for your whole body.
+              11 Herbs that work harder to control your Blood Sugar.
             </h2>
 
             <p class="strains-subheading-description">
-              Chosen for their ability to improve gut function and build whole
-              body health.
+              Chosen for their Ayurvedic potency to regulate glucose metabolism
+              and build complete diabetic wellness.
             </p>
 
-            <a
+            <!-- <a
               href="#"
               class="strains-view-link-text"
               data-target="digestive-health-content"
             >
               View Strains + Ingredients →
-            </a>
+            </a> -->
 
             <!-- Accordion -->
             <div class="strains-custom-accordion">
@@ -45,22 +45,18 @@
                   aria-expanded="false"
                   aria-controls="strainsCollapse1"
                 >
-                  <span>Gut + Immune Health Blend</span>
-                  <div style="display: flex; align-items: center">
-                    <span class="strains-accordion-afu-count"
-                      >38.7 BILLION AFU</span
-                    >
+                  <span>Blood Sugar Control Blend</span>
+                   <div style="display: flex; align-items: center">
+                    <span class="strains-accordion-afu-count">KARELA · VIJAYASAR · GURMAR</span>
                     <span class="strains-accordion-plus-icon">+</span>
                   </div>
+                    
+               
                 </button>
-                <div
-                  class="collapse strains-accordion-body-content"
-                  id="strainsCollapse1"
-                >
-                  <p>
-                    Content for Gut + Immune Health Blend goes here. Details
-                    about the strains and their benefits.
-                  </p>
+                 <div class="collapse strains-accordion-body-content" id="strainsCollapse1">
+                  <p><strong>Karela:</strong> Contains Charantin & Momordicin that influence glucose metabolism and reduce high blood glucose levels.</p>
+                  <p><strong>Vijayasar:</strong> Reduces excess fat, removes toxins, lowers blood sugar and purifies blood naturally.</p>
+                  <p><strong>Gurmar:</strong> Highly effective in Type 1 & Type 2 Diabetes. Enhances insulin levels and reduces bad cholesterol (LDL).</p>
                 </div>
               </div>
 
@@ -74,22 +70,16 @@
                   aria-expanded="false"
                   aria-controls="strainsCollapse2"
                 >
-                  <span>Skin Health Blend</span>
-                  <div style="display: flex; align-items: center">
-                    <span class="strains-accordion-afu-count"
-                      >3.34 BILLION AFU</span
-                    >
+                  <span>Immunity & Detox Blend</span>
+                   <div style="display: flex; align-items: center">
+                    <span class="strains-accordion-afu-count">GILOY · NEEM · AMLA</span>
                     <span class="strains-accordion-plus-icon">+</span>
                   </div>
                 </button>
-                <div
-                  class="collapse strains-accordion-body-content"
-                  id="strainsCollapse2"
-                >
-                  <p>
-                    Content for Skin Health Blend goes here. Details about the
-                    strains and their benefits.
-                  </p>
+                 <div class="collapse strains-accordion-body-content" id="strainsCollapse2">
+                  <p><strong>Giloy:</strong> Lowers blood sugar and lipid levels, relieves excessive thirst and improves body strength.</p>
+                  <p><strong>Neem:</strong> Improves insulin sensitivity and controls high blood glucose by stimulating insulin production in Beta cells.</p>
+                  <p><strong>Amla:</strong> Helps proper absorption of insulin, reduces high sugar levels and relieves eye-related diabetic problems.</p>
                 </div>
               </div>
 
@@ -103,22 +93,38 @@
                   aria-expanded="false"
                   aria-controls="strainsCollapse3"
                 >
-                  <span>Heart Health Blend</span>
+                 <span>Metabolic & Pancreas Support Blend</span>
                   <div style="display: flex; align-items: center">
-                    <span class="strains-accordion-afu-count"
-                      >4.21 BILLION AFU</span
-                    >
+                    <span class="strains-accordion-afu-count">METHI · CHIRATA · JAMUN</span>
                     <span class="strains-accordion-plus-icon">+</span>
                   </div>
                 </button>
-                <div
-                  class="collapse strains-accordion-body-content"
-                  id="strainsCollapse3"
+               <div class="collapse strains-accordion-body-content" id="strainsCollapse3">
+                  <p><strong>Methi:</strong> Lowers blood glucose, improves glucose tolerance and manages metabolic symptoms of Type 1 & Type 2 Diabetes.</p>
+                  <p><strong>Chirata:</strong> Antioxidant & anti-inflammatory properties that prevent pancreatic cell damage and enhance insulin release.</p>
+                  <p><strong>Jamun:</strong> Contains Jamboline to reduce starch-to-glucose conversion and controls frequent urination & thirst in diabetics.</p>
+                </div>
+              </div>
+              <!-- Accordion Item 4 -->
+              <div class="strains-accordion-item-wrapper">
+                <button
+                  class="strains-accordion-header-btn"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#strainsCollapse4"
+                  aria-expanded="false"
+                  aria-controls="strainsCollapse4"
                 >
-                  <p>
-                    Content for Heart Health Blend goes here. Details about the
-                    strains and their benefits.
-                  </p>
+                  <span>Organ Health & Repair Blend</span>
+                  <div style="display: flex; align-items: center">
+                    <span class="strains-accordion-afu-count">PUNARNAVA · ALOE VERA · SHILAJIT</span>
+                    <span class="strains-accordion-plus-icon">+</span>
+                  </div>
+                </button>
+                <div class="collapse strains-accordion-body-content" id="strainsCollapse4">
+                  <p><strong>Punarnava:</strong> Best natural diuretic to reduce sugar, blood pressure and cholesterol. Supports liver, kidneys and eye health.</p>
+                  <p><strong>Aloe Vera:</strong> Reduces glucose and triglyceride levels, assists in wound healing and does not elevate blood sugar.</p>
+                  <p><strong>Shudh Shilajit:</strong> Fulvic acid in Shilajit repairs damaged pancreas, enables insulin release and flushes out body toxins.</p>
                 </div>
               </div>
             </div>
@@ -132,7 +138,7 @@
                     alt="Vegan"
                   />
                 </div>
-                <span class="strains-badge-label-text">Vegan</span>
+                <span class="strains-badge-label-text">100% Ayurvedic</span>
               </div>
               <div class="strains-badge-item-box">
                 <div class="strains-badge-icon-circle">
@@ -141,7 +147,7 @@
                     alt="Gluten"
                   />
                 </div>
-                <span class="strains-badge-label-text">Gluten-Tested</span>
+                <span class="strains-badge-label-text">100% Natural</span>
               </div>
               <div class="strains-badge-item-box">
                 <div class="strains-badge-icon-circle">
@@ -150,7 +156,7 @@
                     alt="Dairy"
                   />
                 </div>
-                <span class="strains-badge-label-text">Dairy-Tested</span>
+                <span class="strains-badge-label-text">No Added Sugar</span>
               </div>
               <div class="strains-badge-item-box">
                 <div class="strains-badge-icon-circle">
@@ -159,7 +165,7 @@
                     alt="Soy"
                   />
                 </div>
-                <span class="strains-badge-label-text">Soy-Tested</span>
+                <span class="strains-badge-label-text">No Chemicals</span>
               </div>
               <div class="strains-badge-item-box">
                 <div class="strains-badge-icon-circle">
@@ -168,7 +174,7 @@
                     alt="Nut"
                   />
                 </div>
-                <span class="strains-badge-label-text">Nut-Tested</span>
+                <span class="strains-badge-label-text">No Preservatives</span>
               </div>
               <div class="strains-badge-item-box">
                 <div class="strains-badge-icon-circle">
@@ -177,7 +183,7 @@
                     alt="Shellfish"
                   />
                 </div>
-                <span class="strains-badge-label-text">Shellfish-Tested</span>
+                <span class="strains-badge-label-text">Vegetarian</span>
               </div>
               <div class="strains-badge-item-box">
                 <div class="strains-badge-icon-circle">
@@ -186,7 +192,7 @@
                     alt="Sesame"
                   />
                 </div>
-                <span class="strains-badge-label-text">Sesame-Tested</span>
+                <span class="strains-badge-label-text">GMP Certified</span>
               </div>
               <div class="strains-badge-item-box">
                 <div class="strains-badge-icon-circle">
@@ -195,46 +201,9 @@
                     alt="Corn"
                   />
                 </div>
-                <span class="strains-badge-label-text">Corn-Tested</span>
-              </div>
-              <div class="strains-badge-item-box">
-                <div class="strains-badge-icon-circle">
-                  <img
-                    src="https://assets.embeddables.com/Group1739331802_24001446662742731.png"
-                    alt="Glyphosate"
-                  />
-                </div>
-                <span class="strains-badge-label-text"
-                  >Glyphosate / AMPA-Tested</span
-                >
-              </div>
-              <div class="strains-badge-item-box">
-                <div class="strains-badge-icon-circle">
-                  <img
-                    src="https://assets.embeddables.com/Group1739331804_7506952967287188.png"
-                    alt="No Binders"
-                  />
-                </div>
                 <span class="strains-badge-label-text">No Binders</span>
               </div>
-              <div class="strains-badge-item-box">
-                <div class="strains-badge-icon-circle">
-                  <img
-                    src="https://assets.embeddables.com/Group1739331809_9421286347427003.png"
-                    alt="No Preservatives"
-                  />
-                </div>
-                <span class="strains-badge-label-text">No Preservatives</span>
-              </div>
-              <div class="strains-badge-item-box">
-                <div class="strains-badge-icon-circle">
-                  <img
-                    src="https://assets.embeddables.com/Group1739331808_21752182411919663.png"
-                    alt="Prop 65"
-                  />
-                </div>
-                <span class="strains-badge-label-text">Prop 65 Compliant</span>
-              </div>
+              
             </div>
           </div>
         </div>

@@ -3,16 +3,16 @@
     <div class="container-fluid">
       <div class="row mb-5">
         <div class="col-lg-6">
-          <div class="bioavailable-section-header">
-            <h1>Bioavailable nutrients that work harder for you.</h1>
+           <div class="bioavailable-section-header">
+            <h1>Potent Ayurvedic herbs that work harder for your blood sugar.</h1>
           </div>
         </div>
         <div class="col-lg-6 d-flex align-items-center">
           <div class="bioavailable-section-header">
             <p>
-              DM-02™ is formulated with ingredients in forms your body can
-              easily recognize and absorb, so you experience the full potential
-              of their health benefits.*
+              DBT Care Plus is formulated with 11 powerful herbs your body can
+              naturally absorb, so you experience the full potential of
+              Ayurvedic diabetic wellness.*
             </p>
           </div>
         </div>
@@ -23,11 +23,11 @@
           <!-- Slide 1 -->
           <div class="swiper-slide">
             <div class="nutrient-card">
-              <span class="exclusive-badge">DM-02™ Exclusive</span>
-              <h3>Cellular Energy Complex</h3>
+              <!-- <span class="exclusive-badge">DBT Care Plus — Key Herb</span> -->
+              <h3>Karela (Bitter Melon)</h3>
               <p>
-                Supports cellular and mitochondrial function with a blend of
-                CoQ10, PQQ, MK-7, and spermidine.
+                A powerhouse herb that directly influences glucose metabolism
+                and reduces high blood glucose levels throughout the body.
               </p>
 
               <div class="media-container">
@@ -45,17 +45,17 @@
 
               <div class="form-label">WHY IT'S ESSENTIAL</div>
               <div class="form-content">
-                Replenishes key nutrients that typically decline with <br />
-                age.
+                Contains Charantin & Momordicin — natural compounds proven
+                to lower blood sugar levels effectively.
               </div>
             </div>
           </div>
           <div class="swiper-slide">
             <div class="nutrient-card">
-              <h3>Vitamin A</h3>
-              <p>
-                A fat-soluble vitamin that supports immune defense and bone
-                health.
+               <h3>Vijayasar (Indian Kino)</h3>
+             <p>
+                A large medicinal tree whose bark is highly effective in
+                treating diabetes and purifying the blood.
               </p>
               <div class="media-container">
                 <img
@@ -70,17 +70,20 @@
                 </video>
               </div>
 
-              <div class="form-label">BIOAVAILABLE FORM</div>
-              <div class="form-content">
-                Two forms of vitamin A—provitamin A and active vitamin A— the
-                body can easily utilize.
+               <div class="form-label">WHY IT'S ESSENTIAL</div>
+               <div class="form-content">
+                Reduces excess fat, removes toxins from the body and
+                naturally lowers blood sugar levels.
               </div>
             </div>
           </div>
           <div class="swiper-slide">
             <div class="nutrient-card">
-              <h3>Vitamin C</h3>
-              <p>Promotes collagen production and supports immune health.</p>
+               <h3>Gurmar</h3>
+                <p>
+                Highly effective in both Type 1 & Type 2 Diabetes mellitus,
+                targeting insulin levels and cholesterol simultaneously.
+              </p>
 
               <div class="media-container">
                 <img
@@ -95,18 +98,19 @@
                 </video>
               </div>
 
-              <div class="form-label">BIOAVAILABLE FORM</div>
+               <div class="form-label">WHY IT'S ESSENTIAL</div>
               <div class="form-content">
-                Ascorbic acid, an active form of vitamin C that’s easily
-                absorbed.
+                Enhances insulin levels in the body and reduces bad
+                cholesterol (LDL) for complete metabolic support.
               </div>
             </div>
           </div>
           <div class="swiper-slide">
             <div class="nutrient-card">
-              <h3>Vitamin D3</h3>
-              <p>
-                Supports calcium absorption, bone health, and muscular function.
+              <h3>Giloy</h3>
+               <p>
+                A powerful wild herb that lowers blood sugar and lipid levels
+                while improving overall body strength.
               </p>
 
               <div class="media-container">
@@ -122,10 +126,10 @@
                 </video>
               </div>
 
-              <div class="form-label">BIOAVAILABLE FORM</div>
+               <div class="form-label">WHY IT'S ESSENTIAL</div>
               <div class="form-content">
-                Cholecalciferol, a natural and more effective form compared to
-                synthetic D2.
+                Relieves excessive thirst in diabetics and helps improve
+                energy and body strength naturally.
               </div>
             </div>
           </div>

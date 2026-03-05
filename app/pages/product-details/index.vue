@@ -2,11 +2,11 @@
  <ProductDetailsIntroduction />
  <ProductDetailsHealthSection />
  <ProductDetailsFormulationSection />
+ <ProductDetailsBundleSection />
  <ProductDetailsBenefitsSection />
  <ProductDetailsCellularEnergySection />
  <ProductDetailsCompareSection />
  <ProductDetailsRigorousSection />
- <ProductDetailsBundleSection />
  <ProductDetailsProbioticSection />
  <ProductDetailsDifferenceSection />
  <ProductDetailsStrengthenSection />

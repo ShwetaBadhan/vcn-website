@@ -39,6 +39,7 @@
               />
             </div>
             <div class="product-content">
+              <span class="product-label">AGE 18+</span>
               <h3 class="product-title">Daily Essentials Duo</h3>
               <p class="product-description">
                 Clinically proven probiotic and advanced multivitamin duo for

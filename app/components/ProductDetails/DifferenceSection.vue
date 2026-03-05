@@ -1,12 +1,12 @@
 <template>
-     <section class="ds01-difference-section">
+     <section class="p-5 health-section-bg">
     <div class="container-fluid">
       <div class="row mb-5">
         <div class="col-12">
-          <h1 class="ds01-section-title">The DS-01® Difference</h1>
+          <h1 class="ds01-section-title">DBT Care Plus — Your Natural Solution to Control Blood Sugar</h1>
           <p class="ds01-section-subtitle">
-            Our formulation prioritizes strain diversity and survivability,<br />
-            so you get clinically proven results, not empty promises.
+            Our Ayurvedic formulation combines 11 powerful herbs,<br />
+            clinically trusted to manage blood sugar and diabetic wellness naturally.
           </p>
         </div>
       </div>
@@ -46,7 +46,7 @@
           <div class="ds01-doctor-info">
             <div class="ds01-doctor-name">Dr. Zain Kassam, MD, MPH</div>
             <div class="ds01-doctor-title">
-              Chief Medical Officer, Seed Health
+              Chief Ayurvedic Consultant, VCN Health
             </div>
           </div>
         </div>
@@ -60,10 +60,11 @@
                   alt=""
                 />
                 <div class="ds01-feature-divider"></div>
-                <h3 class="ds01-feature-title">24 Diverse Probiotic Strains</h3>
-                <p class="ds01-feature-description">
-                  Research-derived doses for microbial diversity, the foundation
-                  of a healthy gut.
+                <h3 class="ds01-feature-title">Type 1 & Type 2 Diabetes</h3>
+                 <p class="ds01-feature-description">
+                  Herbs like Gurmar and Methi are highly effective in managing
+                  both Type 1 and Type 2 Diabetes by enhancing insulin levels
+                  and improving glucose tolerance.*
                 </p>
               </div>
             </div>
@@ -75,10 +76,11 @@
                   alt=""
                 />
                 <div class="ds01-feature-divider"></div>
-                <h3 class="ds01-feature-title">Engineered to Survive</h3>
+                <h3 class="ds01-feature-title">High Blood Sugar</h3>
                 <p class="ds01-feature-description">
-                  Proprietary ViaCap® technology safeguards probiotics during
-                  the journey to the colon.
+                  Karela, Neem and Vijayasar actively reduce high blood glucose
+                  levels, stimulate insulin production and purify the blood
+                  naturally.*
                 </p>
               </div>
             </div>
@@ -91,11 +93,12 @@
                 />
                 <div class="ds01-feature-divider"></div>
                 <h3 class="ds01-feature-title">
-                  Antioxidant-Promoting Prebiotic
+                  Liver & Kidney Disorders
                 </h3>
-                <p class="ds01-feature-description">
-                  Non-fiber based prebiotic (unlike many found in food or
-                  drinks) that feeds beneficial gut microbes.
+                 <p class="ds01-feature-description">
+                  Punarnava and Aloe Vera support liver and kidney health,
+                  reduce toxins, and help manage jaundice and
+                  kidney-related diseases.*
                 </p>
               </div>
             </div>
@@ -108,11 +111,12 @@
                 />
                 <div class="ds01-feature-divider"></div>
                 <h3 class="ds01-feature-title">
-                  4 Gold-Standard Clinical Trials
+                  Diabetic Symptoms Relief
                 </h3>
-                <p class="ds01-feature-description">
-                  Scientifically validated by experts as a complete formulation,
-                  four different times.
+                 <p class="ds01-feature-description">
+                  Effectively relieves symptoms like excessive thirst, frequent
+                  urination, fatigue, weak eyesight, and slow
+                  wound healing.*
                 </p>
               </div>
             </div>

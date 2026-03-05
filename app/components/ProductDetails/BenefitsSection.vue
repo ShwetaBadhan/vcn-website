@@ -2,10 +2,10 @@
     <div class="container-fluid py-5 health-section-bg">
     <!-- Section Header -->
     <div class="text-center mb-4">
-      <h1 class="section-title-timeline">Benefits that build over time.</h1>
+     <h1 class="section-title-timeline">11 Herbs. One Journey. Complete Diabetic Wellness.</h1>
       <p class="section-subtitle">
-        Designed for daily use, DM-02™ replenishes your body and microbiome with
-        essential nutrients to build systemic health over time.*
+        Designed for daily use, DBT Care Plus replenishes your body with
+        11 powerful Ayurvedic herbs to build complete diabetic wellness over time.*
       </p>
     </div>
 
@@ -16,40 +16,38 @@
           <!-- Day 1 -->
           <div class="timeline-item">
             <span class="timeline-header">Day 1</span>
-            <span class="timeline-title">Replenishes Nutrients*</span>
+            <span class="timeline-title">Begins Blood Sugar Regulation*</span>
             <div class="timeline-body">
-              <ul class="list-unstyled">
-                <li>Helps fill daily nutrient gaps</li>
-                <li>Supports cellular energy production</li>
-                <li>Fuels microbial metabolism of nutrients</li>
+               <ul class="list-unstyled">
+                <li>Karela & Neem start reducing high blood glucose levels</li>
+                <li>Helps improve insulin sensitivity from day one</li>
+                <li>Supports glucose metabolism throughout the body</li>
               </ul>
             </div>
           </div>
 
           <!-- Week 4 -->
           <div class="timeline-item">
-            <span class="timeline-header">Week 4</span>
-            <span class="timeline-title">Maintains Immune Function*</span>
+            <span class="timeline-header">Week 2</span>
+             <span class="timeline-title">Reduces Diabetic Symptoms*</span>
             <div class="timeline-body">
               <ul class="list-unstyled">
-                <li>Bolsters daily immune defenses</li>
-                <li>Shields against environmental stress</li>
-                <li>Provides antioxidants for healthy barrier function</li>
+                <li>Reduces excessive thirst and frequent urination</li>
+                <li>Giloy & Jamun help improve body strength and energy</li>
+                <li>Begins relieving tiredness and fatigue</li>
               </ul>
             </div>
           </div>
 
           <!-- Week 8 -->
           <div class="timeline-item">
-            <span class="timeline-header">Week 8</span>
-            <span class="timeline-title">Enhanced Cognitive Support*</span>
+            <span class="timeline-header">Week 4</span>
+             <span class="timeline-title">Detox & Blood Purification*</span>
             <div class="timeline-body">
               <ul class="list-unstyled">
-                <li>Promotes healthy hair, skin, and nails</li>
-                <li>Helps protect against free radical damage</li>
-                <li>
-                  Delivers nutrients that decline with age like CoQ10 and PQQ
-                </li>
+                <li>Vijayasar & Punarnava remove toxins from the body</li>
+                <li>Kidney and liver function visibly improves</li>
+                <li>Blood purification supports overall diabetic health</li>
               </ul>
             </div>
           </div>
@@ -65,8 +63,10 @@
           </div>
           <div>
             <h6 class="how-to-use-title">How to Use:</h6>
-            <ul class="list-unstyled mb-0">
-              <li>Take 1 capsule daily with food for best absorption.</li>
+            <ul class=" mb-0">
+              <li>1. Take 20ml to 30ml diluted in a glass of lukewarm water.</li>
+              <li>2. Consume in the morning and evening, 30 minutes before meals.</li>
+              <li>3. Or as directed by your Physician.</li>
             </ul>
           </div>
         </div>

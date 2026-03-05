@@ -1,5 +1,5 @@
 <template>
-      <section class="health-section-bg">
+  <section class="health-section-bg">
     <div class="routine-bundle-wrapper">
       <div class="container routine-bundle-container">
         <div class="row align-items-center g-4 g-lg-5">
@@ -31,24 +31,30 @@
           <!-- Right Column: Content -->
           <div class="col-lg-6 routine-content-column">
             <h2 class="routine-main-heading">
-              Complete Your Routine With DS-01®
+              Natural Blood Sugar Control Bundle
             </h2>
 
             <div class="routine-product-description">
-              <h3 class="routine-product-name">DS-01® Daily Synbiotic :</h3>
+              <h3 class="routine-product-name">
+                DBT Care Plus — Blood Sugar Control Bundle:
+              </h3>
               <p class="routine-product-details">
-                24 probiotic strains to ease bloating, improve regularity, and
-                support digestive health.*
+                11 powerful Ayurvedic herbs to regulate blood sugar levels,
+                improve glucose metabolism, and support overall diabetic
+                wellness.*
               </p>
             </div>
 
             <div class="routine-product-description mb-4">
-              <h3 class="routine-product-name">DM-02™ Daily Multivitamin:</h3>
+              <h3 class="routine-product-name">
+                VCN DBT Care Plus — Herbal Juice:
+              </h3>
               <p class="routine-product-details">
-                Essential vitamins and minerals to help cover nutrient gaps and
-                support your microbiome.*
+                A unique blend of Karela, Jamun, Giloy & more to detoxify the
+                body, purify blood, and naturally manage diabetes symptoms.*
               </p>
             </div>
+
             <div class="row">
               <div class="col-lg-6">
                 <a href="product-details" class="routine-cta-button"

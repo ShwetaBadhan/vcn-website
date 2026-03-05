@@ -1,6 +1,6 @@
 <template>
-
-     <div class="row mt-5">
+<section class="health-section-bg">
+   <div class="row mt-5">
       <div
         class="col-lg-3 health-section-below d-flex align-items-center justify-content-center"
       >
@@ -20,13 +20,13 @@
             <div class="vcn-probiotic-content-wrapper">
               <!-- Left Content -->
               <div class="vcn-probiotic-left-content">
-                <h2 class="alternate-heading">
-                  2-in-1 Formulation Optimized for Nutrient Delivery
-                </h2>
+                 <h2 class="alternate-heading">
+            2-in-1 Ayurvedic Formula Optimized for Complete Diabetic Wellness
+          </h2>
                 <div class="vcn-probiotic-callout-text">
-                  Seed's ViaCap® delivery system is engineered for targeted
-                  release along the GI tract.
-                </div>
+            DBT Care Plus unique herbal blend is engineered for targeted
+            action — controlling blood sugar while healing the body from within.
+          </div>
               </div>
 
               <div class="vcn-probiotic-right-content">
@@ -34,12 +34,13 @@
                   <!-- Example with alternative styling -->
                   <div class="vcn-probiotic-callout alternative-callout-top">
                     <div class="vcn-probiotic-callout-title">
-                      Outer Capsule—For You
-                    </div>
-                    <div class="vcn-probiotic-callout-text">
-                      Essential vitamins and minerals reach the upper GI tract
-                      and help fill nutrient gaps.*
-                    </div>
+                Blood Sugar Control Blend — For Immediate Relief
+              </div>
+                     <div class="vcn-probiotic-callout-text">
+                Karela, Gurmar, Neem & Vijayasar actively reduce high blood
+                glucose levels, stimulate insulin production and purify
+                the blood from Day 1.*
+              </div>
                   </div>
 
                   <div class="alternate-image">
@@ -52,11 +53,12 @@
 
                   <div class="vcn-probiotic-callout alternative-callout-bottom">
                     <div class="vcn-probiotic-callout-title">
-                      Inner Capsule—For Your Microbiome
+                       Organ Repair & Detox Blend — For Long Term Wellness
                     </div>
                     <div class="vcn-probiotic-callout-text">
-                      B vitamins, Japanese wasabi prebiotic, and Cellular Energy
-                      Complex to target microbiome function.*
+                       Shudh Shilajit, Punarnava, Aloe Vera & Chirata repair
+                damaged pancreatic cells, detoxify the body and support
+                liver, kidney and eye health over time.*
                     </div>
                   </div>
                 </div>
@@ -66,4 +68,6 @@
         </div>
       </div>
     </div>
+</section>
+  
 </template>
