@@ -1,7 +1,7 @@
 <template>
-    <section class="product-detail-section mt-3">
+    <section class="product-detail-section">
   <div class="container-fluid">
-      <div class="row g-0">
+      <div class="row">
         <!-- Left Sidebar Navigation -->
         <div class="col-md-3 col-lg-3 sidebar-section d-none d-md-block">
           <AboutSidebar />

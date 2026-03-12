@@ -5,6 +5,7 @@
    <HomeSurviveDigestion />
    <HomeDiseaseBundle />
    <HomeTestimonial />
+   <HomeConsultancyCTA />
    <HomeStories />
 </template>
 

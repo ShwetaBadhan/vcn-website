@@ -207,6 +207,16 @@
                         >VCNLabs</a
                       >
                     </li>
+                    <li>
+                      <a href="/blog" class="vcn-footer-link"
+                        >Blogs</a
+                      >
+                    </li>
+                    <li>
+                      <a href="/book-consultancy" class="vcn-footer-link"
+                        >Book Consultancy</a
+                      >
+                    </li>
                   </ul>
                 </div>
 
@@ -287,8 +297,28 @@
                       >
                     </li>
                     <li>
-                      <a href="#" class="vcn-footer-link"
-                        >Consent Preferences</a
+      <a href="#" class="vcn-footer-link" @click.prevent="openConsentModal">
+        Consent Preferences
+      </a>
+    </li>
+                    <li>
+                      <a href="/cancellation-and-refund-process" class="vcn-footer-link"
+                        >Cancellation & Refund Process</a
+                      >
+                    </li>
+                    <li>
+                      <a href="/disclaimer" class="vcn-footer-link"
+                        >Disclaimer</a
+                      >
+                    </li>
+                    <li>
+                      <a href="/shipping-policy" class="vcn-footer-link"
+                        >Shipping Policy</a
+                      >
+                    </li>
+                    <li>
+                      <a href="/grievance-redressal" class="vcn-footer-link"
+                        >Grievance Redressal</a
                       >
                     </li>
                   </ul>
@@ -298,5 +328,19 @@
           </div>
         </div>
       </div>
+      <!-- Add the modal component -->
+    <ConsentPreferencesModal ref="consentModal" />
     </footer>
 </template>
+
+
+<script setup>
+import { ref } from 'vue'
+import ConsentPreferencesModal from './ConsentPreferencesModal.vue'
+
+const consentModal = ref(null)
+
+const openConsentModal = () => {
+  consentModal.value?.openConsentModal()
+}
+</script>

@@ -15,7 +15,7 @@
             </div>
             <div class="disease-card-body">
               <h3 class="disease-title">Acidity</h3>
-              <a href="bundle-details.html" class="learn-more-btn"
+              <a href="/bundle-details" class="learn-more-btn"
                 >LEARN MORE</a
               >
             </div>
@@ -33,7 +33,7 @@
             </div>
             <div class="disease-card-body">
               <h3 class="disease-title">Thyroid</h3>
-              <a href="bundle-details.html" class="learn-more-btn"
+              <a href="/bundle-details" class="learn-more-btn"
                 >LEARN MORE</a
               >
             </div>
@@ -51,7 +51,7 @@
             </div>
             <div class="disease-card-body">
               <h3 class="disease-title">Diabetes</h3>
-              <a href="bundle-details.html" class="learn-more-btn"
+              <a href="/bundle-details" class="learn-more-btn"
                 >LEARN MORE</a
               >
             </div>
@@ -69,7 +69,7 @@
             </div>
             <div class="disease-card-body">
               <h3 class="disease-title">Fatty Liver</h3>
-              <a href="bundle-details.html" class="learn-more-btn"
+              <a href="/bundle-details" class="learn-more-btn"
                 >LEARN MORE</a
               >
             </div>
