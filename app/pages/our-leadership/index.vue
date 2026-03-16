@@ -1,5 +1,5 @@
 <template>
-  <section class="product-detail-section">
+  <section class="product-detail-section mt-3">
     <div class="container-fluid">
       <div class="row">
         <!-- Left Sidebar Navigation -->
@@ -9,7 +9,7 @@
         <div class="col-md-9 col-lg-9">
           <div class="leadership-page">
             <!-- Hero Section -->
-            <section class="hero-sections">
+            <section class="hero-sectioning">
               <div class="container-fluid">
                 <div class="row align-items-center">
                   <div class="col-lg-6">
@@ -20,7 +20,7 @@
                   <div class="col-lg-6">
                     <div class="hero-contents">
                       <h1 class="hero-title">Our leadership</h1>
-                      <p class="hero-text">
+                      <p class="hero-texts">
                         Our executive management and board of directors are
                         passionate leaders who inspire us to live our best lives
                         every day. With their diverse expertise and
@@ -314,7 +314,7 @@ const closeBio = () => {
 
 <style scoped>
 /* Hero Section */
-.hero-sections {
+.hero-sectioning{
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   padding: 80px 0;
   margin-bottom: 60px;
@@ -339,7 +339,7 @@ const closeBio = () => {
   line-height: 1.2;
 }
 
-.hero-text {
+.hero-texts {
   font-size: 16px;
   line-height: 1.8;
   color: #555;

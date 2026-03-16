@@ -1,5 +1,5 @@
 <template>
-  <section class="product-detail-section">
+  <section class="product-detail-section  mt-3">
     <div class="container-fluid">
       <div class="row">
         <!-- Left Sidebar Navigation -->

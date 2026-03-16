@@ -12,6 +12,7 @@
   --vcn-light: #e9fccd;
   --vcn-product: #f6f7ef;
   --vcn-gradient: linear-gradient(135deg, #45663c, #1c3a13);
+  --vcn-mobile: #83b576;
 }
 
 * {
@@ -139,7 +140,7 @@ p {
 
 /* Mobile only elements */
 .mobile-cart {
-  color: var(--vcn-badge);
+  color: var(--vcn-mobile);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
@@ -179,7 +180,7 @@ p {
 .hamburger-line {
   width: 24px;
   height: 2.5px;
-  background: linear-gradient(135deg, #282828 0%, #505050 100%);
+  background: var(--vcn-footer);
   border-radius: 3px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: block;
@@ -350,7 +351,7 @@ body.menu-open .navbar-brand.d-lg-none {
 .custom-navbar-toggler {
   position: relative;
 
-  color: var(--vcn-badge);
+  color: var(--vcn-mobile);
   border: none;
   cursor: pointer;
   z-index: 10002;
@@ -360,7 +361,7 @@ body.menu-open .navbar-brand.d-lg-none {
   display: block;
   width: 100%;
   height: 2px;
-  background: white;
+  background: var(--vcn-mobile);
   position: absolute;
   left: 0;
   transition: all 0.3s ease;
@@ -395,7 +396,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 /* Mobile Menu - Slides from BEHIND the Logo */
 .navbar-collapse {
-  position: absolute;
+  position: fixed;
   top: 0; 
   left: 0; 
   width: 0; /* Initially hidden */
@@ -413,7 +414,10 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   margin-top: 30px;
   opacity: 0;
 }
-
+/* Hide state - Slide up */
+.navbar-collapse.hidden {
+  transform: translateY(-100%); /* Upar slide ho jayega */
+}
 /* Show state - Expand */
 .navbar-collapse.show {
   width: calc(100% - 0px); /* Full width minus margins */
@@ -13706,4 +13710,11 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
     bottom: -100px;
     right: -100px;
   }
+}
+
+.nav-tog{
+border: 4px solid var(--vcn-mobile);
+padding: 8px;
+border-radius: 12px;
+
 }

@@ -1,5 +1,5 @@
 <template>
-        <section class="product-detail-section">
+        <section class="product-detail-section mt-3">
   <div class="container-fluid">
       <div class="row">
         <!-- Left Sidebar Navigation -->
@@ -28,7 +28,7 @@
 
 <div v-if="activeTab === 'overview'">
   <!-- HERO IMAGE -->
-  <section class="hero-sections">
+  <section class="hero-sectioning">
     <img src="" class="hero-img">
 
     <div class="hero-card">
@@ -191,7 +191,7 @@ font-weight:600;
 
 /* HERO */
 
-.hero-sections{
+.hero-sectioning{
 background:white;
 border-radius:10px;
 overflow:hidden;
