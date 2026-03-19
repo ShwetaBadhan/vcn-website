@@ -335,12 +335,68 @@
 
 
 <script setup>
+import { onMounted } from 'vue'
 import { ref } from 'vue'
-import ConsentPreferencesModal from './ConsentPreferencesModal.vue'
+import ConsentPreferencesModal from '~/components/ConsentPreferencesModal.vue'
 
 const consentModal = ref(null)
 
 const openConsentModal = () => {
   consentModal.value?.openConsentModal()
 }
+
+onMounted(() => {
+  // Tawk.to Script
+  var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+  (function () {
+    var s1 = document.createElement("script"),
+        s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = 'https://embed.tawk.to/68df76a08627511951405fde/1jk2v3gtd';
+    s1.charset = 'UTF-8';
+    s1.setAttribute('crossorigin', '*');
+    s0.parentNode.insertBefore(s1, s0);
+  })();
+
+  // WhatsApp Widget Script
+  var url = 'https://wati-integration-service.clare.ai/ShopifyWidget/shopifyWidget.js?86687';
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = url;
+
+  var options = {
+    enabled: true,
+    chatButtonSetting: {
+      backgroundColor: "#2aca45",
+      ctaText: "Message Us",
+      borderRadius: "25",
+      marginLeft: "50",
+      marginBottom: "30",
+      marginRight: "50",
+      position: "left"
+    },
+    brandSetting: {
+      brandName: "Vcare Network",
+      brandSubTitle: "Typically replies within a day",
+      brandImg: "https://vibrantick.in/assets/images/favicon-32x32.png",
+      welcomeText: "Hi there!\nHow can I help you?",
+      messageText: "Hello, I have a question about {{page_link}}",
+      backgroundColor: "#2aca45",
+      ctaText: "Start Chat",
+      borderRadius: "25",
+      autoShow: false,
+      phoneNumber: "919876453626"
+    }
+  };
+
+  s.onload = function () {
+    if (typeof CreateWhatsappChatWidget !== "undefined") {
+      CreateWhatsappChatWidget(options);
+    }
+  };
+
+  var x = document.getElementsByTagName('script')[0];
+  x.parentNode.insertBefore(s, x);
+});
 </script>
