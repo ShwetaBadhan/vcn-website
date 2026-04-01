@@ -5,11 +5,11 @@
  <ProductDetailsBundleSection />
  <ProductDetailsBenefitsSection />
  <ProductDetailsCellularEnergySection />
- <ProductDetailsCompareSection />
+ <!-- <ProductDetailsCompareSection /> -->
  <ProductDetailsRigorousSection />
- <ProductDetailsProbioticSection />
+ <!-- <ProductDetailsProbioticSection /> -->
  <ProductDetailsDifferenceSection />
- <ProductDetailsStrengthenSection />
+ <!-- <ProductDetailsStrengthenSection /> -->
  <ProductDetailsStrainSection />
  <ProductDetailsProducts />
  <ProductDetailsReviewSection />
