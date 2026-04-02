@@ -4,7 +4,7 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  modules: ['@nuxt/ui'],
+  modules: ['@nuxt/ui', '@pinia/nuxt'],
 
   css: [
     '~/assets/css/main.css',
@@ -47,6 +47,12 @@ export default defineNuxtConfig({
           href: 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css'
         },
 
+        // 🔸 AOS CSS
+        {
+          rel: 'stylesheet',
+          href: 'https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css'
+        },
+
         // 🔸 Public CSS files
         { rel: 'stylesheet', href: '/css/bootstrap.min.css' },
         { rel: 'stylesheet', href: '/css/style.css' }
@@ -55,9 +61,10 @@ export default defineNuxtConfig({
       script: [
         // 🔸 JS files (body end)
         { src: '/js/jquery.min.js', tagPosition: 'bodyClose' },
-        { src: '/js/swiper-bundle.min.js', tagPosition: 'bodyClose' },
-        { src: '/js/popper.min.js', tagPosition: 'bodyClose', defer: true },
-        { src: '/js/bootstrap.bundle.min.js', tagPosition: 'bodyClose', defer: true },
+        { src: '/js/swiper-bundle.min.js', tagPosition: 'bodyClose', crossorigin: 'anonymous' },
+        { src: '/js/popper.min.js', tagPosition: 'bodyClose', defer: true, crossorigin: 'anonymous' },
+        { src: '/js/bootstrap.bundle.min.js', tagPosition: 'bodyClose', defer: true, crossorigin: 'anonymous' },
+        { src: 'https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js', tagPosition: 'bodyClose', defer: true },
         { src: '/js/main.js', tagPosition: 'bodyClose', defer: true }
       ]
     }
