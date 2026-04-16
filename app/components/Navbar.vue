@@ -234,7 +234,7 @@
               <div class="dropdown-menu-mobile">
                 <!-- Dynamic products from backend (limit 5) -->
                 <a v-for="product in shopProducts" :key="product.id" class="dropdown-item"
-                  :href="`/product-details?id=${product.id}`">
+                  :href="`/product-details/${product.slug}`">
                   <img :src="getProductImage(product)" :alt="product.name" />
                   {{ product.name }}
                 </a>

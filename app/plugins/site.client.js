@@ -1,7 +1,7 @@
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((nuxtApp) => {
 
-  // Run AFTER page render
-  window.addEventListener('load', () => {
+  // Initialize hover effects after page loads
+  nuxtApp.hook('page:finish', () => {
 
     /* ===============================
        BOOTSTRAP DROPDOWN HOVER
@@ -103,7 +103,7 @@ export default defineNuxtPlugin(() => {
 
       card.addEventListener('mouseenter', () => {
         video.currentTime = 0
-        video.play()
+        video.play().catch(() => { })
         video.style.opacity = '1'
       })
 
@@ -145,34 +145,31 @@ export default defineNuxtPlugin(() => {
       })
     })
 
+    /* ===============================
+       BUNDLES OPEN / CLOSE
+    ================================ */
+    const openBtn = document.getElementById('openBundles')
+    const closeBtn = document.getElementById('closeBtn')
+    const mainContainer = document.getElementById('mainContainer')
+    const videoContainer = document.getElementById('videoContainer')
+    const bundlesContainer = document.getElementById('bundlesContainer')
+
+    if (openBtn && closeBtn && mainContainer && videoContainer && bundlesContainer) {
+      openBtn.addEventListener('click', () => {
+        mainContainer.classList.add('fullscreen')
+        videoContainer.classList.add('hidden')
+        bundlesContainer.classList.add('active')
+        document.body.style.overflow = 'hidden'
+      })
+
+      closeBtn.addEventListener('click', () => {
+        bundlesContainer.classList.remove('active')
+        videoContainer.classList.remove('hidden')
+        mainContainer.classList.remove('fullscreen')
+        document.body.style.overflow = ''
+      })
+    }
+
   })
 })
-
-
-/* ===============================
-   BUNDLES OPEN / CLOSE
-================================ */
-const openBtn = document.getElementById('openBundles')
-const closeBtn = document.getElementById('closeBtn')
-const mainContainer = document.getElementById('mainContainer')
-const videoContainer = document.getElementById('videoContainer')
-const bundlesContainer = document.getElementById('bundlesContainer')
-
-if (openBtn && closeBtn && mainContainer && videoContainer && bundlesContainer) {
-
-  openBtn.addEventListener('click', () => {
-    mainContainer.classList.add('fullscreen')
-    videoContainer.classList.add('hidden')
-    bundlesContainer.classList.add('active')
-    document.body.style.overflow = 'hidden'
-  })
-
-  closeBtn.addEventListener('click', () => {
-    bundlesContainer.classList.remove('active')
-    videoContainer.classList.remove('hidden')
-    mainContainer.classList.remove('fullscreen')
-    document.body.style.overflow = ''
-  })
-
-}
 
