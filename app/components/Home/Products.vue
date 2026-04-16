@@ -34,30 +34,27 @@
             <div v-else class="vcn-whole-body-swiper-container">
                 <div class="container-fluid">
                     <div class="row">
-                        <div v-for="(product, index) in products" :key="product.id || product.name"
-                            class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-up" data-aos-duration="800"
-                            :data-aos-delay="(index % 4) * 100">
-                            <div class="vcn-whole-body-product-card">
-                                <div class="vcn-whole-body-product-badges">
-                                    <span v-if="product.isNew"
-                                        class="vcn-whole-body-badge vcn-whole-body-badge-new">New</span>
-                                    <span v-if="product.isBestseller"
-                                        class="vcn-whole-body-badge vcn-whole-body-badge-bestseller">Bestseller</span>
+                        <div v-for="(product, index) in products" :key="product.id" class="col-lg-3 col-md-6 col-sm-6"
+                            data-aos="fade-up" data-aos-duration="600">
+                            <NuxtLink :to="`/product-details/${product.slug}`" class="vcn-whole-body-product-card-link">
+                                <div class="vcn-whole-body-product-card">
+                                    <div class="vcn-whole-body-product-badges">
+                                        <span v-if="product.isNew"
+                                            class="vcn-whole-body-badge vcn-whole-body-badge-new">New</span>
+                                        <span v-if="product.isBestseller"
+                                            class="vcn-whole-body-badge vcn-whole-body-badge-bestseller">Bestseller</span>
+                                    </div>
+                                    <span v-if="product.label" class="vcn-whole-body-product-label">{{ product.label }}
+                                    </span>
+                                    <h3 class="vcn-whole-body-product-title">{{ product.name }}</h3>
+                                    <div class="vcn-whole-body-product-image">
+                                        <img class="product-img" :src="getPrimaryImage(product)" :alt="product.name"
+                                            loading="eager" @error="handleImageError($event)" />
+                                    </div>
+                                    <a :href="`/product-details/${product.slug}`" class="vcn-whole-body-shop-btn">Shop
+                                        Now</a>
                                 </div>
-                                <span v-if="product.label" class="vcn-whole-body-product-label">{{ product.label
-                                }}</span>
-                                <h3 class="vcn-whole-body-product-title">{{ product.name }}</h3>
-                                <div class="vcn-whole-body-product-image">
-                                    <img class="product-img" :src="getPrimaryImage(product)" :alt="product.name"
-                                        loading="lazy" @error="handleImageError($event, product)" />
-                                    <video class="product-video" muted loop playsinline preload="auto">
-                                        <source src="/video/pvide.mp4" type="video/webm" />
-                                    </video>
-                                </div>
-                                <a :href="`/product-details/${product.slug}`" class="vcn-whole-body-shop-btn">Shop
-                                    Now
-                                    {{ product.price }}</a>
-                            </div>
+                            </NuxtLink>
                         </div>
                     </div>
                 </div>
@@ -68,19 +65,17 @@
 </template>
 
 <script setup>
-import { ref, onMounted, reactive } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import { useApi } from '~/config/api/useApi'
 
 const { getFromEndpoint } = useApi()
 
-// Client-side fetching with stale-while-revalidate pattern
 const products = ref([])
 const loading = ref(true)
-const error = ref('')
-const CACHE_KEY = 'home-products-cache-v2' // Bumped version to clear old cache
-const CACHE_TTL = 5 * 60 * 1000 // 5 minutes
+const error = ref(null)
+const CACHE_KEY = 'home-products-cache-v2'
+const CACHE_TTL = 5 * 60 * 1000
 
-// Store for individual product details (to get variants when list doesn't have them)
 const productDetailsCache = reactive({})
 const cacheLoaded = ref({})
 
@@ -134,55 +129,40 @@ const fetchProductDetailsForPricing = async (productId) => {
     }
 }
 
-// Get primary image for product - extracts from product.images array
+// Get primary image - checks all possible sources
 const getPrimaryImage = (product) => {
-    console.log('Getting image for product:', product.id, product.name)
-    console.log('Product images:', product.images)
-    console.log('Product variants:', product.variants)
-
-    // Check product.images array from API (uses .image property)
-    if (product.images && product.images.length > 0) {
+    // Check product.images array from API
+    if (product.images?.length > 0) {
         const primaryImage = product.images.find(img => img.isPrimary) || product.images[0]
-        console.log('Found primary image in product.images:', primaryImage)
-        if (primaryImage?.image) {
-            console.log('Returning image URL:', primaryImage.image)
-            return primaryImage.image
-        }
+        if (primaryImage?.image) return primaryImage.image
     }
 
-    // Check variant productImages (uses .image property)
-    if (product.variants && product.variants.length > 0) {
+    // Check variant productImages
+    if (product.variants?.length > 0) {
         const defaultVariant = product.variants.find(v => v.isDefault) || product.variants[0]
-        console.log('Default variant:', defaultVariant)
-        if (defaultVariant?.productImages && defaultVariant.productImages.length > 0) {
+        if (defaultVariant?.productImages?.length > 0) {
             const primaryImage = defaultVariant.productImages.find(img => img.isPrimary) || defaultVariant.productImages[0]
-            console.log('Found primary image in variant:', primaryImage)
-            if (primaryImage?.image) {
-                console.log('Returning variant image URL:', primaryImage.image)
-                return primaryImage.image
-            }
+            if (primaryImage?.image) return primaryImage.image
         }
     }
 
     // Fallback to product.image or default
-    console.log('Falling back to product.image:', product.image)
     return product.image || '/img/products/img1.png'
 }
 
 // Handle image loading errors
-const handleImageError = (event, product) => {
-    console.error(`Failed to load image for product ${product.id}:`, event)
-    event.target.src = '/img/products/img1.png' // Fallback to default image
+const handleImageError = (event) => {
+    event.target.src = '/img/products/img1.png'
 }
 
-// Load from localStorage immediately
+// Load from localStorage
 const loadFromCache = () => {
     try {
         const cached = localStorage.getItem(CACHE_KEY)
         if (cached) {
             const { data, timestamp } = JSON.parse(cached)
             if (Date.now() - timestamp < CACHE_TTL) {
-                products.value = data
+                products.value = data.slice(0, 4)
                 loading.value = false
                 return true
             }
@@ -196,48 +176,38 @@ const loadFromCache = () => {
 // Save to localStorage
 const saveToCache = (data) => {
     try {
-        localStorage.setItem(CACHE_KEY, JSON.stringify({
-            data,
-            timestamp: Date.now()
-        }))
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ data, timestamp: Date.now() }))
     } catch (err) {
         console.error('Save cache error:', err)
     }
 }
 
-// Prefetch function for hover
+// Prefetch function
 const prefetchProducts = () => {
     const { prefetchEndpoint } = useApi()
     prefetchEndpoint('PRODUCTS')
 }
 
-// Fetch products with stale-while-revalidate
+// Fetch products on mount
 onMounted(async () => {
-    // Try to load from cache first (stale-while-revalidate)
+    // Try cache first for instant render
     const hasCache = loadFromCache()
 
     try {
         const { data, error: err } = await getFromEndpoint('PRODUCTS')
         if (err) {
             error.value = err
-        } else {
-            const newProducts = (data && data.data) ? data.data.slice(0, 4) : []
-            products.value = newProducts
-            saveToCache(newProducts)
-
-            // Fetch product details for pricing
-            newProducts.forEach((product) => {
-                fetchProductDetailsForPricing(product.id)
-            })
+        } else if (data?.data) {
+            products.value = data.data.slice(0, 4)
+            saveToCache(data.data)
         }
     } catch (err) {
+        console.error('Products fetch failed:', err)
         if (!hasCache) {
             error.value = 'Failed to load products'
         }
     } finally {
-        if (!hasCache) {
-            loading.value = false
-        }
+        loading.value = false
     }
 })
 </script>

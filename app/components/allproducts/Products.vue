@@ -9,34 +9,34 @@
       <!-- Products grid -->
       <div v-else class="row g-3">
         <div v-for="product in products" :key="product.id || product.name" class="col-md-6">
-          <div class="product-card">
-            <div class="product-image-wrapper">
-              <img :src="getPrimaryImage(product)" :alt="product.name" class="product-image" loading="lazy"
-                @error="handleImageError($event)" />
-              <span v-if="product.isNew" class="product-badge">NEW</span>
-              <span v-if="product.label" class="product-label">{{ product.label }}</span>
-            </div>
-            <div class="product-content">
-              <h3 class="product-title">{{ product.name }}</h3>
-              <p class="product-description" v-html="product.description || 'Premium product for your wellness needs'">
-              </p>
-              <div class="product-price">
-                <template v-if="getProductPricing(product).oldPrice">
-                  <span class="new-price">₹{{ getProductPricing(product).price }}</span>
-                  <span class="old-price">₹{{ getProductPricing(product).oldPrice }}</span>
-                </template>
-                <template v-else>
-                  ₹{{ getProductPricing(product).price }}
-                </template>
+          <a :href="`/product-details/${product.slug}`" class="product-card-link">
+            <div class="product-card">
+              <div class="product-image-wrapper">
+                <img :src="getPrimaryImage(product)" :alt="product.name" class="product-image" loading="eager"
+                  @error="handleImageError($event)" />
+                <span v-if="product.isNew" class="product-badge">NEW</span>
+                <span v-if="product.label" class="product-label">{{ product.label }}</span>
               </div>
-              <div class="product-actions">
-                <a :href="`/product-details?slug=${product.slug}`" class="btn-learn">Learn More</a>
-                <div class="cart-box">
-                  <ClientOnly>
+              <div class="product-content">
+                <h3 class="product-title">{{ product.name }}</h3>
+                <p class="product-description"
+                  v-html="product.description || 'Premium product for your wellness needs'">
+                </p>
+                <div class="product-price">
+                  <template v-if="getProductPricing(product).oldPrice">
+                    <span class="new-price">₹{{ getProductPricing(product).price }}</span>
+                    <span class="old-price">₹{{ getProductPricing(product).oldPrice }}</span>
+                  </template>
+                  <template v-else>
+                    ₹{{ getProductPricing(product).price }}
+                  </template>
+                </div>
+                <div class="product-actions" @click.prevent>
+                  <span class="btn-learn">Learn More</span>
+                  <div class="cart-box">
                     <button v-if="!getCartItem(product.id)" @click="addToCart(product)" class="btn-cart add-btn">
                       Add to Cart
                     </button>
-
                     <div v-else class="qty-box">
                       <button class="qty-btn minus" @click="cartStore.decrementQuantity(product.id)">
                         −
@@ -46,11 +46,11 @@
                         +
                       </button>
                     </div>
-                  </ClientOnly>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -67,19 +67,51 @@ const cartStore = useCartStore()
 const { initializeCart } = useAuthCart()
 const { getFromEndpoint } = useApi()
 
-// Client-side only fetching for instant page load
 const products = ref([])
 const categories = ref([])
 const error = ref('')
+const loading = ref(true)
+const CACHE_KEY = 'all-products-cache-v2'
+const CACHE_TTL = 5 * 60 * 1000 // 5 minutes
 
-// Initialize cart and fetch data on client only
-onMounted(async () => {
-  await initializeCart()
-  if (process.client) {
-    await cartStore.loadCart()
+// Load from cache for instant render
+const loadFromCache = () => {
+  try {
+    const cached = localStorage.getItem(CACHE_KEY)
+    if (cached) {
+      const { data, timestamp } = JSON.parse(cached)
+      if (Date.now() - timestamp < CACHE_TTL) {
+        products.value = data
+        loading.value = false
+        return true
+      }
+    }
+  } catch (err) {
+    console.error('Cache error:', err)
   }
-  await fetchProducts()
-  await fetchCategories()
+  return false
+}
+
+// Save to cache
+const saveToCache = (data) => {
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ data, timestamp: Date.now() }))
+  } catch (err) {
+    console.error('Save cache error:', err)
+  }
+}
+
+// Initialize cart and fetch data - parallel for speed
+onMounted(async () => {
+  // Load cache instantly
+  loadFromCache()
+
+  // Parallel initialization
+  const promises = [fetchProducts()]
+  if (process.client) {
+    promises.push(cartStore.loadCart())
+  }
+  await Promise.all(promises)
 })
 
 // Store for individual product details (to get variants when list doesn't have them)
@@ -119,18 +151,18 @@ const getProductPricing = (product) => {
   }
 }
 
-// Get primary image for product - extracts from product.images array
+// Get primary image - checks all possible sources
 const getPrimaryImage = (product) => {
-  // Check product.images array from API (uses .image property)
-  if (product.images && product.images.length > 0) {
+  // Check product.images array from API
+  if (product.images?.length > 0) {
     const primaryImage = product.images.find(img => img.isPrimary) || product.images[0]
     if (primaryImage?.image) return primaryImage.image
   }
 
-  // Check variant productImages (uses .image property)
-  if (product.variants && product.variants.length > 0) {
+  // Check variant productImages
+  if (product.variants?.length > 0) {
     const defaultVariant = product.variants.find(v => v.isDefault) || product.variants[0]
-    if (defaultVariant?.productImages && defaultVariant.productImages.length > 0) {
+    if (defaultVariant?.productImages?.length > 0) {
       const primaryImage = defaultVariant.productImages.find(img => img.isPrimary) || defaultVariant.productImages[0]
       if (primaryImage?.image) return primaryImage.image
     }
@@ -161,23 +193,18 @@ const fetchProductDetailsForPricing = async (productId) => {
   }
 }
 
-// Fetch products from API
+// Fetch products - single API call for speed
 const fetchProducts = async () => {
   try {
     const { data, error: err } = await getFromEndpoint('PRODUCTS')
-    if (err) {
-      error.value = err
-    } else {
-      products.value = (data && data.data) ? data.data : []
-      // Fetch individual product details to get variants/pricing
-      products.value.forEach(product => {
-        if (!product.variants || product.variants.length === 0) {
-          fetchProductDetailsForPricing(product.id)
-        }
-      })
+    if (!err && data?.data) {
+      products.value = data.data
+      saveToCache(data.data)
     }
   } catch (err) {
     error.value = 'Failed to load products'
+  } finally {
+    loading.value = false
   }
 }
 

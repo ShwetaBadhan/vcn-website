@@ -42,7 +42,7 @@
               </p>
               <div class="vcn-product-price">₹{{ getProductPricing(product).price }}</div>
               <div class="vcn-product-buttons">
-                <a :href="`/product-details?slug=${product.slug}`" class="vcn-btn-secondary">
+                <a :href="`/product-details/${product.slug}`" class="vcn-btn-secondary">
                   Learn More
                 </a>
               </div>
