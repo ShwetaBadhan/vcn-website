@@ -1022,6 +1022,9 @@
 <script setup>
 import { ref } from 'vue'
 import { useApi } from '~/config/api/useApi'
+import { API_ENDPOINTS } from '~/config/api/endpoints'
+
+const toast = useToast()
 
 useHead({
   bodyAttrs: {
@@ -1135,18 +1138,27 @@ const submitForm = async () => {
       message: formData.value.message
     }
 
-    // Make API call to the backend endpoint
-    const { data, error } = await post('contact-us/create', submitData)
+    // Make API call to the backend endpoint using the config endpoint
+    const { data, error } = await post(API_ENDPOINTS.CONTACT_US, submitData)
 
     if (error) {
+      toast.error({
+        message: error
+      })
       submitMessage.value = error
       submitMessageType.value = 'error'
     } else {
+      toast.success({
+        message: 'Your message has been sent successfully! We will get back to you soon.'
+      })
       submitMessage.value = 'Your message has been sent successfully! We will get back to you soon.'
       submitMessageType.value = 'success'
       resetForm()
     }
   } catch (err) {
+    toast.error({
+      message: err.message || 'Failed to send message. Please try again later.'
+    })
     submitMessage.value = 'Failed to send message. Please try again later.'
     submitMessageType.value = 'error'
     console.error('Form submission error:', err)

@@ -36,7 +36,7 @@
                 <ul class="dropdown-menu">
                   <!-- Dynamic products from backend (limit 5) -->
                   <li v-for="product in shopProducts" :key="product.id">
-                    <a class="dropdown-item" :href="`/product-details?slug=${product.slug}`">
+                    <a class="dropdown-item" :href="`/product-details/${product.slug}`">
                       <img :src="getProductImage(product)" :alt="product.name" />
                       {{ product.name }}
                     </a>

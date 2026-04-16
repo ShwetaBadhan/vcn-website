@@ -90,7 +90,7 @@
                 <div v-if="selectedVariant" class="variant-info mt-2">
                   <span class="variant-sku-display">SKU: {{ selectedVariant.sku }}</span>
                   <span v-if="selectedVariant.weight" class="variant-weight-display">Weight: {{ selectedVariant.weight
-                    }} {{ selectedVariant.unit?.name || 'ml' }}</span>
+                  }} {{ selectedVariant.unit?.name || 'ml' }}</span>
                   <span v-if="product.discountValue > 0" class="variant-discount">{{ product.discountValue }}{{
                     product.discountType === 'PERCENTAGE' ? '%' : '₹' }} OFF</span>
                 </div>
@@ -183,9 +183,40 @@ const activeIndex = ref(null)
 const product = ref(null)
 const loading = ref(true)
 const error = ref('')
+const CACHE_PREFIX = 'product-details-'
+const CACHE_TTL = 5 * 60 * 1000 // 5 minutes
 
 // Get product slug from URL path
 const productSlug = computed(() => route.params.slug)
+
+// Load from cache for instant render
+const loadFromCache = () => {
+  if (!productSlug.value) return false
+  try {
+    const cached = localStorage.getItem(CACHE_PREFIX + productSlug.value)
+    if (cached) {
+      const { data, timestamp } = JSON.parse(cached)
+      if (Date.now() - timestamp < CACHE_TTL) {
+        product.value = data
+        loading.value = false
+        return true
+      }
+    }
+  } catch (err) {
+    console.error('Cache error:', err)
+  }
+  return false
+}
+
+// Save to cache
+const saveToCache = (data) => {
+  if (!productSlug.value) return
+  try {
+    localStorage.setItem(CACHE_PREFIX + productSlug.value, JSON.stringify({ data, timestamp: Date.now() }))
+  } catch (err) {
+    console.error('Save cache error:', err)
+  }
+}
 
 // Fetch product data from API by slug
 onMounted(async () => {
@@ -198,6 +229,9 @@ onMounted(async () => {
     return
   }
 
+  // Load cache instantly
+  const hasCache = loadFromCache()
+
   try {
     // Fetch product by slug using the dedicated endpoint
     const slugUrl = getProductBySlugUrl(productSlug.value)
@@ -206,11 +240,15 @@ onMounted(async () => {
       error.value = err
     } else if (data && data.data) {
       product.value = data.data
+      saveToCache(data.data)
     } else {
       error.value = 'Product not found'
     }
   } catch (err) {
     error.value = 'Failed to load product'
+    if (!hasCache) {
+      error.value = 'Failed to load product'
+    }
   } finally {
     loading.value = false
   }

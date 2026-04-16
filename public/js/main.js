@@ -131,26 +131,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Scroll-based horizontal gallery movement
-const gallery = document.querySelector('.vcn-stories-media-gallery-track');
-const section = document.querySelector('.vcn-stories-section');
-
-if (gallery && section) {
-  window.addEventListener('scroll', () => {
-    const sectionRect = section.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    // Check if section is in viewport
-    if (sectionRect.top < windowHeight && sectionRect.bottom > 0) {
-      // Calculate scroll progress through the section
-      const sectionProgress = (windowHeight - sectionRect.top) / (windowHeight + sectionRect.height);
-
-      // Move gallery horizontally based on scroll (adjust multiplier for speed)
-      const moveAmount = sectionProgress * 800; // 800px movement range
-      gallery.style.transform = `translateX(-${moveAmount}px)`;
-    }
-  });
-}
+// Note: Stories scroll animation is now handled in Stories.vue component for better performance
 const navbar = document.getElementById('navbar');
 const topHeader = document.getElementById('topHeader');
 
@@ -164,7 +145,7 @@ window.addEventListener('scroll', () => {
       topHeader.classList.remove('hide');
     }
   }
-});
+}, { passive: true });
 
 document.addEventListener('DOMContentLoaded', function () {
   const productCards = document.querySelectorAll('.vcn-whole-body-product-card');
