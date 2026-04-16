@@ -1,32 +1,26 @@
 <template>
 
-    <section class="product-detail-section">
+  <section class="product-detail-section">
     <div class="container-fluid">
       <div class="row">
         <!-- Left Column - Product Images -->
         <!-- MAIN PRODUCT IMAGE -->
         <div class="col-lg-7">
           <div class="product-img-wrapper">
-            <div class="product-image-cards">
-              <img
-                id="mainImage"
-                src="/img/products/New-Project.png"
-                alt="Daily Symbiotic"
-                onclick="openProductPreview(this.src)"
-              />
+            <div class="product-image-cards"
+              style="max-height: 500px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+              <img id="mainImage" :src="productImage" :alt="productName" @click="openProductPreview(productImage)"
+                style="max-width: 100%; max-height: 500px; width: auto; height: auto; object-fit: contain;" />
             </div>
           </div>
 
-          <!-- THUMBNAILS -->
+          <!-- THUMBNAILS - Static images -->
           <div class="row mt-3">
             <div class="col-6 mb-3">
               <div class="product-gallery">
                 <div class="gallery-item">
-                  <img
-                    class="thumb"
-                    src="https://assets.embeddables.com/Rectangle122041_004213986439953521.png"
-                    onclick="openProductPreview(this.src)"
-                  />
+                  <img class="thumb" src="https://assets.embeddables.com/Rectangle122041_004213986439953521.png"
+                    @click="openProductPreview('https://assets.embeddables.com/Rectangle122041_004213986439953521.png')" />
                 </div>
               </div>
             </div>
@@ -34,11 +28,8 @@
             <div class="col-6 mb-3">
               <div class="product-gallery">
                 <div class="gallery-item">
-                  <img
-                    class="thumb"
-                    src="https://assets.embeddables.com/Rectangle122051_8551790234297849.png"
-                    onclick="openProductPreview(this.src)"
-                  />
+                  <img class="thumb" src="https://assets.embeddables.com/Rectangle122051_8551790234297849.png"
+                    @click="openProductPreview('https://assets.embeddables.com/Rectangle122051_8551790234297849.png')" />
                 </div>
               </div>
             </div>
@@ -46,11 +37,8 @@
             <div class="col-6 mb-3">
               <div class="product-gallery">
                 <div class="gallery-item">
-                  <img
-                    class="thumb"
-                    src="http://assets.embeddables.com/Rectangle122071_6289075903534314.png"
-                    onclick="openProductPreview(this.src)"
-                  />
+                  <img class="thumb" src="http://assets.embeddables.com/Rectangle122071_6289075903534314.png"
+                    @click="openProductPreview('http://assets.embeddables.com/Rectangle122071_6289075903534314.png')" />
                 </div>
               </div>
             </div>
@@ -58,11 +46,8 @@
             <div class="col-6 mb-3">
               <div class="product-gallery">
                 <div class="gallery-item">
-                  <img
-                    class="thumb"
-                    src="http://assets.embeddables.com/HeroSupplementFacts_9730338301782036.png"
-                    onclick="openProductPreview(this.src)"
-                  />
+                  <img class="thumb" src="http://assets.embeddables.com/HeroSupplementFacts_9730338301782036.png"
+                    @click="openProductPreview('http://assets.embeddables.com/HeroSupplementFacts_9730338301782036.png')" />
                 </div>
               </div>
             </div>
@@ -73,25 +58,50 @@
         <!-- Right Column - Product Info -->
         <div class="col-lg-5">
           <div class="product-info">
-            <h1 class="product-details-title">DBT Care Plus</h1>
-
-            <div class="rating-section">
-              <img src="/img/icons/stars.png" alt="" />
-              <span class="rating-text">4.8 • (10069 Reviews)</span>
+            <!-- Error State -->
+            <div v-if="error" class="alert alert-warning">
+              {{ error }}
             </div>
 
-            <p class="product-details-description">
-              DBT Care Plus is a natural Ayurvedic formulation crafted with a
-              powerful blend of 12 herbs to help maintain healthy blood sugar
-              levels. It supports balanced energy, reduces weakness, and
-              promotes overall wellness, making it a safe and effective choice
-              for managing diabetes naturally.
-            </p>
-            <span class="vcn-cobiotics-badge">Bundle + Save 25%</span>
-            <div class="price-section">
-              <span class="current-price">$39.99</span>
-              <span class="old-price">$59.99</span>
-            </div>
+            <!-- Product Data -->
+            <template v-else-if="product || !loading">
+              <h1 class="product-details-title">{{ productName }}</h1>
+
+              <div class="rating-section">
+                <img src="/img/icons/stars.png" alt="" />
+                <span class="rating-text">4.8 • (10069 Reviews)</span>
+              </div>
+
+              <p class="product-details-description" v-html="productDescription">
+              </p>
+
+              <!-- Variant Selector -->
+              <div v-if="hasVariants" class="variant-section mt-3 mb-3">
+                <label class="variant-label">Select Variant:</label>
+                <div class="variant-options">
+                  <button v-for="v in product.variants" :key="v.id" class="variant-btn"
+                    :class="{ 'variant-btn--active': selectedVariant?.id === v.id }" @click="selectVariant(v)">
+                    <span class="variant-sku">{{ v.sku }}</span>
+                    <span v-if="v.weight" class="variant-weight">{{ v.weight }} {{ v.unit?.name || 'ml' }}</span>
+                    <span class="variant-price">₹{{ v.sellingPrice }}</span>
+                    <span v-if="v.mrp && v.mrp !== v.sellingPrice" class="variant-mrp">₹{{ v.mrp }}</span>
+                  </button>
+                </div>
+                <div v-if="selectedVariant" class="variant-info mt-2">
+                  <span class="variant-sku-display">SKU: {{ selectedVariant.sku }}</span>
+                  <span v-if="selectedVariant.weight" class="variant-weight-display">Weight: {{ selectedVariant.weight
+                  }} {{ selectedVariant.unit?.name || 'ml' }}</span>
+                  <span v-if="product.discountValue > 0" class="variant-discount">{{ product.discountValue }}{{
+                    product.discountType === 'PERCENTAGE' ? '%' : '₹' }} OFF</span>
+                </div>
+              </div>
+
+              <span class="vcn-cobiotics-badge">Bundle + Save 25%</span>
+              <div class="price-section">
+                <span class="current-price">₹{{ productPrice }}</span>
+                <span v-if="productMrp && productMrp !== productPrice" class="old-price">₹{{ productMrp }}</span>
+              </div>
+            </template>
 
             <div class="delivery-info">
               30-day supply delivered monthly. <br />
@@ -103,41 +113,28 @@
             <p class="subscribe-text">
               30-day risk-free guarantee. Free US shipping.
             </p>
-<div class="vcn-accordion">
-  <div
-    class="vcn-acc-item"
-    v-for="(item, index) in accordionItems"
-    :key="index"
-  >
-    <button
-      type="button"
-      class="vcn-acc-header"
-      @click="toggleAccordion(index)"
-    >
-      {{ item.title }}
-      <span class="vcn-acc-icon">
-        {{ activeIndex === index ? '−' : '+' }}
-      </span>
-    </button>
+            <div class="vcn-accordion">
+              <div class="vcn-acc-item" v-for="(item, index) in accordionItems" :key="index">
+                <button type="button" class="vcn-acc-header" @click="toggleAccordion(index)">
+                  {{ item.title }}
+                  <span class="vcn-acc-icon">
+                    {{ activeIndex === index ? '−' : '+' }}
+                  </span>
+                </button>
 
-    <div class="vcn-acc-body" v-if="activeIndex === index">
-      <ul class="vcn-benefits-list">
-        <li v-for="(point, i) in item.content" :key="i">
-          {{ point }}
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-
-
+                <div class="vcn-acc-body" v-if="activeIndex === index">
+                  <ul class="vcn-benefits-list">
+                    <li v-for="(point, i) in item.content" :key="i">
+                      {{ point }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
             <div class="bundle-card mt-5">
               <div class="bundle-image">
-                <img
-                  src="https://assets.embeddables.com/Frame1739331849_5922073548695651.png"
-                  alt="DM-02 Daily Multivitamin"
-                />
+                <img src="https://assets.embeddables.com/Frame1739331849_5922073548695651.png"
+                  alt="DM-02 Daily Multivitamin" />
               </div>
               <div class="bundle-content">
                 <h3>Bundle + Save 25%</h3>
@@ -151,7 +148,16 @@
                 </div>
               </div>
               <div class="bundle-action">
-                <a href="cart" class="add-button">Add</a>
+                <ClientOnly>
+                  <button v-if="!isBundleInCart" @click="addBundleToCart" class="add-button">
+                    Add
+                  </button>
+                  <div v-else class="bundle-quantity-control">
+                    <button class="bundle-qty-btn minus" @click="decrementBundle">−</button>
+                    <span class="bundle-qty-value">{{ getBundleQuantity() }}</span>
+                    <button class="bundle-qty-btn plus" @click="incrementBundle">+</button>
+                  </div>
+                </ClientOnly>
               </div>
             </div>
           </div>
@@ -162,9 +168,152 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
+import { useCartStore } from '~/stores/cart'
+import { useAuthCart } from '~/composables/useAuthCart'
+import { useApi } from '~/config/api/useApi'
+
+const cartStore = useCartStore()
+const { initializeCart } = useAuthCart()
+const { getFromUrl } = useApi()
+import { getProductBySlugUrl } from '~/config/api/endpoints'
+const route = useRoute()
 
 const activeIndex = ref(null)
+const product = ref(null)
+const loading = ref(true)
+const error = ref('')
+
+// Get product slug from URL query
+const productSlug = computed(() => route.query.slug)
+
+// Fetch product data from API by slug
+onMounted(async () => {
+  await initializeCart()
+  await cartStore.loadCart()
+
+  if (!productSlug.value) {
+    error.value = 'No product slug provided'
+    loading.value = false
+    return
+  }
+
+  try {
+    // Fetch product by slug using the dedicated endpoint
+    const slugUrl = getProductBySlugUrl(productSlug.value)
+    const { data, error: err } = await getFromUrl(slugUrl)
+    if (err) {
+      error.value = err
+    } else if (data && data.data) {
+      product.value = data.data
+    } else {
+      error.value = 'Product not found'
+    }
+  } catch (err) {
+    error.value = 'Failed to load product'
+  } finally {
+    loading.value = false
+  }
+
+  // Clear any existing bundle to ensure clean state
+  const existingBundle = cartStore.getItemById(bundleProduct.id)
+  if (existingBundle) {
+    cartStore.removeFromCart(bundleProduct.id)
+  } else {
+    bundleInCart.value = false
+  }
+})
+
+// Selected variant
+const selectedVariant = ref(null)
+
+// Check if product has variants
+const hasVariants = computed(() => product.value?.variants?.length > 0)
+
+// Select a variant
+const selectVariant = (variant) => {
+  selectedVariant.value = variant
+}
+
+// Computed product properties
+const productName = computed(() => product.value?.name || 'Product')
+const productDescription = computed(() => product.value?.description || '')
+const productPrice = computed(() => {
+  const variant = selectedVariant.value || product.value?.variants?.find(v => v.isDefault) || product.value?.variants?.[0]
+  const price = variant?.sellingPrice
+  return price ? parseFloat(price).toFixed(2) : '0.00'
+})
+const productMrp = computed(() => {
+  const variant = selectedVariant.value || product.value?.variants?.find(v => v.isDefault) || product.value?.variants?.[0]
+  const mrp = variant?.mrp
+  return mrp ? parseFloat(mrp).toFixed(2) : null
+})
+const productImage = computed(() => {
+  // Check product.images array from API (uses .image property)
+  if (product.value?.images && product.value.images.length > 0) {
+    const primaryImage = product.value.images.find(img => img.isPrimary) || product.value.images[0]
+    if (primaryImage?.image) return primaryImage.image
+  }
+
+  // Check variant productImages (uses .image property)
+  if (product.value?.variants && product.value.variants.length > 0) {
+    const defaultVariant = product.value.variants.find(v => v.isDefault) || product.value.variants[0]
+    if (defaultVariant?.productImages && defaultVariant.productImages.length > 0) {
+      const primaryImage = defaultVariant.productImages.find(img => img.isPrimary) || defaultVariant.productImages[0]
+      if (primaryImage?.image) return primaryImage.image
+    }
+  }
+
+  // Fallback to product.image or default
+  return product.value?.image || '/img/products/New-Project.png'
+})
+
+// Set default variant when product loads
+watch(() => product.value, (newProduct) => {
+  if (newProduct?.variants?.length) {
+    const defaultVariant = newProduct.variants.find(v => v.isDefault) || newProduct.variants[0]
+    selectedVariant.value = defaultVariant
+  }
+}, { immediate: true })
+
+// Bundle product data (can be updated based on API later)
+const bundleProduct = {
+  id: 'dm-02-daily-multivitamin',
+  name: 'DM-02™ Daily Multivitamin',
+  price: 67.48,
+  image: 'https://assets.embeddables.com/Frame1739331849_5922073548695651.png',
+  subscription: 'One-time purchase'
+}
+
+// Add bundle to cart
+const addBundleToCart = () => {
+  cartStore.addToCart(bundleProduct)
+  bundleInCart.value = true // Set bundle as in cart
+}
+
+// Track if bundle is in cart
+const bundleInCart = ref(false)
+
+// Check if bundle is in cart
+const isBundleInCart = computed(() => {
+  return bundleInCart.value
+})
+
+// Get bundle quantity
+const getBundleQuantity = () => {
+  const item = cartStore.getItemById(bundleProduct.id)
+  return item ? item.quantity : 1
+}
+
+// Increment bundle
+const incrementBundle = () => {
+  cartStore.incrementQuantity(bundleProduct.id)
+}
+
+// Decrement bundle
+const decrementBundle = () => {
+  cartStore.decrementQuantity(bundleProduct.id)
+}
 
 const accordionItems = ref([
   {
@@ -207,5 +356,201 @@ const accordionItems = ref([
 const toggleAccordion = (index) => {
   activeIndex.value = activeIndex.value === index ? null : index
 }
+
+// Fetch individual product details with variants
+const fetchProductDetails = async (id) => {
+  try {
+    const { data, error: err } = await get(`${endpoints.PRODUCTS}/${id}`)
+    if (!err && data && data.data) {
+      product.value = data.data
+    } else if (!product.value) {
+      error.value = 'Product not found'
+    }
+  } catch (err) {
+    console.error('Error fetching product details:', err)
+    if (!product.value) {
+      error.value = 'Failed to load product details'
+    }
+  }
+}
+
+// Add variant to cart
+const addVariantToCart = () => {
+  if (!selectedVariant.value || !product.value) return
+  const sellingPrice = selectedVariant.value.sellingPrice ? parseFloat(selectedVariant.value.sellingPrice) : 0
+  const mrp = selectedVariant.value.mrp ? parseFloat(selectedVariant.value.mrp) : 0
+  const cartItem = {
+    id: `${product.value.id}-${selectedVariant.value.id}`,
+    productId: product.value.id,
+    variantId: selectedVariant.value.id,
+    name: product.value.name,
+    variantName: selectedVariant.value.sku,
+    price: sellingPrice.toFixed(2),
+    mrp: mrp > sellingPrice ? mrp.toFixed(2) : null,
+    image: product.value.image || '/img/products/New-Project.png',
+    quantity: 1
+  }
+  cartStore.addToCart(cartItem)
+}
+
+// SSR-safe product preview function
+const openProductPreview = (imageSrc) => {
+  if (process.client) {
+    // Only open preview on client side
+    window.open(imageSrc, '_blank')
+  }
+}
 </script>
 
+<style scoped>
+/* Fix bundle button visibility and styling */
+.bundle-action .add-button {
+  border: 2px solid var(--vcn-primary) !important;
+  color: white !important;
+  background-color: var(--vcn-primary) !important;
+  font-weight: 600;
+  padding: 5px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 15px;
+  text-decoration: none;
+  width: 100%;
+}
+
+.bundle-action .add-button:hover {
+  background-color: var(--vcn-primary) !important;
+  border: 2px solid var(--vcn-primary) !important;
+  color: white !important;
+}
+
+.bundle-quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 2px solid var(--vcn-primary);
+  border-radius: 25px;
+  padding: 8px 16px;
+}
+
+.bundle-qty-btn {
+  background: none;
+  border: none;
+  color: var(--vcn-primary);
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.bundle-qty-btn:hover {
+  background-color: var(--vcn-primary);
+  color: white;
+}
+
+.bundle-qty-value {
+  color: var(--vcn-primary);
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Variant Selector Styles */
+.variant-section {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.variant-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.variant-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.variant-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 100px;
+}
+
+.variant-btn:hover {
+  border-color: var(--vcn-primary);
+}
+
+.variant-btn--active {
+  border-color: var(--vcn-primary);
+  background: #e8f5e9;
+}
+
+.variant-sku {
+  font-weight: 600;
+  font-size: 13px;
+  color: #333;
+}
+
+.variant-weight {
+  font-size: 12px;
+  color: #666;
+}
+
+.variant-name {
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+}
+
+.variant-price {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--vcn-primary);
+}
+
+.variant-mrp {
+  font-size: 12px;
+  text-decoration: line-through;
+  color: #999;
+}
+
+.variant-info {
+  display: flex;
+  gap: 15px;
+  font-size: 13px;
+}
+
+.variant-qty {
+  color: #666;
+}
+
+.variant-sku-display,
+.variant-weight-display {
+  color: #666;
+  font-size: 13px;
+}
+
+.variant-discount {
+  color: #28a745;
+  font-weight: 600;
+}
+</style>

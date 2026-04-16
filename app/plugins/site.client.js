@@ -88,17 +88,8 @@ export default defineNuxtPlugin(() => {
     }
 
     /* ===============================
-       NAVBAR SCROLL
+       NAVBAR SCROLL - REMOVED (handled in Navbar.vue component)
     ================================ */
-    const navbar = document.getElementById('navbar')
-    const topHeader = document.getElementById('topHeader')
-
-    window.addEventListener('scroll', () => {
-      if (!navbar) return
-      const scrolled = window.scrollY > 50
-      navbar.classList.toggle('scrolled', scrolled)
-      topHeader?.classList.toggle('hide', scrolled)
-    })
 
     /* ===============================
        PRODUCT VIDEO HOVER

@@ -2,9 +2,51 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
 
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
-  modules: ['@nuxt/ui'],
+  modules: ['@nuxt/ui', '@pinia/nuxt', 'nuxt-toast'],
+
+  toast: {
+    settings: {
+      position: 'bottomRight',
+      timeout: 3000,
+      closeOnEscape: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      transitionIn: 'fadeInDown',
+      transitionOut: 'fadeOutUp',
+    }
+  },
+
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag === 'marquee'
+    }
+  },
+
+  runtimeConfig: {
+    // Private keys (only available on server-side)
+    // public keys (exposed to client-side)
+    public: {
+      apiBaseUrl: process.env.API_BASE_URL
+    }
+  },
+
+  // Performance optimizations
+  nitro: {
+    routeRules: {
+      // Static assets - cache for 1 year
+      '/css/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      '/js/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      '/img/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      '/video/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      // Product pages - cache for 5 minutes
+      '/all-products': { isr: 300 },
+      '/product-details': { isr: 300 },
+      // Static pages - cache for 1 hour
+      '/': { isr: 3600 }
+    }
+  },
 
   css: [
     '~/assets/css/main.css',
@@ -47,17 +89,25 @@ export default defineNuxtConfig({
           href: 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css'
         },
 
+        // 🔸 AOS CSS
+        {
+          rel: 'stylesheet',
+          href: 'https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css'
+        },
+
         // 🔸 Public CSS files
         { rel: 'stylesheet', href: '/css/bootstrap.min.css' },
-        { rel: 'stylesheet', href: '/css/style.css' }
+        { rel: 'stylesheet', href: '/css/style.css' },
+        { rel: 'stylesheet', href: '/css/dynamic-images.css' }
       ],
 
       script: [
         // 🔸 JS files (body end)
         { src: '/js/jquery.min.js', tagPosition: 'bodyClose' },
-        { src: '/js/swiper-bundle.min.js', tagPosition: 'bodyClose' },
-        { src: '/js/popper.min.js', tagPosition: 'bodyClose', defer: true },
-        { src: '/js/bootstrap.bundle.min.js', tagPosition: 'bodyClose', defer: true },
+        { src: '/js/swiper-bundle.min.js', tagPosition: 'bodyClose', crossorigin: 'anonymous' },
+        { src: '/js/popper.min.js', tagPosition: 'bodyClose', defer: true, crossorigin: 'anonymous' },
+        { src: '/js/bootstrap.bundle.min.js', tagPosition: 'bodyClose', defer: true, crossorigin: 'anonymous' },
+        { src: 'https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js', tagPosition: 'bodyClose', defer: true },
         { src: '/js/main.js', tagPosition: 'bodyClose', defer: true }
       ]
     }

@@ -1,212 +1,141 @@
 <template>
   <!-- Navbar -->
   <header>
-    <nav class="navbar" id="navbar">
-      <div class="container-fluid">
-        <!-- Mobile Layout -->
-        <a class="navbar-brand d-lg-none" href="#">
-          <img src="/img/logo/logo.png" alt="Logo" class="nav-img" />
-        </a>
-
-        <!-- HTML -->
-        <div class="d-lg-none d-flex align-items-center">
-          <a href="#" class="mobile-cart">Cart</a>
-          <div class="nav-tog">
- <button
-            class="custom-navbar-toggler"
-            type="button"
-            onclick="toggleMenu()"
-            aria-label="Toggle menu"
-          >
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-          </button>
-          </div>
-         
-        </div>
-
-        <!-- Desktop Layout -->
-        <div class="nav-left-wrapper d-none d-lg-flex">
-          <a class="navbar-brand" href="/">
+    <ClientOnly>
+      <nav class="navbar" :class="{ 'scrolled': isScrolled }" id="navbar">
+        <div class="container-fluid">
+          <!-- Mobile Layout -->
+          <a class="navbar-brand d-lg-none" href="#">
             <img src="/img/logo/logo.png" alt="Logo" class="nav-img" />
           </a>
 
-          <ul class="desktop-nav">
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#">Shop</a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="/product-details">
-                    <img src="/img/products/img1.png" alt="Product" />
-                    V-SPA FACE SCRUB
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="/product-details">
-                    <img src="/img/products/img1.png" alt="Product" />
-                    V-SPA FACE CLEANSER
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="/product-details">
-                    <img src="/img/products/img1.png" alt="Product" />
-                    V-SPA MASSAGE CREAM
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="/product-details">
-                    <img src="/img/products/img1.png" alt="Product" />
-                    V-SPA FACE PACK
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="/product-details">
-                    <img src="/img/products/img1.png" alt="Product" />
-                    KLESTRO PREMIUM
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="/product-details">
-                    <img src="/img/products/img1.png" alt="Product" />
-                    ALPHACARE(SHILAJIT RESIN)
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="/product-details">
-                    <img src="/img/products/img1.png" alt="Product" />
-                    ALPHACARE BOOSTER
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="/product-details">
-                    <img src="/img/products/img1.png" alt="Product" />
-                    V-VEDA THICK & GROW HAIR <br />
-                    TONIC
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="/product-details">
-                    <img src="/img/products/img1.png" alt="Product" />
-                    V-VEDA URICARE
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="/product-details">
-                    <img src="/img/products/img1.png" alt="Product" />
-                    V-VEDA RELIEFAURA
-                  </a>
-                </li>
-                <li class="dropdown-footer">
-                  <a href="/all-products">Shop All Products →</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#">Science</a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="/approach">
-                    <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487791/library/nav/science/approach.png"
-                      alt="Approach"
-                    />
-                    <strong>Approach<br />Micro</strong>
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="/vcn-labs">
-                    <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487782/library/nav/science/seedlabs.png"
-                      alt="Seed Labs"
-                    />
-                    <strong>Seed Labs</strong>
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="/approach#scientists">
-                    <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487801/library/nav/science/scientists.png"
-                      alt="Seed Labs"
-                    />
-                    <strong>Scientists</strong>
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="/sustainability">
-                    <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487761/library/nav/science/sustainability.png"
-                      alt="Seed Labs"
-                    />
-                    <strong>Sustainability</strong>
-                  </a>
-                </li>
-                <li>
-                  <a href="" class="dropdown-item"
-                    ><strong>References</strong></a
-                  >
-                </li>
-                <li>
-                  <a href="javascript:void(0)" class="dropdown-item"
-                    ><strong>DS-01® Daily Synbiotic</strong></a
-                  >
-                </li>
-                <li>
-                  <a href="javascript:void(0)" class="dropdown-item"
-                    ><strong>DM-02™ Daily Multivitamin</strong></a
-                  >
-                </li>
-                <li>
-                  <a href="javascript:void(0)" class="dropdown-item"
-                    ><strong>AM-02™ Energy + Focus</strong></a
-                  >
-                </li>
-                <li>
-                  <a href="javascript:void(0)" class="dropdown-item"
-                    ><strong>PM-02™ Sleep + Restore</strong></a
-                  >
-                </li>
-                <li>
-                  <a href="javascript:void(0)" class="dropdown-item"
-                    ><strong>PDS-08® Pediatric Synbiotic</strong></a
-                  >
-                </li>
-                <li>
-                  <a href="javascript:void(0)" class="dropdown-item"
-                    ><strong>VS-01™ Vaginal Synbiotic</strong></a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#">Learn</a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="/microbiome">
-                    <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487912/library/nav/learn/microbiome.png"
-                      alt="Research"
-                    />
-                    Microbiome
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487978/library/nav/learn/probiotics.png"
-                      alt="Research"
-                    />
-                    Probiotics
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        
-          <div class="nav-right-wrapper d-none d-lg-flex align-items-center">
+          <!-- HTML -->
+          <div class="d-lg-none d-flex align-items-center">
+            <ClientOnly>
+              <a href="/cart" class="mobile-cart">
+                Cart
+                <span v-if="cartStore.cartCount > 0" class="cart-count-badge">{{ cartStore.cartCount }}</span>
+              </a>
+            </ClientOnly>
+            <button class="custom-navbar-toggler" type="button" onclick="toggleMenu()" aria-label="Toggle menu">
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+            </button>
+          </div>
+
+          <!-- Desktop Layout -->
+          <div class="nav-left-wrapper d-none d-lg-flex">
+            <a class="navbar-brand" href="/">
+              <img src="/img/logo/logo.png" alt="Logo" class="nav-img" />
+            </a>
+
+            <ul class="desktop-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#">Shop</a>
+                <ul class="dropdown-menu">
+                  <!-- Dynamic products from backend (limit 5) -->
+                  <li v-for="product in shopProducts" :key="product.id">
+                    <a class="dropdown-item" :href="`/product-details?slug=${product.slug}`">
+                      <img :src="getProductImage(product)" :alt="product.name" />
+                      {{ product.name }}
+                    </a>
+                  </li>
+                  <li class="dropdown-footer">
+                    <a href="/all-products">Shop All Products →</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#">Science</a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="/approach">
+                      <img
+                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487791/library/nav/science/approach.png"
+                        alt="Approach" />
+                      <strong>Approach<br />Micro</strong>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/vcn-labs">
+                      <img
+                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487782/library/nav/science/seedlabs.png"
+                        alt="Seed Labs" />
+                      <strong>Seed Labs</strong>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/approach#scientists">
+                      <img
+                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487801/library/nav/science/scientists.png"
+                        alt="Seed Labs" />
+                      <strong>Scientists</strong>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/sustainability">
+                      <img
+                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487761/library/nav/science/sustainability.png"
+                        alt="Seed Labs" />
+                      <strong>Sustainability</strong>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="" class="dropdown-item"><strong>References</strong></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" class="dropdown-item"><strong>DS-01® Daily Synbiotic</strong></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" class="dropdown-item"><strong>DM-02™ Daily Multivitamin</strong></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" class="dropdown-item"><strong>AM-02™ Energy + Focus</strong></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" class="dropdown-item"><strong>PM-02™ Sleep + Restore</strong></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" class="dropdown-item"><strong>PDS-08® Pediatric Synbiotic</strong></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" class="dropdown-item"><strong>VS-01™ Vaginal Synbiotic</strong></a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#">Learn</a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="/microbiome">
+                      <img
+                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487912/library/nav/learn/microbiome.png"
+                        alt="Research" />
+                      Microbiome
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      <img
+                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487978/library/nav/learn/probiotics.png"
+                        alt="Research" />
+                      Probiotics
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-right-wrapper  d-flex align-items-center">
             <a href="#" class="login-link" @click.prevent="openForm">Login</a>
-            <a href="/cart" class="navbar-btn">Cart</a>
+            <ClientOnly>
+              <a href="/cart" class="navbar-btn">
+                Cart
+                <span v-if="cartStore.cartCount > 0" class="cart-count-badge">{{ cartStore.cartCount }}</span>
+              </a>
+            </ClientOnly>
 
             <!-- Overlay -->
             <transition name="fade">
@@ -224,31 +153,16 @@
                   <form @submit.prevent="handleLogin">
                     <div class="form-group">
                       <label for="mobile">Mobile Number</label>
-                      <input
-                        type="tel"
-                        id="mobile"
-                        v-model="formData.mobile"
-                        placeholder="+91"
-                        class="form-input"
-                      />
+                      <input type="tel" id="mobile" v-model="formData.mobile" placeholder="+91" class="form-input">
                     </div>
 
                     <div class="form-group">
                       <label for="password">Password</label>
                       <div class="password-wrapper">
-                        <input
-                          :type="showPassword ? 'text' : 'password'"
-                          id="password"
-                          v-model="formData.password"
-                          placeholder="Password"
-                          class="form-input"
-                        />
-                        <button
-                          type="button"
-                          class="toggle-password"
-                          @click="showPassword = !showPassword"
-                        >
-                          {{ showPassword ? "🙈" : "👁️" }}
+                        <input :type="showPassword ? 'text' : 'password'" id="password" v-model="formData.password"
+                          placeholder="Password" class="form-input">
+                        <button type="button" class="toggle-password" @click="showPassword = !showPassword">
+                          {{ showPassword ? '🙈' : '👁️' }}
                         </button>
                       </div>
                     </div>
@@ -261,13 +175,10 @@
                       <p>Sign in with</p>
                       <div class="social-icons">
                         <button type="button" class="social-btn google">
-                          <img src="/img/icons/login_google.svg" alt="Google" />
+                          <img src="/img/icons/login_google.svg" alt="Google">
                         </button>
                         <button type="button" class="social-btn facebook">
-                          <img
-                            src="/img/icons/login_facebook.svg"
-                            alt="Facebook"
-                          />
+                          <img src="/img/icons/login_facebook.svg" alt="Facebook">
                         </button>
                       </div>
                     </div>
@@ -275,248 +186,267 @@
                     <div class="register-section">
                       <h3>Register <span class="info-icon">ⓘ</span></h3>
                       <!-- NEW CODE (paste karo): -->
-                      <button
-                        type="button"
-                        class="register-btn"
-                        @click="openRegistration('preferred-customer')"
-                      >
+                      <button type="button" class="register-btn" @click="openRegistration('preferred-customer')">
                         PREFERRED CUSTOMER
                       </button>
-                      <button
-                        type="button"
-                        class="register-btn"
-                        @click="openRegistration('abo')"
-                      >
+                      <button type="button" class="register-btn" @click="openRegistration('abo')">
                         VCN BUSINESS OWNER
                       </button>
                     </div>
 
                     <div class="footer-links">
-                      <a href="#" @click="showRegistration = true"
-                        >Terms & Conditions</a
-                      >
+                      <a href="#" @click="showRegistration = true">Terms & Conditions</a>
                       <a href="#">Privacy</a>
                     </div>
                   </form>
                 </div>
               </div>
             </transition>
-          </div>
-        </div>
 
-        <!-- Mobile Full Screen Menu -->
-        <div class="navbar-collapse" id="navbarContent">
-          <!-- <div class="mobile-menu-header">
+          </div>
+
+
+
+          <!-- Mobile Full Screen Menu -->
+          <div class="navbar-collapse" id="navbarContent">
+            <!-- <div class="mobile-menu-header">
               <img src="/img/logo/logo.png" alt="Logo" class="mobile-logo" />
               <button class="close-menu" onclick="toggleMenu()">×</button>
             </div> -->
 
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#"
-                onclick="toggleAccordion(event, 'shopAccordion')"
-                >Shop</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#"
-                onclick="toggleAccordion(event, 'scienceAccordion')"
-                >Science</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#"
-                onclick="toggleAccordion(event, 'learnAccordion')"
-                >Learn</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login">Login</a>
-            </li>
-          </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="toggleAccordion(event, 'shopAccordion')">Shop</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="toggleAccordion(event, 'scienceAccordion')">Science</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="toggleAccordion(event, 'learnAccordion')">Learn</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login">Login</a>
+              </li>
+            </ul>
 
-          <!-- Shop Accordion -->
-          <div class="dropdown-content" id="shopAccordion" show>
-            <div class="dropdown-menu-mobile">
-              <a class="dropdown-item" href="/product-details">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487644/library/nav/shop/DS01.png"
-                  alt="Product"
-                />
-                DS-01® Daily Synbiotic
-              </a>
-              <a class="dropdown-item" href="/product-details">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755803988/library/nav/shop/DM02.png"
-                  alt="Product"
-                />
-                DM-02™ Daily Multivitamin
-              </a>
-              <a class="dropdown-item" href="/product-details">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755804034/library/nav/shop/DED.png"
-                  alt="Product"
-                />
-                Daily Essentials Duo
-              </a>
+            <!-- Shop Accordion -->
+            <div class="dropdown-content" id="shopAccordion" show>
+              <div class="dropdown-menu-mobile">
+                <!-- Dynamic products from backend (limit 5) -->
+                <a v-for="product in shopProducts" :key="product.id" class="dropdown-item"
+                  :href="`/product-details?id=${product.id}`">
+                  <img :src="getProductImage(product)" :alt="product.name" />
+                  {{ product.name }}
+                </a>
+                <div class="dropdown-footer">
+                  <a href="/all-products">Shop All Products →</a>
+                </div>
+              </div>
+            </div>
 
-              <a class="dropdown-item" href="/product-details">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755804048/library/nav/shop/AM02.png"
-                  alt="Product"
-                />
-                AM-02™
-              </a>
-              <a class="dropdown-item" href="/product-details">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755804062/library/nav/shop/PM02.png"
-                  alt="Product"
-                />
-                PM-02™
-              </a>
-              <a class="dropdown-item" href="/product-details">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487661/library/nav/shop/PDS08.png"
-                  alt="Product"
-                />
-                PDS-08™
-              </a>
-              <a class="dropdown-item" href="/product-details">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487654/library/nav/shop/VS01.png"
-                  alt="Product"
-                />
-                VS-01™
-              </a>
-              <div class="dropdown-footer">
-                <a href="/all-products">Shop All Products →</a>
+            <!-- Science Accordion -->
+            <div class="dropdown-content" id="scienceAccordion">
+              <div class="dropdown-menu-mobile">
+                <a class="dropdown-item" href="/approach">
+                  <img
+                    src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487791/library/nav/science/approach.png"
+                    alt="Approach" />
+                  <strong>Approach<br />Micro</strong>
+                </a>
+                <a class="dropdown-item" href="/vcn-labs">
+                  <img
+                    src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487782/library/nav/science/seedlabs.png"
+                    alt="Seed Labs" />
+                  <strong>Seed Labs</strong>
+                </a>
+                <a class="dropdown-item" href="/approach#scientists">
+                  <img
+                    src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487801/library/nav/science/scientists.png"
+                    alt="Seed Labs" />
+                  <strong>Scientists</strong>
+                </a>
+                <a class="dropdown-item" href="sustainability">
+                  <img
+                    src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487761/library/nav/science/sustainability.png"
+                    alt="Seed Labs" />
+                  <strong>Sustainability</strong>
+                </a>
+              </div>
+            </div>
+
+            <!-- Learn Accordion -->
+            <div class="dropdown-content" id="learnAccordion">
+              <div class="dropdown-menu-mobile">
+                <a class="dropdown-item" href="/microbiome">
+                  <img
+                    src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487912/library/nav/learn/microbiome.png"
+                    alt="Research" />
+                  Microbiome
+                </a>
+                <a class="dropdown-item" href="#">
+                  <img
+                    src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487978/library/nav/learn/probiotics.png"
+                    alt="Research" />
+                  Probiotics
+                </a>
               </div>
             </div>
           </div>
-
-          <!-- Science Accordion -->
-          <div class="dropdown-content" id="scienceAccordion">
-            <div class="dropdown-menu-mobile">
-              <a class="dropdown-item" href="/approach">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487791/library/nav/science/approach.png"
-                  alt="Approach"
-                />
-                <strong>Approach<br />Micro</strong>
-              </a>
-              <a class="dropdown-item" href="/vcn-labs">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487782/library/nav/science/seedlabs.png"
-                  alt="Seed Labs"
-                />
-                <strong>Seed Labs</strong>
-              </a>
-              <a class="dropdown-item" href="/approach#scientists">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487801/library/nav/science/scientists.png"
-                  alt="Seed Labs"
-                />
-                <strong>Scientists</strong>
-              </a>
-              <a class="dropdown-item" href="sustainability">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487761/library/nav/science/sustainability.png"
-                  alt="Seed Labs"
-                />
-                <strong>Sustainability</strong>
-              </a>
-            </div>
-          </div>
-
-          <!-- Learn Accordion -->
-          <div class="dropdown-content" id="learnAccordion">
-            <div class="dropdown-menu-mobile">
-              <a class="dropdown-item" href="/microbiome">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487912/library/nav/learn/microbiome.png"
-                  alt="Research"
-                />
-                Microbiome
-              </a>
-              <a class="dropdown-item" href="#">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487978/library/nav/learn/probiotics.png"
-                  alt="Research"
-                />
-                Probiotics
-              </a>
-            </div>
-          </div>
         </div>
-    
-    </nav>
+      </nav>
+    </ClientOnly>
   </header>
   <!-- Registration Modal (Teleport to body for proper stacking) -->
   <!-- Navbar template ke end mein -->
   <teleport to="body">
     <!-- Overlay -->
-    <div
-      v-if="showRegistration"
-      class="registration-overlay"
-      @click="showRegistration = false"
-    ></div>
+    <div v-if="showRegistration" class="registration-overlay" @click="showRegistration = false"></div>
 
-    <RegistrationForm
-      v-if="showRegistration"
-      :userType="selectedUserType"
-      @close="showRegistration = false"
-      @complete="handleRegistrationComplete"
-    />
+    <RegistrationForm v-if="showRegistration" :userType="selectedUserType" @close="showRegistration = false"
+      @complete="handleRegistrationComplete" />
   </teleport>
 </template>
 
+
 <script setup>
-import { ref, reactive } from "vue";
-import RegistrationForm from "@/components/RegistrationForm.vue";
-const isOpen = ref(false);
-const showPassword = ref(false);
+import { ref, reactive, onMounted, onUnmounted, nextTick } from 'vue'
+import RegistrationForm from '@/components/RegistrationForm.vue'
+import { useCartStore } from '~/stores/cart'
+import { useAuthCart } from '~/composables/useAuthCart'
+import { useApi } from '~/config/api/useApi'
+
+// Cart store - proper Nuxt/Pinia pattern
+const cartStore = useCartStore()
+const { getFromEndpoint } = useApi()
+
+// Auth cart composable
+const { authState, initializeCart } = useAuthCart()
+
+// Initialize cart data on mount
+onMounted(async () => {
+  // Initialize cart based on auth state
+  await initializeCart()
+
+  // Load cart data from appropriate source
+  if (process.client && window.localStorage) {
+    cartStore.loadCart()
+  }
+
+  // Fetch products for shop dropdown
+  await fetchShopProducts()
+})
+
+// Registration form state
+const isOpen = ref(false)
+const showPassword = ref(false)
 const formData = reactive({
-  mobile: "",
-  password: "",
-});
+  mobile: '',
+  password: ''
+})
 
 const openForm = () => {
-  isOpen.value = true;
-  document.body.style.overflow = "hidden";
-};
+  isOpen.value = true
+  document.body.style.overflow = 'hidden'
+}
 
 const closeForm = () => {
-  isOpen.value = false;
-  document.body.style.overflow = "auto";
+  isOpen.value = false
+  document.body.style.overflow = 'auto'
   // Reset form
-  formData.mobile = "";
-  formData.password = "";
-};
+  formData.mobile = ''
+  formData.password = ''
+}
 
 const handleLogin = () => {
-  console.log("Login:", formData);
+  console.log('Login:', formData)
   // Add your login logic here
-};
+}
 
-const showRegistration = ref(false);
-const selectedUserType = ref("preferred-customer");
+const showRegistration = ref(false)
+const selectedUserType = ref('preferred-customer')
 
 const openRegistration = (type) => {
-  selectedUserType.value = type;
-  showRegistration.value = true;
-};
+  selectedUserType.value = type
+  showRegistration.value = true
+}
 
 const handleRegistrationComplete = (data) => {
-  console.log("✅ Registered:", data);
-  showRegistration.value = false;
+  console.log('✅ Registered:', data)
+  showRegistration.value = false
   // Optional: Redirect ya toast show karo
-};
+}
+
+// Shop dropdown products
+const shopProducts = ref([])
+
+// Helper to get product image from API response structure
+const getProductImage = (product) => {
+  // Check product.images array from API (uses .image property)
+  if (product.images && product.images.length > 0) {
+    const primaryImage = product.images.find(img => img.isPrimary) || product.images[0]
+    if (primaryImage?.image) return primaryImage.image
+  }
+
+  // Check variant productImages (uses .image property)
+  if (product.variants && product.variants.length > 0) {
+    const defaultVariant = product.variants.find(v => v.isDefault) || product.variants[0]
+    if (defaultVariant?.productImages && defaultVariant.productImages.length > 0) {
+      const primaryImage = defaultVariant.productImages.find(img => img.isPrimary) || defaultVariant.productImages[0]
+      if (primaryImage?.image) return primaryImage.image
+    }
+  }
+
+  // Fallback
+  return product.image || '/img/products/img1.png'
+}
+
+// Fetch products for shop dropdown
+const fetchShopProducts = async () => {
+  try {
+    const { data, error } = await getFromEndpoint('PRODUCTS')
+    if (!error && data?.data) {
+      // Get first 5 products
+      shopProducts.value = data.data.slice(0, 5)
+    }
+  } catch (err) {
+    console.error('Failed to fetch shop products:', err)
+  }
+}
+
+// Initialize scrolled state to false to ensure consistent SSR
+const isScrolled = ref(false)
+
+// Handle scroll events only on client side
+onMounted(() => {
+  if (process.client) {
+    const handleScroll = () => {
+      const scrollValue = window.scrollY > 50
+      isScrolled.value = scrollValue
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    // Handle topHeader hide/show
+    const topHeader = document.getElementById('topHeader')
+    if (topHeader) {
+      const handleTopHeader = () => {
+        if (window.scrollY > 50) {
+          topHeader.style.display = 'none'
+        } else {
+          topHeader.style.display = 'block'
+        }
+      }
+
+      handleScroll()
+      window.addEventListener('scroll', handleTopHeader)
+    }
+  }
+})
+
+// Cleanup on unmount
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <style scoped>
@@ -524,6 +454,7 @@ const handleRegistrationComplete = (data) => {
 :deep(.registration-container) {
   z-index: 10000 !important;
 }
+
 /* Overlay */
 .overlay {
   position: fixed;
@@ -531,7 +462,6 @@ const handleRegistrationComplete = (data) => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
   z-index: 998;
 }
 
@@ -730,6 +660,34 @@ const handleRegistrationComplete = (data) => {
 
 .footer-links a:hover {
   text-decoration: underline;
+}
+
+/* Cart Count Badge */
+.cart-count-badge {
+  background: #d3fa99;
+  color: #45663c;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: bold;
+  margin-left: 5px;
+  min-width: 18px;
+  text-align: center;
+  display: inline-block;
+}
+
+.mobile-cart {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.navbar-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 /* Transitions */
