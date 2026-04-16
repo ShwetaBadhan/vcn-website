@@ -15,6 +15,10 @@ export default defineNuxtConfig({
       pauseOnHover: true,
       transitionIn: 'fadeInDown',
       transitionOut: 'fadeOutUp',
+      backgroundColor: '#ffffff',
+      titleColor: '#000000',
+      messageColor: '#333333',
+      iconColor: '#000000',
     }
   },
 

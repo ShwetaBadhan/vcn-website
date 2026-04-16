@@ -90,7 +90,7 @@
                 <div v-if="selectedVariant" class="variant-info mt-2">
                   <span class="variant-sku-display">SKU: {{ selectedVariant.sku }}</span>
                   <span v-if="selectedVariant.weight" class="variant-weight-display">Weight: {{ selectedVariant.weight
-                  }} {{ selectedVariant.unit?.name || 'ml' }}</span>
+                    }} {{ selectedVariant.unit?.name || 'ml' }}</span>
                   <span v-if="product.discountValue > 0" class="variant-discount">{{ product.discountValue }}{{
                     product.discountType === 'PERCENTAGE' ? '%' : '₹' }} OFF</span>
                 </div>
@@ -184,8 +184,8 @@ const product = ref(null)
 const loading = ref(true)
 const error = ref('')
 
-// Get product slug from URL query
-const productSlug = computed(() => route.query.slug)
+// Get product slug from URL path
+const productSlug = computed(() => route.params.slug)
 
 // Fetch product data from API by slug
 onMounted(async () => {

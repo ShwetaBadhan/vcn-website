@@ -117,8 +117,6 @@ p {
 }
 
 .navbar.scrolled {
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
   top: 0px;
 }
 
@@ -623,8 +621,8 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
   .navbar.scrolled .nav-left-wrapper {
     background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.18);
   }
@@ -668,15 +666,12 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
   .desktop-nav .dropdown-menu {
     background: rgba(85, 85, 85, 0.8) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     border-radius: 20px !important;
     padding: 8px !important;
     max-height: 450px;
     overflow-y: scroll;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
-    /* margin-top: 12px !important; */
     display: block;
     opacity: 0;
     visibility: hidden;
@@ -731,8 +726,8 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
   .navbar.scrolled .nav-right-wrapper {
     background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.18);
   }

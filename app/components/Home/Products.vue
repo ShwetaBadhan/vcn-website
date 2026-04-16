@@ -3,14 +3,15 @@
     <section class="vcn-whole-body-section">
         <div class="container-fluid">
             <!-- Header -->
-            <div class="vcn-whole-body-header">
+            <div class="vcn-whole-body-header" data-aos="fade-up" data-aos-duration="1000">
                 <div class="vcn-whole-body-title-wrapper">
-                    <h2 class="vcn-whole-body-main-title">
+                    <h2 class="vcn-whole-body-main-title" data-aos="fade-up" data-aos-duration="1000"
+                        data-aos-delay="100">
                         Whole body health starts in the gut.
                     </h2>
                 </div>
                 <div>
-                    <p class="vcn-whole-body-subtitle">
+                    <p class="vcn-whole-body-subtitle" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                         Formulations that provide fast-acting and sustained support using
                         scientifically and clinically studied ingredients.
                     </p>
@@ -33,8 +34,9 @@
             <div v-else class="vcn-whole-body-swiper-container">
                 <div class="container-fluid">
                     <div class="row">
-                        <div v-for="product in products" :key="product.id || product.name"
-                            class="col-lg-3 col-md-6 col-sm-6">
+                        <div v-for="(product, index) in products" :key="product.id || product.name"
+                            class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-up" data-aos-duration="800"
+                            :data-aos-delay="(index % 4) * 100">
                             <div class="vcn-whole-body-product-card">
                                 <div class="vcn-whole-body-product-badges">
                                     <span v-if="product.isNew"
@@ -52,8 +54,8 @@
                                         <source src="/video/pvide.mp4" type="video/webm" />
                                     </video>
                                 </div>
-                                <a :href="`/product-details?slug=${product.slug}`"
-                                    class="vcn-whole-body-shop-btn">Shop Now
+                                <a :href="`/product-details/${product.slug}`" class="vcn-whole-body-shop-btn">Shop
+                                    Now
                                     {{ product.price }}</a>
                             </div>
                         </div>
