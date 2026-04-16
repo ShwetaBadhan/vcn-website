@@ -45,6 +45,7 @@ export const useCartStore = defineStore('cart', {
           id: product.id,
           name: product.name,
           price: product.price,
+          mrp: product.mrp || null,
           image: product.image,
           quantity: 1,
           subscription: product.subscription || 'One-time purchase'

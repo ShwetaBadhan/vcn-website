@@ -2,9 +2,51 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
 
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
-  modules: ['@nuxt/ui', '@pinia/nuxt'],
+  modules: ['@nuxt/ui', '@pinia/nuxt', 'nuxt-toast'],
+
+  toast: {
+    settings: {
+      position: 'bottomRight',
+      timeout: 3000,
+      closeOnEscape: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      transitionIn: 'fadeInDown',
+      transitionOut: 'fadeOutUp',
+    }
+  },
+
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag === 'marquee'
+    }
+  },
+
+  runtimeConfig: {
+    // Private keys (only available on server-side)
+    // public keys (exposed to client-side)
+    public: {
+      apiBaseUrl: process.env.API_BASE_URL
+    }
+  },
+
+  // Performance optimizations
+  nitro: {
+    routeRules: {
+      // Static assets - cache for 1 year
+      '/css/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      '/js/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      '/img/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      '/video/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      // Product pages - cache for 5 minutes
+      '/all-products': { isr: 300 },
+      '/product-details': { isr: 300 },
+      // Static pages - cache for 1 hour
+      '/': { isr: 3600 }
+    }
+  },
 
   css: [
     '~/assets/css/main.css',
@@ -55,7 +97,8 @@ export default defineNuxtConfig({
 
         // 🔸 Public CSS files
         { rel: 'stylesheet', href: '/css/bootstrap.min.css' },
-        { rel: 'stylesheet', href: '/css/style.css' }
+        { rel: 'stylesheet', href: '/css/style.css' },
+        { rel: 'stylesheet', href: '/css/dynamic-images.css' }
       ],
 
       script: [

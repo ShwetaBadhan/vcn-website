@@ -100,21 +100,24 @@ const observerOptions = {
   threshold: 0.3 // Trigger when 30% of section is visible
 };
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      // Add loaded class to trigger animation
-      awakenGif.classList.add('vcn-loaded');
-      awakenCopyright.classList.add('vcn-show');
+// Only setup observer if elements exist (client-side only)
+if (awakenSection && awakenGif && awakenCopyright) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Add loaded class to trigger animation
+        awakenGif.classList.add('vcn-loaded');
+        awakenCopyright.classList.add('vcn-show');
 
-      // Optional: Stop observing after first load
-      observer.unobserve(awakenSection);
-    }
-  });
-}, observerOptions);
+        // Optional: Stop observing after first load
+        observer.unobserve(awakenSection);
+      }
+    });
+  }, observerOptions);
 
-// Start observing the section
-observer.observe(awakenSection);
+  // Start observing the section
+  observer.observe(awakenSection);
+}
 
 // Optional: Parallax effect on scroll
 window.addEventListener('scroll', () => {
@@ -152,12 +155,14 @@ const navbar = document.getElementById('navbar');
 const topHeader = document.getElementById('topHeader');
 
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    navbar.classList.add('scrolled');
-    topHeader.classList.add('hide');
-  } else {
-    navbar.classList.remove('scrolled');
-    topHeader.classList.remove('hide');
+  if (navbar && topHeader) {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+      topHeader.classList.add('hide');
+    } else {
+      navbar.classList.remove('scrolled');
+      topHeader.classList.remove('hide');
+    }
   }
 });
 

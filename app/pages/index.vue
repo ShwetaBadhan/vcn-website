@@ -12,10 +12,14 @@ import HomeStories from '~/components/Home/Stories.vue'
 <template>
    <HomeHero />
    <HomeEssentialDuo />
-   <HomeProducts key="products-1" />
+   <ClientOnly>
+      <HomeProducts key="products-1" />
+   </ClientOnly>
    <HomeSurviveDigestion />
    <HomeDiseaseBundle />
-   <HomeTestimonial />
-   <HomeConsultancyCTA />
-   <HomeStories />
+   <ClientOnly>
+      <HomeTestimonial />
+      <HomeConsultancyCTA />
+      <HomeStories />
+   </ClientOnly>
 </template>

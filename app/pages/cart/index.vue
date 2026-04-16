@@ -37,7 +37,8 @@
           </div>
           <div class="col-lg-3 text-end mt-3 mt-lg-0">
             <div class="cart-item-price">
-              ${{ (item.price * item.quantity).toFixed(2) }}
+              <span v-if="item.mrp" class="cart-item-mrp">₹{{ (item.mrp * item.quantity).toFixed(2) }}</span>
+              ₹{{ (item.price * item.quantity).toFixed(2) }}
             </div>
             <button class="cart-remove-btn" @click="cartStore.removeFromCart(item.id)">
               Remove
@@ -267,5 +268,12 @@ useHead({
 .cart-promo-apply-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.cart-item-mrp {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.9em;
+  margin-right: 8px;
 }
 </style>

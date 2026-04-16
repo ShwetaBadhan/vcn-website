@@ -36,10 +36,9 @@
               <h3 class="routine-product-name">
                 DBT Care Plus — Blood Sugar Control Bundle:
               </h3>
-              <p class="routine-product-details">
-                11 powerful Ayurvedic herbs to regulate blood sugar levels,
+              <p class="routine-product-details" v-html="`11 powerful Ayurvedic herbs to regulate blood sugar levels,
                 improve glucose metabolism, and support overall diabetic
-                wellness.*
+                wellness.*`">
               </p>
             </div>
 
@@ -47,9 +46,8 @@
               <h3 class="routine-product-name">
                 VCN DBT Care Plus — Herbal Juice:
               </h3>
-              <p class="routine-product-details">
-                A unique blend of Karela, Jamun, Giloy & more to detoxify the
-                body, purify blood, and naturally manage diabetes symptoms.*
+              <p class="routine-product-details" v-html="`A unique blend of Karela, Jamun, Giloy & more to detoxify the
+                body, purify blood, and naturally manage diabetes symptoms.*`">
               </p>
             </div>
 
