@@ -1,5 +1,4 @@
 <template>
-
   <section class="product-detail-section">
     <div class="container-fluid">
       <div class="row">
@@ -64,7 +63,7 @@
             </div>
 
             <!-- Product Data -->
-            <template v-else-if="product || !loading">
+            <template v-else-if="product">
               <h1 class="product-details-title">{{ productName }}</h1>
 
               <div class="rating-section">
@@ -90,7 +89,7 @@
                 <div v-if="selectedVariant" class="variant-info mt-2">
                   <span class="variant-sku-display">SKU: {{ selectedVariant.sku }}</span>
                   <span v-if="selectedVariant.weight" class="variant-weight-display">Weight: {{ selectedVariant.weight
-                  }} {{ selectedVariant.unit?.name || 'ml' }}</span>
+                    }} {{ selectedVariant.unit?.name || 'ml' }}</span>
                   <span v-if="product.discountValue > 0" class="variant-discount">{{ product.discountValue }}{{
                     product.discountType === 'PERCENTAGE' ? '%' : '₹' }} OFF</span>
                 </div>
@@ -190,7 +189,11 @@ const productSlug = computed(() => route.params.slug)
 if (productSlug.value) {
   const result = await productStore.fetchProductBySlug(productSlug.value)
   if (result.success && productStore.selectedProduct) {
-    product.value = productStore.selectedProduct
+    // Handle API response: data is an array, extract first product
+    const productData = Array.isArray(productStore.selectedProduct)
+      ? productStore.selectedProduct[0]
+      : productStore.selectedProduct
+    product.value = productData
   } else {
     error.value = result.error || 'Product not found'
   }
@@ -305,43 +308,49 @@ const decrementBundle = () => {
   cartStore.decrementQuantity(bundleProduct.id)
 }
 
-const accordionItems = ref([
-  {
-    title: 'Uses *',
-    content: [
-      'Supports healthy blood sugar levels',
-      'Improves glucose metabolism',
-      'Boosts energy and detoxifies the body',
-    ],
-  },
-  {
-    title: 'Direction For Use',
-    content: [
-      'Take 20–30 ml diluted in lukewarm water, twice daily before meals.',
-    ],
-  },
-  {
-    title: 'Cautions',
-    content: [
-      'For adults only. Consult doctor if pregnant or on medication.',
-    ],
-  },
-  {
-    title: 'Primary Benefits',
-    content: [
-      'Blood sugar control',
-      'Enhanced insulin function',
-      'Improved metabolism',
-      'Detoxification',
-    ],
-  },
-  {
-    title: 'Ingredients',
-    content: [
-      'Charantin, Momordicin, Gymnemic acids, antioxidants.',
-    ],
-  },
-])
+// Dynamic accordion items based on API data
+const accordionItems = computed(() => {
+  if (!product.value) return []
+
+  const items = []
+
+  if (product.value.uses) {
+    items.push({
+      title: 'Uses *',
+      content: product.value.uses.split(/[,.]\s*/).filter(item => item.trim())
+    })
+  }
+
+  if (product.value.directionsForUse) {
+    items.push({
+      title: 'Direction For Use',
+      content: [product.value.directionsForUse]
+    })
+  }
+
+  if (product.value.cautions) {
+    items.push({
+      title: 'Cautions',
+      content: [product.value.cautions]
+    })
+  }
+
+  if (product.value.primaryBenefits) {
+    items.push({
+      title: 'Primary Benefits',
+      content: product.value.primaryBenefits.split(/[,.]\s*/).filter(item => item.trim())
+    })
+  }
+
+  if (product.value.ingredients) {
+    items.push({
+      title: 'Ingredients',
+      content: [product.value.ingredients]
+    })
+  }
+
+  return items
+})
 
 const toggleAccordion = (index) => {
   activeIndex.value = activeIndex.value === index ? null : index
@@ -352,7 +361,8 @@ const fetchProductDetails = async (id) => {
   try {
     const { data, error: err } = await get(`${endpoints.PRODUCTS}/${id}`)
     if (!err && data && data.data) {
-      product.value = data.data
+      // Handle API response: data is an array, extract first product
+      product.value = Array.isArray(data.data) ? data.data[0] : data.data
     } else if (!product.value) {
       error.value = 'Product not found'
     }
