@@ -53,16 +53,9 @@
 
             <div class="row">
               <div class="col-lg-6">
-                <ClientOnly>
-                  <button v-if="!isBundleInCart" @click="addBundleToCart" class="routine-cta-button">
-                    Add Bundle • Save 25%
-                  </button>
-                  <div v-else class="bundle-quantity-control">
-                    <button class="bundle-qty-btn minus" @click="decrementBundle">−</button>
-                    <span class="bundle-qty-value">{{ getBundleQuantity() }}</span>
-                    <button class="bundle-qty-btn plus" @click="incrementBundle">+</button>
-                  </div>
-                </ClientOnly>
+                <a href="product-details" class="routine-cta-button"
+                  >Add Bundle • Save 25%</a
+                >
               </div>
             </div>
           </div>
