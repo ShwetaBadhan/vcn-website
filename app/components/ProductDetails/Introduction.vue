@@ -170,90 +170,42 @@
 <script setup>
 import { ref, onMounted, computed, watch } from 'vue'
 import { useCartStore } from '~/stores/cart'
+import { useProductStore } from '~/stores/product'
 import { useAuthCart } from '~/composables/useAuthCart'
-import { useApi } from '~/config/api/useApi'
 
 const cartStore = useCartStore()
+const productStore = useProductStore()
 const { initializeCart } = useAuthCart()
-const { getFromUrl } = useApi()
-import { getProductBySlugUrl } from '~/config/api/endpoints'
 const route = useRoute()
 
 const activeIndex = ref(null)
 const product = ref(null)
 const loading = ref(true)
 const error = ref('')
-const CACHE_PREFIX = 'product-details-'
-const CACHE_TTL = 5 * 60 * 1000 // 5 minutes
 
 // Get product slug from URL path
 const productSlug = computed(() => route.params.slug)
 
-// Load from cache for instant render
-const loadFromCache = () => {
-  if (!productSlug.value) return false
-  try {
-    const cached = localStorage.getItem(CACHE_PREFIX + productSlug.value)
-    if (cached) {
-      const { data, timestamp } = JSON.parse(cached)
-      if (Date.now() - timestamp < CACHE_TTL) {
-        product.value = data
-        loading.value = false
-        return true
-      }
-    }
-  } catch (err) {
-    console.error('Cache error:', err)
+// Fetch product data immediately (SSR)
+if (productSlug.value) {
+  const result = await productStore.fetchProductBySlug(productSlug.value)
+  if (result.success && productStore.selectedProduct) {
+    product.value = productStore.selectedProduct
+  } else {
+    error.value = result.error || 'Product not found'
   }
-  return false
+  loading.value = false
+} else {
+  error.value = 'No product slug provided'
+  loading.value = false
 }
 
-// Save to cache
-const saveToCache = (data) => {
-  if (!productSlug.value) return
-  try {
-    localStorage.setItem(CACHE_PREFIX + productSlug.value, JSON.stringify({ data, timestamp: Date.now() }))
-  } catch (err) {
-    console.error('Save cache error:', err)
-  }
-}
+// Initialize cart on client
+onMounted(() => {
+  initializeCart()
+  cartStore.loadCart()
 
-// Fetch product data from API by slug
-onMounted(async () => {
-  await initializeCart()
-  await cartStore.loadCart()
-
-  if (!productSlug.value) {
-    error.value = 'No product slug provided'
-    loading.value = false
-    return
-  }
-
-  // Load cache instantly
-  const hasCache = loadFromCache()
-
-  try {
-    // Fetch product by slug using the dedicated endpoint
-    const slugUrl = getProductBySlugUrl(productSlug.value)
-    const { data, error: err } = await getFromUrl(slugUrl)
-    if (err) {
-      error.value = err
-    } else if (data && data.data) {
-      product.value = data.data
-      saveToCache(data.data)
-    } else {
-      error.value = 'Product not found'
-    }
-  } catch (err) {
-    error.value = 'Failed to load product'
-    if (!hasCache) {
-      error.value = 'Failed to load product'
-    }
-  } finally {
-    loading.value = false
-  }
-
-  // Clear any existing bundle to ensure clean state
+  // Clear any existing bundle
   const existingBundle = cartStore.getItemById(bundleProduct.id)
   if (existingBundle) {
     cartStore.removeFromCart(bundleProduct.id)

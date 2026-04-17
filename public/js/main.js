@@ -1,17 +1,27 @@
+// Cache Bootstrap Dropdown instances for better performance
+const dropdownCache = new Map();
+
 const dropdowns = document.querySelectorAll('.nav-item.dropdown');
 dropdowns.forEach((dropdown) => {
+  const toggle = dropdown.querySelector('.dropdown-toggle');
+  if (!toggle) return;
+
+  // Create and cache Dropdown instance once
+  if (!dropdownCache.has(dropdown)) {
+    dropdownCache.set(dropdown, new bootstrap.Dropdown(toggle));
+  }
+
   dropdown.addEventListener('mouseenter', () => {
     if (window.innerWidth > 992) {
-      const menu = dropdown.querySelector('.dropdown-menu');
-      const bsDropdown = new bootstrap.Dropdown(dropdown.querySelector('.dropdown-toggle'));
-      bsDropdown.show();
+      const bsDropdown = dropdownCache.get(dropdown);
+      if (bsDropdown) bsDropdown.show();
     }
   });
+
   dropdown.addEventListener('mouseleave', () => {
     if (window.innerWidth > 992) {
-      const menu = dropdown.querySelector('.dropdown-menu');
-      const bsDropdown = new bootstrap.Dropdown(dropdown.querySelector('.dropdown-toggle'));
-      bsDropdown.hide();
+      const bsDropdown = dropdownCache.get(dropdown);
+      if (bsDropdown) bsDropdown.hide();
     }
   });
 });
@@ -132,20 +142,7 @@ window.addEventListener('scroll', () => {
 });
 
 // Note: Stories scroll animation is now handled in Stories.vue component for better performance
-const navbar = document.getElementById('navbar');
-const topHeader = document.getElementById('topHeader');
-
-window.addEventListener('scroll', () => {
-  if (navbar && topHeader) {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-      topHeader.classList.add('hide');
-    } else {
-      navbar.classList.remove('scrolled');
-      topHeader.classList.remove('hide');
-    }
-  }
-}, { passive: true });
+// Note: Scroll handling moved to Navbar.vue component for better performance
 
 document.addEventListener('DOMContentLoaded', function () {
   const productCards = document.querySelectorAll('.vcn-whole-body-product-card');

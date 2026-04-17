@@ -893,7 +893,8 @@
                   Full name <span class="contact-required-mark">*</span>
                 </label>
                 <input type="text" id="fullNameField" class="contact-text-input"
-                  :class="{ 'contact-input-error': errors.fullName }" v-model="formData.fullName" required />
+                  :class="{ 'contact-input-error': errors.fullName }" v-model="formData.fullName"
+                  placeholder="Enter your full name" required />
                 <span v-if="errors.fullName" class="contact-error-message">{{ errors.fullName }}</span>
               </div>
               <div class="contact-field-wrapper">
