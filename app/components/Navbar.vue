@@ -1,300 +1,298 @@
 <template>
   <!-- Navbar -->
   <header>
-    <ClientOnly>
-      <nav class="navbar" :class="{ 'scrolled': isScrolled }" id="navbar">
-        <div class="container-fluid">
-          <!-- Mobile Layout -->
-          <a class="navbar-brand d-lg-none" href="#">
+    <nav class="navbar" :class="{ 'scrolled': isHydrated && isScrolled }" id="navbar">
+      <div class="container-fluid">
+        <!-- Mobile Layout -->
+        <a class="navbar-brand d-lg-none" href="#">
+          <img src="/img/logo/logo.png" alt="Logo" class="nav-img" />
+        </a>
+
+        <!-- HTML -->
+        <div class="d-lg-none d-flex align-items-center">
+          <a href="/cart" class="mobile-cart">
+            Cart
+            <ClientOnly>
+              <span v-if="cartStore.cartCount > 0" class="cart-count-badge">{{ cartStore.cartCount }}</span>
+            </ClientOnly>
+          </a>
+          <button class="custom-navbar-toggler" type="button" onclick="toggleMenu()" aria-label="Toggle menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+
+        <!-- Desktop Layout -->
+        <div class="nav-left-wrapper d-none d-lg-flex">
+          <a class="navbar-brand" href="/">
             <img src="/img/logo/logo.png" alt="Logo" class="nav-img" />
           </a>
 
-          <!-- HTML -->
-          <div class="d-lg-none d-flex align-items-center">
+          <ul class="desktop-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#">Shop</a>
+              <ul class="dropdown-menu">
+                <!-- Dynamic products from backend (limit 5) -->
+                <li v-for="product in shopProducts" :key="product.id">
+                  <a class="dropdown-item" :href="`/product-details/${product.slug}`">
+                    <img :src="getProductImage(product)" :alt="product.name" />
+                    {{ product.name }}
+                  </a>
+                </li>
+                <li class="dropdown-footer">
+                  <a href="/all-products">Shop All Products →</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#">Science</a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="/approach">
+                    <img
+                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487791/library/nav/science/approach.png"
+                      alt="Approach" />
+                    <strong>Approach<br />Micro</strong>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/vcn-labs">
+                    <img
+                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487782/library/nav/science/seedlabs.png"
+                      alt="Seed Labs" />
+                    <strong>Seed Labs</strong>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/approach#scientists">
+                    <img
+                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487801/library/nav/science/scientists.png"
+                      alt="Seed Labs" />
+                    <strong>Scientists</strong>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/sustainability">
+                    <img
+                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487761/library/nav/science/sustainability.png"
+                      alt="Seed Labs" />
+                    <strong>Sustainability</strong>
+                  </a>
+                </li>
+                <li>
+                  <a href="" class="dropdown-item"><strong>References</strong></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong>DS-01® Daily Synbiotic</strong></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong>DM-02™ Daily Multivitamin</strong></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong>AM-02™ Energy + Focus</strong></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong>PM-02™ Sleep + Restore</strong></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong>PDS-08® Pediatric Synbiotic</strong></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong>VS-01™ Vaginal Synbiotic</strong></a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#">Learn</a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="/microbiome">
+                    <img
+                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487912/library/nav/learn/microbiome.png"
+                      alt="Research" />
+                    Microbiome
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    <img
+                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487978/library/nav/learn/probiotics.png"
+                      alt="Research" />
+                    Probiotics
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="nav-right-wrapper  d-flex align-items-center">
+          <a href="#" class="login-link" @click.prevent="openForm">Login</a>
+          <a href="/cart" class="navbar-btn">
+            Cart
             <ClientOnly>
-              <a href="/cart" class="mobile-cart">
-                Cart
-                <span v-if="cartStore.cartCount > 0" class="cart-count-badge">{{ cartStore.cartCount }}</span>
-              </a>
+              <span v-if="cartStore.cartCount > 0" class="cart-count-badge">{{ cartStore.cartCount }}</span>
             </ClientOnly>
-            <button class="custom-navbar-toggler" type="button" onclick="toggleMenu()" aria-label="Toggle menu">
-              <span class="hamburger-line"></span>
-              <span class="hamburger-line"></span>
-              <span class="hamburger-line"></span>
-            </button>
-          </div>
+          </a>
 
-          <!-- Desktop Layout -->
-          <div class="nav-left-wrapper d-none d-lg-flex">
-            <a class="navbar-brand" href="/">
-              <img src="/img/logo/logo.png" alt="Logo" class="nav-img" />
-            </a>
+          <!-- Overlay -->
+          <transition name="fade">
+            <div v-if="isOpen" class="overlay" @click="closeForm"></div>
+          </transition>
 
-            <ul class="desktop-nav">
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="#">Shop</a>
-                <ul class="dropdown-menu">
-                  <!-- Dynamic products from backend (limit 5) -->
-                  <li v-for="product in shopProducts" :key="product.id">
-                    <a class="dropdown-item" :href="`/product-details/${product.slug}`">
-                      <img :src="getProductImage(product)" :alt="product.name" />
-                      {{ product.name }}
-                    </a>
-                  </li>
-                  <li class="dropdown-footer">
-                    <a href="/all-products">Shop All Products →</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="#">Science</a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="/approach">
-                      <img
-                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487791/library/nav/science/approach.png"
-                        alt="Approach" />
-                      <strong>Approach<br />Micro</strong>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="/vcn-labs">
-                      <img
-                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487782/library/nav/science/seedlabs.png"
-                        alt="Seed Labs" />
-                      <strong>Seed Labs</strong>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="/approach#scientists">
-                      <img
-                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487801/library/nav/science/scientists.png"
-                        alt="Seed Labs" />
-                      <strong>Scientists</strong>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="/sustainability">
-                      <img
-                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487761/library/nav/science/sustainability.png"
-                        alt="Seed Labs" />
-                      <strong>Sustainability</strong>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="" class="dropdown-item"><strong>References</strong></a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)" class="dropdown-item"><strong>DS-01® Daily Synbiotic</strong></a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)" class="dropdown-item"><strong>DM-02™ Daily Multivitamin</strong></a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)" class="dropdown-item"><strong>AM-02™ Energy + Focus</strong></a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)" class="dropdown-item"><strong>PM-02™ Sleep + Restore</strong></a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)" class="dropdown-item"><strong>PDS-08® Pediatric Synbiotic</strong></a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)" class="dropdown-item"><strong>VS-01™ Vaginal Synbiotic</strong></a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="#">Learn</a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="/microbiome">
-                      <img
-                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487912/library/nav/learn/microbiome.png"
-                        alt="Research" />
-                      Microbiome
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      <img
-                        src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487978/library/nav/learn/probiotics.png"
-                        alt="Research" />
-                      Probiotics
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+          <!-- Slide In Form -->
+          <transition name="slide-right">
+            <div v-if="isOpen" class="slide-form-container">
+              <button class="close-btn" @click="closeForm">&times;</button>
 
-          <div class="nav-right-wrapper  d-flex align-items-center">
-            <a href="#" class="login-link" @click.prevent="openForm">Login</a>
-            <ClientOnly>
-              <a href="/cart" class="navbar-btn">
-                Cart
-                <span v-if="cartStore.cartCount > 0" class="cart-count-badge">{{ cartStore.cartCount }}</span>
-              </a>
-            </ClientOnly>
+              <div class="form-content">
+                <h2>Sign In</h2>
 
-            <!-- Overlay -->
-            <transition name="fade">
-              <div v-if="isOpen" class="overlay" @click="closeForm"></div>
-            </transition>
+                <form @submit.prevent="handleLogin">
+                  <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" v-model="formData.mobile" placeholder="+91" class="form-input">
+                  </div>
 
-            <!-- Slide In Form -->
-            <transition name="slide-right">
-              <div v-if="isOpen" class="slide-form-container">
-                <button class="close-btn" @click="closeForm">&times;</button>
-
-                <div class="form-content">
-                  <h2>Sign In</h2>
-
-                  <form @submit.prevent="handleLogin">
-                    <div class="form-group">
-                      <label for="mobile">Mobile Number</label>
-                      <input type="tel" id="mobile" v-model="formData.mobile" placeholder="+91" class="form-input">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="password">Password</label>
-                      <div class="password-wrapper">
-                        <input :type="showPassword ? 'text' : 'password'" id="password" v-model="formData.password"
-                          placeholder="Password" class="form-input">
-                        <button type="button" class="toggle-password" @click="showPassword = !showPassword">
-                          {{ showPassword ? '🙈' : '👁️' }}
-                        </button>
-                      </div>
-                    </div>
-
-                    <a href="#" class="forgot-password">Forgot Password</a>
-
-                    <button type="submit" class="signin-btn">SIGN IN</button>
-
-                    <div class="social-login">
-                      <p>Sign in with</p>
-                      <div class="social-icons">
-                        <button type="button" class="social-btn google">
-                          <img src="/img/icons/login_google.svg" alt="Google">
-                        </button>
-                        <button type="button" class="social-btn facebook">
-                          <img src="/img/icons/login_facebook.svg" alt="Facebook">
-                        </button>
-                      </div>
-                    </div>
-
-                    <div class="register-section">
-                      <h3>Register <span class="info-icon">ⓘ</span></h3>
-                      <!-- NEW CODE (paste karo): -->
-                      <button type="button" class="register-btn" @click="openRegistration('preferred-customer')">
-                        PREFERRED CUSTOMER
-                      </button>
-                      <button type="button" class="register-btn" @click="openRegistration('abo')">
-                        VCN BUSINESS OWNER
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-wrapper">
+                      <input :type="showPassword ? 'text' : 'password'" id="password" v-model="formData.password"
+                        placeholder="Password" class="form-input">
+                      <button type="button" class="toggle-password" @click="showPassword = !showPassword">
+                        {{ showPassword ? '🙈' : '👁️' }}
                       </button>
                     </div>
+                  </div>
 
-                    <div class="footer-links">
-                      <a href="#" @click="showRegistration = true">Terms & Conditions</a>
-                      <a href="#">Privacy</a>
+                  <a href="#" class="forgot-password">Forgot Password</a>
+
+                  <button type="submit" class="signin-btn">SIGN IN</button>
+
+                  <div class="social-login">
+                    <p>Sign in with</p>
+                    <div class="social-icons">
+                      <button type="button" class="social-btn google">
+                        <img src="/img/icons/login_google.svg" alt="Google">
+                      </button>
+                      <button type="button" class="social-btn facebook">
+                        <img src="/img/icons/login_facebook.svg" alt="Facebook">
+                      </button>
                     </div>
-                  </form>
-                </div>
+                  </div>
+
+                  <div class="register-section">
+                    <h3>Register <span class="info-icon">ⓘ</span></h3>
+                    <!-- NEW CODE (paste karo): -->
+                    <button type="button" class="register-btn" @click="openRegistration('preferred-customer')">
+                      PREFERRED CUSTOMER
+                    </button>
+                    <button type="button" class="register-btn" @click="openRegistration('abo')">
+                      VCN BUSINESS OWNER
+                    </button>
+                  </div>
+
+                  <div class="footer-links">
+                    <a href="#" @click="showRegistration = true">Terms & Conditions</a>
+                    <a href="#">Privacy</a>
+                  </div>
+                </form>
               </div>
-            </transition>
+            </div>
+          </transition>
 
-          </div>
+        </div>
 
 
 
-          <!-- Mobile Full Screen Menu -->
-          <div class="navbar-collapse" id="navbarContent">
-            <!-- <div class="mobile-menu-header">
+        <!-- Mobile Full Screen Menu -->
+        <div class="navbar-collapse" id="navbarContent">
+          <!-- <div class="mobile-menu-header">
               <img src="/img/logo/logo.png" alt="Logo" class="mobile-logo" />
               <button class="close-menu" onclick="toggleMenu()">×</button>
             </div> -->
 
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#" onclick="toggleAccordion(event, 'shopAccordion')">Shop</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onclick="toggleAccordion(event, 'scienceAccordion')">Science</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onclick="toggleAccordion(event, 'learnAccordion')">Learn</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="login">Login</a>
-              </li>
-            </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="toggleAccordion(event, 'shopAccordion')">Shop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="toggleAccordion(event, 'scienceAccordion')">Science</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="toggleAccordion(event, 'learnAccordion')">Learn</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login">Login</a>
+            </li>
+          </ul>
 
-            <!-- Shop Accordion -->
-            <div class="dropdown-content" id="shopAccordion" show>
-              <div class="dropdown-menu-mobile">
-                <!-- Dynamic products from backend (limit 5) -->
-                <a v-for="product in shopProducts" :key="product.id" class="dropdown-item"
-                  :href="`/product-details/${product.slug}`">
-                  <img :src="getProductImage(product)" :alt="product.name" />
-                  {{ product.name }}
-                </a>
-                <div class="dropdown-footer">
-                  <a href="/all-products">Shop All Products →</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Science Accordion -->
-            <div class="dropdown-content" id="scienceAccordion">
-              <div class="dropdown-menu-mobile">
-                <a class="dropdown-item" href="/approach">
-                  <img
-                    src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487791/library/nav/science/approach.png"
-                    alt="Approach" />
-                  <strong>Approach<br />Micro</strong>
-                </a>
-                <a class="dropdown-item" href="/vcn-labs">
-                  <img
-                    src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487782/library/nav/science/seedlabs.png"
-                    alt="Seed Labs" />
-                  <strong>Seed Labs</strong>
-                </a>
-                <a class="dropdown-item" href="/approach#scientists">
-                  <img
-                    src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487801/library/nav/science/scientists.png"
-                    alt="Seed Labs" />
-                  <strong>Scientists</strong>
-                </a>
-                <a class="dropdown-item" href="sustainability">
-                  <img
-                    src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487761/library/nav/science/sustainability.png"
-                    alt="Seed Labs" />
-                  <strong>Sustainability</strong>
-                </a>
-              </div>
-            </div>
-
-            <!-- Learn Accordion -->
-            <div class="dropdown-content" id="learnAccordion">
-              <div class="dropdown-menu-mobile">
-                <a class="dropdown-item" href="/microbiome">
-                  <img
-                    src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487912/library/nav/learn/microbiome.png"
-                    alt="Research" />
-                  Microbiome
-                </a>
-                <a class="dropdown-item" href="#">
-                  <img
-                    src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487978/library/nav/learn/probiotics.png"
-                    alt="Research" />
-                  Probiotics
-                </a>
+          <!-- Shop Accordion -->
+          <div class="dropdown-content" id="shopAccordion" show>
+            <div class="dropdown-menu-mobile">
+              <!-- Dynamic products from backend (limit 5) -->
+              <a v-for="product in shopProducts" :key="product.id" class="dropdown-item"
+                :href="`/product-details/${product.slug}`">
+                <img :src="getProductImage(product)" :alt="product.name" />
+                {{ product.name }}
+              </a>
+              <div class="dropdown-footer">
+                <a href="/all-products">Shop All Products →</a>
               </div>
             </div>
           </div>
+
+          <!-- Science Accordion -->
+          <div class="dropdown-content" id="scienceAccordion">
+            <div class="dropdown-menu-mobile">
+              <a class="dropdown-item" href="/approach">
+                <img
+                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487791/library/nav/science/approach.png"
+                  alt="Approach" />
+                <strong>Approach<br />Micro</strong>
+              </a>
+              <a class="dropdown-item" href="/vcn-labs">
+                <img
+                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487782/library/nav/science/seedlabs.png"
+                  alt="Seed Labs" />
+                <strong>Seed Labs</strong>
+              </a>
+              <a class="dropdown-item" href="/approach#scientists">
+                <img
+                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487801/library/nav/science/scientists.png"
+                  alt="Seed Labs" />
+                <strong>Scientists</strong>
+              </a>
+              <a class="dropdown-item" href="sustainability">
+                <img
+                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487761/library/nav/science/sustainability.png"
+                  alt="Seed Labs" />
+                <strong>Sustainability</strong>
+              </a>
+            </div>
+          </div>
+
+          <!-- Learn Accordion -->
+          <div class="dropdown-content" id="learnAccordion">
+            <div class="dropdown-menu-mobile">
+              <a class="dropdown-item" href="/microbiome">
+                <img
+                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487912/library/nav/learn/microbiome.png"
+                  alt="Research" />
+                Microbiome
+              </a>
+              <a class="dropdown-item" href="#">
+                <img
+                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487978/library/nav/learn/probiotics.png"
+                  alt="Research" />
+                Probiotics
+              </a>
+            </div>
+          </div>
         </div>
-      </nav>
-    </ClientOnly>
+      </div>
+    </nav>
   </header>
   <!-- Registration Modal (Teleport to body for proper stacking) -->
   <!-- Navbar template ke end mein -->
@@ -323,17 +321,17 @@ const { getFromEndpoint } = useApi()
 const { authState, initializeCart } = useAuthCart()
 
 // Initialize cart data on mount
-onMounted(async () => {
-  // Initialize cart based on auth state
-  await initializeCart()
+onMounted(() => {
+  // Initialize cart based on auth state (non-blocking)
+  initializeCart()
 
   // Load cart data from appropriate source
   if (process.client && window.localStorage) {
     cartStore.loadCart()
   }
 
-  // Fetch products for shop dropdown
-  await fetchShopProducts()
+  // Fetch products for shop dropdown (non-blocking)
+  fetchShopProducts()
 })
 
 // Registration form state
@@ -413,39 +411,29 @@ const fetchShopProducts = async () => {
   }
 }
 
-// Initialize scrolled state to false to ensure consistent SSR
+// Initialize scrolled state to false for consistent SSR
 const isScrolled = ref(false)
+const isHydrated = ref(false)
+let scrollHandler = null
 
 // Handle scroll events only on client side
 onMounted(() => {
-  if (process.client) {
-    const handleScroll = () => {
-      const scrollValue = window.scrollY > 50
-      isScrolled.value = scrollValue
-    }
+  isHydrated.value = true
 
-    window.addEventListener('scroll', handleScroll)
-
-    // Handle topHeader hide/show
-    const topHeader = document.getElementById('topHeader')
-    if (topHeader) {
-      const handleTopHeader = () => {
-        if (window.scrollY > 50) {
-          topHeader.style.display = 'none'
-        } else {
-          topHeader.style.display = 'block'
-        }
-      }
-
-      handleScroll()
-      window.addEventListener('scroll', handleTopHeader)
-    }
+  // Single scroll handler for navbar only (TopHeader handles itself)
+  scrollHandler = () => {
+    isScrolled.value = window.scrollY > 50
   }
+
+  scrollHandler() // Initial check
+  window.addEventListener('scroll', scrollHandler, { passive: true })
 })
 
 // Cleanup on unmount
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
+  if (scrollHandler) {
+    window.removeEventListener('scroll', scrollHandler)
+  }
 })
 </script>
 
