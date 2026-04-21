@@ -7,7 +7,7 @@
       />
       <!-- Hero Content - Left Aligned -->
       <div class="hero-content">
-        <h1>Seeding the world</h1>
+        <h1>VCN world</h1>
 
         <a href="#shiping" class="link" type="button"
           ><i
@@ -42,11 +42,11 @@
         <div class="shipping-card-container">
           <div class="row align-items-center">
             <!-- Product Image Column -->
-            <div class="col-lg-6 text-center">
+            <div class="col-lg-6 text-center ">
               <img
-                src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/entire-world/Seed_Packaging_WelcomeKit_Transparent_jrypao_sokr40.png"
+                src="/img/products/product4.png"
                 alt="Welcome Kit Package"
-                class="shipping-product-image"
+                class="shipping-product-image welcomekit"
               />
             </div>
 
@@ -333,7 +333,7 @@
           <!-- Right Text -->
           <div class="planet-text-right">
             <p class="planet-description-text">
-              As we expand Seed to the world, we are continuously innovating
+              As we expand VCN to the world, we are continuously innovating
               with the goal of lessening our impact on the planet.
             </p>
           </div>
@@ -367,5 +367,8 @@
         height: 25px;
         stroke: rgb(255, 255, 255);
         color: rgb(255, 255, 255);
+      }
+      .welcomekit{
+        border-radius: 20px;
       }
 </style>

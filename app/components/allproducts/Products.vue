@@ -132,7 +132,7 @@ const addToCart = (product) => {
     name: product.name,
     price: parseFloat(pricing.price).toFixed(2),
     mrp: pricing.oldPrice ? parseFloat(pricing.oldPrice).toFixed(2) : null,
-    image: product.image || '/img/products/img1.png',
+    image: getPrimaryImage(product),
     subscription: 'One-time purchase'
   })
 }

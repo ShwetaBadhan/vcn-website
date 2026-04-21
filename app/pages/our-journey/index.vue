@@ -10,24 +10,20 @@
           <div class="journey-container">
             <!-- HERO SECTION -->
             <section class="journey-hero">
-              <img src="https://via.placeholder.com/500x300" class="hero-img" />
+              <img src="/img/leadership/ourleader.jpeg" class="hero-img" />
 
               <h1>Major Milestones</h1>
 
               <p>
-                A legacy is made of moments. Our company has a history as
-                remarkable and unique as the people who created it.
+                Since our inception in 2009, Vcare Network has grown from a vision-driven initiative into a trusted name in the wellness and direct selling industry. What began as a commitment to deliver high-quality, nature-inspired products has evolved into a strong nationwide presence backed by a dedicated network of distributors and loyal customers. Over the years, we have expanded our product range, strengthened our systems, and continuously adapted to changing market needs. Each milestone in our journey reflects our focus on quality, innovation, and empowering individuals, driving us forward with the same passion to create a healthier and more prosperous future for all.
+
               </p>
             </section>
 
             <!-- TIMELINE YEARS -->
             <section class="timeline-nav">
-              <button
-                v-for="year in years"
-                :key="year"
-                @click="activeYear = year"
-                :class="{ active: activeYear === year }"
-              >
+              <button v-for="year in years" :key="year" @click="activeYear = year"
+                :class="{ active: activeYear === year }">
                 {{ year }}
               </button>
             </section>
@@ -37,15 +33,9 @@
             <section class="timeline-content">
               <div class="milestone-card">
                 <div class="milestone-image">
-                  <img
-                    v-if="activeYear === 1962"
-                    src="https://via.placeholder.com/350x220"
-                  />
+                  <img v-if="activeYear === 1962" src="https://via.placeholder.com/350x220" />
 
-                  <img
-                    v-if="activeYear === 1959"
-                    src="https://via.placeholder.com/350x220"
-                  />
+                  <img v-if="activeYear === 1959" src="https://via.placeholder.com/350x220" />
                 </div>
 
                 <div class="milestone-info">
@@ -118,11 +108,9 @@ export default {
 
 .hero-img {
   max-width: 500px;
-
   width: 100%;
-
-  margin-bottom: 20px;
-
+  margin: 0 auto 20px;
+  display: block;
   border-radius: 8px;
 }
 

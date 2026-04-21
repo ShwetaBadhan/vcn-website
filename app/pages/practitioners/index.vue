@@ -20,7 +20,7 @@
         <div class="seed-health-content-row">
           <div class="seed-health-text-column">
             <p class="seed-health-description">
-              We founded Seed Health to realize the microbiome as a radical new
+              We founded VCN Health to realize the microbiome as a radical new
               pathway for well-being. We pioneer breakthrough research to
               develop clinically validated probiotics, prebiotics, and
               postbiotics to optimize the development and maturation of the
@@ -180,17 +180,17 @@
             </div>
 
             <h2 class="seed-recommend-main-heading">
-              Recommend Seed Synbiotics to Your Patients with Fullscript
+              Recommend VCN Synbiotics to Your Patients with Fullscript
             </h2>
 
             <p class="seed-recommend-description-text">
-              Seamlessly access Seed synbiotics through Fullscript® for direct
+              Seamlessly access VCN synbiotics through Fullscript® for direct
               delivery to your patients or convenient distribution from your
               office.
             </p>
 
             <a href="#" class="seed-recommend-cta-button">
-              Recommend Seed on Fullscript®
+              Recommend VCN on Fullscript®
             </a>
           </div>
         </div>
@@ -201,7 +201,7 @@
         <div class="row g-4">
           <!-- Hero Content -->
           <div class="col-lg-5 mb-5">
-            <h1 class="seed-grow-hero-title">Grow with Seed</h1>
+            <h1 class="seed-grow-hero-title">Grow with VCN</h1>
             <p class="seed-grow-hero-subtitle">
               Our resources and healthcare education are designed to empower
               practitioners across the patient journey.
@@ -692,7 +692,7 @@
                   during shipping and storage; and over 50 quality assurance and
                   quality control (QA/QC) checkpoints.
                   <br />
-                  To validate survivability, Seed tests with the Simulator of
+                  To validate survivability, VCN tests with the Simulator of
                   the Human Intestinal Microbial Ecosystem (SHIME®)—the closest
                   system developed to model human digestion and the gut. This
                   simulator recreates the physiological conditions and
@@ -812,7 +812,7 @@
 
                 <p class="pract-consent-text">
                   By signing up, you consent to receive healthcare practitioner
-                  communications from Seed.
+                  communications from VCN.
                 </p>
               </form>
             </div>

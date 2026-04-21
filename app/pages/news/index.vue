@@ -71,31 +71,37 @@ const years = [2026, 2025, 2024, 2023];
 const news = [
   {
     year: 2026,
-    date: "January 23, 2026",
+    date: "February 18, 2026",
     title:
-      "Budget 2026 expectations: VCN India urges customs duty rationalisation",
-    source: "The Times of India",
+      "VCN expands wellness portfolio with new herbal range.",
+    source: "Business Standard",
   },
 
   {
     year: 2026,
-    date: "January 22, 2026",
-    title: "Recognise supplements as part of overall wellness",
-    source: "Press Trust of India",
+    date: "February 10, 2026",
+    title: "VCN focuses on empowering women entrepreneurs nationwide.",
+    source: "The Hindu BusinessLine",
   },
 
   {
     year: 2026,
-    date: "January 8, 2026",
-    title: "VCN India strengthens home delivery network",
-    source: "Logistics Insider",
+    date: "January 28, 2026",
+    title: "VCN promotes natural health solutions in urban markets.",
+    source: "Financial Express",
   },
 
   {
     year: 2026,
-    date: "January 7, 2026",
-    title: "VCN India redefines home delivery experience",
-    source: "ET Edge Insights",
+    date: "January 20, 2026",
+    title: "Rising demand for organic products boosts VCN’s growth.",
+    source: "Mint",
+  },
+  {
+    year: 2026,
+    date: "January 12, 2026",
+    title: "Wellness industry trends: VCN highlights importance of preventive healthcare.",
+    source: "India Today",
   },
 ];
 

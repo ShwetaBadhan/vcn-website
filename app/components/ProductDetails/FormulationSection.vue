@@ -5,7 +5,7 @@
         class="col-lg-3 health-section-below d-flex align-items-center justify-content-center"
       >
         <video
-          src="https://assets.embeddables.com/Seed_DM02_Jar_RotateWeb_9530759748590603.webm"
+          src=""
           class="video-centered"
           autoplay
           muted

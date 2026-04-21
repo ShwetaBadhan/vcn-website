@@ -89,7 +89,7 @@
                 <div v-if="selectedVariant" class="variant-info mt-2">
                   <span class="variant-sku-display">SKU: {{ selectedVariant.sku }}</span>
                   <span v-if="selectedVariant.weight" class="variant-weight-display">Weight: {{ selectedVariant.weight
-                    }} {{ selectedVariant.unit?.name || 'ml' }}</span>
+                  }} {{ selectedVariant.unit?.name || 'ml' }}</span>
                   <span v-if="product.discountValue > 0" class="variant-discount">{{ product.discountValue }}{{
                     product.discountType === 'PERCENTAGE' ? '%' : '₹' }} OFF</span>
                 </div>
@@ -374,6 +374,24 @@ const fetchProductDetails = async (id) => {
   }
 }
 
+// Helper function to resolve product image (same logic as productImage computed)
+const resolveProductImage = () => {
+  // Check product.images array from API (uses .image property)
+  if (product.value?.images && product.value.images.length > 0) {
+    const primaryImage = product.value.images.find(img => img.isPrimary) || product.value.images[0]
+    if (primaryImage?.image) return primaryImage.image
+  }
+
+  // Check variant productImages (uses .image property)
+  if (selectedVariant.value?.productImages && selectedVariant.value.productImages.length > 0) {
+    const primaryImage = selectedVariant.value.productImages.find(img => img.isPrimary) || selectedVariant.value.productImages[0]
+    if (primaryImage?.image) return primaryImage.image
+  }
+
+  // Fallback to product.image or default
+  return product.value?.image
+}
+
 // Add variant to cart
 const addVariantToCart = () => {
   if (!selectedVariant.value || !product.value) return
@@ -387,7 +405,7 @@ const addVariantToCart = () => {
     variantName: selectedVariant.value.sku,
     price: sellingPrice.toFixed(2),
     mrp: mrp > sellingPrice ? mrp.toFixed(2) : null,
-    image: product.value.image || '/img/products/New-Project.png',
+    image: resolveProductImage(),
     quantity: 1
   }
   cartStore.addToCart(cartItem)

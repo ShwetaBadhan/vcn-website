@@ -64,7 +64,7 @@
                 <div class="disease-card-image">
                   <div class="disease-icon">
                     <img
-                      src="http://vcarenetwork.in/login/public/uploads/section/category/acidity/img_6878efdd3a0b77.16525164.jpg"
+                      src="\img\image\acidty.png"
                       alt="" />
                   </div>
                 </div>
@@ -79,7 +79,7 @@
                 <div class="disease-card-image">
                   <div class="disease-icon">
                     <img
-                      src="http://vcarenetwork.in/login/public/uploads/section/category/thyroid/img_6878efe483e352.82786474.jpg"
+                      src="\img\image\thyroid.png"
                       alt="" />
                   </div>
                 </div>
@@ -94,7 +94,7 @@
                 <div class="disease-card-image">
                   <div class="disease-icon">
                     <img
-                      src="http://vcarenetwork.in/login/public/uploads/section/category/diabetes/img_6878efebd79712.26526712.jpg"
+                      src="\img\image\diabetes.png"
                       alt="" />
                   </div>
                 </div>
@@ -109,7 +109,7 @@
                 <div class="disease-card-image">
                   <div class="disease-icon">
                     <img
-                      src="http://vcarenetwork.in/login/public/uploads/section/category/fatty-liver/img_6878eff29458b6.66484526.jpg"
+                      src="\img\image\liver.png"
                       alt="" />
                   </div>
                 </div>
@@ -121,7 +121,7 @@
             </div>
 
             <div class="view-more-section">
-              <a href="/diseases-bundle" class="view-more-btn">VIEW MORE</a>
+              <a href="/all-disease-bundles" class="view-more-btn">VIEW MORE</a>
             </div>
           </div>
         </div>

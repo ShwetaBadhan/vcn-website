@@ -22,7 +22,8 @@
         <!-- Cart Items -->
         <div v-for="item in cartStore.items" :key="item.id" class="cart-item-wrapper row align-items-center">
           <div class="col-lg-6 d-flex align-items-center gap-3">
-            <img :src="item.image" :alt="item.name" class="cart-product-image" />
+            <img :src="item.image" :alt="item.name" class="cart-product-image"
+              @error="$event.target.src = '/img/products/img1.png'" />
             <div class="cart-product-details">
               <div class="cart-product-name">{{ item.name }}</div>
               <div class="cart-product-subscription">{{ item.subscription }}</div>

@@ -7,7 +7,7 @@
         <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
           <div class="mid-cta-image-wrapper position-relative">
             <img
-              src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              src="\img\image\consultion.png"
               alt="Doctor with stethoscope" class="img-fluid rounded mid-cta-image">
             <div class="mid-image-overlay"></div>
           </div>

@@ -5,7 +5,7 @@
           <h1>Microbiome 101</h1>
           <div class="col-lg-12">
             <img
-              src="http://seed.com/wp-content/uploads/2018/04/MICROBIOME101-scaled-1-2048x1328.jpeg"
+              src="/img/image/microbiome.png"
               class="w-100"
               alt=""
             />

@@ -204,17 +204,17 @@
                   alt=""
                 />
 
-                <h2 class="sustainability-section-subheading mt-3">SeedLabs</h2>
+                <h2 class="sustainability-section-subheading mt-3">VCNLabs</h2>
                 <p class="sustainability-product-description">
                   Inspired by our belief that health is not just human, our
                   research encompasses ecologies beyond the body. We founded
-                  SeedLabs to partner in collaboration with kindred innovators
+                  VCNLabs to partner in collaboration with kindred innovators
                   to develop novel applications of bacteria to enhance
                   biodiversity and recover ecosystems impacted by human
                   activity.
                 </p>
                 <h5 class="link">
-                  <a href="seedlabs.html">Learn More About SeedLabs</a>
+                  <a href="VCNlabs.html">Learn More About VCNLabs</a>
                 </h5>
 
                 <h2 class="sustainability-section-subheading mt-3">
@@ -260,7 +260,7 @@
                 </h2>
                 <p class="sustainability-section-text">
                   We accelerate the accessibility and impact of breakthrough
-                  science through our Seed Health universe, where our consumer
+                  science through our VCN Health universe, where our consumer
                   innovations are powered by research programs in critical areas
                   of human and planetary health and accompanied by
                   culture-shifting communication and education.

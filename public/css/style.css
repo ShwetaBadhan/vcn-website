@@ -3049,7 +3049,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .vcn-stories-card:nth-child(1)::before {
-  background-image: url("https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1753460833/library/bookend/5f4e9939ee3b96921d9af4d502cbdd3edf2a3d2a.jpg");
+  background-image: url("/img/image/Section Above footer.png");
 }
 
 .vcn-stories-card:nth-child(2)::before {
@@ -5822,7 +5822,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 /* Product Section */
 .product-section {
   padding: 348px 20px;
-  background: url("https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1618934492/approach/Seed_Approach_Footer_Desktop_v2.jpg");
+  background: url("/img/image/frst image.png");
   background-size: cover;
   height: 100%;
 }
@@ -6175,10 +6175,10 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
 .cart-product-image {
   width: 100px;
-  height: 100px;
-  /* object-fit: cover; */
-  /* border-radius: 8px; */
-  /* background-color: #f8f8f8; */
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  background-color: #f8f8f8;
 }
 
 .cart-product-details {

@@ -14,20 +14,14 @@
                 <div class="row align-items-center">
                   <div class="col-lg-6">
                     <div class="hero-image">
-                      <img src="/img/bg/bg-1.png" alt="Leadership" />
+                      <img src="/img/leadership/ourleadership.jpeg" alt="Leadership" />
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="hero-contents">
                       <h1 class="hero-title">Our leadership</h1>
                       <p class="hero-text">
-                        Our executive management and board of directors are
-                        passionate leaders who inspire us to live our best lives
-                        every day. With their diverse expertise and
-                        forward-thinking approach, they empower Herbalife
-                        Independent Distributors and employees to achieve our
-                        vision of becoming the world's premier health and
-                        wellness company, community and platform.
+                        Our leadership is driven by vision, integrity, and a commitment to excellence. With years of industry experience, our leaders guide the organization with a clear focus on innovation, quality, and sustainable growth. They inspire a culture of trust, empower our community, and continuously strive to create opportunities that help individuals achieve both personal and professional success.
                       </p>
                     </div>
                   </div>
@@ -185,80 +179,80 @@ useHead({
 const showModal = ref(false);
 const selectedMember = ref({});
 
-const managementTeam = ref([
-  {
-    name: "Stephan Gratziani",
-    title: "Chief Executive Officer",
-    image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    bio: "Stephan Gratziani serves as Chief Executive Officer, bringing over 20 years of leadership experience in the health and wellness industry.",
-    education:
-      "MBA from Harvard Business School, BS in Business Administration",
-    experience: "Previously served as COO at Global Wellness Corp for 15 years",
-  },
-  {
-    name: "Rob Levy",
-    title: "President",
-    image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    bio: "Rob Levy leads our global operations as President, driving strategic initiatives and business growth across all markets.",
-    education: "MBA from Stanford University, BA in Economics",
-    experience: "20+ years in executive leadership roles",
-  },
-  {
-    name: "John DeSimone",
-    title: "Chief Financial Officer",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    bio: "John DeSimone oversees all financial operations and strategy as CFO, ensuring sustainable growth and fiscal responsibility.",
-    education: "CPA, MBA in Finance",
-    experience: "Former VP of Finance at Fortune 500 companies",
-  },
-  {
-    name: "Frank Lamberti",
-    title: "Chief Commercial Officer",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    bio: "Frank Lamberti drives our commercial strategy and market expansion as Chief Commercial Officer.",
-    education: "MBA in Marketing, BS in Business",
-    experience: "15 years in sales and marketing leadership",
-  },
-  {
-    name: "Troy Hicks",
-    title: "Chief Operating Officer",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    bio: "Troy Hicks ensures operational excellence and efficiency across all business units as COO.",
-    education: "MS in Operations Management",
-    experience: "Extensive background in operations and supply chain",
-  },
-  {
-    name: "Henry Wang",
-    title: "Chief Legal Officer",
-    image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    bio: "Henry Wang provides legal guidance and ensures compliance across all global operations.",
-    education: "JD from Yale Law School",
-    experience: "25 years of corporate legal experience",
-  },
-]);
+// const managementTeam = ref([
+//   {
+//     name: "Stephan Gratziani",
+//     title: "Chief Executive Officer",
+//     image:
+//       "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+//     bio: "Stephan Gratziani serves as Chief Executive Officer, bringing over 20 years of leadership experience in the health and wellness industry.",
+//     education:
+//       "MBA from Harvard Business School, BS in Business Administration",
+//     experience: "Previously served as COO at Global Wellness Corp for 15 years",
+//   },
+//   {
+//     name: "Rob Levy",
+//     title: "President",
+//     image:
+//       "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+//     bio: "Rob Levy leads our global operations as President, driving strategic initiatives and business growth across all markets.",
+//     education: "MBA from Stanford University, BA in Economics",
+//     experience: "20+ years in executive leadership roles",
+//   },
+//   {
+//     name: "John DeSimone",
+//     title: "Chief Financial Officer",
+//     image:
+//       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+//     bio: "John DeSimone oversees all financial operations and strategy as CFO, ensuring sustainable growth and fiscal responsibility.",
+//     education: "CPA, MBA in Finance",
+//     experience: "Former VP of Finance at Fortune 500 companies",
+//   },
+//   {
+//     name: "Frank Lamberti",
+//     title: "Chief Commercial Officer",
+//     image:
+//       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+//     bio: "Frank Lamberti drives our commercial strategy and market expansion as Chief Commercial Officer.",
+//     education: "MBA in Marketing, BS in Business",
+//     experience: "15 years in sales and marketing leadership",
+//   },
+//   {
+//     name: "Troy Hicks",
+//     title: "Chief Operating Officer",
+//     image:
+//       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+//     bio: "Troy Hicks ensures operational excellence and efficiency across all business units as COO.",
+//     education: "MS in Operations Management",
+//     experience: "Extensive background in operations and supply chain",
+//   },
+//   {
+//     name: "Henry Wang",
+//     title: "Chief Legal Officer",
+//     image:
+//       "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+//     bio: "Henry Wang provides legal guidance and ensures compliance across all global operations.",
+//     education: "JD from Yale Law School",
+//     experience: "25 years of corporate legal experience",
+//   },
+// ]);
 
 const boardMembers = ref([
   {
-    name: "Michael O. Johnson",
-    title: "Executive Chairman, Chairman of the Board",
+    name: "Harminder Singh ",
+    title: "Director",
     image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    bio: "Michael O. Johnson serves as Executive Chairman, providing strategic vision and leadership to the board.",
+      "/img/leadership/our team 4.png",
+    bio: "Harminder Singh serves as Director, providing strategic vision and leadership to the board.",
     education: "MBA from University of Chicago",
     experience: "Over 30 years in executive leadership",
   },
   {
-    name: "Dr. Richard H. Carmona",
+    name: "Jasdeep Bawa",
     title: "Director",
     image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    bio: "Dr. Richard H. Carmona brings extensive medical and public health expertise to the board.",
+      "/img/leadership/our team 2.png",
+    bio: "Jasdeep Bawa brings extensive medical and public health expertise to the board.",
     education: "MD, Former U.S. Surgeon General",
     experience: "Distinguished career in medicine and public health",
   },
@@ -266,7 +260,7 @@ const boardMembers = ref([
     name: "Lynda Cloud",
     title: "Director",
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      "/img/leadership/our team 3.png",
     bio: "Lynda Cloud provides strategic guidance on governance and compliance matters.",
     education: "MBA in Finance",
     experience: "20+ years in corporate governance",
@@ -275,7 +269,7 @@ const boardMembers = ref([
     name: "Celine Del Genes",
     title: "Director",
     image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d65495b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      "/img/leadership/our team 5.png",
     bio: "Celine Del Genes contributes expertise in international business and market expansion.",
     education: "MBA from INSEAD",
     experience: "Global business leadership experience",
@@ -284,20 +278,20 @@ const boardMembers = ref([
     name: "Sophie L'Hélias",
     title: "Director",
     image:
-      "https://images.unsplash.com/photo-1594744803329-e58b31de4bf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      "/img/leadership/our team.png",
     bio: "Sophie L'Hélias brings insights on digital transformation and innovation.",
     education: "MS in Technology Management",
     experience: "Leadership in tech and digital strategy",
   },
-  {
-    name: "Michael Levitt",
-    title: "Director",
-    image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    bio: "Michael Levitt offers strategic counsel on mergers, acquisitions, and corporate development.",
-    education: "MBA from Wharton",
-    experience: "30 years in corporate development",
-  },
+  // {
+  //   name: "Michael Levitt",
+  //   title: "Director",
+  //   image:
+  //     "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+  //   bio: "Michael Levitt offers strategic counsel on mergers, acquisitions, and corporate development.",
+  //   education: "MBA from Wharton",
+  //   experience: "30 years in corporate development",
+  // },
 ]);
 
 const openBio = (member) => {

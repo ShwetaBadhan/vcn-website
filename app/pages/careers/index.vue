@@ -35,9 +35,13 @@
       <h2>Be a part of the VCN Family</h2>
 
       <p>
-        We at VCN always promote the culture of “Employee First”.
-        Our employees are our biggest inspiration and we focus on
-        empowering them to achieve their professional goals.
+        At Vcare Network, our people drive our success. We welcome passionate, dedicated individuals who want to grow and make an impact in the wellness industry.
+      </p>
+      <p>
+        Being part of VCN means working in a supportive, dynamic environment where your ideas matter and your growth is encouraged. Whether you’re starting out or aiming higher, we offer opportunities to learn, lead, and succeed.
+      </p>
+      <p>
+        Join us and be part of a team committed to innovation, excellence, and empowering lives every day.
       </p>
 
       <button class="primary-btn">

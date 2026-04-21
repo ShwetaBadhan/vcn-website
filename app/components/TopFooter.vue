@@ -71,10 +71,10 @@
           <!-- Newsletter Section -->
           <div class="vcn-footer-newsletter">
             <h3 class="vcn-footer-newsletter-title">
-              Science with Seed—nerdy reads for your inbox.
+              Science with VCN—nerdy reads for your inbox.
             </h3>
             <p class="vcn-footer-newsletter-subtitle">
-              By signing up you consent to receive Seed emails.
+              By signing up you consent to receive VCN emails.
             </p>
 
             <form class="vcn-footer-newsletter-form" @submit="handleSubscribe">
