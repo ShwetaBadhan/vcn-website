@@ -9,7 +9,7 @@
             ViaCapsi Technology</div>
 
           <h2 class="vcn-probiotic-main-heading" data-aos="fade-up" data-aos-duration="400">
-            Most probiotics don't survive digestion—DS-01® does.
+            Natural Solutions for Better Living
           </h2>
 
           <div class="vcn-probiotic-stat-box" data-aos="zoom-in" data-aos-duration="400">
@@ -39,9 +39,7 @@
             <div class="vcn-probiotic-callout vcn-probiotic-callout-top" data-aos="fade-up" data-aos-duration="400">
               <div class="vcn-probiotic-callout-title">Outer Capsule</div>
               <div class="vcn-probiotic-callout-text">
-                Shields probiotics from stomach acid in the digestive tract,
-                while delivering prebiotics to stimulate the growth of
-                beneficial bacteria.
+                Prepared with natural ingredients to support overall wellness and body balance
               </div>
             </div>
 
@@ -52,8 +50,7 @@
             <div class="vcn-probiotic-callout vcn-probiotic-callout-bottom" data-aos="fade-up" data-aos-duration="400">
               <div class="vcn-probiotic-callout-title">Inner Capsule</div>
               <div class="vcn-probiotic-callout-text">
-                Delivers 24 live strains of probiotics to the colon, where
-                they're needed most.
+                Formulated using natural sources to promote everyday digestive comfort and internal balance
               </div>
             </div>
           </div>

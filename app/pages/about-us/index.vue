@@ -11,7 +11,7 @@
         <div class="col-md-9 col-lg-9">
           <!-- Hero Image -->
           <img
-            src="https://images.unsplash.com/photo-1544256627-38613432676f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+            src="/img/about/about-us.png"
             alt="Happy family running in park" class="hero-banner" />
 
           <!-- Welcome Banner -->

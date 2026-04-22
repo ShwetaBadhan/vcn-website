@@ -6,13 +6,12 @@
             <div class="vcn-whole-body-header">
                 <div class="vcn-whole-body-title-wrapper">
                     <h2 class="vcn-whole-body-main-title">
-                        Whole body health starts in the gut.
+                        Natural Wellness You Can Trust
                     </h2>
                 </div>
                 <div>
                     <p class="vcn-whole-body-subtitle">
-                        Formulations that provide fast-acting and sustained support using
-                        scientifically and clinically studied ingredients.
+                        Explore our wide range of health, wellness, and personal care products designed to support your everyday needs. 
                     </p>
                 </div>
                 <div>

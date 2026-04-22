@@ -10,7 +10,7 @@
           <div class="news-content">
             <!-- HERO -->
             <section class="news-hero">
-              <img src="/img/about/about-1.jpg" class="news-banner" />
+              <img src="/img/news/news.png" class="news-banner" />
 
               <div class="hero-title">
                 <h1>VCN In News</h1>

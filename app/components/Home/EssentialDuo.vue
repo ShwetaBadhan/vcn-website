@@ -6,12 +6,10 @@
       <div class="vcn-cobiotics-content" data-aos="fade-up" data-aos-duration="400">
         <span class="vcn-cobiotics-badge" data-aos="fade-up" data-aos-duration="400">Bundle + Save 25%</span>
         <h2 class="vcn-cobiotics-title" data-aos="fade-up" data-aos-duration="400">
-          Daily essentials for nutrition and digestive health.
+          Empowering Health. Enriching Lives.
         </h2>
         <p class="vcn-cobiotics-description" data-aos="fade-up" data-aos-duration="400">
-          Clinically proven daily probiotic and new daily multivitamin that
-          help cover nutrient gaps, reduce bloating, and promote healthy
-          regularity.*
+          Step into a world of natural wellness, trusted personal care, and rewarding growth opportunities. VCare Network is committed to providing quality products that nurture your health, support your everyday needs, and inspire a better, healthier future.
         </p>
         <a href="/product-details/essential-duo" class="vcn-cobiotics-cta-btn" data-aos="fade-up"
           data-aos-duration="400">Shop Daily Essentials Duo</a>
