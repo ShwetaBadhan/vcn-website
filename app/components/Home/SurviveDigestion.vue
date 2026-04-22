@@ -14,7 +14,7 @@
 
           <div class="vcn-probiotic-stat-box" data-aos="zoom-in" data-aos-duration="400">
             <div class="vcn-probiotic-stat-label-wrapper">
-              <span class="vcn-probiotic-stat-badge">DS-01®</span>
+              <span class="vcn-probiotic-stat-badge">VCN-01</span>
               <span class="vcn-probiotic-stat-text">Increases healthy bacteria by</span>
             </div>
 

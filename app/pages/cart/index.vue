@@ -55,15 +55,15 @@
         <div class="row g-4">
           <div class="col-md-4">
             <div class="cart-product-card">
-              <img src="https://res.cloudinary.com/dljz0lko8/image/upload/v1693433672/cart/DS01_2x.png" alt="DS-01®"
+              <img src="https://res.cloudinary.com/dljz0lko8/image/upload/v1693433672/cart/DS01_2x.png" alt="VCN-01"
                 class="cart-suggested-image" />
-              <div class="cart-suggested-name">DS-01®</div>
+              <div class="cart-suggested-name">VCN-01</div>
               <div class="cart-suggested-description">Daily Synbiotic</div>
               <div class="cart-price-wrapper">
                 <span class="cart-current-price">$37.49</span>
                 <span class="cart-original-price">$49.99</span>
                 <button
-                  @click="addRecommendedProduct('ds01', 'DS-01®', 37.49, 'https://res.cloudinary.com/dljz0lko8/image/upload/v1693433672/cart/DS01_2x.png')"
+                  @click="addRecommendedProduct('ds01', 'VCN-01', 37.49, 'https://res.cloudinary.com/dljz0lko8/image/upload/v1693433672/cart/DS01_2x.png')"
                   class="cart-add-btn">
                   Add
                 </button>

@@ -18,8 +18,8 @@
             <div class="col-6 mb-3">
               <div class="product-gallery">
                 <div class="gallery-item">
-                  <img class="thumb" src="https://assets.embeddables.com/Rectangle122041_004213986439953521.png"
-                    @click="openProductPreview('https://assets.embeddables.com/Rectangle122041_004213986439953521.png')" />
+                  <img class="thumb" src="/img/productsdetails/comonimages2.png"
+                    @click="openProductPreview('/img/productsdetails/comonimages2.png')" />
                 </div>
               </div>
             </div>
@@ -27,8 +27,8 @@
             <div class="col-6 mb-3">
               <div class="product-gallery">
                 <div class="gallery-item">
-                  <img class="thumb" src="https://assets.embeddables.com/Rectangle122051_8551790234297849.png"
-                    @click="openProductPreview('https://assets.embeddables.com/Rectangle122051_8551790234297849.png')" />
+                  <img class="thumb" src="/img/productsdetails/ds-01.png"
+                    @click="openProductPreview('/img/productsdetails/ds-01.png')" />
                 </div>
               </div>
             </div>
@@ -36,8 +36,8 @@
             <div class="col-6 mb-3">
               <div class="product-gallery">
                 <div class="gallery-item">
-                  <img class="thumb" src="http://assets.embeddables.com/Rectangle122071_6289075903534314.png"
-                    @click="openProductPreview('http://assets.embeddables.com/Rectangle122071_6289075903534314.png')" />
+                  <img class="thumb" src="/img/productsdetails/comonimages4.png"
+                    @click="openProductPreview('/img/productsdetails/comonimages4.png')" />
                 </div>
               </div>
             </div>
@@ -45,8 +45,8 @@
             <div class="col-6 mb-3">
               <div class="product-gallery">
                 <div class="gallery-item">
-                  <img class="thumb" src="http://assets.embeddables.com/HeroSupplementFacts_9730338301782036.png"
-                    @click="openProductPreview('http://assets.embeddables.com/HeroSupplementFacts_9730338301782036.png')" />
+                  <img class="thumb" src="/img/productsdetails/dbtpageimage( 424by24 ).png"
+                    @click="openProductPreview('/img/productsdetails/dbtpageimage( 424by24 ).png')" />
                 </div>
               </div>
             </div>

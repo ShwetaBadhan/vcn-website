@@ -58,9 +58,7 @@
                 </li>
                 <li>
                   <a class="dropdown-item" href="/vcn-labs">
-                    <img
-                      src="/img/image/vcnlabs.png"
-                      alt="VCN Labs" />
+                    <img src="/img/image/vcnlabs.png" alt="VCN Labs" />
                     <strong>VCN Labs</strong>
                   </a>
                 </li>
@@ -84,13 +82,13 @@
                   <a href="" class="dropdown-item"><strong>References</strong></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" class="dropdown-item"><strong>DS-01® Daily Synbiotic</strong></a>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong>VCN-01 Daily Synbiotic</strong></a>
                 </li>
                 <li>
                   <a href="javascript:void(0)" class="dropdown-item"><strong>DM-02™ Daily Multivitamin</strong></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" class="dropdown-item"><strong>AM-02™ Energy + Focus</strong></a>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong>VCN-02 Energy + Focus</strong></a>
                 </li>
                 <li>
                   <a href="javascript:void(0)" class="dropdown-item"><strong>PM-02™ Sleep + Restore</strong></a>
@@ -253,9 +251,7 @@
                 <strong>Approach<br />Micro</strong>
               </a>
               <a class="dropdown-item" href="/vcn-labs">
-                <img
-                  src="/img/image/vcnlabs.png"
-                  alt="VCN Labs" />
+                <img src="/img/image/vcnlabs.png" alt="VCN Labs" />
                 <strong>VCN Labs</strong>
               </a>
               <a class="dropdown-item" href="/approach#scientists">

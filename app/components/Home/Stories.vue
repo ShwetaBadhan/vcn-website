@@ -24,7 +24,8 @@
           </div>
 
           <div class="vcn-stories-media-item">
-            <img :src="cleanImageUrl('img/image/Stories from scientists  644.png')" alt="Story 4" class="vcn-stories-4" loading="eager" />
+            <img :src="cleanImageUrl('img/image/Stories from scientists  644.png')" alt="Story 4" class="vcn-stories-4"
+              loading="eager" />
             <div class="vcn-stories-media-overlay">
               "Pushing the boundaries on what personal probabilities are
               within our reach is going beyond norms and..."
@@ -33,7 +34,8 @@
           </div>
 
           <div class="vcn-stories-media-item">
-            <img :src="cleanImageUrl('/img/image/Stories from scientists  552by 864.png')" alt="Story 5" loading="eager" />
+            <img :src="cleanImageUrl('/img/image/Stories from scientists  552by 864.png')" alt="Story 5"
+              loading="eager" />
           </div>
 
           <div class="vcn-stories-media-item">
@@ -45,7 +47,8 @@
               that power impact for..."
               <span class="vcn-stories-media-overlay-source">FORBES</span>
             </div>
-            <img :src="cleanImageUrl('img/image/Stories from scientists  644.png')" alt="Story 7" class="vcn-stories-4" loading="eager" />
+            <img :src="cleanImageUrl('img/image/Stories from scientists  644.png')" alt="Story 7" class="vcn-stories-4"
+              loading="eager" />
           </div>
         </div>
       </div>
@@ -71,7 +74,7 @@
 
             </h3>
             <p class="vcn-stories-card-description text-center">
-              Feel lasting relief in one week with DS-01®
+              Feel lasting relief in one week with VCN-01
 
 
             </p>

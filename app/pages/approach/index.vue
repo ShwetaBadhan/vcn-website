@@ -31,12 +31,10 @@
       </div>
       <div class="section-content">
         <div class="strains-viz">
-          <img
-            src="/img/image/strains.png"
-            alt="" />
+          <img src="/img/image/strains.png" alt="" />
           <p>
             <i>Fig.1</i> - Relative abundance by shotgun metagenomic
-            sequencing for DS-01®
+            sequencing for VCN-01
           </p>
         </div>
         <div class="two-column">
@@ -148,9 +146,7 @@
           </div>
           <div class="validation-item">
             <div class="validation-visual">
-              <img
-                src="/gif/clinicalImage.webp"
-                alt="" />
+              <img src="/gif/clinicalImage.webp" alt="" />
             </div>
             <div class="column">
               <h3>Clinical Research</h3>
@@ -198,9 +194,7 @@
           </div>
         </div>
         <div class="shine-capsules">
-          <img
-            src="/img/image/shime.png"
-            alt="" />
+          <img src="/img/image/shime.png" alt="" />
           <p>
             <i>Fig.3</i> - To evaluate the survival of our probiotics, we use
             a Simulator of the Human Intestinal Microbial Ecosystem
@@ -319,33 +313,23 @@
       </marquee>
       <div class="microbiome-circles">
         <div class="microbiome-circle">
-          <img
-            src="/img/image/plastics.png"
-            alt="" />
+          <img src="/img/image/plastics.png" alt="" />
           <h5 style="margin-top: 20px; color: #1c3a13">Plastics</h5>
         </div>
         <div class="microbiome-circle">
-          <img
-            src="/img/image/honeybees.png"
-            alt="" />
+          <img src="/img/image/honeybees.png" alt="" />
           <h5 style="margin-top: 20px; color: #1c3a13">Honey Bees</h5>
         </div>
         <div class="microbiome-circle">
-          <img
-            src="/img/image/coral.png"
-            alt="" />
+          <img src="/img/image/coral.png" alt="" />
           <h5 style="margin-top: 20px; color: #1c3a13">Coral</h5>
         </div>
         <div class="microbiome-circle">
-          <img
-            src="/img/image/agriculture.png"
-            alt="" />
+          <img src="/img/image/agriculture.png" alt="" />
           <h5 style="margin-top: 20px; color: #1c3a13">Agriculture</h5>
         </div>
         <div class="microbiome-circle">
-          <img
-            src="/img/image/biomaterial.png"
-            alt="" />
+          <img src="/img/image/biomaterial.png" alt="" />
           <h5 style="margin-top: 20px; color: #1c3a13">Biomaterials</h5>
         </div>
       </div>

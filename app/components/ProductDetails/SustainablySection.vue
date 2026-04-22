@@ -1,5 +1,5 @@
 <template>
-      <section class="gut-stats-main-section">
+  <section class="gut-stats-main-section">
     <div class="container-fluid">
       <div class="row align-items-center">
         <!-- Left Column: Heading -->
@@ -8,7 +8,7 @@
             Sustainably delivered, monthly.
           </h2>
           <p>
-            Our refill pouches protect your DS-01® through transit while being
+            Our refill pouches protect your VCN-01 through transit while being
             gentler on our Earth.
           </p>
         </div>
@@ -18,20 +18,12 @@
           <div class="row">
             <!-- Card 1: Beneficial Gut Bacteria -->
             <div class="col-md-4 offset-md-3 mb-4">
-              <img
-                src="https://assets.embeddables.com/Frame17393319061_8869900190838461.png"
-                class="w-100"
-                alt=""
-              />
+              <img src="https://assets.embeddables.com/Frame17393319061_8869900190838461.png" class="w-100" alt="" />
             </div>
 
             <!-- Card 2: Gut Barrier -->
             <div class="col-md-4 mb-4">
-              <img
-                src="https://assets.embeddables.com/Frame173933190711_09804183827806268.png"
-                class="w-100"
-                alt=""
-              />
+              <img src="https://assets.embeddables.com/Frame173933190711_09804183827806268.png" class="w-100" alt="" />
             </div>
           </div>
         </div>

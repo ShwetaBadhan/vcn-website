@@ -1,8 +1,8 @@
 <template>
-      <section class="comparison-table-main-section">
+  <section class="comparison-table-main-section">
     <div class="container-fluid">
       <h2 class="comparison-table-heading-title">
-        DS-01® outperforms<br />other probiotics.
+        VCN-01 outperforms<br />other probiotics.
       </h2>
 
       <div class="comparison-table-wrapper">
@@ -13,9 +13,7 @@
             <span class="comparison-table-header-text">DS-01©</span>
           </div>
           <div class="comparison-table-others-col">
-            <span class="comparison-table-header-text" style="color: #999"
-              >Others</span
-            >
+            <span class="comparison-table-header-text" style="color: #999">Others</span>
           </div>
         </div>
 
