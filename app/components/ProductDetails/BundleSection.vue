@@ -6,9 +6,7 @@
           <!-- Left Column: Product Images -->
           <div class="col-lg-6 routine-products-column">
             <div class="routine-wrapper">
-              <img class="routine-main-image booster"
-                src="/img/productsdetails/BOOSTER.png"
-                alt="routine products" />
+              <img class="routine-main-image booster" src="/img/productsdetails/BOOSTER.png" alt="routine products" />
 
               <!-- Label 1 -->
               <div class="label-block label-1">
@@ -53,9 +51,7 @@
 
             <div class="row">
               <div class="col-lg-6">
-                <a href="product-details" class="routine-cta-button"
-                  >Add Bundle • Save 25%</a
-                >
+                <a href="product-details" class="routine-cta-button">Add Bundle • Save 25%</a>
               </div>
             </div>
           </div>

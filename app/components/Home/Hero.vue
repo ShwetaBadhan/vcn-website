@@ -11,10 +11,10 @@
 
     <!-- Hero Content - Left Aligned -->
     <div class="hero-content">
-      <h1>Nutrition, energy, and sleep—advanced by microbiome science</h1>
+      <h1>Transform Your Health. Transform Your Life.</h1>
       <p>
-        VCN's Co-Biotics nourish you and your microbiome to deliver targeted,
-        daily benefits.
+        Discover products you trust
+        and opportunities that grow with you.
       </p>
       <a href="/all-products" class="hero-btn">Shop Now</a>
     </div>

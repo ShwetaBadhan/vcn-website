@@ -4,10 +4,10 @@
         <!-- Header -->
         <div class="vcn-testimonial-header">
           <h2 class="vcn-testimonial-title">
-            Over 1 million health<br />transformations (and counting).
+            Thousands Are Redefining <br> Their Health with VCN.
           </h2>
           <p class="vcn-testimonial-subtitle">
-            See how real people are changing their health with VCN.
+            Discover how VCN is helping people take control of their wellness journey.
           </p>
         </div>
 

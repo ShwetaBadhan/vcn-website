@@ -2,7 +2,7 @@
   <!-- Top Header -->
   <div class="top-header" :class="{ 'hide': isHydrated && isHidden }" id="topHeader">
     <p>
-      Is VCN-01 Daily Synbiotic Right For You? <span class="arrow">→</span>
+      Because Your Health Deserves Better <span class="arrow">→</span>
     </p>
   </div>
 </template>
