@@ -1,42 +1,43 @@
 import { defineStore } from 'pinia'
+import type { CartItem, CartState } from '~/types'
 
 export const useCartStore = defineStore('cart', {
-  state: () => ({
+  state: (): CartState => ({
     items: [],
     promoCode: '',
     discount: 0,
-    userId: null, // Track current user ID
-    isGuest: true // Track if user is guest or logged in
+    userId: null,
+    isGuest: true
   }),
 
   getters: {
     cartCount: (state) => {
-      return state.items.reduce((total, item) => total + item.quantity, 0)
+      return state.items.reduce((total: number, item: CartItem) => total + item.quantity, 0)
     },
 
     cartTotal: (state) => {
-      const subtotal = state.items.reduce((total, item) => total + (item.price * item.quantity), 0)
+      const subtotal = state.items.reduce((total: number, item: CartItem) => total + (item.price * item.quantity), 0)
       return subtotal - state.discount
     },
 
     cartSubtotal: (state) => {
-      return state.items.reduce((total, item) => total + (item.price * item.quantity), 0)
+      return state.items.reduce((total: number, item: CartItem) => total + (item.price * item.quantity), 0)
     },
 
-    getItemById: (state) => (id) => {
-      return state.items.find(item => item.id === id)
+    getItemById: (state) => (id: string | number) => {
+      return state.items.find((item: CartItem) => item.id === id)
     }
   },
 
   actions: {
     // Set user authentication state
-    setUser(userId, isGuest = false) {
+    setUser(userId: string | number | null, isGuest = false) {
       this.userId = userId
       this.isGuest = isGuest
     },
 
-    addToCart(product) {
-      const existingItem = this.items.find(item => item.id === product.id)
+    addToCart(product: CartItem) {
+      const existingItem = this.items.find((item: CartItem) => item.id === product.id)
 
       if (existingItem) {
         existingItem.quantity += 1
@@ -55,16 +56,16 @@ export const useCartStore = defineStore('cart', {
       this.saveCart()
     },
 
-    removeFromCart(productId) {
-      const index = this.items.findIndex(item => item.id === productId)
+    removeFromCart(productId: string | number) {
+      const index = this.items.findIndex((item: CartItem) => item.id === productId)
       if (index > -1) {
         this.items.splice(index, 1)
         this.saveCart()
       }
     },
 
-    updateQuantity(productId, quantity) {
-      const item = this.items.find(item => item.id === productId)
+    updateQuantity(productId: string | number, quantity: number) {
+      const item = this.items.find((item: CartItem) => item.id === productId)
       if (item) {
         if (quantity <= 0) {
           this.removeFromCart(productId)
@@ -75,16 +76,16 @@ export const useCartStore = defineStore('cart', {
       }
     },
 
-    incrementQuantity(productId) {
-      const item = this.items.find(item => item.id === productId)
+    incrementQuantity(productId: string | number) {
+      const item = this.items.find((item: CartItem) => item.id === productId)
       if (item) {
         item.quantity += 1
         this.saveCart()
       }
     },
 
-    decrementQuantity(productId) {
-      const item = this.items.find(item => item.id === productId)
+    decrementQuantity(productId: string | number) {
+      const item = this.items.find((item: CartItem) => item.id === productId)
       if (item && item.quantity > 1) {
         item.quantity -= 1
         this.saveCart()
@@ -100,7 +101,7 @@ export const useCartStore = defineStore('cart', {
       this.saveCart()
     },
 
-    applyPromoCode(code) {
+    applyPromoCode(code: string) {
       // Simple promo logic - you can extend this
       if (code === 'SAVE10') {
         this.discount = this.cartSubtotal * 0.1
@@ -163,9 +164,16 @@ export const useCartStore = defineStore('cart', {
           }
 
           if (cartData) {
-            this.items = cartData.items || []
+            // Load items and repair any with missing/broken images
+            const loadedItems = cartData.items || []
+            this.items = loadedItems.map((item: CartItem) => ({
+              ...item,
+              image: item.image
+            }))
             this.promoCode = cartData.promoCode || ''
             this.discount = cartData.discount || 0
+            // Save repaired cart back to localStorage
+            this.saveCart()
           } else {
             // Initialize empty cart
             this.items = []
@@ -209,13 +217,13 @@ export const useCartStore = defineStore('cart', {
     },
 
     // Merge guest cart with current user cart
-    mergeWithGuestCart(guestCartData) {
+    mergeWithGuestCart(guestCartData: { items: CartItem[]; promoCode?: string; discount?: number }) {
       if (!guestCartData || guestCartData.items.length === 0) return
 
       const mergedItems = [...this.items]
 
       // Add guest items that aren't already in user cart
-      guestCartData.items.forEach(guestItem => {
+      guestCartData.items.forEach((guestItem: CartItem) => {
         const existingItem = mergedItems.find(item => item.id === guestItem.id)
         if (existingItem) {
           // If item exists, add quantities
@@ -240,7 +248,7 @@ export const useCartStore = defineStore('cart', {
     },
 
     // Handle user login - merge guest cart with user cart
-    async handleUserLogin(userId) {
+    async handleUserLogin(userId: string | number) {
       if (!userId) return
 
       // Set user state

@@ -1,16 +1,40 @@
 // Composable to handle authentication and cart synchronization (client-only)
+
+interface User {
+  id: string
+  mobile: string
+  name: string
+  email: string
+}
+
+interface Credentials {
+  mobile: string
+}
+
+interface AuthState {
+  user: User | null
+  isLoggedIn: boolean
+  token: string | null
+}
+
+interface LoginResult {
+  success: boolean
+  user?: User
+  error?: string
+}
+
 export const useAuthCart = () => {
   const cartStore = useCartStore()
 
   // Mock auth state - replace with actual auth implementation
-  const authState = useState('auth', () => ({
+  const authState = useState<AuthState>('auth', () => ({
     user: null,
     isLoggedIn: false,
     token: null
   }))
 
   // Login function
-  const login = async (credentials) => {
+  const login = async (credentials: Credentials): Promise<LoginResult> => {
     try {
       // Mock login - replace with actual auth implementation
       // For demo purposes, we'll create a mock user
@@ -34,7 +58,7 @@ export const useAuthCart = () => {
       return { success: true, user: mockUser }
     } catch (error) {
       console.error('Login error:', error)
-      return { success: false, error: error.message }
+      return { success: false, error: error instanceof Error ? error.message : 'Unknown error' }
     }
   }
 
@@ -57,7 +81,7 @@ export const useAuthCart = () => {
       return { success: true }
     } catch (error) {
       console.error('Logout error:', error)
-      return { success: false, error: error.message }
+      return { success: false, error: error instanceof Error ? error.message : 'Unknown error' }
     }
   }
 
@@ -66,9 +90,10 @@ export const useAuthCart = () => {
     // Check if user is logged in (from localStorage token)
     const isLoggedIn = checkAuthStatus()
 
-    if (isLoggedIn && authState.value.user) {
+    const user = authState.value.user
+    if (isLoggedIn && user) {
       // User is logged in
-      cartStore.setUser(authState.value.user.id, false)
+      cartStore.setUser(user.id, false)
       await cartStore.loadCart()
     } else {
       // User is guest
@@ -99,15 +124,17 @@ export const useAuthCart = () => {
   }
 
   // Save auth data to localStorage
-  const saveAuthData = (user, token) => {
+  const saveAuthData = (user: User, token: string | null) => {
     if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.setItem('auth_token', token)
+      if (token) {
+        localStorage.setItem('auth_token', token)
+      }
       localStorage.setItem('user_data', JSON.stringify(user))
     }
   }
 
   // Enhanced login with localStorage persistence
-  const loginWithPersistence = async (credentials) => {
+  const loginWithPersistence = async (credentials: Credentials) => {
     const result = await login(credentials)
 
     if (result.success && result.user) {
@@ -134,15 +161,18 @@ export const useAuthCart = () => {
   }
 
   // Get all user carts (for admin/debug purposes)
-  const getAllUserCarts = () => {
+  const getAllUserCarts = (): Record<string, unknown> => {
     if (typeof window !== 'undefined' && window.localStorage) {
-      const userCarts = {}
+      const userCarts: Record<string, unknown> = {}
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i)
         if (key && key.startsWith('vcn-user-cart-')) {
           const userId = key.replace('vcn-user-cart-', '')
           try {
-            userCarts[userId] = JSON.parse(localStorage.getItem(key))
+            const item = localStorage.getItem(key)
+            if (item) {
+              userCarts[userId] = JSON.parse(item)
+            }
           } catch (error) {
             console.error('Error parsing user cart:', error)
           }

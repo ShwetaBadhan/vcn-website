@@ -8,8 +8,8 @@
         <div class="promo-image-section">
           <span class="promo-discount-badge">20% Off</span>
           <img
-            src="https://forms.seed.com/s3awjbnctc/vendors/c8b36b3f-ffaa-49bf-b9a7-7ff510269cbe/uploads/f7919dd9-9eec-40ea-98fc-39015ef55c24/Lead_Capture_Site_Module_No_SMS_20_Off_General_Product_Desktop_3x.png"
-            alt="Seed Products"
+            src="/img/image/Stories from scientists  644.png"
+            alt="VCN Products"
             class="promo-product-image"
           />
         </div>
@@ -18,7 +18,7 @@
         <div class="promo-form-section">
           <h2 class="promo-heading-text">Claim Your 20% Off</h2>
           <p class="promo-subheading-text">
-            Sign up to unlock your code, valid for any Seed product.<span
+            Sign up to unlock your code, valid for any VCN product.<span
               class="promo-asterisk-symbol"
               >*</span
             >
@@ -37,7 +37,7 @@
 
             <p class="promo-consent-text">
               <span class="promo-asterisk-symbol">*</span>By submitting my
-              email, I consent to receive marketing emails from Seed.
+              email, I consent to receive marketing emails from VCN.
             </p>
           </form>
         </div>

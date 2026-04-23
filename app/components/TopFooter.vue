@@ -71,10 +71,10 @@
           <!-- Newsletter Section -->
           <div class="vcn-footer-newsletter">
             <h3 class="vcn-footer-newsletter-title">
-              Science with Seed—nerdy reads for your inbox.
+              Science with VCN—nerdy reads for your inbox.
             </h3>
             <p class="vcn-footer-newsletter-subtitle">
-              By signing up you consent to receive Seed emails.
+              By signing up you consent to receive VCN emails.
             </p>
 
             <form class="vcn-footer-newsletter-form" @submit="handleSubscribe">
@@ -82,10 +82,7 @@
                 <input type="email" class="vcn-footer-newsletter-input" placeholder="Enter your email" v-model="email"
                   :disabled="isLoading" required />
               </div>
-              <button type="submit" class="vcn-footer-newsletter-btn" :disabled="isLoading">
-                <span v-if="isLoading">...</span>
-                <span v-else>→</span>
-              </button>
+              <button type="submit" class="vcn-footer-newsletter-btn" @click.prevent="handleSubscribe">→</button>
             </form>
 
 
@@ -251,7 +248,6 @@ const handleSubscribe = async (event) => {
   // Basic email validation
   if (!email.value || !email.value.includes('@')) {
     toast.error({
-      title: 'Error!',
       message: 'Please enter a valid email address'
     })
     return
@@ -273,21 +269,18 @@ const handleSubscribe = async (event) => {
       // Success - show toast
       email.value = '' // Clear input
       toast.success({
-        title: 'Success!',
         message: 'Successfully subscribed to newsletter!'
       })
     } else {
       // Error
       const errorMsg = response.data?.message || response.error || 'Subscription failed. Please try again.'
       toast.error({
-        title: 'Error!',
         message: errorMsg
       })
     }
   } catch (error) {
     console.error('Subscription error:', error)
     toast.error({
-      title: 'Error!',
       message: error.message || 'An error occurred. Please try again.'
     })
   } finally {

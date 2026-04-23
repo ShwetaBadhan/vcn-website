@@ -10,28 +10,16 @@
           <section class="vcn-faq-section">
             <div class="vcn-faq-container">
               <h2 class="vcn-faq-title">Frequently Asked Questions</h2>
-              
+
               <div class="vcn-faq-list">
-                <div 
-                  v-for="(category, index) in faqCategories" 
-                  :key="index"
-                  class="vcn-faq-item"
-                >
-                  <button 
-                    class="vcn-faq-question-btn"
-                    @click="toggleAccordion(index)"
-                    type="button"
-                  >
+                <div v-for="(category, index) in faqCategories" :key="index" class="vcn-faq-item">
+                  <button class="vcn-faq-question-btn" @click="toggleAccordion(index)" type="button">
                     <span>{{ category.title }}</span>
                     <i class="bi" :class="activeIndex === index ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
                   </button>
-                  
+
                   <div v-if="activeIndex === index" class="vcn-faq-answer-wrapper">
-                    <div 
-                      v-for="(qa, qIndex) in category.questions" 
-                      :key="qIndex"
-                      class="vcn-qa-card"
-                    >
+                    <div v-for="(qa, qIndex) in category.questions" :key="qIndex" class="vcn-qa-card">
                       <h4 class="vcn-qa-question-text">{{ qa.question }}</h4>
                       <p class="vcn-qa-answer-text">{{ qa.answer }}</p>
                     </div>
@@ -66,13 +54,13 @@ const faqCategories = ref([
     title: 'About VCN Business',
     questions: [
       {
-        question: 'What is VCN?',
-        answer: 'VCN\'s innovative platform that connects customers and business owners through digital channels. It enables seamless online shopping, personalized recommendations, and enhanced customer engagement.'
+        question: 'What is Vcare Network (VCN)?',
+        answer: "VCN is a direct selling company offering a wide range of wellness, healthcare, and personal care products inspired by natural ingredients and modern research."
       },
       {
-        question: 'How does VCN benefit customers?',
-        answer: 'VCN provides customers with easy access to VCN products, personalized shopping experiences, exclusive offers, and direct communication with VCN Business Owners for product guidance and support.'
-      }
+        question: 'How does the VCN business model work?',
+        answer: 'VCN operates on a direct selling model where individuals can become distributors, promote products, and earn income through sales and network growth.'
+      },
     ]
   },
   {
@@ -80,24 +68,24 @@ const faqCategories = ref([
     questions: [
       {
         question: 'How can I place an order?',
-        answer: 'You can place orders through our website, mobile app, or by contacting your VCN Business Owner. Simply browse products, add to cart, and complete checkout with your preferred payment method.'
+        answer: 'Orders can be placed directly through the VCN website or via an authorized distributor.'
       },
       {
-        question: 'What is the return policy?',
-        answer: 'We offer a 100% satisfaction guarantee. Products can be returned within 30 days of purchase in original condition for a full refund or exchange.'
-      }
+        question: 'Can I modify or cancel my order?',
+        answer: 'Yes, orders can be modified or cancelled before they are processed or shipped. Please contact customer support promptly.'
+      },
     ]
   },
   {
     title: 'Shipping & Delivery',
     questions: [
       {
-        question: 'What are the shipping charges?',
-        answer: 'Free shipping on orders above ₹1500. For orders below ₹1500, a delivery charge of ₹50 applies.'
+        question: 'Do you offer nationwide delivery?',
+        answer: 'Yes, VCN delivers products across India through reliable logistics partners.'
       },
       {
-        question: 'How long does delivery take?',
-        answer: 'Standard delivery takes 5-7 business days for metro cities and 7-10 days for other locations.'
+        question: 'Are there any shipping charges?',
+        answer: 'Shipping charges may vary based on order value and location. Offers may include free shipping on selected orders.'
       }
     ]
   },
@@ -230,7 +218,7 @@ const faqCategories = ref([
   .vcn-qa-answer-text {
     font-size: 14px;
   }
-  
+
   .vcn-faq-container {
     padding: 0 20px;
   }

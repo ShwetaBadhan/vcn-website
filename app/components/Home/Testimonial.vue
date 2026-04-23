@@ -7,7 +7,7 @@
             Over 1 million health<br />transformations (and counting).
           </h2>
           <p class="vcn-testimonial-subtitle">
-            See how real people are changing their health with Seed.
+            See how real people are changing their health with VCN.
           </p>
         </div>
 
@@ -18,7 +18,7 @@
             <div class="swiper-slide">
               <div class="vcn-testimonial-card">
                 <img
-                  src="/img/testimonial/testimonial-1.jpg"
+                  src="\img\testimonial\testimonial.png"
                   alt="Customer testimonial"
                   class="vcn-testimonial-image"
                 />
@@ -29,7 +29,7 @@
             <div class="swiper-slide">
               <div class="vcn-testimonial-card">
                 <img
-                  src="/img/testimonial/testimonial-1.jpg"
+                  src="/img/testimonial/testimonial.png"
                   alt="Customer testimonial"
                   class="vcn-testimonial-image"
                 />
@@ -40,7 +40,7 @@
             <div class="swiper-slide">
               <div class="vcn-testimonial-card">
                 <img
-                  src="/img/testimonial/testimonial-1.jpg"
+                  src="\img\testimonial\testimonial.png"
                   alt="Customer testimonial"
                   class="vcn-testimonial-image"
                 />
@@ -51,7 +51,7 @@
             <div class="swiper-slide">
               <div class="vcn-testimonial-card">
                 <img
-                  src="/img/testimonial/testimonial-1.jpg"
+                  src="\img\testimonial\testimonial.png"
                   alt="Customer testimonial"
                   class="vcn-testimonial-image"
                 />
@@ -68,7 +68,7 @@
               </svg>
             </button>
             <img
-              src="/img/testimonial/testimonial-1.jpg"
+              src="\img\testimonial\testimonial.png"
               alt="User avatar"
               class="vcn-user-avatar"
               id="vcn-avatar"

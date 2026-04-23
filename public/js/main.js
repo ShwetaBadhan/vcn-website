@@ -1,17 +1,27 @@
+// Cache Bootstrap Dropdown instances for better performance
+const dropdownCache = new Map();
+
 const dropdowns = document.querySelectorAll('.nav-item.dropdown');
 dropdowns.forEach((dropdown) => {
+  const toggle = dropdown.querySelector('.dropdown-toggle');
+  if (!toggle) return;
+
+  // Create and cache Dropdown instance once
+  if (!dropdownCache.has(dropdown)) {
+    dropdownCache.set(dropdown, new bootstrap.Dropdown(toggle));
+  }
+
   dropdown.addEventListener('mouseenter', () => {
     if (window.innerWidth > 992) {
-      const menu = dropdown.querySelector('.dropdown-menu');
-      const bsDropdown = new bootstrap.Dropdown(dropdown.querySelector('.dropdown-toggle'));
-      bsDropdown.show();
+      const bsDropdown = dropdownCache.get(dropdown);
+      if (bsDropdown) bsDropdown.show();
     }
   });
+
   dropdown.addEventListener('mouseleave', () => {
     if (window.innerWidth > 992) {
-      const menu = dropdown.querySelector('.dropdown-menu');
-      const bsDropdown = new bootstrap.Dropdown(dropdown.querySelector('.dropdown-toggle'));
-      bsDropdown.hide();
+      const bsDropdown = dropdownCache.get(dropdown);
+      if (bsDropdown) bsDropdown.hide();
     }
   });
 });
@@ -131,40 +141,8 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Scroll-based horizontal gallery movement
-const gallery = document.querySelector('.vcn-stories-media-gallery-track');
-const section = document.querySelector('.vcn-stories-section');
-
-if (gallery && section) {
-  window.addEventListener('scroll', () => {
-    const sectionRect = section.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    // Check if section is in viewport
-    if (sectionRect.top < windowHeight && sectionRect.bottom > 0) {
-      // Calculate scroll progress through the section
-      const sectionProgress = (windowHeight - sectionRect.top) / (windowHeight + sectionRect.height);
-
-      // Move gallery horizontally based on scroll (adjust multiplier for speed)
-      const moveAmount = sectionProgress * 800; // 800px movement range
-      gallery.style.transform = `translateX(-${moveAmount}px)`;
-    }
-  });
-}
-const navbar = document.getElementById('navbar');
-const topHeader = document.getElementById('topHeader');
-
-window.addEventListener('scroll', () => {
-  if (navbar && topHeader) {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-      topHeader.classList.add('hide');
-    } else {
-      navbar.classList.remove('scrolled');
-      topHeader.classList.remove('hide');
-    }
-  }
-});
+// Note: Stories scroll animation is now handled in Stories.vue component for better performance
+// Note: Scroll handling moved to Navbar.vue component for better performance
 
 document.addEventListener('DOMContentLoaded', function () {
   const productCards = document.querySelectorAll('.vcn-whole-body-product-card');
@@ -343,12 +321,27 @@ document.addEventListener('click', function (event) {
     toggleMenu();
   }
 });
-AOS.init({
-  duration: 1000,
-  once: false,
-  easing: "ease-out",
-  mirror: true,
-});
+// Initialize AOS when DOM is ready and AOS is loaded
+function initAOS() {
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 1000,
+      once: false,
+      easing: "ease-out",
+      mirror: true,
+    });
+  } else {
+    // Retry after a short delay if AOS hasn't loaded yet
+    setTimeout(initAOS, 100);
+  }
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAOS);
+} else {
+  initAOS();
+}
 
 document.addEventListener("aos:in:line-expand", ({ detail }) => {
   detail.classList.add("aos-animate");

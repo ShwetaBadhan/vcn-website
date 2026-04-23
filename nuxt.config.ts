@@ -9,12 +9,16 @@ export default defineNuxtConfig({
   toast: {
     settings: {
       position: 'bottomRight',
-      timeout: 3000,
+      timeout: 5000,
       closeOnEscape: true,
       closeOnClick: true,
       pauseOnHover: true,
       transitionIn: 'fadeInDown',
       transitionOut: 'fadeOutUp',
+      backgroundColor: '#ffffff',
+      titleColor: '#000000',
+      messageColor: '#333333',
+      iconColor: '#000000',
     }
   },
 
@@ -103,7 +107,7 @@ export default defineNuxtConfig({
 
       script: [
         // 🔸 JS files (body end)
-        { src: '/js/jquery.min.js', tagPosition: 'bodyClose' },
+        { src: '/js/jquery.min.js', tagPosition: 'bodyClose', defer: true },
         { src: '/js/swiper-bundle.min.js', tagPosition: 'bodyClose', crossorigin: 'anonymous' },
         { src: '/js/popper.min.js', tagPosition: 'bodyClose', defer: true, crossorigin: 'anonymous' },
         { src: '/js/bootstrap.bundle.min.js', tagPosition: 'bodyClose', defer: true, crossorigin: 'anonymous' },

@@ -53,7 +53,7 @@
           </div>
           <div class="blurb">
             <p>
-              <a href="">@SeedUniversity</a
+              <a href="">@VCNUniversity</a
               ><span>
                 is <br />
                 now accepting <br />
@@ -136,7 +136,7 @@
               data-aos-delay="600"
             ></div>
             <div class="learn-content-block">
-              <h3>3. Seed the World.</h3>
+              <h3>3. VCN the World.</h3>
               <p>
                 Share your unique code or URL, stop that new #GenericFortuity
                 scam/trend/fad, and start helping the world.
@@ -156,13 +156,13 @@
     <div class="marquee-section-wrapper">
       <marquee scrollamount="12">
         <span class="marquee-text"
-          >• LIFETIME access to seed university • First access to new products•
-          LIFETIME access to seed university • First access to new products•
-          LIFETIME access to seed university • First access to new products•
-          LIFETIME access to seed university • First access to new products•
-          LIFETIME access to seed university • First access to new products•
-          LIFETIME access to seed university • First access to new products•
-          LIFETIME access to seed university • First access to new products
+          >• LIFETIME access to VCN university • First access to new products•
+          LIFETIME access to VCN university • First access to new products•
+          LIFETIME access to VCN university • First access to new products•
+          LIFETIME access to VCN university • First access to new products•
+          LIFETIME access to VCN university • First access to new products•
+          LIFETIME access to VCN university • First access to new products•
+          LIFETIME access to VCN university • First access to new products
         </span>
       </marquee>
     </div>
@@ -200,7 +200,7 @@
                 aria-label="Country"
               />
               , want to co-create a future of accountable influence. I
-              acknowledge that as a Seed partner, I have a responsibility to the
+              acknowledge that as a VCN partner, I have a responsibility to the
               <input
                 type="text"
                 class="form-input-inline"
@@ -310,8 +310,8 @@
               <div class="faq-contact-box">
                 <p>
                   Have even more? We're here to help—<a
-                    href="mailto:seeduniversity@seed.com"
-                    >seeduniversity@seed.com</a
+                    href="mailto:VCNuniversity@VCN.com"
+                    >VCNuniversity@VCN.com</a
                   >
                 </p>
               </div>
@@ -356,12 +356,12 @@
 
         <div class="faq-item-wrapper">
           <button class="faq-question-button" aria-expanded="false">
-            <span>What is SeedUniversity?</span>
+            <span>What is VCNUniversity?</span>
             <span class="faq-toggle-icon">+</span>
           </button>
           <div class="faq-answer-content">
             <p>
-              SeedUniversity is our educational platform designed to help
+              VCN University is our educational platform designed to help
               influencers and content creators learn the fundamentals of
               responsible content creation. Through our courses, you'll learn to
               identify misinformation, understand scientific literacy, and

@@ -78,7 +78,7 @@
           <!-- Large Image -->
           <div class="image-large">
             <img
-              src="https://assets.embeddables.com/MainImage11_05536858695849567.png"
+              src="/img/productsdetails/dbtpageimage( 424by24 ).png"
               alt="Person drinking water"
               class="img-fluid"
             />
@@ -89,16 +89,16 @@
             <!-- Top Small Image (Circular) -->
             <div class="image-circle">
               <img
-                src="https://assets.embeddables.com/SecondaryImage11_6593898234776344.png"
+                src="/img/productsdetails/dbtpage.png"
                 alt="Capsules in bottle"
-                class="img-fluid"
+                class="img-fluid center-img"
               />
             </div>
 
             <!-- Bottom Small Image -->
             <div class="image-small">
               <img
-                src="https://assets.embeddables.com/SecondaryImage21_976478406714105.png"
+                src="/img/productsdetails/DBTFRST.png"
                 alt="Man holding product"
                 class="img-fluid"
               />
@@ -109,3 +109,8 @@
     </div>
   </div>
 </template>
+<style scoped>
+.center-img{
+  border-radius: 50%;
+}
+</style>

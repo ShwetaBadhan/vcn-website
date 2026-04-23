@@ -117,8 +117,6 @@ p {
 }
 
 .navbar.scrolled {
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
   top: 0px;
 }
 
@@ -623,8 +621,8 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
   .navbar.scrolled .nav-left-wrapper {
     background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.18);
   }
@@ -668,15 +666,12 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
   .desktop-nav .dropdown-menu {
     background: rgba(85, 85, 85, 0.8) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     border-radius: 20px !important;
     padding: 8px !important;
     max-height: 450px;
     overflow-y: scroll;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
-    /* margin-top: 12px !important; */
     display: block;
     opacity: 0;
     visibility: hidden;
@@ -731,8 +726,8 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
   .navbar.scrolled .nav-right-wrapper {
     background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.18);
   }
@@ -1562,8 +1557,8 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 .vcn-whole-body-product-card {
   background: var(--vcn-primary);
   backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 20px;
+  border-radius: 12px;
+  padding: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1647,14 +1642,12 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 .vcn-whole-body-product-image {
   position: relative;
   width: 100%;
-  max-width: 400px;
-  height: 350px;
+  max-width: 350px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   flex: 1;
-  /* margin: 15px 0; */
 }
 
 /* Default image visible */
@@ -1665,23 +1658,23 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 1;
+  padding: 15px 0;
 }
 
-/* Video invisible initially */
+/* Video styling */
 .product-video {
   position: absolute;
-  top: 0;
+  top: 15px;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 30px);
   object-fit: contain;
   opacity: 0;
   transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
   pointer-events: none;
-  z-index: 2;
 }
 
-/* Hover → Show video and hide image */
 .vcn-whole-body-product-card:hover .product-video {
   opacity: 1;
 }
@@ -3067,7 +3060,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .vcn-stories-card:nth-child(1)::before {
-  background-image: url("https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1753460833/library/bookend/5f4e9939ee3b96921d9af4d502cbdd3edf2a3d2a.jpg");
+  background-image: url("/img/image/Section Above footer.png");
 }
 
 .vcn-stories-card:nth-child(2)::before {
@@ -3376,6 +3369,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   cursor: pointer;
   padding: 8px 12px;
   transition: all 0.3s ease;
+  z-index: 10;
 }
 
 .vcn-footer-newsletter-btn:hover {
@@ -3784,6 +3778,17 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   padding: 40px;
   border-radius: 50px 50px 0 0;
   background-color: #ffff;
+}
+
+.product-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-card-link:hover {
+  text-decoration: none;
+  color: inherit;
 }
 
 .product-card {
@@ -4585,7 +4590,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .health-section-below {
-  background-image: url(https://assets.embeddables.com/Container31_003948090164523355.png);
+  background-image: url(/img/productsdetails/breadcrum.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -4619,7 +4624,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .health-section {
-  background-image: url(https://assets.embeddables.com/Container31_003948090164523355.png);
+  background-image: url(/img/productsdetails/breadcrum.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -5828,7 +5833,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 /* Product Section */
 .product-section {
   padding: 348px 20px;
-  background: url("https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1618934492/approach/Seed_Approach_Footer_Desktop_v2.jpg");
+  background: url("/img/image/frst image.png");
   background-size: cover;
   height: 100%;
 }
@@ -6181,10 +6186,10 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
 .cart-product-image {
   width: 100px;
-  height: 100px;
-  /* object-fit: cover; */
-  /* border-radius: 8px; */
-  /* background-color: #f8f8f8; */
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  background-color: #f8f8f8;
 }
 
 .cart-product-details {

@@ -1,5 +1,5 @@
 <template>
-    <section class="testing-standards-wrapper">
+  <section class="testing-standards-wrapper">
     <div class="container-fluid">
       <div class="row align-items-center g-4">
         <!-- Left Column: Headline & Description -->
@@ -21,12 +21,9 @@
             <div class="col-12 col-sm-6 col-lg-4">
               <div class="testing-feature-card">
                 <div class="testing-icon-wrapper">
-                  <img
-                    src="https://assets.embeddables.com/ClinicallyTested_9127921444987761.png"
-                    alt=""
-                  />
+                  <img :src="cleanUrl('/img/productsdetails/ayurvedic.png')" alt="" />
                 </div>
-                 <p class="testing-feature-description">
+                <p class="testing-feature-description">
                   Formulated with 100% natural Ayurvedic herbs — no synthetic
                   chemicals or artificial additives
                 </p>
@@ -37,12 +34,9 @@
             <div class="col-12 col-sm-6 col-lg-4">
               <div class="testing-feature-card">
                 <div class="testing-icon-wrapper">
-                  <img
-                    src="https://assets.embeddables.com/ScienceBacked_5257260533781933.png"
-                    alt=""
-                  />
+                  <img :src="cleanUrl('/img/productsdetails/no-preservatives.png')" alt="" />
                 </div>
-                               <p class="testing-feature-description">
+                <p class="testing-feature-description">
                   Free from preservatives, binders <br> and harmful
                   chemical substances
                 </p>
@@ -54,10 +48,7 @@
             <div class="col-12 col-sm-6 col-lg-4">
               <div class="testing-feature-card">
                 <div class="testing-icon-wrapper">
-                  <img
-                    src="https://assets.embeddables.com/Well-Tolerated_07587342185462598.png"
-                    alt=""
-                  />
+                  <img :src="cleanUrl('/img/productsdetails/GMP Certified.png')" alt="" />
                 </div>
                 <p class="testing-feature-description">
                   Manufactured in a GMP certified facility
@@ -71,3 +62,9 @@
     </div>
   </section>
 </template>
+
+<script setup>
+const cleanUrl = (url) => {
+  return url.replace(/^&/, '')
+}
+</script>

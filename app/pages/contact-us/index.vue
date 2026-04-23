@@ -893,7 +893,8 @@
                   Full name <span class="contact-required-mark">*</span>
                 </label>
                 <input type="text" id="fullNameField" class="contact-text-input"
-                  :class="{ 'contact-input-error': errors.fullName }" v-model="formData.fullName" required />
+                  :class="{ 'contact-input-error': errors.fullName }" v-model="formData.fullName"
+                  placeholder="Enter your full name" required />
                 <span v-if="errors.fullName" class="contact-error-message">{{ errors.fullName }}</span>
               </div>
               <div class="contact-field-wrapper">
@@ -1022,6 +1023,9 @@
 <script setup>
 import { ref } from 'vue'
 import { useApi } from '~/config/api/useApi'
+import { API_ENDPOINTS } from '~/config/api/endpoints'
+
+const toast = useToast()
 
 useHead({
   bodyAttrs: {
@@ -1135,18 +1139,27 @@ const submitForm = async () => {
       message: formData.value.message
     }
 
-    // Make API call to the backend endpoint
-    const { data, error } = await post('contact-us/create', submitData)
+    // Make API call to the backend endpoint using the config endpoint
+    const { data, error } = await post(API_ENDPOINTS.CONTACT_US, submitData)
 
     if (error) {
+      toast.error({
+        message: error
+      })
       submitMessage.value = error
       submitMessageType.value = 'error'
     } else {
+      toast.success({
+        message: 'Your message has been sent successfully! We will get back to you soon.'
+      })
       submitMessage.value = 'Your message has been sent successfully! We will get back to you soon.'
       submitMessageType.value = 'success'
       resetForm()
     }
   } catch (err) {
+    toast.error({
+      message: err.message || 'Failed to send message. Please try again later.'
+    })
     submitMessage.value = 'Failed to send message. Please try again later.'
     submitMessageType.value = 'error'
     console.error('Form submission error:', err)

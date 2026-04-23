@@ -17,29 +17,29 @@
         <div class="container">
             <div class="microbiome-circles">
                 <div class="microbiome-circle">
-                    <img src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto/q_auto/v1681252858/seedlabs/Carbon%20Dioxide/co2_circleicon_040723.jpg" alt="">
+                    <img src="/img/image/CO2.png" alt="">
                     <h5 class="microbiome-info mt-4"><a href="#carbon-dioxide">Carbon Dioxide</a></h5>
                    
                 </div>
                 <div class="microbiome-circle">
-                    <img src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto/q_auto/v1668724899/seedlabs/seedlabs_circle_plastics.png" alt="">
+                    <img src="/img/image/plastics.png" alt="">
                     <h5 class="microbiome-info mt-4"><a href="#plastics">Plastics</a></h5>
                    
                 </div>
                 <div class="microbiome-circle">
-                    <img src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1616976247/seedlabs/Seed_SeedLabs_Circle_Honeybees.png" alt="">
+                    <img src="/img/image/honeybees.png" alt="">
                <h5 class="microbiome-info mt-4"><a href="#honey-bees">Honey Bees</a></h5>
                 </div>
                 <div class="microbiome-circle">
-                    <img src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1616523122/seedlabs/Seed_SeedLabs_Circle_Coral.png" alt="">
+                    <img src="/img/image/coral.png" alt="">
                 <h5 class="microbiome-info mt-4"><a href="#coral">Coral</a></h5>
                 </div>
                 <div class="microbiome-circle">
-                    <img src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1616708497/seedlabs/Seed_SeedLabs_Circle_Agriculture.png" alt="">
+                    <img src="/img/image/agriculture.png" alt="">
                 <h5 class="microbiome-info mt-4"><a href="#agriculture">Agriculture</a></h5>
                 </div>
                 <div class="microbiome-circle">
-                    <img src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1616708497/seedlabs/Seed_SeedLabs_Circle_Biomaterials.png" alt="">
+                    <img src="/img/image/biomaterial.png" alt="">
                 <h5 class="microbiome-info mt-4"><a href="#biomaterials">Biomaterials</a></h5>
                 </div>
             </div>
@@ -57,7 +57,7 @@
             </div>
             <div class="section-content">
                 <div class="strains-viz">
-                    <img src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1681252865/seedlabs/Carbon%20Dioxide/co2_heroimage_041023.jpg" alt="">
+                    <img src="/img/bg/CO2.png" alt="">
                 </div>
                 <div class="two-column">
                     <div class="column">
@@ -88,7 +88,7 @@
             </div>
             <div class="section-content">
                 <div class="strains-viz">
-                    <img src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1668724899/seedlabs/seedlabs_ISS_desktop.jpg" alt="">
+                    <img src="/img/bg/plastic.png" alt="">
                 </div>
                 <div class="col-new">
                         <h3>What if a microbe could help change the future of plastic?</h3>
@@ -193,7 +193,7 @@
             </div>
             <div class="section-content">
                 <div class="biofermentation-image">
-                    <img src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1616975836/seedlabs/Seed_SeedLabs_Coral_Desktop.jpg" alt="">
+                    <img src="/img/bg/coral.png" alt="">
                 </div>
                 <div class="two-column">
                     <div class="column">
@@ -232,7 +232,7 @@
             </div>
             <div class="section-content">
                 <div class="biofermentation-image">
-                    <img src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1616975844/seedlabs/Seed_SeedLabs_Agriculture_Desktop.jpg" alt="">
+                    <img src="/img/bg/agri.png" alt="">
                 </div>
                 
             </div>
@@ -248,7 +248,7 @@
             </div>
             <div class="section-content">
                 <div class="biofermentation-image">
-                    <img src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1616975840/seedlabs/Seed_SeedLabs_Biomaterials_Desktop.jpg" alt="">
+                    <img src="/img/bg/biom.png" alt="">
                 </div>
                 
             </div>

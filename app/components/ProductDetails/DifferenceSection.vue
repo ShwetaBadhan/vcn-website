@@ -1,5 +1,5 @@
 <template>
-     <section class="p-5 health-section-bg">
+  <section class="p-5 health-section-bg">
     <div class="container-fluid">
       <div class="row mb-5">
         <div class="col-12">
@@ -24,21 +24,13 @@
               </button>
             </div>
 
-            <video
-              style="
+            <video style="
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
                 border-radius: 20px;
-              "
-              muted
-              autoplay
-              playsinline
-            >
-              <source
-                src="https://assets.embeddables.com/ZAIN_4Ds_06_0617_6754959037559694.mp4"
-                type="video/mp4"
-              />
+              " muted autoplay playsinline>
+              <source src="https://assets.embeddables.com/ZAIN_4Ds_06_0617_6754959037559694.mp4" type="video/mp4" />
             </video>
           </div>
 
@@ -55,13 +47,10 @@
           <div class="row">
             <div class="col-md-6">
               <div class="ds01-feature-card">
-                <img
-                  src="https://assets.embeddables.com/MicronutrientSynthesis_5775246620796877.png"
-                  alt=""
-                />
+                <img :src="cleanUrl('/img/productsdetails/Type1&Type2Diabetes.png')" alt="" />
                 <div class="ds01-feature-divider"></div>
                 <h3 class="ds01-feature-title">Type 1 & Type 2 Diabetes</h3>
-                 <p class="ds01-feature-description">
+                <p class="ds01-feature-description">
                   Herbs like Gurmar and Methi are highly effective in managing
                   both Type 1 and Type 2 Diabetes by enhancing insulin levels
                   and improving glucose tolerance.*
@@ -71,10 +60,7 @@
 
             <div class="col-md-6">
               <div class="ds01-feature-card">
-                <img
-                  src="https://assets.embeddables.com/40px_5070508167357767.png"
-                  alt=""
-                />
+                <img :src="cleanUrl('/img/productsdetails/High Blood Sugar.png')" alt="" />
                 <div class="ds01-feature-divider"></div>
                 <h3 class="ds01-feature-title">High Blood Sugar</h3>
                 <p class="ds01-feature-description">
@@ -87,15 +73,12 @@
 
             <div class="col-md-6">
               <div class="ds01-feature-card">
-                <img
-                  src="https://assets.embeddables.com/40px_5070508167357767.png"
-                  alt=""
-                />
+                <img :src="cleanUrl('/img/productsdetails/Liver&KidneyDisorders.png')" alt="" />
                 <div class="ds01-feature-divider"></div>
                 <h3 class="ds01-feature-title">
                   Liver & Kidney Disorders
                 </h3>
-                 <p class="ds01-feature-description">
+                <p class="ds01-feature-description">
                   Punarnava and Aloe Vera support liver and kidney health,
                   reduce toxins, and help manage jaundice and
                   kidney-related diseases.*
@@ -105,15 +88,12 @@
 
             <div class="col-md-6">
               <div class="ds01-feature-card">
-                <img
-                  src="https://assets.embeddables.com/40px1_07112062106958539.png"
-                  alt=""
-                />
+                <img :src="cleanUrl('/img/productsdetails/Diabetic Symptoms Relief.png')" alt="" />
                 <div class="ds01-feature-divider"></div>
                 <h3 class="ds01-feature-title">
                   Diabetic Symptoms Relief
                 </h3>
-                 <p class="ds01-feature-description">
+                <p class="ds01-feature-description">
                   Effectively relieves symptoms like excessive thirst, frequent
                   urination, fatigue, weak eyesight, and slow
                   wound healing.*
@@ -126,3 +106,17 @@
     </div>
   </section>
 </template>
+
+<script setup>
+const cleanUrl = (url) => {
+  return url.replace(/^&/, '')
+}
+</script>
+
+<style scoped>
+/* Add any additional styles here if needed */
+.ds01-feature-card img {
+  width: 60px;
+  height: 60px;
+}
+</style>

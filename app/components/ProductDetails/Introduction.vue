@@ -1,5 +1,4 @@
 <template>
-
   <section class="product-detail-section">
     <div class="container-fluid">
       <div class="row">
@@ -19,8 +18,8 @@
             <div class="col-6 mb-3">
               <div class="product-gallery">
                 <div class="gallery-item">
-                  <img class="thumb" src="https://assets.embeddables.com/Rectangle122041_004213986439953521.png"
-                    @click="openProductPreview('https://assets.embeddables.com/Rectangle122041_004213986439953521.png')" />
+                  <img class="thumb" src="/img/productsdetails/comonimages2.png"
+                    @click="openProductPreview('/img/productsdetails/comonimages2.png')" />
                 </div>
               </div>
             </div>
@@ -28,8 +27,8 @@
             <div class="col-6 mb-3">
               <div class="product-gallery">
                 <div class="gallery-item">
-                  <img class="thumb" src="https://assets.embeddables.com/Rectangle122051_8551790234297849.png"
-                    @click="openProductPreview('https://assets.embeddables.com/Rectangle122051_8551790234297849.png')" />
+                  <img class="thumb" src="/img/productsdetails/ds-01.png"
+                    @click="openProductPreview('/img/productsdetails/ds-01.png')" />
                 </div>
               </div>
             </div>
@@ -37,8 +36,8 @@
             <div class="col-6 mb-3">
               <div class="product-gallery">
                 <div class="gallery-item">
-                  <img class="thumb" src="http://assets.embeddables.com/Rectangle122071_6289075903534314.png"
-                    @click="openProductPreview('http://assets.embeddables.com/Rectangle122071_6289075903534314.png')" />
+                  <img class="thumb" src="/img/productsdetails/comonimages4.png"
+                    @click="openProductPreview('/img/productsdetails/comonimages4.png')" />
                 </div>
               </div>
             </div>
@@ -46,8 +45,8 @@
             <div class="col-6 mb-3">
               <div class="product-gallery">
                 <div class="gallery-item">
-                  <img class="thumb" src="http://assets.embeddables.com/HeroSupplementFacts_9730338301782036.png"
-                    @click="openProductPreview('http://assets.embeddables.com/HeroSupplementFacts_9730338301782036.png')" />
+                  <img class="thumb" src="/img/productsdetails/dbtpageimage( 424by24 ).png"
+                    @click="openProductPreview('/img/productsdetails/dbtpageimage( 424by24 ).png')" />
                 </div>
               </div>
             </div>
@@ -64,7 +63,7 @@
             </div>
 
             <!-- Product Data -->
-            <template v-else-if="product || !loading">
+            <template v-else-if="product">
               <h1 class="product-details-title">{{ productName }}</h1>
 
               <div class="rating-section">
@@ -170,13 +169,12 @@
 <script setup>
 import { ref, onMounted, computed, watch } from 'vue'
 import { useCartStore } from '~/stores/cart'
+import { useProductStore } from '~/stores/product'
 import { useAuthCart } from '~/composables/useAuthCart'
-import { useApi } from '~/config/api/useApi'
 
 const cartStore = useCartStore()
+const productStore = useProductStore()
 const { initializeCart } = useAuthCart()
-const { getFromUrl } = useApi()
-import { getProductBySlugUrl } from '~/config/api/endpoints'
 const route = useRoute()
 
 const activeIndex = ref(null)
@@ -184,38 +182,33 @@ const product = ref(null)
 const loading = ref(true)
 const error = ref('')
 
-// Get product slug from URL query
-const productSlug = computed(() => route.query.slug)
+// Get product slug from URL path
+const productSlug = computed(() => route.params.slug)
 
-// Fetch product data from API by slug
-onMounted(async () => {
-  await initializeCart()
-  await cartStore.loadCart()
-
-  if (!productSlug.value) {
-    error.value = 'No product slug provided'
-    loading.value = false
-    return
+// Fetch product data immediately (SSR)
+if (productSlug.value) {
+  const result = await productStore.fetchProductBySlug(productSlug.value)
+  if (result.success && productStore.selectedProduct) {
+    // Handle API response: data is an array, extract first product
+    const productData = Array.isArray(productStore.selectedProduct)
+      ? productStore.selectedProduct[0]
+      : productStore.selectedProduct
+    product.value = productData
+  } else {
+    error.value = result.error || 'Product not found'
   }
+  loading.value = false
+} else {
+  error.value = 'No product slug provided'
+  loading.value = false
+}
 
-  try {
-    // Fetch product by slug using the dedicated endpoint
-    const slugUrl = getProductBySlugUrl(productSlug.value)
-    const { data, error: err } = await getFromUrl(slugUrl)
-    if (err) {
-      error.value = err
-    } else if (data && data.data) {
-      product.value = data.data
-    } else {
-      error.value = 'Product not found'
-    }
-  } catch (err) {
-    error.value = 'Failed to load product'
-  } finally {
-    loading.value = false
-  }
+// Initialize cart on client
+onMounted(() => {
+  initializeCart()
+  cartStore.loadCart()
 
-  // Clear any existing bundle to ensure clean state
+  // Clear any existing bundle
   const existingBundle = cartStore.getItemById(bundleProduct.id)
   if (existingBundle) {
     cartStore.removeFromCart(bundleProduct.id)
@@ -315,43 +308,49 @@ const decrementBundle = () => {
   cartStore.decrementQuantity(bundleProduct.id)
 }
 
-const accordionItems = ref([
-  {
-    title: 'Uses *',
-    content: [
-      'Supports healthy blood sugar levels',
-      'Improves glucose metabolism',
-      'Boosts energy and detoxifies the body',
-    ],
-  },
-  {
-    title: 'Direction For Use',
-    content: [
-      'Take 20–30 ml diluted in lukewarm water, twice daily before meals.',
-    ],
-  },
-  {
-    title: 'Cautions',
-    content: [
-      'For adults only. Consult doctor if pregnant or on medication.',
-    ],
-  },
-  {
-    title: 'Primary Benefits',
-    content: [
-      'Blood sugar control',
-      'Enhanced insulin function',
-      'Improved metabolism',
-      'Detoxification',
-    ],
-  },
-  {
-    title: 'Ingredients',
-    content: [
-      'Charantin, Momordicin, Gymnemic acids, antioxidants.',
-    ],
-  },
-])
+// Dynamic accordion items based on API data
+const accordionItems = computed(() => {
+  if (!product.value) return []
+
+  const items = []
+
+  if (product.value.uses) {
+    items.push({
+      title: 'Uses *',
+      content: product.value.uses.split(/[,.]\s*/).filter(item => item.trim())
+    })
+  }
+
+  if (product.value.directionsForUse) {
+    items.push({
+      title: 'Direction For Use',
+      content: [product.value.directionsForUse]
+    })
+  }
+
+  if (product.value.cautions) {
+    items.push({
+      title: 'Cautions',
+      content: [product.value.cautions]
+    })
+  }
+
+  if (product.value.primaryBenefits) {
+    items.push({
+      title: 'Primary Benefits',
+      content: product.value.primaryBenefits.split(/[,.]\s*/).filter(item => item.trim())
+    })
+  }
+
+  if (product.value.ingredients) {
+    items.push({
+      title: 'Ingredients',
+      content: [product.value.ingredients]
+    })
+  }
+
+  return items
+})
 
 const toggleAccordion = (index) => {
   activeIndex.value = activeIndex.value === index ? null : index
@@ -362,7 +361,8 @@ const fetchProductDetails = async (id) => {
   try {
     const { data, error: err } = await get(`${endpoints.PRODUCTS}/${id}`)
     if (!err && data && data.data) {
-      product.value = data.data
+      // Handle API response: data is an array, extract first product
+      product.value = Array.isArray(data.data) ? data.data[0] : data.data
     } else if (!product.value) {
       error.value = 'Product not found'
     }
@@ -372,6 +372,24 @@ const fetchProductDetails = async (id) => {
       error.value = 'Failed to load product details'
     }
   }
+}
+
+// Helper function to resolve product image (same logic as productImage computed)
+const resolveProductImage = () => {
+  // Check product.images array from API (uses .image property)
+  if (product.value?.images && product.value.images.length > 0) {
+    const primaryImage = product.value.images.find(img => img.isPrimary) || product.value.images[0]
+    if (primaryImage?.image) return primaryImage.image
+  }
+
+  // Check variant productImages (uses .image property)
+  if (selectedVariant.value?.productImages && selectedVariant.value.productImages.length > 0) {
+    const primaryImage = selectedVariant.value.productImages.find(img => img.isPrimary) || selectedVariant.value.productImages[0]
+    if (primaryImage?.image) return primaryImage.image
+  }
+
+  // Fallback to product.image or default
+  return product.value?.image
 }
 
 // Add variant to cart
@@ -387,7 +405,7 @@ const addVariantToCart = () => {
     variantName: selectedVariant.value.sku,
     price: sellingPrice.toFixed(2),
     mrp: mrp > sellingPrice ? mrp.toFixed(2) : null,
-    image: product.value.image || '/img/products/New-Project.png',
+    image: resolveProductImage(),
     quantity: 1
   }
   cartStore.addToCart(cartItem)

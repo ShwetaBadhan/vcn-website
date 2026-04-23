@@ -34,7 +34,7 @@
             <!-- Content -->
             <div class="col-lg-8">
               <span v-if="product.isNew" class="vcn-whole-body-product-label">NEW</span>
-              <span v-if="product.isBestseller" class="vcn-whole-body-product-label">Bestseller</span>
+              <span class="vcn-whole-body-product-label">Bestseller</span>
               <span v-if="product.label" class="vcn-whole-body-product-label">{{ product.label }}</span>
               <h2 class="vcn-product-title">{{ product.name }}</h2>
               <p class="vcn-product-description"
@@ -42,7 +42,7 @@
               </p>
               <div class="vcn-product-price">₹{{ getProductPricing(product).price }}</div>
               <div class="vcn-product-buttons">
-                <a :href="`/product-details?slug=${product.slug}`" class="vcn-btn-secondary">
+                <a :href="`/product-details/${product.slug}`" class="vcn-btn-secondary">
                   Learn More
                 </a>
               </div>
@@ -58,7 +58,7 @@
 
             <div class="vcn-image-overlay">
               <p class="vcn-image-text">
-                Is DS-01® the right probiotic for you? Take the Quiz
+                Is VCN-01 the right probiotic for you? Take the Quiz
               </p>
             </div>
           </div>
@@ -68,73 +68,30 @@
     </div>
   </section>
 
-  <ClientOnly>
-    <allproductsProducts />
-  </ClientOnly>
+  <allproductsProducts :products="products" :loading="productStore.loading" />
 </template>
 
 <script setup>
-import { ref, onMounted, reactive } from 'vue'
-import { useApi } from '~/config/api/useApi'
+import { ref, onMounted, computed } from 'vue'
+import { useProductStore } from '~/stores/product'
 
-const { getFromEndpoint } = useApi()
+const productStore = useProductStore()
 
-// Client-side fetching with caching
-const products = ref([])
-const error = ref('')
-const CACHE_KEY = 'all-products-cache-v2' // Bumped version to clear old cache
-const CACHE_TTL = 5 * 60 * 1000 // 5 minutes
+// Computed properties from store
+const products = computed(() => productStore.allProducts)
+const error = computed(() => productStore.error)
 
+// Fetch products immediately (non-blocking)
+productStore.fetchProducts()
 
-// Fetch products on client only
-onMounted(async () => {
-  try {
-    const { data, error: err } = await getFromEndpoint('PRODUCTS')
-    if (err) {
-      error.value = err
-    } else {
-      products.value = (data && data.data) ? data.data : []
-    }
-  } catch (err) {
-    error.value = 'Failed to load products'
-  }
-})
-
-// Helper function to get product pricing
+// Helper function to get product pricing - use store getter
 const getProductPricing = (product) => {
-  if (!product.variants || !product.variants.length) {
-    return {
-      price: '0.00',
-      oldPrice: null
-    }
-  }
-
-  const defaultVariant = product.variants.find(v => v.isDefault) || product.variants[0]
-  return {
-    price: defaultVariant.sellingPrice || '0.00',
-    oldPrice: defaultVariant.mrp !== defaultVariant.sellingPrice ? defaultVariant.mrp : null
-  }
+  return productStore.getProductPricing(product)
 }
 
-// Get primary image for product - extracts from product.images array
+// Get primary image for product - use store getter
 const getPrimaryImage = (product) => {
-  // Check product.images array from API (uses .image property)
-  if (product.images && product.images.length > 0) {
-    const primaryImage = product.images.find(img => img.isPrimary) || product.images[0]
-    if (primaryImage?.image) return primaryImage.image
-  }
-
-  // Check variant productImages (uses .image property)
-  if (product.variants && product.variants.length > 0) {
-    const defaultVariant = product.variants.find(v => v.isDefault) || product.variants[0]
-    if (defaultVariant?.productImages && defaultVariant.productImages.length > 0) {
-      const primaryImage = defaultVariant.productImages.find(img => img.isPrimary) || defaultVariant.productImages[0]
-      if (primaryImage?.image) return primaryImage.image
-    }
-  }
-
-  // Fallback to product.image or default
-  return product.image || '/img/products/img1.png'
+  return productStore.getPrimaryImage(product)
 }
 
 // Handle image loading errors
