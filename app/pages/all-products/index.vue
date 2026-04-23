@@ -58,7 +58,7 @@
 
             <div class="vcn-image-overlay">
               <p class="vcn-image-text">
-                Is DS-01® the right probiotic for you? Take the Quiz
+                Is VCN-01 the right probiotic for you? Take the Quiz
               </p>
             </div>
           </div>

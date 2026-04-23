@@ -1,6 +1,6 @@
 <template>
-    <section class="product-detail-section mt-3">
-  <div class="container-fluid">
+  <section class="product-detail-section mt-3">
+    <div class="container-fluid">
       <div class="row g-0">
         <!-- Left Sidebar Navigation -->
         <div class="col-md-3 col-lg-3 sidebar-section d-none d-md-block">
@@ -11,10 +11,8 @@
         <div class="col-md-9 col-lg-9">
           <!-- Hero Image -->
           <img
-            src="https://images.unsplash.com/photo-1544256627-38613432676f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
-            alt="Happy family running in park"
-            class="hero-banner"
-          />
+            src="/img/about/about-us.png"
+            alt="Happy family running in park" class="hero-banner" />
 
           <!-- Welcome Banner -->
           <div class="welcome-box">
@@ -28,133 +26,45 @@
           <!-- Main Content -->
           <div class="content-section">
             <p>
-              As one of the leading companies supporting health and wellbeing,
-              we at VCN are dedicated to promoting health and wellbeing in
-              India with a goal of a healthier nation, emphasizing the pillars
-              of a Healthy Body, Healthy Mind, Healthy Planet, and Community
-              Connection. Our focus revolves around fostering a culture of
-              health and wellbeing and this ethos is deeply ingrained in our
-              approach. Millions of VCN Business Owners whom we also refer to
-              as health and wellbeing ambassadors, and more than 14000 employees
-              worldwide contribute to this vision of helping people live better
-              lives. For 27 years, VCN India has led the charge for holistic
-              well-being, motivating millions to embrace healthier lifestyles
-              and support a thriving healthspan for all. Embark on this
-              transformative journey with us, and let your passion for health
-              and wellbeing connect you with vibrant communities worldwide. Our
-              platform empowers you to embark on your own entrepreneurial path
-              with a focus on holistic, need-based recommendations for health
-              and wellbeing. This allows every individual to explore and benefit
-              from our diverse product offerings, supporting them in achieving
-              their personal health and well-being aspirations. Discover VCN's
-              history, mission, and brand's journey of empowering individuals to
-              make informed choices about their wellbeing leading to building a
-              healthier nation.
+              Vcare Network (VCN), is a fast-growing direct selling company established in 2009 with a strong presence
+              across India. With its corporate office in Delhi and headquarters in Jalandhar, the company has built a
+              reputation for delivering trusted, high-quality healthcare and personal care products.
+            </p>
+            <p>
+              Our mission is to enhance the quality of life for our customers and distributors by offering a wide range
+              of organic, natural, and wellness-focused products. From health supplements to personal care solutions,
+              every product is carefully researched and developed to ensure safety, effectiveness, and long-term
+              benefits.
+            </p>
+            <p>
+              Backed by a skilled team and a wide network across multiple cities, VCN is committed to innovation,
+              customer satisfaction, and social empowerment—creating opportunities and promoting positive change. Vcare
+              Network continues to evolve as a trusted name in wellness and direct selling across India.
             </p>
 
             <h2 class="section-title">Our Story</h2>
             <p>
-              VCN was founded in 1959 by two entrepreneurs, Rich DeVos and Jay
-              Van Andel, who started numerous business ventures of their own and
-              saw the importance of helping others do the same. From Beijing to
-              Barcelona, Seoul to San Diego, millions of VCN Business Owners
-              carry on this legacy. Based in Ada, Michigan, U.S., VCN is the
-              world's largest Direct Selling company with a global footprint
-              that stretches across six continents with a presence in more than
-              100 countries and territories.
+             What started as a vision to transform lives through wellness and opportunity has grown into a trusted name in the health and personal care industry. Founded in 2009 under the umbrella of Falcon Marketing Pvt., Vcare Network was built with a simple yet powerful belief — that nature holds the key to a healthier, more balanced life.
             </p>
             <p>
-              Our global family of more than 800 scientists, engineers and
-              technicians work relentlessly to develop and deliver world-class
-              products to you and perform more than 5,00,000 quality tests per
-              year, demonstrating our dedication to delivering products with
-              safety and efficacy that is top-notch. VCN holds more than 750
-              global patents and a few patents pending for our products, which
-              reflects our focus on continuous innovation and our rigorous
-              testing processes.
+              From humble beginnings, we set out to create products that combine the wisdom of traditional herbal practices with modern scientific research. Over the years, our commitment to quality, purity, and innovation has helped us develop a diverse portfolio of wellness, skincare, and personal care solutions designed to support everyday health and well-being.
             </p>
             <p>
-              In India, VCN's evolution for over two decades is a story of
-              partnership and relationship with our stakeholders – VCN
-              Business Owners, customers, employees, and community. VCN India
-              was established in 1996 and commercially started its operations in
-              1998 with just six products. Today, VCN India has grown to be
-              one of the leading FMCG direct selling companies in the country
-              that has close to140 world-class quality consumer products in its
-              portfolio exemplifying consistent innovation based on changing
-              consumer needs, supported by our flagship brands
-              <strong>Nutrilite</strong> – which is the world's #1 selling
-              vitamin and dietary supplement brand and
-              <strong>Artistry Skin Nutrition range</strong>-which is a blend of
-              Artistry skin science infused with Nutrilite ingredients that are
-              clean and traceable. These world-class quality products are
-              supported with a money-back guarantee, for 100% satisfaction of
-              use.
+              But our journey has never been just about products. At the heart of Vcare Network lies a mission to empower people — not only to live healthier lives but also to achieve financial independence through a strong and supportive direct selling model. By creating opportunities for individuals to grow, earn, and succeed, we have built a community driven by trust, ambition, and shared success.
+
             </p>
             <p>
-              Nutrilite by VCN is the only global vitamin and dietary
-              supplements brand to grow, harvest and process plants in our own
-              certified organic farms. Nutrilite owns at least 6000 acres of
-              organic farms in the U.S., Mexico and Brazil. The plant
-              concentrate that goes into Nutrilite comes from these
-              Nutrilite-certified farms. In India too, VCN has 26 NutriCert
-              Certified partners spread across eight states to actively source
-              ingredients to support Indian and global requirements.
-            </p>
-            <p>
-              Furthermore, staying true to our commitment to India and aligning
-              with the government's vision of Make in India, we invested in our
-              first state-of-the-art, LEED Gold Certified manufacturing plant at
-              Nilakottai in the Dindigul district of Tamil Nadu in the year
-              2015. At VCN, we believe in going beyond the traditional ways of
-              doing business. Our goal is to combine our products, resources,
-              and operations with our values to benefit people not just in India
-              but globally. Our CSR initiatives in India have benefitted over
-              than 15 lakh people, aligned with our vision of helping people
-              live better lives.
+              Today, Vcare Network stands as a fast-growing organization with a presence across India, backed by a dedicated network of distributors and a loyal customer base. As we continue to evolve, our focus remains unchanged — to enhance quality of life, inspire confidence, and create a future where wellness and prosperity go hand in hand.
             </p>
 
             <h2 class="section-title">Helping Build a Healthier Future</h2>
             <p>
-              VCN is all about inspiring people towards a 'healthy way of
-              living. Keeping up with this commitment, VCN has taken a
-              holistic approach with need-based health and wellbeing programs to
-              help people on their transformational journey to a healthier
-              future.
-            </p>
-            <p>
-              One such powerful program is Morning Nutrition, which is about
-              transforming your morning rituals into a health powerhouse,
-              setting a foundation for a healthy day, and aiming to help expand
-              your healthspan. As part of Morning Nutrition, VCN provides a
-              science-backed, well-researched basket of world-class products
-              combined with essential healthy habits. Starting your day with a
-              balanced meal coupled with need-based supplements to fulfil
-              nutritional requirements is more than just a good habit—it's the
-              foundation for a healthy and energetic day ahead. The goal is not
-              just to improve individual mornings but to create a sustainable
-              routine that promotes long-term health and vitality, thereby
-              helping you extend your "healthspan" , and paving the way to
-              building a healthier future.
+              At Vcare Network, we are committed to building a healthier future by promoting holistic wellness through nature-inspired solutions. Our focus lies in developing high-quality products that support overall well-being, helping individuals lead more balanced and energetic lives. By combining traditional herbal knowledge with modern research, we strive to address everyday health concerns in a safe and effective way. 
             </p>
 
             <h2 class="section-title">Our Strength</h2>
             <p>
-              Our VCN Business Owners, who are the health and wellbeing
-              ambassadors, are at the heart of everything we do. We consistently
-              strive to create a supportive ecosystem where they can offer
-              need-based recommendations backed by quality wellness products.
-              These recommendations are aimed at helping individuals achieve
-              their health and wellbeing aspirations. Our ultimate goal is to
-              contribute significantly towards a healthier and more enduring
-              health span. We have a global network of over one million
-              distributors that includes 5.5 lakh VCN Business Owners from
-              India, of which 50% are women.
-            </p>
-            <p>
-              Our Health and wellbeing Ambassadors are supported by more than
-              2000 employees in India to help build better lives for themselves,
-              their customers, and their families.
+              Our strength lies in our unwavering commitment to quality, trust, and people. With a strong foundation built on years of experience, we have created a reliable network of distributors and satisfied customers across the country. Our diverse product range, backed by careful research and stringent quality standards, reflects our dedication to excellence. What truly sets us apart is our people-centric approach—empowering individuals with opportunities for growth, financial independence, and personal success.
             </p>
 
             <!-- More About Us Section -->
@@ -166,9 +76,7 @@
                   <!-- Our Journey -->
                   <div class="col-md-3 col-sm-6">
                     <div class="info-card">
-                      <div
-                        class="d-flex justify-content-between align-items-start"
-                      >
+                      <div class="d-flex justify-content-between align-items-start">
                         <div>
                           <div class="icon-wrapper icon-journey">
                             <i class="bi bi-bullseye"></i>
@@ -183,9 +91,7 @@
                   <!-- Top News -->
                   <div class="col-md-3 col-sm-6">
                     <div class="info-card">
-                      <div
-                        class="d-flex justify-content-between align-items-start"
-                      >
+                      <div class="d-flex justify-content-between align-items-start">
                         <div>
                           <div class="icon-wrapper icon-news">
                             <i class="bi bi-globe"></i>
@@ -200,9 +106,7 @@
                   <!-- Our Brands -->
                   <div class="col-md-3 col-sm-6">
                     <div class="info-card">
-                      <div
-                        class="d-flex justify-content-between align-items-start"
-                      >
+                      <div class="d-flex justify-content-between align-items-start">
                         <div>
                           <div class="icon-wrapper icon-brands">
                             <i class="bi bi-bag"></i>
@@ -217,9 +121,7 @@
                   <!-- FAQs -->
                   <div class="col-md-3 col-sm-6">
                     <div class="info-card">
-                      <div
-                        class="d-flex justify-content-between align-items-start"
-                      >
+                      <div class="d-flex justify-content-between align-items-start">
                         <div>
                           <div class="icon-wrapper icon-faqs">
                             <i class="bi bi-chat-dots"></i>
@@ -271,10 +173,10 @@
       </div>
     </div>
 
-    </section>
-  
+  </section>
+
 </template>
-    <script setup>
+<script setup>
 useHead({
   bodyAttrs: {
     class: "product-details-page",

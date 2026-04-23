@@ -164,9 +164,16 @@ export const useCartStore = defineStore('cart', {
           }
 
           if (cartData) {
-            this.items = cartData.items || []
+            // Load items and repair any with missing/broken images
+            const loadedItems = cartData.items || []
+            this.items = loadedItems.map((item: CartItem) => ({
+              ...item,
+              image: item.image
+            }))
             this.promoCode = cartData.promoCode || ''
             this.discount = cartData.discount || 0
+            // Save repaired cart back to localStorage
+            this.saveCart()
           } else {
             // Initialize empty cart
             this.items = []

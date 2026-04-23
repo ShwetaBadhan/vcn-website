@@ -6,29 +6,11 @@
             <h3>Website Accessibility Statement</h3>
 
             <p>
-              For most ecosystems (including the microbiome), diversity is a key
-              marker of health and a precursor for resilience and
-              sustainability. We recognize that a thriving and inclusive
-              collective is one that is cultivated with a relative abundance of
-              perspectives, backgrounds, expertise, geographies, and lived
-              experiences. To ensure that the work that we do and the
-              opportunities to join us in that work are accessible and available
-              to all curious humans, we are committed to designing digital
-              experiences that strive to adhere to the Web Content Accessibility
-              Guidelines 2.1 (WCAG 2.1).
+              Vcare Network is committed to ensuring that our website is accessible to all users, including individuals with disabilities. We strive to provide a seamless and user-friendly experience by following best practices for accessibility and usability. Our goal is to make our content easy to navigate, understand, and interact with across different devices and assistive technologies.
             </p>
             <p>
-              This is an ongoing commitment. We are continuously looking to
-              improve and evolve our accessibility practices and policies. If
-              you are having difficulty accessing any of our digital
-              experiences, or should you have any specific feedback, we want to
-              hear from you. Please reach out to our Care team at care@seed.com
-              with the subject line “Site Accessibility” and include the
-              specific URL that you would like to flag. We will make sure to
-              escalate it appropriately and take all reasonable efforts to
-              address your concern.
+              We continuously work to improve accessibility features and welcome feedback to enhance user experience. If you encounter any difficulty while accessing our website or need assistance, please feel free to contact us—we are here to help.
             </p>
-            <p>We appreciate your feedback and value your perspective.</p>
           </div>
         </div>
       </div>

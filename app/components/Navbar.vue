@@ -58,17 +58,15 @@
                 </li>
                 <li>
                   <a class="dropdown-item" href="/vcn-labs">
-                    <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487782/library/nav/science/seedlabs.png"
-                      alt="Seed Labs" />
-                    <strong>Seed Labs</strong>
+                    <img src="/img/image/vcnlabs.png" alt="VCN Labs" />
+                    <strong>VCN Labs</strong>
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="/approach#scientists">
                     <img
                       src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487801/library/nav/science/scientists.png"
-                      alt="Seed Labs" />
+                      alt="VCN Labs" />
                     <strong>Scientists</strong>
                   </a>
                 </li>
@@ -76,7 +74,7 @@
                   <a class="dropdown-item" href="/sustainability">
                     <img
                       src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487761/library/nav/science/sustainability.png"
-                      alt="Seed Labs" />
+                      alt="VCN Labs" />
                     <strong>Sustainability</strong>
                   </a>
                 </li>
@@ -84,13 +82,13 @@
                   <a href="" class="dropdown-item"><strong>References</strong></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" class="dropdown-item"><strong>DS-01® Daily Synbiotic</strong></a>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong>VCN-01 Daily Synbiotic</strong></a>
                 </li>
                 <li>
                   <a href="javascript:void(0)" class="dropdown-item"><strong>DM-02™ Daily Multivitamin</strong></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" class="dropdown-item"><strong>AM-02™ Energy + Focus</strong></a>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong>VCN-02 Energy + Focus</strong></a>
                 </li>
                 <li>
                   <a href="javascript:void(0)" class="dropdown-item"><strong>PM-02™ Sleep + Restore</strong></a>
@@ -253,21 +251,19 @@
                 <strong>Approach<br />Micro</strong>
               </a>
               <a class="dropdown-item" href="/vcn-labs">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487782/library/nav/science/seedlabs.png"
-                  alt="Seed Labs" />
-                <strong>Seed Labs</strong>
+                <img src="/img/image/vcnlabs.png" alt="VCN Labs" />
+                <strong>VCN Labs</strong>
               </a>
               <a class="dropdown-item" href="/approach#scientists">
                 <img
                   src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487801/library/nav/science/scientists.png"
-                  alt="Seed Labs" />
+                  alt="VCN Labs" />
                 <strong>Scientists</strong>
               </a>
               <a class="dropdown-item" href="sustainability">
                 <img
                   src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487761/library/nav/science/sustainability.png"
-                  alt="Seed Labs" />
+                  alt="VCN Labs" />
                 <strong>Sustainability</strong>
               </a>
             </div>

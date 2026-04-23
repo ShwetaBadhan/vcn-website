@@ -13,13 +13,10 @@
             <span>VCN</span>
           </div>
 
-          <h2 class="vcn-human-heading" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">You are more
-            than human.</h2>
+          <h2 class="vcn-human-heading" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">Trusted Wellness. Growing Opportunities.</h2>
 
           <p data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">
-            Your body isn't yours alone—it's home to 38 trillion microbes that
-            power your digestion, immunity and more. Take a few minutes to learn
-            how their health impacts your health—and how to maximize both.
+           We focus on trusted, research-backed products that support everyday wellness and customer satisfaction. With a growing presence across India, VCare Network also empowers individuals through meaningful direct selling opportunities.
           </p>
 
           <button class="vcn-human-cta-button" id="openBundles" data-aos="zoom-in" data-aos-duration="800"
@@ -64,7 +61,7 @@
                 <div class="disease-card-image">
                   <div class="disease-icon">
                     <img
-                      src="http://vcarenetwork.in/login/public/uploads/section/category/acidity/img_6878efdd3a0b77.16525164.jpg"
+                      src="\img\image\acidty.png"
                       alt="" />
                   </div>
                 </div>
@@ -79,7 +76,7 @@
                 <div class="disease-card-image">
                   <div class="disease-icon">
                     <img
-                      src="http://vcarenetwork.in/login/public/uploads/section/category/thyroid/img_6878efe483e352.82786474.jpg"
+                      src="\img\image\thyroid.png"
                       alt="" />
                   </div>
                 </div>
@@ -94,7 +91,7 @@
                 <div class="disease-card-image">
                   <div class="disease-icon">
                     <img
-                      src="http://vcarenetwork.in/login/public/uploads/section/category/diabetes/img_6878efebd79712.26526712.jpg"
+                      src="\img\image\diabetes.png"
                       alt="" />
                   </div>
                 </div>
@@ -109,7 +106,7 @@
                 <div class="disease-card-image">
                   <div class="disease-icon">
                     <img
-                      src="http://vcarenetwork.in/login/public/uploads/section/category/fatty-liver/img_6878eff29458b6.66484526.jpg"
+                      src="\img\image\liver.png"
                       alt="" />
                   </div>
                 </div>
@@ -121,7 +118,7 @@
             </div>
 
             <div class="view-more-section">
-              <a href="/diseases-bundle" class="view-more-btn">VIEW MORE</a>
+              <a href="/all-disease-bundles" class="view-more-btn">VIEW MORE</a>
             </div>
           </div>
         </div>

@@ -6,13 +6,13 @@
             <div class="vcn-whole-body-header">
                 <div class="vcn-whole-body-title-wrapper">
                     <h2 class="vcn-whole-body-main-title">
-                        Whole body health starts in the gut.
+                        Natural Wellness You Can Trust
                     </h2>
                 </div>
                 <div>
                     <p class="vcn-whole-body-subtitle">
-                        Formulations that provide fast-acting and sustained support using
-                        scientifically and clinically studied ingredients.
+                        Explore our wide range of health, wellness, and personal care products designed to support your
+                        everyday needs.
                     </p>
                 </div>
                 <div>
@@ -41,7 +41,7 @@
                                             class="vcn-whole-body-badge vcn-whole-body-badge-bestseller">Bestseller</span>
                                         <span v-else class="vcn-whole-body-badge vcn-whole-body-badge-new">New</span>
                                     </div>
-                                    <span class="vcn-whole-body-product-label">AM-02™</span>
+                                    <span class="vcn-whole-body-product-label">VCN-02</span>
                                     <h3 class="vcn-whole-body-product-title">{{ product.name }}</h3>
                                     <div class="vcn-whole-body-product-image">
                                         <img class="product-img" :src="getPrimaryImage(product)" :alt="product.name"

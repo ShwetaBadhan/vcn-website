@@ -13,7 +13,7 @@
     <div class="hero-content">
       <h1>Nutrition, energy, and sleep—advanced by microbiome science</h1>
       <p>
-        Seed's Co-Biotics nourish you and your microbiome to deliver targeted,
+        VCN's Co-Biotics nourish you and your microbiome to deliver targeted,
         daily benefits.
       </p>
       <a href="/all-products" class="hero-btn">Shop Now</a>

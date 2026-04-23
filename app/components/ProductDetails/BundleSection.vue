@@ -6,8 +6,8 @@
           <!-- Left Column: Product Images -->
           <div class="col-lg-6 routine-products-column">
             <div class="routine-wrapper">
-              <img class="routine-main-image"
-                src="https://assets.embeddables.com/original_62998291cdb5edc86ad19cdfdf54281621_28613920912340585.png"
+              <img class="routine-main-image booster"
+                src="/img/productsdetails/BOOSTER.png"
                 alt="routine products" />
 
               <!-- Label 1 -->

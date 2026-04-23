@@ -11,23 +11,21 @@
       <div class="vcn-stories-media-gallery">
         <div class="vcn-stories-media-gallery-track">
           <div class="vcn-stories-media-item">
-            <img src="/img/stories/story-2.png" alt="Story 1" loading="eager" />
+            <img :src="cleanImageUrl('/img/image/Stories from scientists  806.png')" alt="Story 1" loading="eager" />
           </div>
 
           <div class="vcn-stories-media-item">
-            <img
-              src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1753371915/library/scroller/Frame_1739333315.png"
-              alt="Story 2" loading="eager" />
+            <img :src="cleanImageUrl('/img/image/Stories from scientists  552by 864.png')" alt="Story 2"
+              loading="eager" />
           </div>
 
           <div class="vcn-stories-media-item">
-            <img
-              src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1753371915/library/scroller/Frame_1739333315.png"
-              alt="Story 3" loading="eager" />
+            <img :src="cleanImageUrl('/img/image/Stories from scientists  806.png')" alt="Story 3" loading="eager" />
           </div>
 
           <div class="vcn-stories-media-item">
-            <img src="/img/stories/story-4.png" alt="Story 4" loading="eager" />
+            <img :src="cleanImageUrl('img/image/Stories from scientists  644.png')" alt="Story 4" class="vcn-stories-4"
+              loading="eager" />
             <div class="vcn-stories-media-overlay">
               "Pushing the boundaries on what personal probabilities are
               within our reach is going beyond norms and..."
@@ -36,19 +34,21 @@
           </div>
 
           <div class="vcn-stories-media-item">
-            <img src="/img/stories/story-5.png" alt="Story 5" loading="eager" />
+            <img :src="cleanImageUrl('/img/image/Stories from scientists  552by 864.png')" alt="Story 5"
+              loading="eager" />
           </div>
 
           <div class="vcn-stories-media-item">
-            <img src="/img/stories/story-6.png" alt="Story 6" loading="eager" />
+            <img :src="cleanImageUrl('/img/image/Stories from scientists  806.png')" alt="Story 6" loading="eager" />
           </div>
           <div class="vcn-stories-media-item">
             <div class="vcn-stories-media-overlay">
-              "Seed Health is pioneering new science and microbial innovation
+              "VCN Health is pioneering new science and microbial innovation
               that power impact for..."
               <span class="vcn-stories-media-overlay-source">FORBES</span>
             </div>
-            <img src="/img/stories/story-7.png" alt="Story 7" loading="eager" />
+            <img :src="cleanImageUrl('img/image/Stories from scientists  644.png')" alt="Story 7" class="vcn-stories-4"
+              loading="eager" />
           </div>
         </div>
       </div>
@@ -58,7 +58,7 @@
         <!-- Card 1 -->
         <div class="vcn-stories-card" data-aos="fade-up" data-aos-duration="400">
           <div class="vcn-stories-card-content">
-            <h3 class="vcn-stories-card-title">Seed
+            <h3 class="vcn-stories-card-title">VCN
               Labs</h3>
             <p class="vcn-stories-card-description">
               Because health is not just human.
@@ -74,7 +74,7 @@
 
             </h3>
             <p class="vcn-stories-card-description text-center">
-              Feel lasting relief in one week with DS-01®
+              Feel lasting relief in one week with VCN-01
 
 
             </p>
@@ -88,6 +88,11 @@
 
 <script setup>
 import { onMounted, onUnmounted } from 'vue'
+
+// Clean image URLs by removing & characters and fixing backslashes
+const cleanImageUrl = (url) => {
+  return url.replace(/&/g, '').replace(/\\/g, '/')
+}
 
 onMounted(() => {
   const gallery = document.querySelector('.vcn-stories-media-gallery-track')
@@ -126,3 +131,9 @@ onMounted(() => {
   })
 })
 </script>
+
+<style scoped>
+.vcn-stories-4 {
+  border-radius: 100px;
+}
+</style>
