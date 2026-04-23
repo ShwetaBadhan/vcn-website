@@ -1,8 +1,0 @@
-const index_vue_vue_type_style_index_0_scope_true_lang = ".entire-world{background-position:50%;background-size:cover;height:100%;position:relative;width:100%}.link{align-items:center;background:none;border:none;cursor:pointer;display:flex;gap:10px;margin-top:20px;text-decoration:none}.link,a i{color:#fff}a i{height:25px;stroke:#fff;transform:rotate(90deg)}.welcomekit{border-radius:20px}";
-
-const indexStyles_CuC8uNB4 = [
-  index_vue_vue_type_style_index_0_scope_true_lang
-];
-
-export { indexStyles_CuC8uNB4 as default };
-//# sourceMappingURL=index-styles.CuC8uNB4.mjs.map
