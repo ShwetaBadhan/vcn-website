@@ -1,19 +1,5 @@
 <template>
     <div class="menu-list">
-<<<<<<< HEAD
-       <div class="sidebar-inner">
-            <a class="menu-item active" href="/our-leadership">Our Leadership</a> 
-           <a class="menu-item " href="/about-us">VCN India</a>
-            <!-- <a class="menu-item" href="/how-vcn-works">How VCN Business Works</a> -->
-            <a class="menu-item" href="/our-journey">Our Journey</a>
-            <a class="menu-item" href="/news">News</a>
-            <a class="menu-item" href="/careers">Careers at VCN</a>
-            <a class="menu-item" href="/faqs">FAQs</a>
-       </div>
-           
-          </div>
-    </template>
-=======
         <div class="sidebar-inner">
             <NuxtLink class="menu-item" to="/about-us" active-class="active">VCN India</NuxtLink>
             <NuxtLink class="menu-item" to="/how-vcn-works" active-class="active">How VCN Business Works</NuxtLink>
@@ -25,4 +11,3 @@
         </div>
     </div>
 </template>
->>>>>>> ed4261bc48f67e51c6cac861171c8a73a4db389e

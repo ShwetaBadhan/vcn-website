@@ -20,19 +20,12 @@
                   <div class="col-lg-6">
                     <div class="hero-contents">
                       <h1 class="hero-title">Our leadership</h1>
-<<<<<<< HEAD
-                      <p class="hero-texts">
-                        Our executive management and board of directors are
-                        passionate leaders who inspire us to live our best lives
-                        every day. With their diverse expertise and
-                        forward-thinking approach, they empower Herbalife
-                        Independent Distributors and employees to achieve our
-                        vision of becoming the world's premier health and
-                        wellness company, community and platform.
-=======
                       <p class="hero-text">
-                        Our leadership is driven by vision, integrity, and a commitment to excellence. With years of industry experience, our leaders guide the organization with a clear focus on innovation, quality, and sustainable growth. They inspire a culture of trust, empower our community, and continuously strive to create opportunities that help individuals achieve both personal and professional success.
->>>>>>> ed4261bc48f67e51c6cac861171c8a73a4db389e
+                        Our leadership is driven by vision, integrity, and a commitment to excellence. With years of
+                        industry experience, our leaders guide the organization with a clear focus on innovation,
+                        quality, and sustainable growth. They inspire a culture of trust, empower our community, and
+                        continuously strive to create opportunities that help individuals achieve both personal and
+                        professional success.
                       </p>
                     </div>
                   </div>
@@ -45,11 +38,7 @@
               <div class="container">
                 <h2 class="section-title">Management</h2>
                 <div class="row">
-                  <div
-                    v-for="(member, index) in managementTeam"
-                    :key="index"
-                    class="col-lg-4 col-md-6 mb-4"
-                  >
+                  <div v-for="(member, index) in managementTeam" :key="index" class="col-lg-4 col-md-6 mb-4">
                     <div class="team-card">
                       <div class="team-image">
                         <img :src="member.image" :alt="member.name" />
@@ -77,11 +66,7 @@
               <div class="container">
                 <h2 class="section-title">Board of directors</h2>
                 <div class="row">
-                  <div
-                    v-for="(member, index) in boardMembers"
-                    :key="index"
-                    class="col-lg-4 col-md-6 mb-4"
-                  >
+                  <div v-for="(member, index) in boardMembers" :key="index" class="col-lg-4 col-md-6 mb-4">
                     <div class="team-card">
                       <div class="team-image">
                         <img :src="member.image" :alt="member.name" />
@@ -136,10 +121,7 @@
                 </button>
                 <div class="modal-body">
                   <div class="modal-image">
-                    <img
-                      :src="selectedMember.image"
-                      :alt="selectedMember.name"
-                    />
+                    <img :src="selectedMember.image" :alt="selectedMember.name" />
                   </div>
                   <div class="modal-info">
                     <h2 class="modal-name">{{ selectedMember.name }}</h2>
@@ -147,23 +129,14 @@
                     <div class="modal-description">
                       <p>{{ selectedMember.bio }}</p>
                     </div>
-                    <div
-                      class="modal-details"
-                      v-if="
-                        selectedMember.education || selectedMember.experience
-                      "
-                    >
-                      <div
-                        v-if="selectedMember.education"
-                        class="detail-section"
-                      >
+                    <div class="modal-details" v-if="
+                      selectedMember.education || selectedMember.experience
+                    ">
+                      <div v-if="selectedMember.education" class="detail-section">
                         <h4>Education</h4>
                         <p>{{ selectedMember.education }}</p>
                       </div>
-                      <div
-                        v-if="selectedMember.experience"
-                        class="detail-section"
-                      >
+                      <div v-if="selectedMember.experience" class="detail-section">
                         <h4>Experience</h4>
                         <p>{{ selectedMember.experience }}</p>
                       </div>
@@ -319,7 +292,7 @@ const closeBio = () => {
 
 <style scoped>
 /* Hero Section */
-.hero-sectioning{
+.hero-sectioning {
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   padding: 80px 0;
   margin-bottom: 60px;
@@ -534,6 +507,7 @@ const closeBio = () => {
     opacity: 0;
     transform: translateY(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

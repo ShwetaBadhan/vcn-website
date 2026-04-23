@@ -1,63 +1,65 @@
-hero-sections
 <template>
   <section class="product-detail-section mt-3">
     <div class="refer-earn-page">
-    
+
       <!-- ========== HERO SECTION ========== -->
-      <section class="hero-sections
- py-5">
+      <section class="hero-sections py-5">
         <div class="container">
           <div class="row align-items-center">
             <h1 class="page-titles mb-3 text-center">Refer & Earn</h1>
-                <p class=" text-center">
-                  Turn Referrals Into Earnings - Unlock Rewards Of Rs. 5,000, Rs. 15,000, Rs. 25,000,
-                </p>
-                <hr>
+            <p class=" text-center">
+              Turn Referrals Into Earnings - Unlock Rewards Of Rs. 5,000, Rs. 15,000, Rs. 25,000,
+            </p>
+            <hr>
             <!-- Left Content -->
             <div class="col-lg-6 ">
               <div class="content-wrapper">
-                
-                
+
+
                 <p class="intro-text mb-4">
-                  The <strong>Refer & Earn</strong> feature in the MLM (Multi-Level Marketing) software from 
-                  <strong>CyrusTechnoEdge Solutions</strong> aims to increase user engagement and promote the 
+                  The <strong>Refer & Earn</strong> feature in the MLM (Multi-Level Marketing) software from
+                  <strong>CyrusTechnoEdge Solutions</strong> aims to increase user engagement and promote the
                   expansion of your network.
                 </p>
 
                 <div class="features-container">
                   <div class="feature-box">
-                   
+
                     <div class="feature-content">
-                      <p><b>Referral Tracking</b>: Every referral made by a user is tracked within the system, allowing users to monitor 
+                      <p><b>Referral Tracking</b>: Every referral made by a user is tracked within the system, allowing
+                        users to monitor
                         their referral progress and potential earnings.</p>
-                     
+
                     </div>
                   </div>
 
                   <div class="feature-box">
-                   
+
                     <div class="feature-content">
-                      <p><b>Automatic Commission Generation</b>: Users earn a commission or incentive for every successful referral they make. The system 
+                      <p><b>Automatic Commission Generation</b>: Users earn a commission or incentive for every
+                        successful referral they make. The system
                         automatically calculates and updates the commissions.</p>
-                      
+
                     </div>
                   </div>
 
                   <div class="feature-box">
-                   
+
                     <div class="feature-content">
-                      <p><b>Real-Time Updates</b>:  Referrers can access real-time updates on the status of their referrals, including 
+                      <p><b>Real-Time Updates</b>: Referrers can access real-time updates on the status of their
+                        referrals, including
                         successful sign-ups and earnings.</p>
-                     
+
                     </div>
                   </div>
 
                   <div class="feature-box">
-                   
+
                     <div class="feature-content">
-                      <p><b>Referral Link & Code</b>: The software provides unique referral links or codes to each user, making it easy to 
+                      <p><b>Referral Link & Code</b>: The software provides unique referral links or codes to each user,
+                        making it easy to
                         share and invite others to the platform.</p>
-                     
+
                     </div>
                   </div>
                 </div>
@@ -68,12 +70,8 @@ hero-sections
             <div class="col-lg-6  mb-4 mb-lg-0">
               <div class="image-container">
                 <div class="image-wrapper">
-                  <img 
-                    src="/img/about/img-share.png" 
-                    alt="Refer and Earn Illustration" 
-                    class="hero-image img-fluid"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
-                  />
+                  <img src="/img/about/img-share.png" alt="Refer and Earn Illustration" class="hero-image img-fluid"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
                   <div class="image-placeholder">
                     <div class="placeholder-content">
                       <i class="bi bi-phone display-1 text-primary"></i>
@@ -97,7 +95,7 @@ hero-sections
           <div class="text-center mb-5">
             <h2 class="section-titles mb-3">To Whom You Can Refer</h2>
             <p class="section-desc">
-              CyrusTechnoEdge Solutions provides specialized MLM software designed specifically 
+              CyrusTechnoEdge Solutions provides specialized MLM software designed specifically
               for network marketers, MLM companies, MLM consultants, and direct selling businesses.
             </p>
           </div>
@@ -132,7 +130,7 @@ hero-sections
           <div class="text-center mb-5">
             <h2 class="section-titles mb-3">Benefits</h2>
             <p class="section-desc text-center">
-              By enrolling in our Refer & Earn program, you'll gain access to a variety of 
+              By enrolling in our Refer & Earn program, you'll gain access to a variety of
               exciting rewards and perks!
             </p>
           </div>
