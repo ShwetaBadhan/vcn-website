@@ -1,0 +1,83 @@
+import { ref, mergeProps, useSSRContext } from 'vue';
+import { ssrRenderAttrs, ssrRenderList, ssrRenderAttr, ssrInterpolate } from 'vue/server-renderer';
+import { _ as _export_sfc, u as useHead } from './server.mjs';
+import '../_/nitro.mjs';
+import 'node:http';
+import 'node:https';
+import 'node:events';
+import 'node:buffer';
+import 'node:fs';
+import 'node:url';
+import '@iconify/utils';
+import 'node:crypto';
+import 'consola';
+import 'node:path';
+import 'pinia';
+import 'vue-router';
+import 'tailwindcss/colors';
+import '@iconify/vue';
+import 'reka-ui';
+import '@vueuse/core';
+import 'tailwind-variants';
+import '@iconify/utils/lib/css/icon';
+import '../routes/renderer.mjs';
+import 'vue-bundle-renderer/runtime';
+import 'unhead/server';
+import 'devalue';
+import 'unhead/utils';
+
+const _sfc_main = {
+  __name: "index",
+  __ssrInlineRender: true,
+  setup(__props) {
+    useHead({
+      bodyAttrs: {
+        class: "product-details-page"
+      }
+    });
+    const recentPosts = ref([
+      {
+        title: "Is Grade 2 Fatty Liver Dangerous?",
+        date: "02 Feb, 2025",
+        image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+      },
+      {
+        title: "Can a Grade 2 Fatty Liver Disease Be Cured Completely?",
+        date: "02 Feb, 2025",
+        image: "https://images.unsplash.com/photo-1530026405186-ed1f1398f70f?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+      },
+      {
+        title: "7 Top Foods High in Magnesium and Zinc for Better Health",
+        date: "02 Feb, 2025",
+        image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+      },
+      {
+        title: "Top 20 Probiotic Foods in India for a Healthy Gut & Immunity",
+        date: "01 Jan, 2025",
+        image: "https://images.unsplash.com/photo-1550572017-edd951aa8f72?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+      },
+      {
+        title: "10 Lifestyle Changes to Control Cholesterol at Home Naturally",
+        date: "01 Jan, 2025",
+        image: "https://images.unsplash.com/photo-1434494838584-02fb06a4a96d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+      }
+    ]);
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(`<section${ssrRenderAttrs(mergeProps({ class: "product-detail-section mt-3" }, _attrs))} data-v-836c0a1b><div class="blog-details-page" data-v-836c0a1b><nav class="breadcrumb-nav" data-v-836c0a1b><div class="container" data-v-836c0a1b><ol class="breadcrumb" data-v-836c0a1b><li data-v-836c0a1b><a href="/" data-v-836c0a1b>Home</a></li><li data-v-836c0a1b><a href="/blog" data-v-836c0a1b>Health</a></li><li class="active" data-v-836c0a1b>Fatty Liver Disease Guide: Causes, Symptoms &amp; Risks</li></ol></div></nav><section class="blog-hero" data-v-836c0a1b><div class="container" data-v-836c0a1b><div class="row align-items-center" data-v-836c0a1b><div class="col-lg-7" data-v-836c0a1b><h1 class="blog-title" data-v-836c0a1b>Fatty Liver Disease Guide: Causes, Symptoms &amp; Risks</h1><div class="blog-meta" data-v-836c0a1b><span class="author" data-v-836c0a1b><i class="bi bi-person" data-v-836c0a1b></i> Content Miduty </span><span class="date" data-v-836c0a1b><i class="bi bi-calendar" data-v-836c0a1b></i> 21 Feb, 2025 </span><span class="read-time" data-v-836c0a1b><i class="bi bi-clock" data-v-836c0a1b></i> 18 min read </span></div></div><div class="col-lg-5" data-v-836c0a1b><div class="hero-image" data-v-836c0a1b><img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Fatty Liver Disease" data-v-836c0a1b></div></div></div></div></section><section class="blog-content-section" data-v-836c0a1b><div class="container" data-v-836c0a1b><div class="row" data-v-836c0a1b><div class="col-lg-8" data-v-836c0a1b><article class="article-content" data-v-836c0a1b><div class="key-takeaways" data-v-836c0a1b><h2 class="section-heading" data-v-836c0a1b>Key Takeaways</h2><div class="takeaways-list" data-v-836c0a1b><div class="takeaway-item" data-v-836c0a1b><span class="takeaway-number" data-v-836c0a1b>1.</span><div class="takeaway-content" data-v-836c0a1b><strong data-v-836c0a1b>Prevalence &amp; Reversibility:</strong> Fatty liver disease is extremely common however can be recovered from through lifestyle changes during the course of time when diagnosed at the early stages. </div></div><div class="takeaway-item" data-v-836c0a1b><span class="takeaway-number" data-v-836c0a1b>2.</span><div class="takeaway-content" data-v-836c0a1b><strong data-v-836c0a1b>Role of Weight &amp; Metabolism:</strong> Weight and metabolism have a significant impact on Prevention and/or Performance - Obesity, insulin resistance, high cholesterol and a poor diet are the primary causes for accumulation of fat in the liver. </div></div><div class="takeaway-item" data-v-836c0a1b><span class="takeaway-number" data-v-836c0a1b>3.</span><div class="takeaway-content" data-v-836c0a1b><strong data-v-836c0a1b>Silent Early Stages:</strong> In the early stages of fatty liver, it has generally no signs or symptoms and therefore regular check-ups and screening is very important for detection. </div></div><div class="takeaway-item" data-v-836c0a1b><span class="takeaway-number" data-v-836c0a1b>4.</span><div class="takeaway-content" data-v-836c0a1b><strong data-v-836c0a1b>Primary Treatment:</strong> Lifestyle is the primary form of treatment for fatty liver disease, whereby weight loss, exercise, limiting carbohydrates in your diet and preventing excess consumption of alcohol will have the greatest positive impact on your liver&#39;s health. </div></div><div class="takeaway-item" data-v-836c0a1b><span class="takeaway-number" data-v-836c0a1b>5.</span><div class="takeaway-content" data-v-836c0a1b><strong data-v-836c0a1b>Preventing Complications:</strong> Taking action at the early stages of fatty liver disease will potentially prevent the condition from progressing to cirrhosis, liver failure or any other complications and in turn provide an opportunity for a healthier lifestyle and extended longevity. </div></div><div class="takeaway-item" data-v-836c0a1b><span class="takeaway-number" data-v-836c0a1b>6.</span><div class="takeaway-content" data-v-836c0a1b><strong data-v-836c0a1b>Treatment &amp; Management:</strong> Effective management involves lifestyle adjustments such as weight loss, following a liver-friendly diet, and engaging in regular physical activity. Additionally, medications and supplements like Milk Thistle and N-Acetylcysteine can help support liver health. </div></div></div></div><div class="article-body" data-v-836c0a1b><h2 class="article-heading" data-v-836c0a1b>What is Fatty Liver Disease?</h2><p data-v-836c0a1b> Fatty liver disease, also known as hepatic steatosis, is a condition characterized by the accumulation of excess fat in liver cells. When the liver contains more than 5-10% fat, it is considered a fatty liver. This condition has become increasingly common in recent years, affecting approximately 25% of the global population. </p><p data-v-836c0a1b> The liver plays a crucial role in various bodily functions, including metabolism, detoxification, and nutrient storage. When excess fat accumulates, it can impair these functions and lead to inflammation and liver damage if left untreated. </p><h3 class="sub-heading" data-v-836c0a1b>Types of Fatty Liver Disease</h3><p data-v-836c0a1b> There are two main types of fatty liver disease: </p><ul class="content-list" data-v-836c0a1b><li data-v-836c0a1b><strong data-v-836c0a1b>Alcoholic Fatty Liver Disease (AFLD):</strong> Caused by excessive alcohol consumption, which impairs the liver&#39;s ability to break down fats. </li><li data-v-836c0a1b><strong data-v-836c0a1b>Non-Alcoholic Fatty Liver Disease (NAFLD):</strong> Occurs in people who drink little to no alcohol and is often associated with obesity, diabetes, and metabolic syndrome. </li></ul><h3 class="sub-heading" data-v-836c0a1b>Causes of Fatty Liver Disease</h3><p data-v-836c0a1b> Several factors contribute to the development of fatty liver disease: </p><div class="causes-grid" data-v-836c0a1b><div class="cause-item" data-v-836c0a1b><i class="bi bi-circle-fill" data-v-836c0a1b></i><div data-v-836c0a1b><strong data-v-836c0a1b>Obesity and Overweight:</strong> Excess body weight, particularly around the abdomen, increases the risk of fat accumulation in the liver. </div></div><div class="cause-item" data-v-836c0a1b><i class="bi bi-circle-fill" data-v-836c0a1b></i><div data-v-836c0a1b><strong data-v-836c0a1b>Insulin Resistance:</strong> When cells don&#39;t respond properly to insulin, it can lead to increased fat storage in the liver. </div></div><div class="cause-item" data-v-836c0a1b><i class="bi bi-circle-fill" data-v-836c0a1b></i><div data-v-836c0a1b><strong data-v-836c0a1b>Poor Diet:</strong> High consumption of refined carbohydrates, sugars, and saturated fats contributes to liver fat buildup. </div></div><div class="cause-item" data-v-836c0a1b><i class="bi bi-circle-fill" data-v-836c0a1b></i><div data-v-836c0a1b><strong data-v-836c0a1b>High Cholesterol:</strong> Elevated levels of triglycerides and LDL cholesterol are linked to fatty liver disease. </div></div></div><h3 class="sub-heading" data-v-836c0a1b>Symptoms and Warning Signs</h3><p data-v-836c0a1b> In the early stages, fatty liver disease often presents no symptoms, which is why it&#39;s called a &quot;silent&quot; condition. However, as the disease progresses, you may experience: </p><ul class="content-list" data-v-836c0a1b><li data-v-836c0a1b>Fatigue and weakness</li><li data-v-836c0a1b>Discomfort or pain in the upper right abdomen</li><li data-v-836c0a1b>Unexplained weight loss</li><li data-v-836c0a1b>Loss of appetite</li><li data-v-836c0a1b>Nausea</li><li data-v-836c0a1b>Yellowing of the skin and eyes (jaundice) in advanced cases</li></ul><div class="info-box" data-v-836c0a1b><i class="bi bi-exclamation-triangle" data-v-836c0a1b></i><div data-v-836c0a1b><strong data-v-836c0a1b>Important:</strong> Regular health check-ups and liver function tests are essential for early detection, especially if you have risk factors such as obesity, diabetes, or high cholesterol. </div></div><h3 class="sub-heading" data-v-836c0a1b>Diagnosis and Screening</h3><p data-v-836c0a1b> Fatty liver disease is typically diagnosed through a combination of: </p><ul class="content-list" data-v-836c0a1b><li data-v-836c0a1b><strong data-v-836c0a1b>Blood Tests:</strong> Liver function tests (LFTs) can detect elevated liver enzymes.</li><li data-v-836c0a1b><strong data-v-836c0a1b>Imaging Tests:</strong> Ultrasound, CT scan, or MRI can visualize fat in the liver.</li><li data-v-836c0a1b><strong data-v-836c0a1b>FibroScan:</strong> A specialized ultrasound that measures liver stiffness and fat content.</li><li data-v-836c0a1b><strong data-v-836c0a1b>Liver Biopsy:</strong> In some cases, a small sample of liver tissue may be examined under a microscope.</li></ul></div><div class="article-footer" data-v-836c0a1b><div class="share-section" data-v-836c0a1b><span class="share-label" data-v-836c0a1b>Share this article:</span><div class="share-buttons" data-v-836c0a1b><a href="#" class="share-btn facebook" data-v-836c0a1b><i class="bi bi-facebook" data-v-836c0a1b></i></a><a href="#" class="share-btn twitter" data-v-836c0a1b><i class="bi bi-twitter" data-v-836c0a1b></i></a><a href="#" class="share-btn linkedin" data-v-836c0a1b><i class="bi bi-linkedin" data-v-836c0a1b></i></a><a href="#" class="share-btn whatsapp" data-v-836c0a1b><i class="bi bi-whatsapp" data-v-836c0a1b></i></a></div></div></div></article></div><div class="col-lg-4" data-v-836c0a1b><aside class="blog-sidebar" data-v-836c0a1b><div class="sidebar-widget" data-v-836c0a1b><button class="action-btn primary" data-v-836c0a1b><i class="bi bi-list-ul" data-v-836c0a1b></i> Table Of Contents </button><button class="action-btn secondary" data-v-836c0a1b><i class="bi bi-bag" data-v-836c0a1b></i> Related Products </button></div><div class="sidebar-widget" data-v-836c0a1b><h3 class="widget-title" data-v-836c0a1b>Recent Posts</h3><div class="recent-posts" data-v-836c0a1b><!--[-->`);
+      ssrRenderList(recentPosts.value, (post, index2) => {
+        _push(`<div class="recent-post-item" data-v-836c0a1b><div class="post-thumbnail" data-v-836c0a1b><img${ssrRenderAttr("src", post.image)}${ssrRenderAttr("alt", post.title)} data-v-836c0a1b></div><div class="post-info" data-v-836c0a1b><h4 class="post-title" data-v-836c0a1b>${ssrInterpolate(post.title)}</h4><span class="post-date" data-v-836c0a1b>${ssrInterpolate(post.date)}</span></div></div>`);
+      });
+      _push(`<!--]--></div></div><div class="sidebar-widget newsletter-widget" data-v-836c0a1b><h3 class="widget-title" data-v-836c0a1b>Subscribe to Our Newsletter</h3><p data-v-836c0a1b>Get the latest health tips and articles delivered to your inbox.</p><form class="newsletter-form" data-v-836c0a1b><input type="email" placeholder="Enter your email" class="form-input" data-v-836c0a1b><button type="submit" class="subscribe-btn" data-v-836c0a1b>Subscribe</button></form></div></aside></div></div></div></section></div></section>`);
+    };
+  }
+};
+const _sfc_setup = _sfc_main.setup;
+_sfc_main.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/blog-details/index.vue");
+  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
+};
+const index = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-836c0a1b"]]);
+
+export { index as default };
+//# sourceMappingURL=index-cU1XRZsy.mjs.map

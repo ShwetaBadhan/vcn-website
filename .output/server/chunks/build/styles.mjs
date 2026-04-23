@@ -1,0 +1,40 @@
+const interopDefault = r => r.default || r || [];
+const styles = {
+  "pages/faqs/index.vue": () => import('./index-styles.DBVyBz2C.mjs').then(interopDefault),
+  "pages/cart/index.vue": () => import('./index-styles.DFKasr8-.mjs').then(interopDefault),
+  "pages/news/index.vue": () => import('./index-styles.sCSznZzO.mjs').then(interopDefault),
+  "pages/careers/index.vue": () => import('./index-styles.BDDBNFLW.mjs').then(interopDefault),
+  "pages/contact-us/index.vue": () => import('./index-styles.DZwYUIeX.mjs').then(interopDefault),
+  "pages/RegistrationPage.vue": () => import('./RegistrationPage-styles.1LlGWUaB.mjs').then(interopDefault),
+  "pages/our-journey/index.vue": () => import('./index-styles.CFR539Cw.mjs').then(interopDefault),
+  "pages/entire-world/index.vue": () => import('./index-styles.CuC8uNB4.mjs').then(interopDefault),
+  "pages/blog-details/index.vue": () => import('./index-styles.BuqQoDFf.mjs').then(interopDefault),
+  "pages/our-leadership/index.vue": () => import('./index-styles.wOIK_Oqv.mjs').then(interopDefault),
+  "error.vue": () => import('./error-styles.FbLVj2DQ.mjs').then(interopDefault),
+  "pages/news/index.vue?vue&type=style&index=0&scoped=e266b4fd&lang.css": () => import('./index-styles.sCSznZzO.mjs').then(interopDefault),
+  "pages/careers/index.vue?vue&type=style&index=0&scoped=44680acd&lang.css": () => import('./index-styles.BDDBNFLW.mjs').then(interopDefault),
+  "pages/RegistrationPage.vue?vue&type=style&index=0&scoped=22f7cccc&lang.css": () => import('./RegistrationPage-styles.1LlGWUaB.mjs').then(interopDefault),
+  "pages/our-journey/index.vue?vue&type=style&index=0&scoped=eef97642&lang.css": () => import('./index-styles.CFR539Cw.mjs').then(interopDefault),
+  "pages/entire-world/index.vue?vue&type=style&index=0&scope=true&lang.css": () => import('./index-styles.CuC8uNB4.mjs').then(interopDefault),
+  "pages/blog-details/index.vue?vue&type=style&index=0&scoped=836c0a1b&lang.css": () => import('./index-styles.BuqQoDFf.mjs').then(interopDefault),
+  "error.vue?vue&type=style&index=0&scoped=8419a40a&lang.css": () => import('./error-styles.FbLVj2DQ.mjs').then(interopDefault),
+  "pages/cart/index.vue?vue&type=style&index=0&scoped=265e0c1a&lang.css": () => import('./index-styles.DFKasr8-.mjs').then(interopDefault),
+  "pages/faqs/index.vue?vue&type=style&index=0&scoped=0b6dcc40&lang.css": () => import('./index-styles.DBVyBz2C.mjs').then(interopDefault),
+  "pages/our-leadership/index.vue?vue&type=style&index=0&scoped=56e0eb88&lang.css": () => import('./index-styles.wOIK_Oqv.mjs').then(interopDefault),
+  "components/RegistrationForm.vue": () => import('./RegistrationForm-styles.CD2aRlV_.mjs').then(interopDefault),
+  "components/ProductDetails/Introduction.vue": () => import('./Introduction-styles.BvsYHxrk.mjs').then(interopDefault),
+  "components/ProductDetails/BenefitsSection.vue": () => import('./BenefitsSection-styles.COKjdIBK.mjs').then(interopDefault),
+  "components/ProductDetails/BundleSection.vue": () => import('./BundleSection-styles.DNQJg1zH.mjs').then(interopDefault),
+  "components/ProductDetails/DifferenceSection.vue": () => import('./DifferenceSection-styles.C1II5xP4.mjs').then(interopDefault),
+  "pages/contact-us/index.vue?vue&type=style&index=0&lang.css": () => import('./index-styles.DZwYUIeX.mjs').then(interopDefault),
+  "components/ProductDetails/BenefitsSection.vue?vue&type=style&index=0&scoped=8c40b958&lang.css": () => import('./BenefitsSection-styles.COKjdIBK.mjs').then(interopDefault),
+  "components/ProductDetails/BundleSection.vue?vue&type=style&index=0&scoped=3633a033&lang.css": () => import('./BundleSection-styles.DNQJg1zH.mjs').then(interopDefault),
+  "components/ProductDetails/DifferenceSection.vue?vue&type=style&index=0&scoped=579602ef&lang.css": () => import('./DifferenceSection-styles.C1II5xP4.mjs').then(interopDefault),
+  "components/ProductDetails/Introduction.vue?vue&type=style&index=0&scoped=d2e8c78e&lang.css": () => import('./Introduction-styles.BvsYHxrk.mjs').then(interopDefault),
+  "components/RegistrationForm.vue?vue&type=style&index=0&scoped=a80b5218&lang.css": () => import('./RegistrationForm-styles.CD2aRlV_.mjs').then(interopDefault),
+  "components/Navbar.vue": () => import('./Navbar-styles.9LZlm-Dm.mjs').then(interopDefault),
+  "components/Navbar.vue?vue&type=style&index=0&scoped=e4d8b50d&lang.css": () => import('./Navbar-styles.9LZlm-Dm.mjs').then(interopDefault)
+};
+
+export { styles as default };
+//# sourceMappingURL=styles.mjs.map

@@ -1,0 +1,1 @@
+import{p as s}from"./CyOQFfQE.js";const m=s("/img/image/plastics.png"),a=s("/img/image/honeybees.png"),g=s("/img/image/coral.png"),o=s("/img/image/agriculture.png"),t=s("/img/image/biomaterial.png");export{m as _,a,g as b,o as c,t as d};
