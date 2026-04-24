@@ -34,12 +34,10 @@
                   </div>
 
                   <div class="alternate-image">
-<<<<<<< HEAD
-                    <img src="/img/productsdetails/capsule.png" class="w-100"
-=======
-                    <img src="/img/about/cap.png" class="w-100"
->>>>>>> 90ae94594fab12d7203066eed687df603235f7e8
-                      alt="" />
+
+                    
+
+                    <img src="/img/about/cap.png" class="w-100"/>
                   </div>
 
                   <div class="vcn-probiotic-callout alternative-callout-bottom">
