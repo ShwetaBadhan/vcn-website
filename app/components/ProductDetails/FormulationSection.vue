@@ -5,7 +5,7 @@
         <video src="" class="video-centered" autoplay muted loop playsinline ></video>
       </div>
       <div class="col-lg-9">
-        <div class="ds01-viacap-hero-area-below">
+        <div class="vcn-viacap-hero-area-below">
           <div class="vcn-probiotic-container">
             <div class="vcn-probiotic-content-wrapper">
               <!-- Left Content -->
@@ -34,7 +34,7 @@
                   </div>
 
                   <div class="alternate-image">
-                    <img src="https://assets.embeddables.com/dm-viacap-static_5796638597731362.png" class="w-100"
+                    <img src="/img/about/cap.png" class="w-100"
                       alt="" />
                   </div>
 

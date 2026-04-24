@@ -157,36 +157,36 @@
       </div>
       <div class="col-lg-6 col-md-6">
         <!-- FAQ List -->
-        <div class="seed-faq-list">
-          <div class="seed-faq-item">
-            <button class="seed-faq-question" aria-expanded="false">
+        <div class="vcn-faq-list">
+          <div class="vcn-faq-item">
+            <button class="vcn-faq-question" aria-expanded="false">
               <span>Africa</span>
-              <span class="seed-faq-icon">+</span>
+              <span class="vcn-faq-icon">+</span>
             </button>
-            <div class="seed-faq-answer">
+            <div class="vcn-faq-answer">
               <p>Botswana</p>
               <p>Cabo Verde</p>
             </div>
           </div>
 
-          <div class="seed-faq-item">
-            <button class="seed-faq-question" aria-expanded="false">
+          <div class="vcn-faq-item">
+            <button class="vcn-faq-question" aria-expanded="false">
               <span>Mechanistic Highlights</span>
-              <span class="seed-faq-icon">+</span>
+              <span class="vcn-faq-icon">+</span>
             </button>
-            <div class="seed-faq-answer">
+            <div class="vcn-faq-answer">
               Preclinical and clinical evidence demonstrates strains in VCN-01
               support tight junction integrity and healthy bacterial toxin
               (LPS) exclusion in the digestive tract.*
             </div>
           </div>
 
-          <div class="seed-faq-item">
-            <button class="seed-faq-question" aria-expanded="false">
+          <div class="vcn-faq-item">
+            <button class="vcn-faq-question" aria-expanded="false">
               <span>Strain Selection</span>
-              <span class="seed-faq-icon">+</span>
+              <span class="vcn-faq-icon">+</span>
             </button>
-            <div class="seed-faq-answer">
+            <div class="vcn-faq-answer">
               Our methodology for selecting strains gives VCN-01 maximum
               efficacy across a broad range of existing microbiomes and their
               networks. Our microbial genomics capabilities allow us to map
@@ -200,12 +200,12 @@
             </div>
           </div>
 
-          <div class="seed-faq-item">
-            <button class="seed-faq-question" aria-expanded="false">
+          <div class="vcn-faq-item">
+            <button class="vcn-faq-question" aria-expanded="false">
               <span>Clinical Research</span>
-              <span class="seed-faq-icon">+</span>
+              <span class="vcn-faq-icon">+</span>
             </button>
-            <div class="seed-faq-answer">
+            <div class="vcn-faq-answer">
               VCN-01 stands on a foundation of rigorous scientific validation,
               with 10 clinical trials and 14 pre-clinical trials underpinning
               our strain-specific benefits. We have also completed three

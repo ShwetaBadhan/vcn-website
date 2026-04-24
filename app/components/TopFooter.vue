@@ -116,13 +116,13 @@
                     <a href="/about-us" class="vcn-footer-link">Who We Are</a>
                   </li>
                   <li>
-                    <a href="/approach" class="vcn-footer-link">Science</a>
+                    <!-- <a href="/approach" class="vcn-footer-link">Science</a> -->
                   </li>
                   <li>
-                    <a href="/sustainability" class="vcn-footer-link">Sustainability</a>
+                    <!-- <a href="/sustainability" class="vcn-footer-link">Sustainability</a> -->
                   </li>
                   <li>
-                    <a href="/vcn-labs" class="vcn-footer-link">VCNLabs</a>
+                    <!-- <a href="/vcn-labs" class="vcn-footer-link">VCNLabs</a> -->
                   </li>
                   <li>
                     <a href="/blog" class="vcn-footer-link">Blogs</a>
@@ -134,7 +134,7 @@
               </div>
 
               <!-- Inquire Column -->
-              <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+              <!-- <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
                 <h4 class="vcn-footer-column-title">Inquire</h4>
                 <ul class="vcn-footer-links-list">
                   <li>
@@ -143,10 +143,10 @@
                   <li>
                     <a href="/practitioners" class="vcn-footer-link">Practitioners</a>
                   </li>
-                  <!-- <li><a href="#" class="vcn-footer-link">Press</a></li>
-                    <li><a href="#" class="vcn-footer-link">Join</a></li> -->
+                  <li><a href="#" class="vcn-footer-link">Press</a></li>
+                    <li><a href="#" class="vcn-footer-link">Join</a></li>
                 </ul>
-              </div>
+              </div> -->
 
               <!-- Help Column -->
               <div class="col-lg-4 col-md-6 col-sm-6 mb-4">

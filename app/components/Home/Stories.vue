@@ -70,7 +70,7 @@
         <!-- Card 2 -->
         <div class="vcn-stories-card" data-aos="fade-up" data-aos-duration="400" data-aos-delay="100">
           <div class="vcn-stories-card-content">
-            <h3 class="vcn-stories-card-title">Change your gut health.
+            <h3 class="vcn-stories-card-title">Change your health.
 
             </h3>
             <p class="vcn-stories-card-description text-center">
