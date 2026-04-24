@@ -80,7 +80,7 @@
                 </p>
               </div>
             </div>
-
+<!-- comment -->
             <div class="col-md-6">
               <div class="vcn-feature-card">
                 <img :src="cleanUrl('/img/productsdetails/Liver&KidneyDisorders.png')" alt="" />
