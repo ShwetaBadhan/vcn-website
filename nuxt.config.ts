@@ -32,7 +32,7 @@ export default defineNuxtConfig({
     // Private keys (only available on server-side)
     // public keys (exposed to client-side)
     public: {
-      apiBaseUrl: process.env.API_BASE_URL
+      apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL
     }
   },
 

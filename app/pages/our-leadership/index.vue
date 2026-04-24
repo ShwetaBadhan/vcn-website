@@ -20,12 +20,18 @@
                   <div class="col-lg-6">
                     <div class="hero-contents">
                       <h1 class="hero-title">Our leadership</h1>
+
+                      <p class="hero-texts">
+                        Our executive management and board of directors are
+                        passionate leaders who inspire us to live our best lives
+                        every day. With their diverse expertise and
+                        forward-thinking approach, they empower Herbalife
+                        Independent Distributors and employees to achieve our
+                        vision of becoming the world's premier health and
+                        wellness company, community and platform.
+                      </p>
                       <p class="hero-text">
-                        Our leadership is driven by vision, integrity, and a commitment to excellence. With years of
-                        industry experience, our leaders guide the organization with a clear focus on innovation,
-                        quality, and sustainable growth. They inspire a culture of trust, empower our community, and
-                        continuously strive to create opportunities that help individuals achieve both personal and
-                        professional success.
+                        Our leadership is driven by vision, integrity, and a commitment to excellence. With years of industry experience, our leaders guide the organization with a clear focus on innovation, quality, and sustainable growth. They inspire a culture of trust, empower our community, and continuously strive to create opportunities that help individuals achieve both personal and professional success.
                       </p>
                     </div>
                   </div>
