@@ -15,14 +15,14 @@
         <div class="col-lg-6 mb-4">
           <!-- Video wrapper (only for video + optional overlays/controls) -->
 
-          <div class="ds01-video-wrapper">
+          <div class="vcn-video-wrapper">
             <img src="/img/productsdetails/comonimages1.png" alt="Doctor" style="
                 width: 100%;
                 height: auto;
                 display: block;
                 border-radius: 30px;
               " />
-
+              </div>
           <!-- <div class="vcn-video-wrapper">
             <div class="vcn-video-controls">
               <button class="vcn-control-btn">
@@ -114,7 +114,7 @@
         </div>
       </div>
     </div>
-    </div>
+  
   </section>
 </template>
 

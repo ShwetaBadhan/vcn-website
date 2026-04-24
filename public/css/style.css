@@ -414,24 +414,17 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
 /* Mobile Menu - Slides from BEHIND the Logo */
 .navbar-collapse {
-<<<<<<< HEAD
-=======
+
 
   position: fixed;
   top: 0; 
   left: 0; 
   width: 0; /* Initially hidden */
-
->>>>>>> 90ae94594fab12d7203066eed687df603235f7e8
   position: absolute;
   top: 0;
   left: 0;
   width: 0;
   /* Initially hidden */
-<<<<<<< HEAD
-=======
-
->>>>>>> 90ae94594fab12d7203066eed687df603235f7e8
   background: rgba(40, 40, 40, 0.3);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
