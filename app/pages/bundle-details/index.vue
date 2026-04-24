@@ -54,7 +54,7 @@
         </div>
         <div class="video-content">
           <h3 class="video-title">
-            Understanding Your Microbiome: The Key to Better Health
+            The Key to Better Health
           </h3>
           <p class="video-description">
             Discover how trillions of microbes in your body affect your

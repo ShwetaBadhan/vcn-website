@@ -7,7 +7,8 @@ export const useCartStore = defineStore('cart', {
     promoCode: '',
     discount: 0,
     userId: null,
-    isGuest: true
+    isGuest: true,
+    sessionId: null
   }),
 
   getters: {
@@ -36,31 +37,79 @@ export const useCartStore = defineStore('cart', {
       this.isGuest = isGuest
     },
 
-    addToCart(product: CartItem) {
+    async addToCart(product: CartItem & { variantId?: string | number }) {
+      console.log('addToCart called with:', product)
       const existingItem = this.items.find((item: CartItem) => item.id === product.id)
 
       if (existingItem) {
         existingItem.quantity += 1
+        this.saveCart()
+
+        // If we have cartItemId, update quantity on backend
+        if (existingItem.cartItemId) {
+          await this.updateCartItemBackend(existingItem.cartItemId, existingItem.quantity)
+        } else if (product.variantId) {
+          // Try to sync and get cartItemId
+          await this.syncItemWithBackend(product.variantId, existingItem.quantity)
+        }
       } else {
-        this.items.push({
+        // Add new item
+        const newItem: CartItem = {
           id: product.id,
           name: product.name,
           price: product.price,
           mrp: product.mrp || null,
           image: product.image,
           quantity: 1,
-          subscription: product.subscription || 'One-time purchase'
-        })
-      }
+          subscription: product.subscription || 'One-time purchase',
+          variantId: product.variantId
+        }
+        this.items.push(newItem)
+        this.saveCart()
 
-      this.saveCart()
+        // Sync with backend if variantId is provided
+        if (product.variantId) {
+          console.log('Syncing new item with backend, variantId:', product.variantId)
+          const response = await this.syncItemWithBackend(product.variantId, 1)
+          console.log('Full sync response:', response)
+          // Update item with cartItemId from backend if available
+          if (response?.cartItemId) {
+            console.log('Setting cartItemId:', response.cartItemId)
+            newItem.cartItemId = response.cartItemId
+            this.saveCart()
+          } else {
+            console.warn('No cartItemId in response, response structure:', JSON.stringify(response))
+          }
+        } else {
+          console.warn('No variantId provided, skipping backend sync')
+        }
+      }
     },
 
-    removeFromCart(productId: string | number) {
+    async removeFromCart(productId: string | number) {
+      const item = this.items.find((item: CartItem) => item.id === productId)
       const index = this.items.findIndex((item: CartItem) => item.id === productId)
+
       if (index > -1) {
         this.items.splice(index, 1)
         this.saveCart()
+
+        // Delete from backend if we have cartItemId
+        if (item?.cartItemId && process.client) {
+          try {
+            const { useCartApi } = await import('~/composables/useCartApi')
+            const { deleteCartItem } = useCartApi()
+
+            const response = await deleteCartItem(item.cartItemId)
+            if (response.success) {
+              console.log('Cart item deleted from backend')
+            } else {
+              console.warn('Failed to delete cart item from backend:', response.message)
+            }
+          } catch (error) {
+            console.error('Error deleting cart item from backend:', error)
+          }
+        }
       }
     },
 
@@ -76,21 +125,81 @@ export const useCartStore = defineStore('cart', {
       }
     },
 
-    incrementQuantity(productId: string | number) {
+    async incrementQuantity(productId: string | number) {
       const item = this.items.find((item: CartItem) => item.id === productId)
+      console.log('incrementQuantity called for productId:', productId, 'item:', item, 'cartItemId:', item?.cartItemId)
       if (item) {
         item.quantity += 1
         this.saveCart()
+
+        // Sync with backend if we have cartItemId
+        if (item.cartItemId) {
+          console.log('Calling updateCartItemBackend with cartItemId:', item.cartItemId, 'quantity:', item.quantity)
+          await this.updateCartItemBackend(item.cartItemId, item.quantity)
+        } else if (item.variantId) {
+          // No cartItemId but we have variantId - sync with backend first to get cartItemId
+          console.log('No cartItemId found, syncing with backend using variantId:', item.variantId)
+          const response = await this.syncItemWithBackend(item.variantId, item.quantity)
+          if (response?.cartItemId) {
+            item.cartItemId = response.cartItemId
+            this.saveCart()
+            console.log('Synced with backend, cartItemId set to:', response.cartItemId)
+          } else {
+            console.warn('Failed to sync with backend for variantId:', item.variantId)
+          }
+        } else {
+          console.warn('No cartItemId or variantId found for item, cannot sync quantity update. productId:', productId)
+        }
       }
     },
 
-    decrementQuantity(productId: string | number) {
+    async decrementQuantity(productId: string | number) {
       const item = this.items.find((item: CartItem) => item.id === productId)
+      console.log('decrementQuantity called for productId:', productId, 'item:', item, 'cartItemId:', item?.cartItemId)
       if (item && item.quantity > 1) {
         item.quantity -= 1
         this.saveCart()
+
+        // Sync with backend if we have cartItemId
+        if (item.cartItemId) {
+          console.log('Calling updateCartItemBackend with cartItemId:', item.cartItemId, 'quantity:', item.quantity)
+          await this.updateCartItemBackend(item.cartItemId, item.quantity)
+        } else if (item.variantId) {
+          // No cartItemId but we have variantId - sync with backend first to get cartItemId
+          console.log('No cartItemId found, syncing with backend using variantId:', item.variantId)
+          const response = await this.syncItemWithBackend(item.variantId, item.quantity)
+          if (response?.cartItemId) {
+            item.cartItemId = response.cartItemId
+            this.saveCart()
+            console.log('Synced with backend, cartItemId set to:', response.cartItemId)
+          } else {
+            console.warn('Failed to sync with backend for variantId:', item.variantId)
+          }
+        } else {
+          console.warn('No cartItemId or variantId found for item, cannot sync quantity update. productId:', productId)
+        }
       } else if (item && item.quantity === 1) {
-        this.removeFromCart(productId)
+        await this.removeFromCart(productId)
+      }
+    },
+
+    // Update cart item quantity on backend
+    async updateCartItemBackend(cartItemId: string | number, quantity: number) {
+      if (process.client) {
+        try {
+          const { useCartApi } = await import('~/composables/useCartApi')
+          const { updateCart } = useCartApi()
+
+          const response = await updateCart(cartItemId, quantity)
+
+          if (response.success) {
+            console.log('Cart item quantity updated on backend')
+          } else {
+            console.warn('Failed to update cart item quantity on backend:', response.message)
+          }
+        } catch (error) {
+          console.error('Error updating cart item quantity:', error)
+        }
       }
     },
 
@@ -127,7 +236,8 @@ export const useCartStore = defineStore('cart', {
             promoCode: this.promoCode,
             discount: this.discount,
             userId: this.userId,
-            isGuest: this.isGuest
+            isGuest: this.isGuest,
+            sessionId: this.sessionId
           }
 
           if (this.isGuest) {
@@ -137,6 +247,9 @@ export const useCartStore = defineStore('cart', {
             // Save user cart
             localStorage.setItem(`vcn-user-cart-${this.userId}`, JSON.stringify(cartData))
           }
+
+          // Note: Backend sync is now handled per-item via syncItemWithBackend()
+          // when cart items are added/updated with their variantId
         } catch (error) {
           console.error('Error saving cart to localStorage:', error)
         }
@@ -172,6 +285,7 @@ export const useCartStore = defineStore('cart', {
             }))
             this.promoCode = cartData.promoCode || ''
             this.discount = cartData.discount || 0
+            this.sessionId = cartData.sessionId || null
             // Save repaired cart back to localStorage
             this.saveCart()
           } else {
@@ -179,6 +293,7 @@ export const useCartStore = defineStore('cart', {
             this.items = []
             this.promoCode = ''
             this.discount = 0
+            this.sessionId = null
           }
         } catch (error) {
           console.error('Error loading cart from localStorage:', error)
@@ -186,6 +301,7 @@ export const useCartStore = defineStore('cart', {
           this.items = []
           this.promoCode = ''
           this.discount = 0
+          this.sessionId = null
         }
       }
     },
@@ -283,6 +399,73 @@ export const useCartStore = defineStore('cart', {
 
       // Load guest cart (which is the same as current cart)
       this.loadCart()
+    },
+
+    // ===== BACKEND API SYNC METHODS =====
+
+    // Sync single cart item with backend
+    async syncItemWithBackend(variantId: string | number, quantity: number = 1): Promise<{ cartItemId?: string | number; success: boolean } | null> {
+      console.log('syncItemWithBackend called:', { variantId, quantity, isClient: process.client })
+      if (process.client) {
+        try {
+          const { useCartApi } = await import('~/composables/useCartApi')
+          const { addToCart, getSessionId } = useCartApi()
+
+          this.sessionId = getSessionId()
+          console.log('Session ID:', this.sessionId)
+
+          const response = await addToCart(variantId, quantity)
+          console.log('addToCart response:', response)
+
+          if (response.success) {
+            console.log('Cart item synced with backend successfully')
+            // Extract cartItemId from response if available
+            const cartItemId = response.items?.[0]?.cartItemId || response.cartItemId
+            return { cartItemId, success: true }
+          } else {
+            console.warn('Failed to sync cart item with backend:', response.message)
+            return { success: false }
+          }
+        } catch (error) {
+          console.error('Error syncing cart item with backend:', error)
+          return { success: false }
+        }
+      } else {
+        console.warn('Not on client side, skipping backend sync')
+        return null
+      }
+    },
+
+    // Load cart from backend API
+    async loadFromBackend() {
+      if (process.client) {
+        try {
+          const { useCartApi } = await import('~/composables/useCartApi')
+          const { readCart, getSessionId } = useCartApi()
+
+          const sessionId = getSessionId()
+          this.sessionId = sessionId
+          const response = await readCart(sessionId)
+
+          if (response.success && response.items) {
+            // Map API items to CartItem format
+            this.items = response.items.map((apiItem: any) => ({
+              id: apiItem.product?.id || apiItem.variantId,
+              name: apiItem.product?.productName || 'Unknown Product',
+              price: parseFloat(apiItem.price) || 0,
+              mrp: apiItem.mrp ? parseFloat(apiItem.mrp) : null,
+              image: apiItem.product?.productImages?.[0] || '',
+              quantity: apiItem.quantity || 1,
+              cartItemId: apiItem.cartItemId,
+              variantId: apiItem.variantId
+            }))
+            this.saveCart()
+            console.log('Cart loaded from backend successfully')
+          }
+        } catch (error) {
+          console.error('Error loading cart from backend:', error)
+        }
+      }
     }
   }
 })

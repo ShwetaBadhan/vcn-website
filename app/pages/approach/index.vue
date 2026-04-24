@@ -158,7 +158,7 @@
                 Our human clinical work, in combination with strain-specific
                 clinical research and our in vitro data generation, allows us
                 to identify novel endpoints and benefits for human health,
-                while contributing advancements to the fields of microbiome
+                while contributing advancements to the fields of
                 and probiotic science.
               </p>
             </div>
@@ -250,8 +250,7 @@
             Our Scientific Board consists of scientists, researchers, doctors,
             and authors across the fields of microbiology, immunology, genetics,
             metabolomics, gastroenterology, pediatrics, molecular biology, and
-            transcriptomics—including primary investigators from the NIH’s Human
-            Microbiome Project. They lead labs, teach at world-renowned academic
+            transcriptomics—including primary investigators. They lead labs, teach at world-renowned academic
             institutions, and have among them 2800+ publications and over
             140,000 citations in peer-reviewed scientific journals and
             textbooks.
@@ -301,7 +300,7 @@
     </div>
   </section>
 
-  <!-- Microbiomes Section -->
+  <!-- s Section -->
   <section class="microbiomes-section">
     <div class="container">
       <marquee>

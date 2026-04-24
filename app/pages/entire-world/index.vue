@@ -188,9 +188,8 @@
             </button>
             <div class="seed-faq-answer">
               Our methodology for selecting strains gives VCN-01 maximum
-              efficacy across a broad range of existing microbiomes and their
-              networks. Our microbial genomics capabilities allow us to map
-              every microbial gene in VCN-01 with unprecedented depth and
+              efficacy across a broad range and their networks. Our capabilities
+              allow us to map every gene in VCN-01 with unprecedented depth and
               clarity (100MM base pair depth reads). With 24 distinct strains,
               representing 12 species, VCN-01 contains significantly more
               unique (non-redundant) and total (redundant) microbial genes

@@ -11,7 +11,7 @@
             </div>
             <p class="vcn-footer-tagline">
               Advancing Wellness for Everyday Life
-             <!-- <span class="vcn-footer-tagline-icon"><svg width="31" height="33" viewBox="0 0 31 33" fill="none"
+              <!-- <span class="vcn-footer-tagline-icon"><svg width="31" height="33" viewBox="0 0 31 33" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path d="M12.0785 22.1018L6.86646 16.8897L8.95126 14.8049L14.1633 20.017L12.0785 22.1018Z"
                     stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -29,7 +29,7 @@
                   <path d="M23.0241 1.7749L19.8969 4.90212L24.0665 9.07173L27.1937 5.94452L23.0241 1.7749Z"
                     stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg></span>
-              microbiome science
+               science
               <span style="
                     display: inline-block;
                     padding: 4px 10px;
@@ -87,7 +87,8 @@
 
 
             <div class="vcn-footer-disclaimer">
-              The information provided is for general wellness purposes only and is not intended to diagnose, treat, cure, or prevent any disease. Please consult a healthcare professional before use if needed.
+              The information provided is for general wellness purposes only and is not intended to diagnose, treat,
+              cure, or prevent any disease. Please consult a healthcare professional before use if needed.
             </div>
           </div>
         </div>

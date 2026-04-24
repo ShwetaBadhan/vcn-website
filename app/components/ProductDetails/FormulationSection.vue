@@ -34,7 +34,7 @@
                   </div>
 
                   <div class="alternate-image">
-                    <img src="https://assets.embeddables.com/dm-viacap-static_5796638597731362.png" class="w-100"
+                    <img src="/img/productsdetails/capsule.png" class="w-100"
                       alt="" />
                   </div>
 

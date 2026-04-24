@@ -33,8 +33,8 @@
               </div>
             </section>
 
-            <!-- Management Section -->
-            <section class="management-section">
+            <!--   Section -->
+            <!-- <section class="management-section">
               <div class="container">
                 <h2 class="section-title">Management</h2>
                 <div class="row">
@@ -59,7 +59,7 @@
                   </button>
                 </div>
               </div>
-            </section>
+            </section> -->
 
             <!-- Board of Directors Section -->
             <section class="board-section">
@@ -81,11 +81,11 @@
                     </div>
                   </div>
                 </div>
-                <div class="text-center mt-4">
+                <!-- <div class="text-center mt-4">
                   <button class="view-all-btn">
                     <i class="bi bi-arrow-down"></i> View All
                   </button>
-                </div>
+                </div> -->
               </div>
             </section>
 

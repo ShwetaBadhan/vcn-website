@@ -15,31 +15,12 @@
         <div class="col-lg-6 mb-4">
           <!-- Video wrapper (only for video + optional overlays/controls) -->
           <div class="ds01-video-wrapper">
-            <div class="ds01-video-controls">
-              <button class="ds01-control-btn">
-                <i class="bi bi-pause-fill"></i>
-              </button>
-              <button class="ds01-control-btn">
-                <i class="bi bi-volume-up-fill"></i>
-              </button>
-            </div>
-
-            <video style="
+            <img src="/img/productsdetails/comonimages1.png" alt="Doctor" style="
                 width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 20px;
-              " muted autoplay playsinline>
-              <source src="https://assets.embeddables.com/ZAIN_4Ds_06_0617_6754959037559694.mp4" type="video/mp4" />
-            </video>
-          </div>
-
-          <!-- 👇 Doctor info now OUTSIDE the video container -->
-          <div class="ds01-doctor-info">
-            <div class="ds01-doctor-name">Dr. Zain Kassam, MD, MPH</div>
-            <div class="ds01-doctor-title">
-              Chief Ayurvedic Consultant, VCN Health
-            </div>
+                height: auto;
+                display: block;
+                border-radius: 30px;
+              " />
           </div>
         </div>
 

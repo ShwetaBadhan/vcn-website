@@ -21,6 +21,21 @@
   box-sizing: border-box;
 }
 
+/* Cart page specific navbar link colors */
+body.cart-page .desktop-nav .nav-link,
+body.cart-page .desktop-nav a,
+body.cart-page .navbar .nav-link,
+body.cart-page .navbar a {
+  color: var(--vcn-primary) !important;
+}
+
+body.cart-page .desktop-nav .nav-link:hover,
+body.cart-page .desktop-nav a:hover,
+body.cart-page .navbar .nav-link:hover,
+body.cart-page .navbar a:hover {
+  color: #1c3a13 !important;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -399,18 +414,11 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
 /* Mobile Menu - Slides from BEHIND the Logo */
 .navbar-collapse {
-<<<<<<< HEAD
-  position: fixed;
-  top: 0; 
-  left: 0; 
-  width: 0; /* Initially hidden */
-=======
   position: absolute;
   top: 0;
   left: 0;
   width: 0;
   /* Initially hidden */
->>>>>>> bccfec86443502316b802042584865769ac05762
   background: rgba(40, 40, 40, 0.3);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
@@ -425,10 +433,13 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   margin-top: 30px;
   opacity: 0;
 }
+
 /* Hide state - Slide up */
 .navbar-collapse.hidden {
-  transform: translateY(-100%); /* Upar slide ho jayega */
+  transform: translateY(-100%);
+  /* Upar slide ho jayega */
 }
+
 /* Show state - Expand */
 .navbar-collapse.show {
   width: calc(100% - 0px);
@@ -3064,7 +3075,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .vcn-stories-card:nth-child(2)::before {
-  background-image: url("https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1753995020/library/bookend/force-life.png");
+  background-color: var(--vcn-primary);
 }
 
 /* Gradient overlay */
@@ -3540,7 +3551,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../img//bg/bg-2.webp");
+  background-image: url("/img/productsdetails/breadcrum.png");
   background-size: cover;
   background-position: center;
   border-radius: 0 0 50px 50px;
@@ -4590,7 +4601,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .health-section-below {
-  background-image: url(/img/productsdetails/breadcrum.png);
+  background-image: url(/img/productsdetails/dbtpageimage.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -4624,7 +4635,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .health-section {
-  background-image: url(/img/productsdetails/breadcrum.png);
+  background-image: url(/img/productsdetails/dbtpageimage.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -13862,9 +13873,9 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   }
 }
 
-.nav-tog{
-border: 4px solid var(--vcn-mobile);
-padding: 8px;
-border-radius: 12px;
+.nav-tog {
+  border: 4px solid var(--vcn-mobile);
+  padding: 8px;
+  border-radius: 12px;
 
 }

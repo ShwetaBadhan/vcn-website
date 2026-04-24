@@ -31,9 +31,9 @@
           </div>
           <div class="col-lg-3 text-center mt-3 mt-lg-0">
             <div class="cart-quantity-control">
-              <button class="cart-qty-button" @click="cartStore.decrementQuantity(item.id)">−</button>
+              <button class="cart-qty-button" @click="handleDecrement(item.id)">−</button>
               <div class="cart-qty-display">{{ item.quantity }}</div>
-              <button class="cart-qty-button" @click="cartStore.incrementQuantity(item.id)">+</button>
+              <button class="cart-qty-button" @click="handleIncrement(item.id)">+</button>
             </div>
           </div>
           <div class="col-lg-3 text-end mt-3 mt-lg-0">
@@ -171,20 +171,31 @@ onMounted(async () => {
   // Initialize cart based on auth state
   await initializeCart()
 
-  // Load cart data from appropriate source
+  // Load cart data from localStorage first
   if (process.client && window.localStorage) {
     await cartStore.loadCart()
   }
+
+  // Sync with backend API (load server cart and merge with local)
+  await cartStore.loadFromBackend()
 })
 
-const addRecommendedProduct = (id, name, price, image) => {
-  cartStore.addToCart({
+const addRecommendedProduct = async (id, name, price, image) => {
+  await cartStore.addToCart({
     id,
     name,
     price,
     image,
     subscription: 'One-time purchase'
   })
+}
+
+const handleIncrement = async (itemId) => {
+  await cartStore.incrementQuantity(itemId)
+}
+
+const handleDecrement = async (itemId) => {
+  await cartStore.decrementQuantity(itemId)
 }
 
 const applyPromo = () => {

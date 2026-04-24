@@ -5,7 +5,7 @@
 
     <div class="vcn-breadcrumb-content">
       <h1 class="vcn-breadcrumb-title">
-        Whole Body Health, Made Possible by Your Microbiome
+        Your Wellness Journey Begins Now
       </h1>
     </div>
   </div>
@@ -58,7 +58,7 @@
 
             <div class="vcn-image-overlay">
               <p class="vcn-image-text">
-                Is VCN-01 the right probiotic for you? Take the Quiz
+                Discover if VCN-01 Fits Your Needs — Take the Quiz
               </p>
             </div>
           </div>
