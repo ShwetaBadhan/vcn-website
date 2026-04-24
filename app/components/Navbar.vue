@@ -49,23 +49,23 @@
               <a class="nav-link" href="#">Science</a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="/approach">
+                  <a class="dropdown-item" href="/our-journey">
                     <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487791/library/nav/science/approach.png"
+                      src="/img/drop-down/abput us.png"
                       alt="Approach" />
-                    <strong>Approach<br />Micro</strong>
+                    <strong>About us</strong>
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="/vcn-labs">
+                  <a class="dropdown-item" href="/book-consultancy">
                     <img src="/img/image/vcnlabs.png" alt="VCN Labs" />
-                    <strong>VCN Labs</strong>
+                    <strong>Book Consultancy</strong>
                   </a>
                 </li>
-                <li>
+                <!-- <li>
                   <a class="dropdown-item" href="/approach#scientists">
                     <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487801/library/nav/science/scientists.png"
+                      src=""
                       alt="VCN Labs" />
                     <strong>Scientists</strong>
                   </a>
@@ -73,51 +73,51 @@
                 <li>
                   <a class="dropdown-item" href="/sustainability">
                     <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487761/library/nav/science/sustainability.png"
+                      src=""
                       alt="VCN Labs" />
                     <strong>Sustainability</strong>
                   </a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                   <a href="" class="dropdown-item"><strong>References</strong></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" class="dropdown-item"><strong>VCN-01 Daily Synbiotic</strong></a>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong></strong></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" class="dropdown-item"><strong>DM-02™ Daily Multivitamin</strong></a>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong></strong></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" class="dropdown-item"><strong>VCN-02 Energy + Focus</strong></a>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong></strong></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" class="dropdown-item"><strong>PM-02™ Sleep + Restore</strong></a>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong></strong></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" class="dropdown-item"><strong>PDS-08® Pediatric Synbiotic</strong></a>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong></strong></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" class="dropdown-item"><strong>VS-01™ Vaginal Synbiotic</strong></a>
-                </li>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong></strong></a>
+                </li> -->
               </ul>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link" href="#">Learn</a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="/microbiome">
+                  <a class="dropdown-item" href="/blogs">
                     <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487912/library/nav/learn/microbiome.png"
+                      src="/img/drop-down/blog.png"
                       alt="Research" />
-                    Microbiome
+                    Blogs
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="#">
                     <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487978/library/nav/learn/probiotics.png"
+                      src="/img/drop-down/sustainability.png"
                       alt="Research" />
-                    Probiotics
+                    Contact Us
                   </a>
                 </li>
               </ul>
@@ -244,45 +244,33 @@
           <!-- Science Accordion -->
           <div class="dropdown-content" id="scienceAccordion">
             <div class="dropdown-menu-mobile">
-              <a class="dropdown-item" href="/approach">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487791/library/nav/science/approach.png"
-                  alt="Approach" />
-                <strong>Approach<br />Micro</strong>
+             
+              <a class="dropdown-item" href="/our-leadership">
+                <img src="/img/drop-down/abput us.png" alt="VCN Labs" />
+                <strong>About Us</strong>
               </a>
               <a class="dropdown-item" href="/vcn-labs">
                 <img src="/img/image/vcnlabs.png" alt="VCN Labs" />
-                <strong>VCN Labs</strong>
+                <strong>Book Consultancy</strong>
               </a>
-              <a class="dropdown-item" href="/approach#scientists">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487801/library/nav/science/scientists.png"
-                  alt="VCN Labs" />
-                <strong>Scientists</strong>
-              </a>
-              <a class="dropdown-item" href="sustainability">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487761/library/nav/science/sustainability.png"
-                  alt="VCN Labs" />
-                <strong>Sustainability</strong>
-              </a>
+             
             </div>
           </div>
 
           <!-- Learn Accordion -->
           <div class="dropdown-content" id="learnAccordion">
             <div class="dropdown-menu-mobile">
-              <a class="dropdown-item" href="/microbiome">
+              <a class="dropdown-item" href="/blogs">
                 <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487912/library/nav/learn/microbiome.png"
+                  src="/img/drop-down/blog.png"
                   alt="Research" />
-                Microbiome
+                Blogs
               </a>
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="/contact-us">
                 <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487978/library/nav/learn/probiotics.png"
+                  src="/img/drop-down/sustainability.png"
                   alt="Research" />
-                Probiotics
+                Contact Us
               </a>
             </div>
           </div>

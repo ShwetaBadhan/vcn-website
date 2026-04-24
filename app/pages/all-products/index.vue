@@ -54,7 +54,7 @@
         <!-- Right Image Section -->
         <div class="col-lg-3">
           <div class="vcn-image-section h-100">
-            <img src="/img/about/about-3.webp" alt="Fresh produce" class="vcn-bg-image" />
+            <img src="/img/about/about-3.png" alt="Fresh produce" class="vcn-bg-image" />
 
             <div class="vcn-image-overlay">
               <p class="vcn-image-text">

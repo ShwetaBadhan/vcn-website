@@ -21,15 +21,7 @@
                     <div class="hero-contents">
                       <h1 class="hero-title">Our leadership</h1>
 
-                      <p class="hero-texts">
-                        Our executive management and board of directors are
-                        passionate leaders who inspire us to live our best lives
-                        every day. With their diverse expertise and
-                        forward-thinking approach, they empower Herbalife
-                        Independent Distributors and employees to achieve our
-                        vision of becoming the world's premier health and
-                        wellness company, community and platform.
-                      </p>
+                      
                       <p class="hero-text">
                         Our leadership is driven by vision, integrity, and a commitment to excellence. With years of industry experience, our leaders guide the organization with a clear focus on innovation, quality, and sustainable growth. They inspire a culture of trust, empower our community, and continuously strive to create opportunities that help individuals achieve both personal and professional success.
                       </p>
@@ -39,7 +31,11 @@
               </div>
             </section>
 
+<<<<<<< HEAD
             <!--   Section -->
+=======
+            <!-- Management Section -->
+>>>>>>> 90ae94594fab12d7203066eed687df603235f7e8
             <!-- <section class="management-section">
               <div class="container">
                 <h2 class="section-title">Management</h2>
@@ -229,49 +225,49 @@ const selectedMember = ref({});
 
 const boardMembers = ref([
   {
-    name: "Harminder Singh ",
-    title: "Director",
+    name: "Harminder Singh Sodhi ",
+    title: "Managing Director",
     image:
       "/img/leadership/our team 4.png",
-    bio: "Harminder Singh serves as Director, providing strategic vision and leadership to the board.",
-    education: "MBA from University of Chicago",
-    experience: "Over 30 years in executive leadership",
+    bio: "A visionary leader committed to excellence and growth, he has played a key role in shaping the organization’s strategic direction. With a forward-thinking approach and strong industry experience, his leadership emphasizes innovation, integrity, and value creation—driving the company toward sustained success.",
+    // education: "MBA from University of Chicago",
+    // experience: "Over 30 years in executive leadership",
   },
   {
     name: "Jasdeep Bawa",
-    title: "Director",
+    title: "Managing Director",
     image:
       "/img/leadership/our team 2.png",
-    bio: "Jasdeep Bawa brings extensive medical and public health expertise to the board.",
-    education: "MD, Former U.S. Surgeon General",
-    experience: "Distinguished career in medicine and public health",
+    bio: "A dynamic leader with a clear vision for growth, he brings strong expertise and strategic insight to the organization. His approach centers on innovation, operational excellence, and building lasting value, helping drive the company forward with integrity and a results-oriented mindset.",
+    // education: "MD, Former U.S. Surgeon General",
+    // experience: "Distinguished career in medicine and public health",
   },
   {
-    name: "Lynda Cloud",
+    name: "Pardeep Singh Bedi",
     title: "Director",
     image:
       "/img/leadership/our team 3.png",
-    bio: "Lynda Cloud provides strategic guidance on governance and compliance matters.",
-    education: "MBA in Finance",
-    experience: "20+ years in corporate governance",
+    bio: "A strategic thinker and dedicated leader, he contributes significantly to the company’s vision and growth. With a focus on innovation and efficiency, he plays a key role in strengthening operations and delivering consistent value.",
+    // education: "MBA in Finance",
+    // experience: "20+ years in corporate governance",
   },
   {
-    name: "Celine Del Genes",
+    name: "Ramakant Makkar",
     title: "Director",
     image:
       "/img/leadership/our team 5.png",
-    bio: "Celine Del Genes contributes expertise in international business and market expansion.",
-    education: "MBA from INSEAD",
-    experience: "Global business leadership experience",
+    bio: "With a strong understanding of industry dynamics, he brings clarity and direction to the organization. His leadership is driven by integrity, smart decision-making, and a commitment to long-term success.",
+    // education: "MBA from INSEAD",
+    // experience: "Global business leadership experience",
   },
   {
-    name: "Sophie L'Hélias",
+    name: "Pardeep Gupta",
     title: "Director",
     image:
       "/img/leadership/our team.png",
-    bio: "Sophie L'Hélias brings insights on digital transformation and innovation.",
-    education: "MS in Technology Management",
-    experience: "Leadership in tech and digital strategy",
+    bio: "An experienced professional with a results-driven approach, he supports the organization’s expansion through effective strategies and leadership. His focus on quality, teamwork, and continuous improvement helps drive sustainable growth.",
+    // education: "MS in Technology Management",
+    // experience: "Leadership in tech and digital strategy",
   },
   // {
   //   name: "Michael Levitt",
@@ -358,7 +354,7 @@ const closeBio = () => {
 
 .team-image img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
   transition: transform 0.3s ease;
 }

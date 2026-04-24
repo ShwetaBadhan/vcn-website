@@ -6,7 +6,7 @@
       <div class="col-lg-12" v-if="cartStore.items.length === 0">
         <div class="empty-cart-message">
           <h3>Your cart is empty</h3>
-          <p>Looks like you haven't added any products to your cart yet.</p>
+          <p class="text-center">Looks like you haven't added any products to your cart yet.</p>
           <a href="/all-products" class="btn-learn">Continue Shopping</a>
         </div>
       </div>
@@ -55,7 +55,7 @@
         <div class="row g-4">
           <div class="col-md-4">
             <div class="cart-product-card">
-              <img src="https://res.cloudinary.com/dljz0lko8/image/upload/v1693433672/cart/DS01_2x.png" alt="VCN-01"
+              <img src="https://res.cloudinary.com/dljz0lko8/image/upload/v1693433672/cart/vcn_2x.png" alt="VCN-01"
                 class="cart-suggested-image" />
               <div class="cart-suggested-name">VCN-01</div>
               <div class="cart-suggested-description">Daily Synbiotic</div>
@@ -63,7 +63,7 @@
                 <span class="cart-current-price">$37.49</span>
                 <span class="cart-original-price">$49.99</span>
                 <button
-                  @click="addRecommendedProduct('ds01', 'VCN-01', 37.49, 'https://res.cloudinary.com/dljz0lko8/image/upload/v1693433672/cart/DS01_2x.png')"
+                  @click="addRecommendedProduct('vcn', 'VCN-01', 37.49, 'https://res.cloudinary.com/dljz0lko8/image/upload/v1693433672/cart/vcn_2x.png')"
                   class="cart-add-btn">
                   Add
                 </button>
@@ -214,9 +214,9 @@ const removePromo = () => {
 
 useHead({
   bodyAttrs: {
-    class: 'cart-page'
-  }
-})
+    class: "product-details-page",
+  },
+});
 </script>
 
 <style scoped>

@@ -44,7 +44,7 @@
             </div>
 
             <img
-              src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1756048619/library/viacap/viacap-fallback.gif"
+              src="/img/about/cap.png"
               alt="V-Heldi Curcumin" class="vcn-probiotic-product-image" loading="eager" />
 
             <div class="vcn-probiotic-callout vcn-probiotic-callout-bottom" data-aos="fade-up" data-aos-duration="400">
