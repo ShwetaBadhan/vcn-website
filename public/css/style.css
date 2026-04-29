@@ -3089,7 +3089,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
 .vcn-stories-card:nth-child(2)::before {
   background-color: var(--vcn-primary);
-  background-image: url("../img/image/Stories from scientists  806.png");
+  background-image: url("/img/stories/changeyourhealth.png");
 }
 
 /* Gradient overlay */

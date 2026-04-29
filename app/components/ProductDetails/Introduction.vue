@@ -104,13 +104,13 @@
             </div>
             <div class="bundle-card mt-5">
               <div class="bundle-image">
-                <img src="https://assets.embeddables.com/Frame1739331849_5922073548695651.png"
-                  alt="DM-02 Daily Multivitamin" />
+                <img src="/img/productsdetails/BOOSTER.png"
+                  alt="VCN-02 Daily Multivitamin" />
               </div>
               <div class="bundle-content">
                 <h3>Bundle + Save 25%</h3>
                 <p>
-                  Add DM-02™ Daily Multivitamin to your routine and save on your
+                  Add VCN-02 Daily Multivitamin to your routine and save on your
                   first order.
                 </p>
                 <div class="bundle-price">

@@ -156,7 +156,7 @@
 
             <div class="mid-stats-image-container">
               <img 
-                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                src="/img/image/Consultation.png" 
                 alt="Health Experts" 
                 class="img-fluid rounded"
               >

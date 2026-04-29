@@ -35,86 +35,82 @@
         <!-- Video Container -->
         <div class="video-container" id="videoContainer">
           <div class="vcn-human-image-wrapper">
-            <video id="myVideo" muted loop autoplay playsinline preload="auto" class="vcn-human-main-image"></video>
+            <!-- <video id="myVideo" muted loop autoplay playsinline preload="auto" class="vcn-human-main-image"></video> -->
+            <img src="/img/image/skelton.png" class="vcn-human-main-image"/>
+          </div>
+        </div>
+      </div>
+    </div>
 
-            <!-- <img
-              src="/img/about/about-2.jpg"
-              class="vcn-human-main-image"
-            /> -->
+    <!-- Disease Bundles Container -->
+    <div class="disease-bundles-container" id="bundlesContainer">
+      <div class="bundles-header">
+        <button class="close-button" id="closeBtn">✕</button>
+        <h2 class="bundles-title">
+          Proven Bundles For Your Health Needs!
+        </h2>
+        <p class="bundles-subtitle">
+          Check out our custom bundles based on your current health
+          conditions
+        </p>
+      </div>
+
+      <div class="disease-grid">
+        <!-- Acidity Card -->
+        <div class="disease-card">
+          <div class="disease-card-image">
+            <div class="disease-icon">
+              <img :src="cleanUrl('/img/image/acidty.png')" alt="" />
+            </div>
+          </div>
+          <div class="disease-card-body">
+            <h3 class="disease-title">Acidity</h3>
+            <a href="/bundle-details" class="learn-more-btn">LEARN MORE</a>
           </div>
         </div>
 
-        <!-- Disease Bundles Container -->
-        <div class="disease-bundles-container" id="bundlesContainer">
-          <div class="bundles-header">
-            <button class="close-button" id="closeBtn">✕</button>
-            <h2 class="bundles-title">
-              Proven Bundles For Your Health Needs!
-            </h2>
-            <p class="bundles-subtitle">
-              Check out our custom bundles based on your current health
-              conditions
-            </p>
-          </div>
-
-          <div class="disease-grid">
-            <!-- Acidity Card -->
-            <div class="disease-card">
-              <div class="disease-card-image">
-                <div class="disease-icon">
-                  <img :src="cleanUrl('/img/image/acidty.png')" alt="" />
-                </div>
-              </div>
-              <div class="disease-card-body">
-                <h3 class="disease-title">Acidity</h3>
-                <a href="/bundle-details" class="learn-more-btn">LEARN MORE</a>
-              </div>
-            </div>
-
-            <!-- Thyroid Card -->
-            <div class="disease-card">
-              <div class="disease-card-image">
-                <div class="disease-icon">
-                  <img :src="cleanUrl('/img/image/thyroid.png')" alt="" />
-                </div>
-              </div>
-              <div class="disease-card-body">
-                <h3 class="disease-title">Thyroid</h3>
-                <a href="/bundle-details" class="learn-more-btn">LEARN MORE</a>
-              </div>
-            </div>
-
-            <!-- Diabetes Card -->
-            <div class="disease-card">
-              <div class="disease-card-image">
-                <div class="disease-icon">
-                  <img :src="cleanUrl('/img/image/diabetes.png')" alt="" />
-                </div>
-              </div>
-              <div class="disease-card-body">
-                <h3 class="disease-title">Diabetes</h3>
-                <a href="/bundle-details" class="learn-more-btn">LEARN MORE</a>
-              </div>
-            </div>
-
-            <!-- Fatty Liver Card -->
-            <div class="disease-card">
-              <div class="disease-card-image">
-                <div class="disease-icon">
-                  <img :src="cleanUrl('/img/image/liver.png')" alt="" />
-                </div>
-              </div>
-              <div class="disease-card-body">
-                <h3 class="disease-title">Fatty Liver</h3>
-                <a href="/bundle-details" class="learn-more-btn">LEARN MORE</a>
-              </div>
+        <!-- Thyroid Card -->
+        <div class="disease-card">
+          <div class="disease-card-image">
+            <div class="disease-icon">
+              <img :src="cleanUrl('/img/image/thyroid.png')" alt="" />
             </div>
           </div>
-
-          <div class="view-more-section">
-            <a href="/diseases-bundle" class="view-more-btn">VIEW MORE</a>
+          <div class="disease-card-body">
+            <h3 class="disease-title">Thyroid</h3>
+            <a href="/bundle-details" class="learn-more-btn">LEARN MORE</a>
           </div>
         </div>
+
+        <!-- Diabetes Card -->
+        <div class="disease-card">
+          <div class="disease-card-image">
+            <div class="disease-icon">
+              <img :src="cleanUrl('/img/image/diabetes.png')" alt="" />
+            </div>
+          </div>
+          <div class="disease-card-body">
+            <h3 class="disease-title">Diabetes</h3>
+            <a href="/bundle-details" class="learn-more-btn">LEARN MORE</a>
+          </div>
+        </div>
+
+        <!-- Fatty Liver Card -->
+        <div class="disease-card">
+          <div class="disease-card-image">
+            <div class="disease-icon">
+              <img :src="cleanUrl('/img/image/liver.png')" alt="" />
+            </div>
+          </div>
+          <div class="disease-card-body">
+            <h3 class="disease-title">Fatty Liver</h3>
+            <a href="/bundle-details" class="learn-more-btn">LEARN MORE</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="view-more-section">
+        <a href="/diseases-bundle" class="view-more-btn">VIEW MORE</a>
       </div>
     </div>
   </section>

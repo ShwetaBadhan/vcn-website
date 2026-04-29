@@ -293,7 +293,7 @@
             <!-- ✅ jalandhar — v-show only, no extra class -->
             <div v-show="activeTab === 'jalandhar'">
               <div class="office-img-wrapper">
-                <img src="/img/about/office.jpg" alt="New Delhi Office" />
+                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
                 <span class="office-type-badge badge-head">🏢 Head Office</span>
               </div>
               <div class="office-detail-row">
@@ -351,7 +351,7 @@
             <!-- ✅ phagwara -->
             <div v-show="activeTab === 'phagwara'">
               <div class="office-img-wrapper">
-                <img src="/img/about/office.jpg" alt="New Delhi Office" />
+                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
                 <span class="office-type-badge badge-regional">🏢 Regional Office</span>
               </div>
               <div class="office-detail-row">
@@ -409,7 +409,7 @@
             <!-- ✅ ludhiana -->
             <div v-show="activeTab === 'ludhiana'">
               <div class="office-img-wrapper">
-                <img src="/img/about/office.jpg" alt="New Delhi Office" />
+                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
                 <span class="office-type-badge badge-warehouse">🏢 Regional Office</span>
               </div>
               <div class="office-detail-row">
@@ -467,7 +467,7 @@
             <!-- ✅ khanna -->
             <div v-show="activeTab === 'khanna'">
               <div class="office-img-wrapper">
-                <img src="/img/about/office.jpg" alt="New Delhi Office" />
+                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
                 <span class="office-type-badge badge-warehouse">🏢 Regional Office</span>
               </div>
               <div class="office-detail-row">
@@ -525,7 +525,7 @@
             <!-- ✅ moga -->
             <div v-show="activeTab === 'moga'">
               <div class="office-img-wrapper">
-                <img src="/img/about/office.jpg" alt="New Delhi Office" />
+                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
                 <span class="office-type-badge badge-warehouse">🏢 Regional Office</span>
               </div>
               <div class="office-detail-row">
@@ -582,7 +582,7 @@
             <!-- ✅ HOSHIARPUR -->
             <div v-show="activeTab === 'hoshiarpur'">
               <div class="office-img-wrapper">
-                <img src="/img/about/office.jpg" alt="New Delhi Office" />
+                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
                 <span class="office-type-badge badge-warehouse">🏢 Regional Office</span>
               </div>
               <div class="office-detail-row">
@@ -640,7 +640,7 @@
             <!-- ✅ Batala -->
             <div v-show="activeTab === 'batala'">
               <div class="office-img-wrapper">
-                <img src="/img/about/office.jpg" alt="New Delhi Office" />
+                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
                 <span class="office-type-badge badge-warehouse">🏢 Regional Office</span>
               </div>
               <div class="office-detail-row">
@@ -697,7 +697,7 @@
             <!-- ✅ Batala -->
             <div v-show="activeTab === 'dasuya'">
               <div class="office-img-wrapper">
-                <img src="/img/about/office.jpg" alt="New Delhi Office" />
+                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
                 <span class="office-type-badge badge-warehouse">🏢 Regional Office</span>
               </div>
               <div class="office-detail-row">
@@ -754,7 +754,7 @@
             <!-- ✅ delhi -->
             <div v-show="activeTab === 'delhi'">
               <div class="office-img-wrapper">
-                <img src="/img/about/office.jpg" alt="New Delhi Office" />
+                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
                 <span class="office-type-badge badge-warehouse">🏢 Regional Office</span>
               </div>
               <div class="office-detail-row">
@@ -812,7 +812,7 @@
             <!-- ✅ delhi -->
             <div v-show="activeTab === 'palampur'">
               <div class="office-img-wrapper">
-                <img src="/img/about/office.jpg" alt="New Delhi Office" />
+                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
                 <span class="office-type-badge badge-warehouse">🏢 Regional Office</span>
               </div>
               <div class="office-detail-row">
