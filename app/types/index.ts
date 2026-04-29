@@ -24,3 +24,13 @@ export type {
   ProductPricing,
   Category
 } from './product.ts'
+
+// Theme Types
+export type {
+  ThemeData,
+  ThemeResponse,
+  ThemeState
+} from './theme.ts'
+
+// Re-export ThemeData as default for convenience
+export type { ThemeData as default } from './theme.ts'

@@ -454,12 +454,12 @@ onUnmounted(() => {
   background: none;
   border: none;
   cursor: pointer;
-  color: #45663c;
+  color: var(--vcn-primary);
   z-index: 10000;
 }
 
 .close-btn:hover {
-  color: #45663c;
+  color: var(--vcn-primary);
 }
 
 /* Form Content */
@@ -469,7 +469,7 @@ onUnmounted(() => {
 
 .form-content h2 {
   margin-bottom: 30px;
-  color: #45663c;
+  color: var(--vcn-primary);
   font-size: 28px;
 }
 
@@ -480,14 +480,14 @@ onUnmounted(() => {
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  color: #45663c;
+  color: var(--vcn-primary);
   font-size: 14px;
 }
 
 .form-input {
   width: 100%;
   padding: 12px 15px;
-  border: 1px solid #45663c;
+  border: 1px solid var(--vcn-primary);
   border-radius: 8px;
   font-size: 14px;
   transition: border-color 0.3s;
@@ -495,7 +495,7 @@ onUnmounted(() => {
 
 .form-input:focus {
   outline: none;
-  border-color: #45663c;
+  border-color: var(--vcn-primary);
 }
 
 .password-wrapper {
@@ -517,7 +517,7 @@ onUnmounted(() => {
   display: block;
   text-align: right;
   margin-bottom: 20px;
-  color: #45663c;
+  color: var(--vcn-primary);
   text-decoration: none;
   font-size: 14px;
 }
@@ -529,7 +529,7 @@ onUnmounted(() => {
 .signin-btn {
   width: 100%;
   padding: 14px;
-  background-color: #45663c;
+  background-color: var(--vcn-primary);
   color: white;
   border: none;
   border-radius: 25px;
@@ -541,7 +541,7 @@ onUnmounted(() => {
 }
 
 .signin-btn:hover {
-  background-color: #45663c;
+  background-color: var(--vcn-primary);
 }
 
 .social-login {
@@ -551,7 +551,7 @@ onUnmounted(() => {
 
 .social-login p {
   margin-bottom: 10px;
-  color: #45663c;
+  color: var(--vcn-primary);
 }
 
 .social-icons {
@@ -564,7 +564,7 @@ onUnmounted(() => {
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  border: 1px solid #45663c;
+  border: 1px solid var(--vcn-primary);
   background: white;
   cursor: pointer;
   display: flex;
@@ -583,27 +583,27 @@ onUnmounted(() => {
 
 .register-section h3 {
   margin-bottom: 15px;
-  color: #45663c;
+  color: var(--vcn-primary);
   font-size: 20px;
 }
 
 .info-icon {
   font-size: 14px;
-  color: #45663c;
+  color: var(--vcn-primary);
 }
 
 .register-btn {
   width: 100%;
   padding: 12px;
   margin-bottom: 10px;
-  border: 2px solid #45663c;
+  border: 2px solid var(--vcn-primary);
   background: white;
   border-radius: 25px;
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s;
-  color: #45663c;
+  color: var(--vcn-primary);
 }
 
 .register-btn:hover {
@@ -630,8 +630,8 @@ onUnmounted(() => {
 
 /* Cart Count Badge */
 .cart-count-badge {
-  background: #d3fa99;
-  color: #45663c;
+  background: var(--vcn-badge);
+  color: var(--vcn-primary);
   border-radius: 50%;
   padding: 2px 6px;
   font-size: 11px;

@@ -3,7 +3,7 @@
   <section class="hero-section">
     <!-- Background Video -->
     <video autoplay muted loop playsinline class="video-bg" preload="metadata">
-      <source src="/video/video.mp4" type="video/mp4" />
+      <source src="/video/vcnCoverVideo.mp4" type="video/mp4" />
     </video>
 
     <!-- Overlay -->

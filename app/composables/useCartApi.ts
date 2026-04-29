@@ -15,17 +15,23 @@ export const useCartApi = () => {
   const config = useRuntimeConfig()
   const baseURL = config.public.apiBaseUrl
 
-  // Generate or retrieve session ID
+  // Generate or retrieve unique session ID
   const getSessionId = (): string => {
     if (typeof window !== 'undefined' && window.localStorage) {
       let sessionId = localStorage.getItem('vcn-session-id')
       if (!sessionId) {
-        sessionId = Date.now().toString()
+        // Use crypto.randomUUID for unique ID, fallback to timestamp + random
+        if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+          sessionId = crypto.randomUUID()
+        } else {
+          sessionId = `${Date.now()}-${Math.random().toString(36).substring(2, 15)}`
+        }
         localStorage.setItem('vcn-session-id', sessionId)
       }
       return sessionId
     }
-    return Date.now().toString()
+    // Fallback for SSR
+    return `${Date.now()}-${Math.random().toString(36).substring(2, 15)}`
   }
 
   // Helper to make API calls

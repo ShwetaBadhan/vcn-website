@@ -7,12 +7,14 @@
             <div class="row g-3">
               <div v-for="product in pair" :key="product.id" class="col-md-6">
                 <div class="product-card">
-                  <div class="product-image-wrapper">
+                  <NuxtLink :to="`/product-details/${product.slug}`" class="product-image-wrapper">
                     <img :src="getProductImage(product)" :alt="product.name" class="product-image" />
-                  </div>
+                  </NuxtLink>
                   <div class="product-content">
                     <span class="product-label">{{ product.label || 'AGE 18+' }}</span>
-                    <h3 class="product-title">{{ product.name }}</h3>
+                    <h3 class="product-title">
+                      <NuxtLink :to="`/product-details/${product.slug}`">{{ product.name }}</NuxtLink>
+                    </h3>
                     <p class="product-description" v-html="product.description"></p>
                     <div class="product-price">
                       ${{ getProductPrice(product).price }}
@@ -21,7 +23,7 @@
                       }}</span>
                     </div>
                     <div class="product-actions">
-                      <a :href="`/product-details/${product.slug}`" class="btn-learn">Learn More</a>
+                      <NuxtLink :to="`/product-details/${product.slug}`" class="btn-learn">Learn More</NuxtLink>
                       <a href="/cart" class="btn-cart">Add to Cart</a>
                     </div>
                   </div>
@@ -52,7 +54,7 @@ const productPairs = computed(() => {
 
 onMounted(async () => {
   await productStore.fetchProducts()
-  products.value = productStore.allProducts.slice(0, 6)
+  products.value = productStore.allProducts.slice(0, 4)
 })
 
 const getProductImage = (product) => {
@@ -75,5 +77,14 @@ const getProductPrice = (product) => {
 
 .product-card {
   height: 100%;
+}
+
+.product-title :deep(a) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-title :deep(a:hover) {
+  color: inherit;
 }
 </style>

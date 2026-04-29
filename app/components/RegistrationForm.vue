@@ -31,26 +31,15 @@
             <!-- First and Middle Name -->
             <div class="form-group">
               <label for="firstName">First and Middle Name <span class="required">*</span></label>
-              <input 
-                type="text" 
-                id="firstName" 
-                v-model="form.firstName" 
-                placeholder="As per ID proof"
-                class="form-input"
-              />
+              <input type="text" id="firstName" v-model="form.firstName" placeholder="As per ID proof"
+                class="form-input" />
               <span v-if="errors.firstName" class="error">{{ errors.firstName }}</span>
             </div>
 
             <!-- Email Address -->
             <div class="form-group">
               <label for="email">Email Address <span class="required">*</span></label>
-              <input 
-                type="email" 
-                id="email" 
-                v-model="form.email" 
-                placeholder="example@mail.com"
-                class="form-input"
-              />
+              <input type="email" id="email" v-model="form.email" placeholder="example@mail.com" class="form-input" />
               <span v-if="errors.email" class="error">{{ errors.email }}</span>
             </div>
 
@@ -59,15 +48,8 @@
               <label for="mobile">Mobile Number <span class="required">*</span></label>
               <div class="mobile-wrap">
                 <span class="code">+91</span>
-                <input 
-                  type="tel" 
-                  id="mobile" 
-                  v-model="form.mobile" 
-                  placeholder="XXXXXXXXXX"
-                  class="form-input"
-                  maxlength="10"
-                  @blur="handleMobileBlur"
-                />
+                <input type="tel" id="mobile" v-model="form.mobile" placeholder="XXXXXXXXXX" class="form-input"
+                  maxlength="10" @blur="handleMobileBlur" />
               </div>
               <span class="hint">Mobile Number will be used as your login ID</span>
               <span v-if="errors.mobile" class="error">{{ errors.mobile }}</span>
@@ -77,13 +59,8 @@
             <div class="form-group">
               <label for="password">Create password <span class="required">*</span></label>
               <div class="pwd-wrap">
-                <input 
-                  :type="showPwd ? 'text' : 'password'" 
-                  id="password" 
-                  v-model="form.password" 
-                  placeholder="Example - My@password1"
-                  class="form-input"
-                />
+                <input :type="showPwd ? 'text' : 'password'" id="password" v-model="form.password"
+                  placeholder="Example - My@password1" class="form-input" />
                 <button type="button" class="toggle-pwd" @click="showPwd = !showPwd">
                   {{ showPwd ? '🙈' : '👁️' }}
                 </button>
@@ -115,13 +92,8 @@
             <transition name="slide-down">
               <div v-if="form.knowABO === 'yes'" class="form-group conditional-field">
                 <label for="aboNumber">ABO Number <span class="required">*</span></label>
-                <input 
-                  type="text" 
-                  id="aboNumber" 
-                  v-model="form.aboNumber" 
-                  placeholder="Enter ABO Number"
-                  class="form-input"
-                />
+                <input type="text" id="aboNumber" v-model="form.aboNumber" placeholder="Enter ABO Number"
+                  class="form-input" />
                 <span v-if="errors.aboNumber" class="error">{{ errors.aboNumber }}</span>
               </div>
             </transition>
@@ -131,14 +103,8 @@
               <div v-if="form.knowABO === 'no'" class="form-group conditional-field">
                 <label for="pincode">Please enter Pincode <span class="required">*</span></label>
                 <div class="pincode-wrap">
-                  <input 
-                    type="text" 
-                    id="pincode" 
-                    v-model="form.pincode" 
-                    placeholder="Enter Pincode"
-                    class="form-input"
-                    maxlength="6"
-                  />
+                  <input type="text" id="pincode" v-model="form.pincode" placeholder="Enter Pincode" class="form-input"
+                    maxlength="6" />
                   <button type="button" class="verify-btn" @click="verifyPincode">
                     Verify
                   </button>
@@ -160,18 +126,9 @@
               </p>
 
               <div class="otp-inputs">
-                <input 
-                  v-for="(digit, index) in 6" 
-                  :key="index"
-                  type="text"
-                  maxlength="1"
-                  v-model="otp[index]"
-                  @input="(e) => handleOtpInput(e, index)"
-                  @keydown.backspace="(e) => handleBackspace(e, index)"
-                  @keydown="(e) => handleKeydown(e, index)"
-                  class="otp-box"
-                  :ref="(el) => setOtpRef(el, index)"
-                />
+                <input v-for="(digit, index) in 6" :key="index" type="text" maxlength="1" v-model="otp[index]"
+                  @input="(e) => handleOtpInput(e, index)" @keydown.backspace="(e) => handleBackspace(e, index)"
+                  @keydown="(e) => handleKeydown(e, index)" class="otp-box" :ref="(el) => setOtpRef(el, index)" />
               </div>
 
               <span v-if="otpError" class="error otp-error">{{ otpError }}</span>
@@ -267,7 +224,7 @@ const sendOTP = () => {
   console.log('📱 OTP sent to:', form.mobile)
   otpSent.value = true
   startCountdown()
-  
+
   setTimeout(() => {
     if (otpRefs.value[0]) {
       otpRefs.value[0].focus()
@@ -293,7 +250,7 @@ const verifyPincode = () => {
     pincodeVerified.value = false
     return
   }
-  
+
   const demoLocations = {
     '144020': 'JALANDHAR, Punjab',
     '144001': 'JALANDHAR CITY, Punjab',
@@ -301,7 +258,7 @@ const verifyPincode = () => {
     '400001': 'MUMBAI, Maharashtra',
     '560001': 'BANGALORE, Karnataka'
   }
-  
+
   setTimeout(() => {
     const location = demoLocations[form.pincode] || 'Sample City, State'
     locationText.value = location
@@ -313,15 +270,15 @@ const verifyPincode = () => {
 // OTP Handlers
 const handleOtpInput = (event, index) => {
   const value = event.target.value
-  
+
   if (!/^\d*$/.test(value)) {
     otp.value[index] = ''
     return
   }
-  
+
   otp.value[index] = value
   otpError.value = ''
-  
+
   if (value && index < 5) {
     if (otpRefs.value[index + 1]) {
       otpRefs.value[index + 1].focus()
@@ -354,7 +311,7 @@ const resendOTP = () => {
   otp.value = ['', '', '', '', '', '']
   otpError.value = ''
   startCountdown()
-  
+
   setTimeout(() => {
     if (otpRefs.value[0]) {
       otpRefs.value[0].focus()
@@ -365,9 +322,9 @@ const resendOTP = () => {
 const startCountdown = () => {
   canResend.value = false
   countdown.value = 30
-  
+
   if (countdownInterval) clearInterval(countdownInterval)
-  
+
   countdownInterval = setInterval(() => {
     countdown.value--
     if (countdown.value <= 0) {
@@ -381,39 +338,39 @@ const startCountdown = () => {
 const validateForm = () => {
   let isValid = true
   Object.keys(errors).forEach(key => errors[key] = '')
-  
+
   if (!form.firstName.trim()) {
     errors.firstName = 'First and Middle Name is required'
     isValid = false
   }
-  
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   if (!form.email.trim() || !emailRegex.test(form.email)) {
     errors.email = 'Please enter valid email address'
     isValid = false
   }
-  
+
   const mobileRegex = /^[6-9]\d{9}$/
   if (!mobileRegex.test(form.mobile)) {
     errors.mobile = 'Please enter valid 10-digit mobile number'
     isValid = false
   }
-  
+
   if (!form.password || form.password.length < 8) {
     errors.password = 'Password must be at least 8 characters'
     isValid = false
   }
-  
+
   if (!form.knowABO) {
     errors.knowABO = 'Please select an option'
     isValid = false
   }
-  
+
   if (form.knowABO === 'yes' && !form.aboNumber.trim()) {
     errors.aboNumber = 'ABO Number is required'
     isValid = false
   }
-  
+
   if (form.knowABO === 'no') {
     if (!form.pincode || form.pincode.length !== 6) {
       errors.pincode = 'Please enter valid 6-digit pincode'
@@ -423,7 +380,7 @@ const validateForm = () => {
       isValid = false
     }
   }
-  
+
   const otpValue = otp.value.join('')
   if (!otpSent.value) {
     errors.mobile = 'Please enter mobile number to receive OTP'
@@ -435,7 +392,7 @@ const validateForm = () => {
     otpError.value = 'Invalid OTP. Please use 123456 for demo.'
     isValid = false
   }
-  
+
   return isValid
 }
 
@@ -446,9 +403,9 @@ const submitForm = () => {
     firstError?.scrollIntoView({ behavior: 'smooth', block: 'center' })
     return
   }
-  
+
   isSubmitting.value = true
-  
+
   setTimeout(() => {
     console.log('✅ Registration Complete:', { ...form, otp: otp.value.join('') })
     step.value = 'success'
@@ -467,7 +424,7 @@ onUnmounted(() => {
   top: 0;
   right: 0;
   width: 100%;
- max-width: 450px;
+  max-width: 450px;
   height: 100vh;
   background: white;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
@@ -483,12 +440,12 @@ onUnmounted(() => {
   background: none;
   border: none;
   cursor: pointer;
-  color: #45663c;
+  color: var(--vcn-primary);
   z-index: 10;
 }
 
 .close-btn:hover {
-  color: #45663c;
+  color: var(--vcn-primary);
 }
 
 .step-content {
@@ -508,20 +465,20 @@ onUnmounted(() => {
 .welcome-title {
   font-size: 36px;
   font-weight: 700;
-  color: #45663c;
+  color: var(--vcn-primary);
   margin-bottom: 20px;
 }
 
 .welcome-text {
   font-size: 18px;
-  color: #45663c;
+  color: var(--vcn-primary);
   margin-bottom: 30px;
   line-height: 1.6;
 }
 
 .requirements-text {
   font-size: 15px;
-  color: #45663c;
+  color: var(--vcn-primary);
   margin-bottom: 50px;
   line-height: 1.6;
   max-width: 400px;
@@ -529,18 +486,18 @@ onUnmounted(() => {
 
 .btn-register {
   padding: 16px 80px;
-  border: 2px solid #45663c;
+  border: 2px solid var(--vcn-primary);
   background: white;
   border-radius: 30px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
-  color: #45663c;
+  color: var(--vcn-primary);
 }
 
 .btn-register:hover {
-  background: #45663c;
+  background: var(--vcn-primary);
   color: white;
 }
 
@@ -548,13 +505,13 @@ onUnmounted(() => {
 .form-title {
   font-size: 26px;
   font-weight: 700;
-  color: #45663c;
+  color: var(--vcn-primary);
   margin-bottom: 10px;
 }
 
 .form-subtitle {
   font-size: 14px;
-  color: #45663c;
+  color: var(--vcn-primary);
   margin-bottom: 30px;
   line-height: 1.5;
 }
@@ -567,7 +524,7 @@ onUnmounted(() => {
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  color: #45663c;
+  color: var(--vcn-primary);
   font-size: 14px;
   font-weight: 500;
 }
@@ -594,7 +551,7 @@ onUnmounted(() => {
 
 .form-input:focus {
   outline: none;
-  border-color: #45663c;
+  border-color: var(--vcn-primary);
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
 }
 
@@ -624,7 +581,7 @@ onUnmounted(() => {
   border-right: none;
   border-radius: 8px 0 0 8px;
   font-size: 15px;
-  color: #45663c;
+  color: var(--vcn-primary);
 }
 
 .mobile-wrap .form-input {
@@ -660,7 +617,7 @@ onUnmounted(() => {
   gap: 8px;
   cursor: pointer;
   font-size: 15px;
-  color: #45663c;
+  color: var(--vcn-primary);
 }
 
 .radio-label input[type="radio"] {
@@ -679,6 +636,7 @@ onUnmounted(() => {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -746,7 +704,7 @@ onUnmounted(() => {
 
 .otp-text {
   font-size: 13px;
-  color: #45663c;
+  color: var(--vcn-primary);
   margin-bottom: 15px;
 }
 
@@ -770,7 +728,7 @@ onUnmounted(() => {
 
 .otp-box:focus {
   outline: none;
-  border-color: #45663c;
+  border-color: var(--vcn-primary);
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
 }
 
@@ -786,13 +744,13 @@ onUnmounted(() => {
 
 .resend-timer {
   font-size: 13px;
-  color: #45663c;
+  color: var(--vcn-primary);
 }
 
 .resend-link {
   background: none;
   border: none;
-  color: #45663c;
+  color: var(--vcn-primary);
   font-size: 13px;
   cursor: pointer;
   text-decoration: underline;
@@ -806,7 +764,7 @@ onUnmounted(() => {
 .btn-submit {
   width: 100%;
   padding: 16px;
-  background: #45663c;
+  background: var(--vcn-primary);
   color: white;
   border: none;
   border-radius: 8px;
@@ -818,7 +776,7 @@ onUnmounted(() => {
 }
 
 .btn-submit:hover:not(:disabled) {
-  background: #45663c;
+  background: var(--vcn-primary);
 }
 
 .btn-submit:disabled {
@@ -853,13 +811,13 @@ onUnmounted(() => {
 .success-title {
   font-size: 26px;
   font-weight: 700;
-  color: #45663c;
+  color: var(--vcn-primary);
   margin-bottom: 15px;
 }
 
 .success-text {
   font-size: 16px;
-  color: #45663c;
+  color: var(--vcn-primary);
   margin-bottom: 40px;
   line-height: 1.6;
   max-width: 350px;
@@ -867,7 +825,7 @@ onUnmounted(() => {
 
 .btn-continue {
   padding: 16px 60px;
-  background: #45663c;
+  background: var(--vcn-primary);
   color: white;
   border: none;
   border-radius: 30px;
@@ -878,7 +836,7 @@ onUnmounted(() => {
 }
 
 .btn-continue:hover {
-  background: #45663c;
+  background: var(--vcn-primary);
 }
 
 /* Slide Animation */
@@ -897,30 +855,30 @@ onUnmounted(() => {
   .registration-container {
     max-width: 100%;
   }
-  
+
   .welcome-title {
     font-size: 28px;
   }
-  
+
   .welcome-text {
     font-size: 16px;
   }
-  
+
   .btn-register {
     padding: 14px 60px;
     font-size: 15px;
   }
-  
+
   .otp-box {
     width: 40px;
     height: 50px;
     font-size: 18px;
   }
-  
+
   .pincode-wrap {
     flex-direction: column;
   }
-  
+
   .verify-btn {
     width: 100%;
   }

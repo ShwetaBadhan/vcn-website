@@ -51,7 +51,16 @@
 
             <div class="row">
               <div class="col-lg-6">
-                <a href="product-details" class="routine-cta-button">Add Bundle • Save 25%</a>
+                <ClientOnly>
+                  <button v-if="!isBundleInCart()" @click="addBundleToCart" class="routine-cta-button">
+                    Add Bundle • Save 25%
+                  </button>
+                  <div v-else class="bundle-quantity-control">
+                    <button class="bundle-qty-btn minus" @click="decrementBundle">−</button>
+                    <span class="bundle-qty-value">{{ getBundleQuantity() }}</span>
+                    <button class="bundle-qty-btn plus" @click="incrementBundle">+</button>
+                  </div>
+                </ClientOnly>
               </div>
             </div>
           </div>
@@ -73,6 +82,7 @@ const { initializeCart } = useAuthCart()
 const bundleProducts = [
   {
     id: 'dbt-care-plus-bundle',
+    variantId: 3, // Numeric variantId for cart API sync
     name: 'DBT Care Plus — Blood Sugar Control Bundle',
     price: 149.99, // Original price would be higher, showing 25% discount
     image: 'https://assets.embeddables.com/original_62998291cdb5edc86ad19cdfdf54281621_28613920912340585.png',
@@ -80,6 +90,7 @@ const bundleProducts = [
   },
   {
     id: 'vcn-dbt-care-juice',
+    variantId: 4, // Numeric variantId for cart API sync
     name: 'VCN DBT Care Plus — Herbal Juice',
     price: 89.99,
     image: 'https://assets.embeddables.com/original_62998291cdb5edc86ad19cdfdf54281621_28613920912340585.png',
@@ -127,14 +138,30 @@ const decrementBundle = () => {
 </script>
 
 <style scoped>
+.routine-cta-button {
+  display: block;
+  width: 100%;
+  padding: 12px 24px;
+  background: white;
+  color:var(--vcn-primary);
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+  text-align: center;
+  text-decoration: none;
+}
+
 .bundle-quantity-control {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   background: white;
   border: 2px solid var(--vcn-primary);
   border-radius: 25px;
-  padding: 8px 16px;
+  padding: 6px 12px;
 }
 
 .bundle-qty-btn {

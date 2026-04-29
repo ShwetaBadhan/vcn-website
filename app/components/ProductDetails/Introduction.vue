@@ -61,7 +61,7 @@
                 <div v-if="selectedVariant" class="variant-info mt-2">
                   <span class="variant-sku-display">SKU: {{ selectedVariant.sku }}</span>
                   <span v-if="selectedVariant.weight" class="variant-weight-display">Weight: {{ selectedVariant.weight
-                  }} {{ selectedVariant.unit?.name || 'ml' }}</span>
+                    }} {{ selectedVariant.unit?.name || 'ml' }}</span>
                   <span v-if="product.discountValue > 0" class="variant-discount">{{ product.discountValue }}{{
                     product.discountType === 'PERCENTAGE' ? '%' : '₹' }} OFF</span>
                 </div>
@@ -104,8 +104,7 @@
             </div>
             <div class="bundle-card mt-5">
               <div class="bundle-image">
-                <img src="/img/productsdetails/BOOSTER.png"
-                  alt="VCN-02 Daily Multivitamin" />
+                <img src="/img/productsdetails/BOOSTER.png" alt="VCN-02 Daily Multivitamin" />
               </div>
               <div class="bundle-content">
                 <h3>Bundle + Save 25%</h3>
@@ -287,8 +286,9 @@ watch(() => product.value, (newProduct) => {
 
 // Bundle product data (can be updated based on API later)
 const bundleProduct = {
-  id: 'dm-02-daily-multivitamin',
-  name: 'DM-02™ Daily Multivitamin',
+  id: 'VCN-02',
+  variantId: 2, // Numeric variantId for cart API sync
+  name: 'VCN-02',
   price: 67.48,
   image: 'https://assets.embeddables.com/Frame1739331849_5922073548695651.png',
   subscription: 'One-time purchase'
@@ -584,7 +584,7 @@ const openProductPreview = (imageSrc) => {
 }
 
 .variant-discount {
-  color: #28a745;
+  color: var(--vcn-primary);
   font-weight: 600;
 }
 
