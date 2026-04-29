@@ -4,7 +4,7 @@
  <ProductDetailsFormulationSection />
  <ProductDetailsBundleSection />
  <ProductDetailsBenefitsSection />
- <ProductDetailsCellularEnergySection />
+ <!-- <ProductDetailsCellularEnergySection /> -->
  <!-- <ProductDetailsCompareSection /> -->
  <ProductDetailsRigorousSection />
  <!-- <ProductDetailsProbioticSection /> -->

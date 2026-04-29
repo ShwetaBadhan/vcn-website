@@ -50,9 +50,7 @@
               <ul class="dropdown-menu">
                 <li>
                   <a class="dropdown-item" href="/our-journey">
-                    <img
-                      src="/img/drop-down/abput us.png"
-                      alt="Approach" />
+                    <img src="/img/drop-down/abput us.png" alt="Approach" />
                     <strong>About us</strong>
                   </a>
                 </li>
@@ -105,20 +103,16 @@
               <a class="nav-link" href="#">Learn</a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="/blogs">
-                    <img
-                      src="/img/drop-down/blog.png"
-                      alt="Research" />
+                  <NuxtLink class="dropdown-item" to="/blog">
+                    <img src="/img/drop-down/blog.png" alt="Research" />
                     Blogs
-                  </a>
+                  </NuxtLink>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
-                    <img
-                      src="/img/drop-down/sustainability.png"
-                      alt="Research" />
+                  <NuxtLink class="dropdown-item" to="/contact-us">
+                    <img src="/img/drop-down/sustainability.png" alt="Research" />
                     Contact Us
-                  </a>
+                  </NuxtLink>
                 </li>
               </ul>
             </li>
@@ -134,6 +128,10 @@
             </ClientOnly>
           </a>
 
+        </div>
+
+        <!-- Sign In Modal (Teleport to body for proper stacking) -->
+        <teleport to="body">
           <!-- Overlay -->
           <transition name="fade">
             <div v-if="isOpen" class="overlay" @click="closeForm"></div>
@@ -182,7 +180,6 @@
 
                   <div class="register-section">
                     <h3>Register <span class="info-icon">ⓘ</span></h3>
-                    <!-- NEW CODE (paste karo): -->
                     <button type="button" class="register-btn" @click="openRegistration('preferred-customer')">
                       PREFERRED CUSTOMER
                     </button>
@@ -199,8 +196,7 @@
               </div>
             </div>
           </transition>
-
-        </div>
+        </teleport>
 
 
 
@@ -244,7 +240,7 @@
           <!-- Science Accordion -->
           <div class="dropdown-content" id="scienceAccordion">
             <div class="dropdown-menu-mobile">
-             
+
               <a class="dropdown-item" href="/our-leadership">
                 <img src="/img/drop-down/abput us.png" alt="VCN Labs" />
                 <strong>About Us</strong>
@@ -253,7 +249,7 @@
                 <img src="/img/image/vcnlabs.png" alt="VCN Labs" />
                 <strong>Book Consultancy</strong>
               </a>
-             
+
             </div>
           </div>
 
@@ -261,15 +257,11 @@
           <div class="dropdown-content" id="learnAccordion">
             <div class="dropdown-menu-mobile">
               <a class="dropdown-item" href="/blogs">
-                <img
-                  src="/img/drop-down/blog.png"
-                  alt="Research" />
+                <img src="/img/drop-down/blog.png" alt="Research" />
                 Blogs
               </a>
               <a class="dropdown-item" href="/contact-us">
-                <img
-                  src="/img/drop-down/sustainability.png"
-                  alt="Research" />
+                <img src="/img/drop-down/sustainability.png" alt="Research" />
                 Contact Us
               </a>
             </div>
@@ -434,7 +426,7 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 998;
+  z-index: 9998;
 }
 
 /* Slide Form Container */
@@ -445,10 +437,12 @@ onUnmounted(() => {
   width: 100%;
   max-width: 450px;
   height: 100vh;
+  max-height: 100vh;
   background-color: white;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
-  z-index: 999;
+  z-index: 9999;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* Close Button */
@@ -461,7 +455,7 @@ onUnmounted(() => {
   border: none;
   cursor: pointer;
   color: #45663c;
-  z-index: 1000;
+  z-index: 10000;
 }
 
 .close-btn:hover {

@@ -8,45 +8,17 @@
           <div class="product-img-wrapper">
             <div class="product-image-cards"
               style="max-height: 500px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-              <img id="mainImage" :src="productImage" :alt="productName" @click="openProductPreview(productImage)"
+              <img id="mainImage" :src="displayImage" :alt="productName" @click="openProductPreview(displayImage)"
                 style="max-width: 100%; max-height: 500px; width: auto; height: auto; object-fit: contain;" />
             </div>
           </div>
 
-          <!-- THUMBNAILS - Static images -->
-          <div class="row mt-3">
-            <div class="col-6 mb-3">
+          <!-- THUMBNAILS - Dynamic product images -->
+          <div class="row mt-3" v-if="allProductImages.length > 0">
+            <div v-for="(img, index) in allProductImages" :key="index" class="col-6 mb-3">
               <div class="product-gallery">
-                <div class="gallery-item">
-                  <img class="thumb" src="/img/productsdetails/comonimages2.png"
-                    @click="openProductPreview('/img/productsdetails/comonimages2.png')" />
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 mb-3">
-              <div class="product-gallery">
-                <div class="gallery-item">
-                  <img class="thumb" src="/img/productsdetails/ds-01.png"
-                    @click="openProductPreview('/img/productsdetails/ds-01.png')" />
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 mb-3">
-              <div class="product-gallery">
-                <div class="gallery-item">
-                  <img class="thumb" src="/img/productsdetails/comonimages4.png"
-                    @click="openProductPreview('/img/productsdetails/comonimages4.png')" />
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 mb-3">
-              <div class="product-gallery">
-                <div class="gallery-item">
-                  <img class="thumb" src="/img/productsdetails/dbtpageimage( 424by24 ).png"
-                    @click="openProductPreview('/img/productsdetails/dbtpageimage( 424by24 ).png')" />
+                <div class="gallery-item" :class="{ 'active': selectedImage === img }">
+                  <img class="thumb" :src="img" :alt="productName" @click="selectImage(img)" />
                 </div>
               </div>
             </div>
@@ -89,7 +61,7 @@
                 <div v-if="selectedVariant" class="variant-info mt-2">
                   <span class="variant-sku-display">SKU: {{ selectedVariant.sku }}</span>
                   <span v-if="selectedVariant.weight" class="variant-weight-display">Weight: {{ selectedVariant.weight
-                    }} {{ selectedVariant.unit?.name || 'ml' }}</span>
+                  }} {{ selectedVariant.unit?.name || 'ml' }}</span>
                   <span v-if="product.discountValue > 0" class="variant-discount">{{ product.discountValue }}{{
                     product.discountType === 'PERCENTAGE' ? '%' : '₹' }} OFF</span>
                 </div>
@@ -142,8 +114,8 @@
                   first order.
                 </p>
                 <div class="bundle-price">
-                  <span class="current-price">$67.48</span>
-                  <span class="original-price">$89.98</span>
+                  <span class="current-price">₹67.48</span>
+                  <span class="original-price">₹89.98</span>
                 </div>
               </div>
               <div class="bundle-action">
@@ -261,12 +233,56 @@ const productImage = computed(() => {
   return product.value?.image || '/img/products/New-Project.png'
 })
 
-// Set default variant when product loads
+// Track selected main image
+const selectedImage = ref(null)
+
+// Select image for main preview
+const selectImage = (imageSrc) => {
+  selectedImage.value = imageSrc
+}
+
+// All product images (primary + variants)
+const allProductImages = computed(() => {
+  const images = []
+
+  // Add product-level images
+  if (product.value?.images?.length) {
+    product.value.images.forEach(img => {
+      if (img?.image && !images.includes(img.image)) {
+        images.push(img.image)
+      }
+    })
+  }
+
+  // Add variant images
+  if (product.value?.variants?.length) {
+    product.value.variants.forEach(variant => {
+      if (variant?.productImages?.length) {
+        variant.productImages.forEach(img => {
+          if (img?.image && !images.includes(img.image)) {
+            images.push(img.image)
+          }
+        })
+      }
+    })
+  }
+
+  return images.length > 0 ? images : [product.value?.image || '/img/products/New-Project.png']
+})
+
+// Main image to display
+const displayImage = computed(() => {
+  return selectedImage.value || productImage.value
+})
+
+// Set default variant and selected image when product loads
 watch(() => product.value, (newProduct) => {
   if (newProduct?.variants?.length) {
     const defaultVariant = newProduct.variants.find(v => v.isDefault) || newProduct.variants[0]
     selectedVariant.value = defaultVariant
   }
+  // Reset selected image when product changes
+  selectedImage.value = null
 }, { immediate: true })
 
 // Bundle product data (can be updated based on API later)
@@ -570,5 +586,39 @@ const openProductPreview = (imageSrc) => {
 .variant-discount {
   color: #28a745;
   font-weight: 600;
+}
+
+/* Active thumbnail highlight */
+.gallery-item.active {
+  border: 2px solid var(--vcn-primary);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.gallery-item.active .thumb {
+  opacity: 1;
+}
+
+.gallery-item .thumb {
+  cursor: pointer;
+  transition: opacity 0.2s;
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  object-position: center;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.gallery-item:hover .thumb {
+  opacity: 0.8;
+}
+
+.gallery-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
 }
 </style>

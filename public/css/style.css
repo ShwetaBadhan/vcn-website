@@ -324,7 +324,9 @@ body.menu-open .navbar-brand.d-lg-none {
   width: 50px;
   height: 50px;
   object-fit: contain;
+  object-position: center;
   border-radius: 8px;
+  background-color: #f8f9fa;
 }
 
 .dropdown-footer {
@@ -417,9 +419,10 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
 
   position: fixed;
-  top: 0; 
-  left: 0; 
-  width: 0; /* Initially hidden */
+  top: 0;
+  left: 0;
+  width: 0;
+  /* Initially hidden */
   position: absolute;
   top: 0;
   left: 0;
@@ -562,7 +565,8 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   width: 60px;
   height: 60px;
   border-radius: 10px;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   flex-shrink: 0;
 }
 
@@ -728,6 +732,9 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   .desktop-nav .dropdown-item img {
     width: 70px;
     height: 70px;
+    object-fit: contain;
+    object-position: center;
+    background-color: #f8f9fa;
   }
 
   /* Right Section Container */
@@ -3081,11 +3088,8 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .vcn-stories-card:nth-child(2)::before {
-<<<<<<< HEAD
   background-color: var(--vcn-primary);
-=======
   background-image: url("../img/image/Stories from scientists  806.png");
->>>>>>> 90ae94594fab12d7203066eed687df603235f7e8
 }
 
 /* Gradient overlay */
@@ -3096,11 +3100,9 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(69, 102, 60, 0.85) 0%,
-    rgba(58, 95, 48, 0.75) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(69, 102, 60, 0.85) 0%,
+      rgba(58, 95, 48, 0.75) 100%);
   z-index: 2;
 }
 
@@ -3518,7 +3520,8 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .vcn-awaken-copyright {
-  position: relative; /* Absolute ki jagah relative */
+  position: relative;
+  /* Absolute ki jagah relative */
   bottom: auto;
   left: auto;
   transform: none;

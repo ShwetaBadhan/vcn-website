@@ -17,7 +17,7 @@
             promote long-term digestive health and greater post-meal comfort.
           </p>
           <br />
-          <a href="" class="learn-more-btn mt-5">Talk to Experts</a>
+          <NuxtLink to="/book-consultancy" class="learn-more-btn mt-5">Talk to Experts</NuxtLink>
         </div>
         <div class="col-lg-6">
           <img src="https://vcarenetwork.in/login/public/uploads/section/26/img_687de7647f0803.56861309.jpg"
@@ -298,8 +298,8 @@
     <h1 class="main-heading">Know More About Acidity</h1>
     <div class="expand-section">
       <!-- What's the reason section -->
-      <div class="expandable-section" id="reasonSection">
-        <div class="accordion-trigger" onclick="toggleSection('reasonSection')">
+      <div class="expandable-section" :class="{ active: activeSection === 'reasonSection' }">
+        <div class="accordion-trigger" @click="toggleSection('reasonSection')">
           <div class="trigger-left-area">
             <div class="circle-badge">
               <img src="https://www.miduty.in/cdn/shop/files/reason-faq-img.png?v=1681489769" alt="" />
@@ -308,7 +308,7 @@
           </div>
           <span class="arrow-indicator">›</span>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" v-show="activeSection === 'reasonSection'">
           <div class="items-layout">
             <div class="feature-block">
               <div class="feature-symbol">🌶️</div>
@@ -358,8 +358,8 @@
       </div>
 
       <!-- What to avoid section -->
-      <div class="expandable-section" id="avoidSection">
-        <div class="accordion-trigger" onclick="toggleSection('avoidSection')">
+      <div class="expandable-section" :class="{ active: activeSection === 'avoidSection' }">
+        <div class="accordion-trigger" @click="toggleSection('avoidSection')">
           <div class="trigger-left-area">
             <div class="circle-badge">
               <img src="https://www.miduty.in/cdn/shop/files/avoid.png?v=1690353201" alt="" />
@@ -368,7 +368,7 @@
           </div>
           <span class="arrow-indicator">›</span>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" v-show="activeSection === 'avoidSection'">
           <div class="items-layout">
             <div class="feature-block">
               <div class="feature-symbol">☕</div>
@@ -395,8 +395,8 @@
       </div>
 
       <!-- Risk Factors section -->
-      <div class="expandable-section" id="riskSection">
-        <div class="accordion-trigger" onclick="toggleSection('riskSection')">
+      <div class="expandable-section" :class="{ active: activeSection === 'riskSection' }">
+        <div class="accordion-trigger" @click="toggleSection('riskSection')">
           <div class="trigger-left-area">
             <div class="circle-badge">
               <img src="https://www.miduty.in/cdn/shop/files/Group_2609999.png?v=1681698542" alt="" />
@@ -405,7 +405,7 @@
           </div>
           <span class="arrow-indicator">›</span>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" v-show="activeSection === 'riskSection'">
           <div class="items-layout">
             <div class="feature-block">
               <div class="feature-symbol">🚬</div>
@@ -432,8 +432,8 @@
       </div>
 
       <!-- Golden Tips section -->
-      <div class="expandable-section" id="tipsSection">
-        <div class="accordion-trigger" onclick="toggleSection('tipsSection')">
+      <div class="expandable-section" :class="{ active: activeSection === 'tipsSection' }">
+        <div class="accordion-trigger" @click="toggleSection('tipsSection')">
           <div class="trigger-left-area">
             <div class="circle-badge">
               <img src="https://www.miduty.in/cdn/shop/files/golden-tips.png?v=1690353144" alt="" />
@@ -442,7 +442,7 @@
           </div>
           <span class="arrow-indicator">›</span>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" v-show="activeSection === 'tipsSection'">
           <div class="items-layout">
             <div class="feature-block">
               <div class="feature-symbol">🥗</div>
@@ -535,9 +535,17 @@
   </div>
 </template>
 <script setup>
+import { ref } from 'vue'
+
 useHead({
   bodyAttrs: {
     class: 'product-details-page'
   }
 })
+
+const activeSection = ref(null)
+
+const toggleSection = (sectionId) => {
+  activeSection.value = activeSection.value === sectionId ? null : sectionId
+}
 </script>
