@@ -6227,11 +6227,11 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .cart-product-image {
-  width: 100px;
-  height: 160px;
-  object-fit: cover;
+  width: 150px;
+  height: 170px;
+  object-fit: contain;
   border-radius: 8px;
-  background-color: #f8f8f8;
+  padding: 5px;
 }
 
 .cart-product-details {
@@ -6309,7 +6309,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
 .cart-suggested-image {
   width: 150px;
-  height: 150px;
+  height: 210px;
   /* object-fit: cover; */
   margin: 0 auto 20px;
   /* background-color: #f8f8f8; */
@@ -11777,7 +11777,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .content-section {
-  padding: 0 60px 40px;
+  padding: 0;
   max-width: 1200px;
   margin: 0 auto;
 }

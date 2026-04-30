@@ -1,5 +1,6 @@
 <template>
   <ProductDetailsIntroduction />
+  <ProductDetailsStrainSection />
   <ProductDetailsHealthSection />
   <ProductDetailsFormulationSection />
   <ProductDetailsBundleSection />
@@ -10,7 +11,6 @@
   <!-- <ProductDetailsProbioticSection /> -->
   <ProductDetailsDifferenceSection />
   <!-- <ProductDetailsStrengthenSection /> -->
-  <ProductDetailsStrainSection />
   <ProductDetailsProducts />
   <ProductDetailsReviewSection />
 </template>

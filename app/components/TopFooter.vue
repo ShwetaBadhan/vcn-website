@@ -162,9 +162,9 @@
                   <li>
                     <a href="/login" class="vcn-footer-link">My Account</a>
                   </li>
-                  <li>
+                  <!-- <li>
                     <a href="/entire-world" class="vcn-footer-link">International</a>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
 

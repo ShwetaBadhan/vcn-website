@@ -102,7 +102,7 @@
                 </div>
               </div>
             </div>
-            <div class="bundle-card mt-5">
+            <div class="bundle-card mt-5"> 
               <div class="bundle-image">
                 <img src="/img/productsdetails/BOOSTER.png" alt="VCN-02 Daily Multivitamin" />
               </div>
@@ -129,7 +129,7 @@
                   </div>
                 </ClientOnly>
               </div>
-            </div>
+            </div> 
           </div>
         </div>
       </div>
@@ -290,7 +290,7 @@ const bundleProduct = {
   variantId: 2, // Numeric variantId for cart API sync
   name: 'VCN-02',
   price: 67.48,
-  image: 'https://assets.embeddables.com/Frame1739331849_5922073548695651.png',
+  image: '/img/productsdetails/BOOSTER.png',
   subscription: 'One-time purchase'
 }
 
