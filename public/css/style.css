@@ -36,6 +36,21 @@ body.cart-page .navbar a:hover {
   color: #1c3a13 !important;
 }
 
+/* Checkout page specific navbar link colors */
+body.checkout-page .desktop-nav .nav-link,
+body.checkout-page .desktop-nav a,
+body.checkout-page .navbar .nav-link,
+body.checkout-page .navbar a {
+  color: var(--vcn-primary) !important;
+}
+
+body.checkout-page .desktop-nav .nav-link:hover,
+body.checkout-page .desktop-nav a:hover,
+body.checkout-page .navbar .nav-link:hover,
+body.checkout-page .navbar a:hover {
+  color: #1c3a13 !important;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -2428,26 +2443,27 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 /* ========== Disease Bundles Section ========== */
 .disease-bundles-container {
   width: 100%;
+  height: 100vh;
   opacity: 0;
   transform: scale(0.95);
   pointer-events: none;
   transition: all 0.6s ease;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
   background: #eeeee9;
   border-radius: 20px;
   padding: 40px;
   overflow-y: auto;
   display: none;
+  z-index: 1000;
 }
 
 .disease-bundles-container.active {
   opacity: 1;
   transform: scale(1);
   pointer-events: all;
-  position: relative;
+  position: fixed;
   display: block;
 }
 
@@ -2478,22 +2494,22 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
 .close-button {
   position: absolute;
-  top: -15px;
-  right: -15px;
+  top: 10px;
+  right: 10px;
   background: var(--vcn-primary);
   color: white;
   border: none;
-  width: 44px;
-  height: 44px;
   border-radius: 50%;
-  font-size: 1.5rem;
+  width: 45px;
+  height: 45px;
+  font-size: 24px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  z-index: 10;
+  z-index: 1001;
 }
 
 .close-button:hover {

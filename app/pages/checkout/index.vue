@@ -257,4 +257,10 @@ onMounted(async () => {
     await cartStore.loadCart()
   }
 })
+
+useHead({
+  bodyAttrs: {
+    class: 'checkout-page'
+  }
+})
 </script>

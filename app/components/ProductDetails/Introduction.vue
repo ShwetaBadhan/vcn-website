@@ -79,7 +79,7 @@
               Pause or cancel anytime.
             </div>
 
-            <a href="cart" class="btn-start-now">Start Now</a>
+            <button type="button" class="btn-start-now" @click="handleStartNow">Start Now</button>
 
             <p class="subscribe-text">
               30-day risk-free guarantee. Free US shipping.
@@ -425,6 +425,35 @@ const addVariantToCart = () => {
     quantity: 1
   }
   cartStore.addToCart(cartItem)
+}
+
+// Handle Start Now button - add to cart and navigate
+const handleStartNow = async () => {
+  // If no variant selected, select the default one first
+  if (!selectedVariant.value && product.value?.variants?.length > 0) {
+    const defaultVariant = product.value.variants.find(v => v.isDefault) || product.value.variants[0]
+    selectedVariant.value = defaultVariant
+  }
+
+  // Add to cart
+  if (selectedVariant.value) {
+    addVariantToCart()
+  } else if (product.value) {
+    // Add product without variant
+    const cartItem = {
+      id: product.value.id,
+      productId: product.value.id,
+      name: product.value.name,
+      price: productPrice.value,
+      mrp: productMrp.value,
+      image: resolveProductImage(),
+      quantity: 1
+    }
+    await cartStore.addToCart(cartItem)
+  }
+
+  // Navigate to cart
+  await navigateTo('/cart')
 }
 
 // SSR-safe product preview function

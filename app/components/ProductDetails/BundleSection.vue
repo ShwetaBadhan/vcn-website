@@ -143,7 +143,7 @@ const decrementBundle = () => {
   width: 100%;
   padding: 12px 24px;
   background: white;
-  color:var(--vcn-primary);
+  color: var(--vcn-primary);
   border: none;
   border-radius: 25px;
   font-size: 16px;
@@ -157,11 +157,12 @@ const decrementBundle = () => {
 .bundle-quantity-control {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 20px;
   background: white;
   border: 2px solid var(--vcn-primary);
   border-radius: 25px;
-  padding: 6px 12px;
+  padding: 10px 31px;
+  width: 130px;
 }
 
 .bundle-qty-btn {
@@ -171,7 +172,7 @@ const decrementBundle = () => {
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  width: 24px;
+  width: 20px;
   height: 24px;
   display: flex;
   align-items: center;
@@ -188,7 +189,7 @@ const decrementBundle = () => {
 .bundle-qty-value {
   color: var(--vcn-primary);
   font-weight: 600;
-  min-width: 20px;
+  min-width: 10px;
   text-align: center;
 }
 </style>

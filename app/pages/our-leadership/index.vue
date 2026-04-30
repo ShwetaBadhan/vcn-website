@@ -31,11 +31,7 @@
               </div>
             </section>
 
-<<<<<<< HEAD
             <!--   Section -->
-=======
-            <!-- Management Section -->
->>>>>>> 90ae94594fab12d7203066eed687df603235f7e8
             <!-- <section class="management-section">
               <div class="container">
                 <h2 class="section-title">Management</h2>

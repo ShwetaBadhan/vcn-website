@@ -103,11 +103,18 @@ export const useCartStore = defineStore('cart', {
             const response = await deleteCartItem(item.cartItemId)
             if (response.success) {
               console.log('Cart item deleted from backend')
+            } else if (response.message?.includes('404') || response.message?.includes('400')) {
+              console.log('Backend delete API error - item removed from localStorage only')
             } else {
               console.warn('Failed to delete cart item from backend:', response.message)
             }
-          } catch (error) {
-            console.error('Error deleting cart item from backend:', error)
+          } catch (error: any) {
+            if (error?.message?.includes('404') || error?.statusCode === 404 ||
+              error?.message?.includes('400') || error?.statusCode === 400) {
+              console.log('Backend delete API error - item removed from localStorage only')
+            } else {
+              console.error('Error deleting cart item from backend:', error)
+            }
           }
         }
       }
@@ -195,10 +202,20 @@ export const useCartStore = defineStore('cart', {
           if (response.success) {
             console.log('Cart item quantity updated on backend')
           } else {
-            console.warn('Failed to update cart item quantity on backend:', response.message)
+            // Silently ignore 404 errors (API not deployed)
+            if (response.message?.includes('404')) {
+              console.log('Backend update API not available - changes saved to localStorage only')
+            } else {
+              console.warn('Failed to update cart item quantity on backend:', response.message)
+            }
           }
-        } catch (error) {
-          console.error('Error updating cart item quantity:', error)
+        } catch (error: any) {
+          // Silently ignore 404 errors
+          if (error?.message?.includes('404') || error?.statusCode === 404) {
+            console.log('Backend update API not available - changes saved to localStorage only')
+          } else {
+            console.error('Error updating cart item quantity:', error)
+          }
         }
       }
     },
@@ -423,10 +440,20 @@ export const useCartStore = defineStore('cart', {
             const cartItemId = response.items?.[0]?.cartItemId || response.cartItemId
             return { cartItemId, success: true }
           } else {
+            // Check if it's a 404 (API not deployed yet) - work in local-only mode
+            if (response.message?.includes('404')) {
+              console.log('Backend cart API not available (404) - working in localStorage mode')
+              return { success: true } // Return success to allow local cart to work
+            }
             console.warn('Failed to sync cart item with backend:', response.message)
             return { success: false }
           }
-        } catch (error) {
+        } catch (error: any) {
+          // Handle 404 errors gracefully - cart will work without backend
+          if (error?.message?.includes('404') || error?.statusCode === 404) {
+            console.log('Backend cart API not available - working in localStorage mode')
+            return { success: true }
+          }
           console.error('Error syncing cart item with backend:', error)
           return { success: false }
         }
@@ -461,9 +488,16 @@ export const useCartStore = defineStore('cart', {
             }))
             this.saveCart()
             console.log('Cart loaded from backend successfully')
+          } else if (response.message?.includes('404')) {
+            console.log('Backend cart API not available - using localStorage only')
           }
-        } catch (error) {
-          console.error('Error loading cart from backend:', error)
+        } catch (error: any) {
+          // Silently ignore 404 errors
+          if (error?.message?.includes('404') || error?.statusCode === 404) {
+            console.log('Backend cart API not available - using localStorage only')
+          } else {
+            console.error('Error loading cart from backend:', error)
+          }
         }
       }
     }

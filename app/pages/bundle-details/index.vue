@@ -232,7 +232,7 @@
                 Help cover daily nutrient gaps for your whole body with 25
                 essential nutrients plus value of 20 assorted vitamins and 10.
               </p>
-              <div class="product-price">$39.99</div>
+              <div class="product-price">₹39.99</div>
               <div class="product-actions">
                 <a href="product-details.html" class="btn-learn">Learn More</a>
                 <a href="cart.html" class="btn-cart">Add to Cart</a>
@@ -256,8 +256,8 @@
                 daily health.*
               </p>
               <div class="product-price">
-                $39.99
-                <span class="old-price">$49.98</span>
+                ₹39.99
+                <span class="old-price">₹49.98</span>
               </div>
               <div class="product-actions">
                 <a href="product-details.html" class="btn-learn">Learn More</a>
@@ -283,7 +283,7 @@
                 Delivers steady, caffeine-free energy to enhance focus,
                 sharpen attention, and help manage stress and fatigue.*
               </p>
-              <div class="product-price">$34.99</div>
+              <div class="product-price">₹34.99</div>
               <div class="product-actions">
                 <a href="product-details.html" class="btn-learn">Learn More</a>
                 <a href="cart.html" class="btn-cart">Add to Cart</a>

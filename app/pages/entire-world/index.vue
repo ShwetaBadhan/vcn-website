@@ -41,7 +41,7 @@
 
               <div class="shipping-pricing-info">
                 <p class="shipping-price-text">
-                  $10 flat rate worldwide (USD)<span class="shipping-price-superscript">1</span>
+                  ₹10 flat rate worldwide (USD)<span class="shipping-price-superscript">1</span>
                 </p>
                 <p class="shipping-price-text">Free US shipping</p>
               </div>
@@ -97,7 +97,7 @@
             <div class="refill-card-content">
               <h3 class="refill-card-title">Standard Monthly Refill</h3>
               <p class="refill-card-description">
-                <strong>$49.99</strong> auto-ship<br />
+                <strong>₹49.99</strong> auto-ship<br />
                 (30-day supply per month)
               </p>
               <p class="refill-card-footnote">

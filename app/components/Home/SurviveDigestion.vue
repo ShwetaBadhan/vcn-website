@@ -44,7 +44,7 @@
             </div>
 
             <img
-              src="/img/about/cap.png"
+              src="/gif/Capsule-GIF-2.gif"
               alt="V-Heldi Curcumin" class="vcn-probiotic-product-image" loading="eager" />
 
             <div class="vcn-probiotic-callout vcn-probiotic-callout-bottom" data-aos="fade-up" data-aos-duration="400">

@@ -1,5 +1,5 @@
 <template>
-    
+
   <div class="reviews-section">
     <h2 class="section-title">Member<br />Reviews</h2>
 
@@ -58,9 +58,7 @@
     <!-- Search and Sort -->
     <div class="search-sort-bar">
       <div class="search-box">
-        <span class="search-icon"
-          ><img src="/img/icons/search.png" alt=""
-        /></span>
+        <span class="search-icon"><img src="/img/icons/search.png" alt="" /></span>
         <input type="text" placeholder="Search reviews" />
       </div>
       <div class="sort-dropdown">
@@ -81,47 +79,135 @@
 
     <!-- Reviews List -->
     <div class="reviews-list">
+      <!-- Review 1 -->
       <div class="review-card">
-        <!-- ROW 1 -->
         <div class="row-1">
           <div class="left-block">
-            <span class="name">Sonya H. <span class="loc">US</span></span>
+            <span class="name">Ritu Sharma <span class="loc">IN</span></span>
             <span class="stars">★★★★★</span>
           </div>
-
           <div class="date-block">
-            <span class="date">11/04/25</span>
+            <span class="date">04/15/25</span>
           </div>
         </div>
-
-        <!-- ROW 2 -->
         <div class="row-2">
-          <span class="verified"
-            ><i class="fa-solid fa-circle-check"></i> Verified Buyer</span
-          >
-
-          <p class="text">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, <br />
-            when an unknown printer took a galley of type and scrambled it to
-            make a type specimen book.
-          </p>
+          <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
+          <p class="text">I've been using products for the past 8 months, and the difference is clearly visible. My
+            energy levels have improved, and I feel more active throughout the day. What I like most is the consistency
+            in quality.</p>
         </div>
-
-        <!-- ROW 3 (HELPFUL) -->
         <div class="row-3">
           <span class="help">Was this helpful?</span>
-
           <div class="help-icons">
-            <i class="fa-regular fa-thumbs-up"></i> 0
+            <i class="fa-regular fa-thumbs-up"></i> 12
+            <i class="fa-regular fa-thumbs-down"></i> 0
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="review-card">
+        <div class="row-1">
+          <div class="left-block">
+            <span class="name">Aman Verma <span class="loc">IN</span></span>
+            <span class="stars">★★★★★</span>
+          </div>
+          <div class="date-block">
+            <span class="date">03/28/25</span>
+          </div>
+        </div>
+        <div class="row-2">
+          <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
+          <p class="text">I can confidently say they are effective. The results are gradual but real. VCN has truly
+            built my trust.</p>
+        </div>
+        <div class="row-3">
+          <span class="help">Was this helpful?</span>
+          <div class="help-icons">
+            <i class="fa-regular fa-thumbs-up"></i> 8
+            <i class="fa-regular fa-thumbs-down"></i> 0
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="review-card">
+        <div class="row-1">
+          <div class="left-block">
+            <span class="name">Neha Gupta <span class="loc">IN</span></span>
+            <span class="stars">★★★★★</span>
+          </div>
+          <div class="date-block">
+            <span class="date">03/10/25</span>
+          </div>
+        </div>
+        <div class="row-2">
+          <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
+          <p class="text">The best part about VCN products is that they focus on long-term health rather than quick
+            fixes. I've seen positive changes in my overall wellness, and I highly recommend them to anyone looking for
+            reliable health support.</p>
+        </div>
+        <div class="row-3">
+          <span class="help">Was this helpful?</span>
+          <div class="help-icons">
+            <i class="fa-regular fa-thumbs-up"></i> 15
+            <i class="fa-regular fa-thumbs-down"></i> 1
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 4 -->
+      <div class="review-card">
+        <div class="row-1">
+          <div class="left-block">
+            <span class="name">Rohit Singh <span class="loc">IN</span></span>
+            <span class="stars">★★★★★</span>
+          </div>
+          <div class="date-block">
+            <span class="date">02/22/25</span>
+          </div>
+        </div>
+        <div class="row-2">
+          <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
+          <p class="text">I've tried many health products before, but VCN stands out because of its quality and
+            authenticity. You can feel the difference with regular use. Definitely worth it.</p>
+        </div>
+        <div class="row-3">
+          <span class="help">Was this helpful?</span>
+          <div class="help-icons">
+            <i class="fa-regular fa-thumbs-up"></i> 10
+            <i class="fa-regular fa-thumbs-down"></i> 0
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 5 -->
+      <div class="review-card">
+        <div class="row-1">
+          <div class="left-block">
+            <span class="name">Pooja Malhotra <span class="loc">IN</span></span>
+            <span class="stars">★★★★★</span>
+          </div>
+          <div class="date-block">
+            <span class="date">02/05/25</span>
+          </div>
+        </div>
+        <div class="row-2">
+          <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
+          <p class="text">VCN products have become a part of my daily routine now. They are easy to use and genuinely
+            beneficial. I appreciate the brand's commitment to quality and customer satisfaction.</p>
+        </div>
+        <div class="row-3">
+          <span class="help">Was this helpful?</span>
+          <div class="help-icons">
+            <i class="fa-regular fa-thumbs-up"></i> 7
             <i class="fa-regular fa-thumbs-down"></i> 0
           </div>
         </div>
       </div>
     </div>
 
-    <div class="pagination">
+    <!-- <div class="pagination">
       <button class="page-btn active">1</button>
       <button class="page-btn">2</button>
       <button class="page-btn">3</button>
@@ -129,6 +215,6 @@
       <button class="page-btn">5</button>
 
       <button class="arrow-btn">›</button>
-    </div>
+    </div> -->
   </div>
 </template>

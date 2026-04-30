@@ -1,18 +1,18 @@
 <template>
- <ProductDetailsIntroduction />
- <ProductDetailsHealthSection />
- <ProductDetailsFormulationSection />
- <ProductDetailsBundleSection />
- <ProductDetailsBenefitsSection />
- <!-- <ProductDetailsCellularEnergySection /> -->
- <!-- <ProductDetailsCompareSection /> -->
- <ProductDetailsRigorousSection />
- <!-- <ProductDetailsProbioticSection /> -->
- <ProductDetailsDifferenceSection />
- <!-- <ProductDetailsStrengthenSection /> -->
- <ProductDetailsStrainSection />
- <ProductDetailsProducts />
- <ProductDetailsReviewSection />
+  <ProductDetailsIntroduction />
+  <ProductDetailsHealthSection />
+  <ProductDetailsFormulationSection />
+  <ProductDetailsBundleSection />
+  <ProductDetailsBenefitsSection />
+  <!-- <ProductDetailsCellularEnergySection /> -->
+  <!-- <ProductDetailsCompareSection /> -->
+  <ProductDetailsRigorousSection />
+  <!-- <ProductDetailsProbioticSection /> -->
+  <ProductDetailsDifferenceSection />
+  <!-- <ProductDetailsStrengthenSection /> -->
+  <ProductDetailsStrainSection />
+  <ProductDetailsProducts />
+  <ProductDetailsReviewSection />
 </template>
 
 <script setup>

@@ -12,22 +12,24 @@
           <span>VCN</span>
         </div>
 
-        <h2 class="vcn-human-heading" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">Trusted
-          Wellness. Growing Opportunities.</h2>
+        <ClientOnly>
+          <h2 class="vcn-human-heading" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">Trusted
+            Wellness. Growing Opportunities.</h2>
 
-        <p data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">
-          We focus on trusted, research-backed products that support everyday wellness and customer satisfaction. With
-          a growing presence across India, VCare Network also empowers individuals through meaningful direct selling
-          opportunities.
-        </p>
+          <p data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">
+            We focus on trusted, research-backed products that support everyday wellness and customer satisfaction. With
+            a growing presence across India, VCare Network also empowers individuals through meaningful direct selling
+            opportunities.
+          </p>
 
-        <button class="vcn-human-cta-button" id="openBundles" data-aos="zoom-in" data-aos-duration="800"
-          data-aos-delay="400">
-          Disease Bundles
-          <span class="vcn-human-border">
-            <span class="vcn-human-play-icon">></span>
-          </span>
-        </button>
+          <button class="vcn-human-cta-button" id="openBundles" @click="openBundles" data-aos="zoom-in"
+            data-aos-duration="800" data-aos-delay="400">
+            Disease Bundles
+            <span class="vcn-human-border">
+              <span class="vcn-human-play-icon">></span>
+            </span>
+          </button>
+        </ClientOnly>
       </div>
 
       <!-- Right Content - Video/Bundles Area -->
@@ -36,16 +38,16 @@
         <div class="video-container" id="videoContainer">
           <div class="vcn-human-image-wrapper">
             <!-- <video id="myVideo" muted loop autoplay playsinline preload="auto" class="vcn-human-main-image"></video> -->
-            <img src="/img/image/skelton.png" class="vcn-human-main-image"/>
+            <img src="/img/image/skelton.png" class="vcn-human-main-image" />
           </div>
         </div>
       </div>
     </div>
 
     <!-- Disease Bundles Container -->
-    <div class="disease-bundles-container" id="bundlesContainer">
+    <div class="disease-bundles-container" id="bundlesContainer" :class="{ active: isBundlesActive }">
       <div class="bundles-header">
-        <button class="close-button" id="closeBtn">✕</button>
+        <button type="button" class="close-button" id="closeBtn" @click="closeBundles">✕</button>
         <h2 class="bundles-title">
           Proven Bundles For Your Health Needs!
         </h2>
@@ -110,7 +112,7 @@
       </div>
 
       <div class="view-more-section">
-        <a href="/diseases-bundle" class="view-more-btn">VIEW MORE</a>
+        <a href="/all-disease-bundles" class="view-more-btn">VIEW MORE</a>
       </div>
     </div>
   </section>
@@ -121,9 +123,20 @@
 import Hls from 'hls.js';
 
 export default {
+  data() {
+    return {
+      isBundlesActive: false
+    };
+  },
   methods: {
     cleanUrl(url) {
       return url.replace(/&/g, '');
+    },
+    openBundles() {
+      this.isBundlesActive = true;
+    },
+    closeBundles() {
+      this.isBundlesActive = false;
     }
   },
   mounted() {

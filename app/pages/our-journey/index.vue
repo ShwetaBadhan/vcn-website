@@ -15,7 +15,13 @@
               <h1>Major Milestones</h1>
 
               <p>
-                Since our inception in 2009, Vcare Network has grown from a vision-driven initiative into a trusted name in the wellness and direct selling industry. What began as a commitment to deliver high-quality, nature-inspired products has evolved into a strong nationwide presence backed by a dedicated network of distributors and loyal customers. Over the years, we have expanded our product range, strengthened our systems, and continuously adapted to changing market needs. Each milestone in our journey reflects our focus on quality, innovation, and empowering individuals, driving us forward with the same passion to create a healthier and more prosperous future for all.
+                Since our inception in 2009, Vcare Network has grown from a vision-driven initiative into a trusted name
+                in the wellness and direct selling industry. What began as a commitment to deliver high-quality,
+                nature-inspired products has evolved into a strong nationwide presence backed by a dedicated network of
+                distributors and loyal customers. Over the years, we have expanded our product range, strengthened our
+                systems, and continuously adapted to changing market needs. Each milestone in our journey reflects our
+                focus on quality, innovation, and empowering individuals, driving us forward with the same passion to
+                create a healthier and more prosperous future for all.
 
               </p>
             </section>
@@ -32,29 +38,53 @@
 
             <section class="timeline-content">
               <div class="milestone-card">
-                <div class="milestone-image">
-                  <img v-if="activeYear === 1962" src="https://via.placeholder.com/350x220" />
-
-                  <img v-if="activeYear === 1959" src="https://via.placeholder.com/350x220" />
-                </div>
+                
 
                 <div class="milestone-info">
                   <h2>{{ activeYear }}</h2>
 
-                  <h3 v-if="activeYear === 1962">
-                    VCN becomes international
-                  </h3>
+                  <h3 v-if="activeYear === '2009-2014'">Foundation Phase</h3>
+                  <h3 v-if="activeYear === '2014-2019'">Expansion Phase</h3>
+                  <h3 v-if="activeYear === '2019-2024'">Transformation Phase</h3>
+                  <h3 v-if="activeYear === '2024-2026'">Acceleration Phase</h3>
+                  <h3 v-if="activeYear === 'Beyond 2026'">Future Vision</h3>
 
-                  <h3 v-if="activeYear === 1959">Company Founded</h3>
-
-                  <p v-if="activeYear === 1962">
-                    VCN opens its first international office in Canada. This
-                    milestone marked the beginning of global expansion.
+                  <p v-if="activeYear === '2009-2014'">
+                    VCN began its journey with a single office, a limited range of health products, and a small yet
+                    highly committed team. The focus during these early years was on building a strong and ethical
+                    foundation. Every step was taken with honesty, clarity of vision, and a deep belief of good health.
                   </p>
 
-                  <p v-if="activeYear === 1959">
-                    VCN was founded with the vision of helping people achieve
-                    success through entrepreneurship.
+                  <p v-if="activeYear === '2014-2019'">
+                    With a strong base in place, VCN began expanding its presence across multiple locations in India.
+                    The product portfolio grew steadily, catering to daily wellness and long-term health benefits. At
+                    the same time, the distributor network started strengthening, and more individuals joined the
+                    platform with the hope of building a better future. The focus remained on creating a structured
+                    system, improving accessibility, and providing consistent guidance to every member.
+                  </p>
+
+                  <p v-if="activeYear === '2019-2024'">
+                    This phase marked a significant shift from growth in numbers to growth in people. The platform
+                    evolved into a space that not only offered income opportunities but also developed leadership
+                    qualities among thousands of individuals. Through continuous training, mentorship, and support, many
+                    distributors experienced real-life transformations—financially, personally, and professionally. VCN
+                    strengthened its identity as not just a company, but a community where efforts are valued, and
+                    leadership is nurtured.
+                  </p>
+
+                  <p v-if="activeYear === '2024-2026'">
+                    In recent years, VCN has focused on scaling its operations with better systems, stronger training
+                    frameworks, and a more refined product approach. The brand presence has grown, and the network has
+                    become more structured and performance-driven. Despite rapid progress, the core values of
+                    transparency, quality, and ethics remain unchanged. This phase reflects VCN's readiness to operate
+                    at a larger scale while maintaining trust and consistency.
+                  </p>
+
+                  <p v-if="activeYear === 'Beyond 2026'">
+                    Looking ahead, VCN aims to reach more lives, create more leaders, and expand its impact through
+                    result-oriented health products. The vision is to build a platform that continues to empower
+                    individuals, support long-term growth, and deliver meaningful transformation. With the same strong
+                    foundation and a bigger vision, the journey continues toward new milestones.
                   </p>
                 </div>
               </div>
@@ -77,9 +107,9 @@ useHead({
 export default {
   data() {
     return {
-      activeYear: 2015,
+      activeYear: '2009-2014',
 
-      years: [2015, 1990, 1980, 1972, 1968, 1962, 1959],
+      years: ['2009-2014', '2014-2019', '2019-2024', '2024-2026', 'Beyond 2026'],
     };
   },
 };

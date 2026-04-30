@@ -41,12 +41,31 @@ export const useCartApi = () => {
     body?: any
   ): Promise<{ data: T | null; error: string | null }> => {
     try {
-      const data = await $fetch<T>(`${baseURL}${endpoint}`, {
-        method,
-        body
-      })
+      // Ensure proper URL construction: baseURL (without trailing /) + / + endpoint
+      const cleanBaseURL = baseURL?.replace(/\/$/, '')
+      const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`
+      const fullURL = `${cleanBaseURL}${cleanEndpoint}`
+
+      console.log('🔥 API CALL:', { method, fullURL, endpoint, body })
+
+      // Build request options - only add body and content-type if needed
+      const options: any = { method }
+      if (body && method !== 'GET' && method !== 'DELETE') {
+        options.body = body
+        options.headers = { 'Content-Type': 'application/json' }
+      } else if (method === 'DELETE' && body) {
+        // DELETE with body needs content-type
+        options.body = body
+        options.headers = { 'Content-Type': 'application/json' }
+      }
+      // DELETE without body should not have content-type header
+
+      const data = await $fetch<T>(fullURL, options)
+      console.log('✅ API SUCCESS:', data)
       return { data, error: null }
     } catch (err: any) {
+      console.error('❌ API ERROR:', err.message, err.statusCode, err.statusMessage)
+      console.error('Error details:', err)
       return { data: null, error: err.message || 'Network error' }
     }
   }
@@ -62,16 +81,9 @@ export const useCartApi = () => {
         sessionId: sid
       }
 
-      // Remove trailing slash from baseURL if present
-      const cleanBaseURL = baseURL?.replace(/\/$/, '')
-      const endpoint = API_ENDPOINTS.CART_CREATE
-      const fullURL = `${cleanBaseURL}${endpoint}`
-
       console.log('API Request Body:', requestBody)
-      console.log('API URL:', fullURL)
-      console.log('Base URL from config:', baseURL)
 
-      const { data, error } = await apiCall<CartCreateResponse>('POST', endpoint, requestBody)
+      const { data, error } = await apiCall<CartCreateResponse>('POST', API_ENDPOINTS.CART_CREATE, requestBody)
       console.log('API Response:', { data, error })
 
       if (error) {
