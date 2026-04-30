@@ -57,7 +57,7 @@
         <div class="how-to-use-card">
           <div class="capsule-icon">
             <img
-              src="https://assets.embeddables.com/Frame1739334303_8303615376202479.png"
+              src="/img/productsdetails/capsule (1).png"
               alt=""
             />
           </div>

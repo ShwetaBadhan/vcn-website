@@ -29,7 +29,7 @@
             <div class="swiper-slide">
               <div class="vcn-testimonial-card">
                 <img
-                  src="/img/testimonial/testimonial.png"
+                  src="/img/image/testimonial.png"
                   alt="Customer testimonial"
                   class="vcn-testimonial-image"
                 />
@@ -51,7 +51,7 @@
             <div class="swiper-slide">
               <div class="vcn-testimonial-card">
                 <img
-                  src="\img\testimonial\testimonial.png"
+                  src="/img/image/testimonial.png"
                   alt="Customer testimonial"
                   class="vcn-testimonial-image"
                 />

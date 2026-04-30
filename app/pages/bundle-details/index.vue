@@ -217,76 +217,34 @@
     <div class="container-fluid">
       <div class="row g-3">
         <h2 class="vcn-acidity-main-heading">Acidity Bundle contains</h2>
-        <!-- Product 1: Daily Multivitamin -->
-        <div class="col-md-6">
+        <!-- Dynamic Products -->
+        <div v-for="(product, index) in bundleProducts" :key="product.id" class="col-md-6">
           <div class="product-card">
             <div class="product-image-wrapper">
-              <img
-                src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1757360128/npd/1ed897199978b3f156397db8b70efcfd286565d2.png"
-                alt="Daily Multivitamin" class="product-image" />
+              <span v-if="index === 2" class="product-badge">NEW</span>
+              <img :src="getProductImage(product)" :alt="product.name" class="product-image" />
             </div>
             <div class="product-content">
               <span class="product-label">AGE 18+</span>
-              <h3 class="product-title">Daily Multivitamin</h3>
-              <p class="product-description">
-                Help cover daily nutrient gaps for your whole body with 25
-                essential nutrients plus value of 20 assorted vitamins and 10.
-              </p>
-              <div class="product-price">₹39.99</div>
-              <div class="product-actions">
-                <a href="product-details.html" class="btn-learn">Learn More</a>
-                <a href="cart.html" class="btn-cart">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 2: Daily Essentials Duo -->
-        <div class="col-md-6">
-          <div class="product-card">
-            <div class="product-image-wrapper">
-              <img
-                src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1757943559/npd/Daily%20Essentials%20Duo.png"
-                alt="Daily Essentials Duo" class="product-image" />
-            </div>
-            <div class="product-content">
-              <h3 class="product-title">Daily Essentials Duo</h3>
-              <p class="product-description">
-                Clinically proven probiotic and advanced multivitamin duo for
-                daily health.*
+              <h3 class="product-title">{{ product.name }}</h3>
+              <p class="product-description" v-html="product.description || 'Premium product for your wellness needs.'">
               </p>
               <div class="product-price">
-                ₹39.99
-                <span class="old-price">₹49.98</span>
+                ₹{{ getProductPrice(product).price }}
+                <span v-if="getProductPrice(product).oldPrice" class="old-price">₹{{ getProductPrice(product).oldPrice
+                }}</span>
               </div>
               <div class="product-actions">
-                <a href="product-details.html" class="btn-learn">Learn More</a>
-                <a href="cart.html" class="btn-cart">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 3: Focus + Energy -->
-        <div class="col-md-6">
-          <div class="product-card">
-            <div class="product-image-wrapper">
-              <span class="product-badge">NEW</span>
-              <img
-                src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1757360129/npd/npd-am-c2391a6819effb5bc5dd96153dd97f37ef171204.png"
-                alt="Focus + Energy" class="product-image" />
-            </div>
-            <div class="product-content">
-              <span class="product-label">AGE 18+</span>
-              <h3 class="product-title">Focus + Energy</h3>
-              <p class="product-description">
-                Delivers steady, caffeine-free energy to enhance focus,
-                sharpen attention, and help manage stress and fatigue.*
-              </p>
-              <div class="product-price">₹34.99</div>
-              <div class="product-actions">
-                <a href="product-details.html" class="btn-learn">Learn More</a>
-                <a href="cart.html" class="btn-cart">Add to Cart</a>
+                <NuxtLink :to="`/product-details/${product.slug}`" class="btn-learn">Learn More</NuxtLink>
+                <ClientOnly>
+                  <a v-if="!getCartItem(product.id)" href="#" @click.prevent="addToCart(product)" class="btn-cart">Add
+                    to Cart</a>
+                  <div v-else class="qty-box">
+                    <button class="qty-btn minus" @click="cartStore.decrementQuantity(product.id)">−</button>
+                    <span class="qty-value">{{ getCartItem(product.id)?.quantity || 1 }}</span>
+                    <button class="qty-btn plus" @click="cartStore.incrementQuantity(product.id)">+</button>
+                  </div>
+                </ClientOnly>
               </div>
             </div>
           </div>
@@ -535,7 +493,9 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useProductStore } from '~/stores/product'
+import { useCartStore } from '~/stores/cart'
 
 useHead({
   bodyAttrs: {
@@ -543,9 +503,91 @@ useHead({
   }
 })
 
+const productStore = useProductStore()
+const cartStore = useCartStore()
 const activeSection = ref(null)
+
+onMounted(() => {
+  productStore.fetchProducts()
+  if (process.client) {
+    cartStore.loadCart()
+  }
+})
 
 const toggleSection = (sectionId) => {
   activeSection.value = activeSection.value === sectionId ? null : sectionId
 }
+
+// Get products for bundle (first 3 products)
+const bundleProducts = computed(() => {
+  return productStore.allProducts.slice(0, 4)
+})
+
+const getProductImage = (product) => {
+  return productStore.getPrimaryImage(product)
+}
+
+const getProductPrice = (product) => {
+  return productStore.getProductPricing(product)
+}
+
+const getCartItem = (productId) => {
+  return cartStore.getItemById(productId)
+}
+
+const addToCart = async (product) => {
+  const pricing = getProductPrice(product)
+  const defaultVariant = product.variants?.find(v => v.isDefault) || product.variants?.[0]
+  const variantId = defaultVariant?.id || product.id
+
+  await cartStore.addToCart({
+    id: product.id,
+    name: product.name,
+    price: parseFloat(pricing.price).toFixed(2),
+    mrp: pricing.oldPrice ? parseFloat(pricing.oldPrice).toFixed(2) : null,
+    image: getProductImage(product),
+    subscription: 'One-time purchase',
+    variantId: variantId
+  })
+}
 </script>
+
+<style scoped>
+.qty-box {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: white;
+  border: 2px solid var(--vcn-primary);
+  border-radius: 25px;
+  padding: 6px 12px;
+}
+
+.qty-btn {
+  background: none;
+  border: none;
+  color: var(--vcn-primary);
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.qty-btn:hover {
+  background-color: var(--vcn-primary);
+  color: white;
+}
+
+.qty-value {
+  color: var(--vcn-primary);
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+}
+</style>
