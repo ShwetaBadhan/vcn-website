@@ -13,7 +13,7 @@
           Network is committed to providing quality products that nurture your health, support your everyday needs, and
           inspire a better, healthier future.
         </p>
-        <NuxtLink to="/product-details/essential-duo" class="vcn-cobiotics-cta-btn" data-aos="fade-up"
+        <NuxtLink to="/all-products" class="vcn-cobiotics-cta-btn" data-aos="fade-up"
           data-aos-duration="400">Shop Daily Essentials Duo</NuxtLink>
       </div>
 
