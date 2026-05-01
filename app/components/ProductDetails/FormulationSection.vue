@@ -37,7 +37,7 @@
 
                     
 
-                    <img src="/img/about/cap.png" class="w-100"/>
+                    <img src="/gif/Capsule-GIF-2.gif" class="w-100"/>
                   </div>
 
                   <div class="vcn-probiotic-callout alternative-callout-bottom">

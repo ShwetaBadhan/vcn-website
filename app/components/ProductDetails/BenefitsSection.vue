@@ -78,7 +78,7 @@
           <!-- Large Image -->
           <div class="image-large">
             <img
-              src="/img/productsdetails/dbtpageimage( 424by24 ).png"
+              src="/img/dbt/1.png"
               alt="Person drinking water"
               class="img-fluid"
             />
@@ -89,7 +89,7 @@
             <!-- Top Small Image (Circular) -->
             <div class="image-circle">
               <img
-                src="/img/productsdetails/dbtpage.png"
+                src="/img/dbt/2.png"
                 alt="Capsules in bottle"
                 class="img-fluid center-img"
               />
@@ -98,7 +98,7 @@
             <!-- Bottom Small Image -->
             <div class="image-small">
               <img
-                src="/img/productsdetails/DBTFRST.png"
+                src="/img/dbt/3.png"
                 alt="Man holding product"
                 class="img-fluid"
               />

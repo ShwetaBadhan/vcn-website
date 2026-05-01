@@ -39,7 +39,9 @@ export const useCartStore = defineStore('cart', {
 
     async addToCart(product: CartItem & { variantId?: string | number }) {
       console.log('addToCart called with:', product)
-      const existingItem = this.items.find((item: CartItem) => item.id === product.id)
+      // Check for existing item by ID (convert to string for comparison)
+      const productId = String(product.id)
+      const existingItem = this.items.find((item: CartItem) => String(item.id) === productId)
 
       if (existingItem) {
         existingItem.quantity += 1

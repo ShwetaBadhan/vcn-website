@@ -11,11 +11,9 @@ export const useThemeApi = () => {
       const data = await $fetch<ThemeResponse>(`${baseURL}common/theme`, {
         method: 'GET'
       })
-      
-      console.log('Theme API response:', data)
       return data
     } catch (err: any) {
-      console.error('Theme fetch error:', err.message || err)
+      // Silently fail - theme will use defaults
       return null
     }
   }

@@ -102,7 +102,7 @@
                 </div>
               </div>
             </div>
-            <div class="bundle-card mt-5"> 
+            <div class="bundle-card mt-5">
               <div class="bundle-image">
                 <img src="/img/productsdetails/BOOSTER.png" alt="VCN-02 Daily Multivitamin" />
               </div>
@@ -129,7 +129,7 @@
                   </div>
                 </ClientOnly>
               </div>
-            </div> 
+            </div>
           </div>
         </div>
       </div>
@@ -175,17 +175,13 @@ if (productSlug.value) {
 }
 
 // Initialize cart on client
-onMounted(() => {
-  initializeCart()
-  cartStore.loadCart()
+onMounted(async () => {
+  await initializeCart()
+  await cartStore.loadCart()
 
-  // Clear any existing bundle
+  // Check if bundle is already in cart
   const existingBundle = cartStore.getItemById(bundleProduct.id)
-  if (existingBundle) {
-    cartStore.removeFromCart(bundleProduct.id)
-  } else {
-    bundleInCart.value = false
-  }
+  bundleInCart.value = !!existingBundle
 })
 
 // Selected variant
@@ -240,14 +236,14 @@ const selectImage = (imageSrc) => {
   selectedImage.value = imageSrc
 }
 
-// All product images (primary + variants)
+// All product images (primary + variants) excluding current display image
 const allProductImages = computed(() => {
   const images = []
 
   // Add product-level images
   if (product.value?.images?.length) {
     product.value.images.forEach(img => {
-      if (img?.image && !images.includes(img.image)) {
+      if (img?.image && !images.includes(img.image) && img.image !== displayImage.value) {
         images.push(img.image)
       }
     })
@@ -258,7 +254,7 @@ const allProductImages = computed(() => {
     product.value.variants.forEach(variant => {
       if (variant?.productImages?.length) {
         variant.productImages.forEach(img => {
-          if (img?.image && !images.includes(img.image)) {
+          if (img?.image && !images.includes(img.image) && img.image !== displayImage.value) {
             images.push(img.image)
           }
         })
@@ -414,7 +410,7 @@ const addVariantToCart = () => {
   const sellingPrice = selectedVariant.value.sellingPrice ? parseFloat(selectedVariant.value.sellingPrice) : 0
   const mrp = selectedVariant.value.mrp ? parseFloat(selectedVariant.value.mrp) : 0
   const cartItem = {
-    id: `${product.value.id}-${selectedVariant.value.id}`,
+    id: product.value.id,
     productId: product.value.id,
     variantId: selectedVariant.value.id,
     name: product.value.name,
@@ -633,9 +629,9 @@ const openProductPreview = (imageSrc) => {
   transition: opacity 0.2s;
   width: 100%;
   height: 200px;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
-  background-color: #f8f9fa;
+  /* background-color: #f8f9fa; */
   border-radius: 8px;
 }
 

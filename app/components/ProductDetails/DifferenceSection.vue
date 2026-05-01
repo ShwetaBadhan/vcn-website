@@ -16,13 +16,13 @@
           <!-- Video wrapper (only for video + optional overlays/controls) -->
 
           <div class="vcn-video-wrapper">
-            <img src="/img/productsdetails/comonimages1.png" alt="Doctor" style="
+            <img :src="cleanUrl('/img/dbt/389size.png')" alt="Doctor" style="
                 width: 100%;
                 height: auto;
                 display: block;
                 border-radius: 30px;
               " />
-              </div>
+          </div>
           <!-- <div class="vcn-video-wrapper">
             <div class="vcn-video-controls">
               <button class="vcn-control-btn">
@@ -80,7 +80,7 @@
                 </p>
               </div>
             </div>
-<!-- comment -->
+            <!-- comment -->
             <div class="col-md-6">
               <div class="vcn-feature-card">
                 <img :src="cleanUrl('/img/productsdetails/Liver&KidneyDisorders.png')" alt="" />
@@ -114,7 +114,7 @@
         </div>
       </div>
     </div>
-  
+
   </section>
 </template>
 

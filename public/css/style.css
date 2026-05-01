@@ -4471,9 +4471,9 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   transform: scale(1.03);
 }
 
-/* Optional: Add gap between thumbnails */
+/* Thumbnail gallery - no extra padding */
 .product-gallery {
-  padding: 4px;
+  padding: 0;
 }
 
 .bundle-card {

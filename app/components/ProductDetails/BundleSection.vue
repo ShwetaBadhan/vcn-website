@@ -85,15 +85,7 @@ const bundleProducts = [
     variantId: 3, // Numeric variantId for cart API sync
     name: 'DBT Care Plus — Blood Sugar Control Bundle',
     price: 149.99, // Original price would be higher, showing 25% discount
-    image: '/img/products/ALPHACARE(HERBBLEND).jpg',
-    subscription: 'One-time purchase'
-  },
-  {
-    id: 'vcn-dbt-care-juice',
-    variantId: 4, // Numeric variantId for cart API sync
-    name: 'VCN DBT Care Plus — Herbal Juice',
-    price: 89.99,
-    image: '/img/products/New-Project.png',
+    image: '/img/productsdetails/BOOSTER.png',
     subscription: 'One-time purchase'
   }
 ]
