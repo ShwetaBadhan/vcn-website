@@ -73,8 +73,8 @@ export default defineNuxtConfig({
         // 🔸 Favicon
         {
           rel: 'shortcut icon',
-          type: 'image/x-icon',
-          href: '/images/logo/favicon.png'
+          type: 'image/png',
+          href: '/img/logo/logo.png'
         },
 
         // 🔸 Bootstrap Icons

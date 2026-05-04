@@ -2920,6 +2920,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 .vcn-stories-section {
   background-color: var(--vcn-base-bg);
   padding: 80px 20px;
+  overflow-x: hidden;
 }
 
 .vcn-stories-container {
@@ -3157,8 +3158,10 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 }
 
 .vcn-stories-card-btn:hover {
-  background-color: var(--vcn-light);
-  color: var(--vcn-primary);
+  background-color: var(--vcn-primary);
+  color: var(--vcn-white);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 /* ========== RESPONSIVE ========== */

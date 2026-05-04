@@ -189,8 +189,8 @@
                   </div>
 
                   <div class="footer-links">
-                    <a href="#" @click="showRegistration = true">Terms & Conditions</a>
-                    <a href="#">Privacy</a>
+                    <a href="/terms-conditions" @click="showRegistration = true">Terms & Conditions</a>
+                    <a href="/privacy-policy">Privacy</a>
                   </div>
                 </form>
               </div>
