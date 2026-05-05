@@ -21,6 +21,11 @@ export const getProductBySlugUrl = (slug: string): string => {
   return `common/product/read/slug/${slug}`
 }
 
+// Helper to get product page by slug URL
+export const getProductPageBySlugUrl = (slug: string): string => {
+  return `common/product-page/read/slug/${slug}`
+}
+
 // Helper to get cart read URL with sessionId
 export const getCartReadUrl = (sessionId: string | number): string => {
   return `common/cart/read?sessionId=${sessionId}`

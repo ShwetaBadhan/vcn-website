@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
-import type { Product, ProductState, Category, ProductPricing } from '~/types'
+import type { Product, ProductState, Category, ProductPricing, ProductPage } from '~/types'
 
 export const useProductStore = defineStore('product', {
   state: (): ProductState => ({
     products: [],
     categories: [],
     selectedProduct: null,
+    selectedProductPage: null,
     loading: false,
     error: null
   }),
@@ -146,6 +147,30 @@ export const useProductStore = defineStore('product', {
 
         if (data && (data as any).data) {
           this.selectedProduct = (data as any).data
+        }
+
+        this.loading = false
+        return { success: true }
+      } catch (err: any) {
+        this.error = err.message || 'Network error'
+        this.loading = false
+        return { success: false, error: this.error }
+      }
+    },
+
+    // Fetch product page by slug
+    async fetchProductPageBySlug(slug: string) {
+      this.loading = true
+      this.error = null
+
+      try {
+        const config = useRuntimeConfig()
+        const baseURL = config.public.apiBaseUrl
+
+        const data = await $fetch(`${baseURL}common/product-page/read/slug/${slug}`)
+
+        if (data && (data as any).data) {
+          this.selectedProductPage = (data as any).data as ProductPage
         }
 
         this.loading = false

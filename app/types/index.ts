@@ -22,7 +22,8 @@ export type {
   ProductImage,
   ProductState,
   ProductPricing,
-  Category
+  Category,
+  ProductPage
 } from './product.ts'
 
 // Theme Types
