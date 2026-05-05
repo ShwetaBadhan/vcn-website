@@ -51,6 +51,21 @@ body.checkout-page .navbar a:hover {
   color: #1c3a13 !important;
 }
 
+/* Scrolled navbar styles for checkout page */
+body.checkout-page .navbar.scrolled .desktop-nav .nav-link,
+body.checkout-page .navbar.scrolled .desktop-nav a,
+body.checkout-page .navbar.scrolled .navbar .nav-link,
+body.checkout-page .navbar.scrolled .navbar a {
+  color: #ffffff !important;
+}
+
+body.checkout-page .navbar.scrolled .desktop-nav .nav-link:hover,
+body.checkout-page .navbar.scrolled .desktop-nav a:hover,
+body.checkout-page .navbar.scrolled .navbar .nav-link:hover,
+body.checkout-page .navbar.scrolled .navbar a:hover {
+  color: #ffffff !important;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -3155,6 +3170,18 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   font-size: 1rem;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.vcn-stories-card-btn::after {
+  content: "→";
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: all 0.3s ease;
 }
 
 .vcn-stories-card-btn:hover {
@@ -3162,6 +3189,12 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   color: var(--vcn-white);
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  padding-right: 55px;
+}
+
+.vcn-stories-card-btn:hover::after {
+  opacity: 1;
+  right: 20px;
 }
 
 /* ========== RESPONSIVE ========== */

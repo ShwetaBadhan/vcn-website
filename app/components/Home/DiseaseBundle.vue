@@ -32,16 +32,16 @@
         </ClientOnly>
       </div>
 
-      <!-- Right Content - Video/Bundles Area -->
+      <!-- Right Content - Video/Bundles Area
       <div class="vcn-human-right-content">
-        <!-- Video Container -->
         <div class="video-container" id="videoContainer">
           <div class="vcn-human-image-wrapper">
-            <!-- <video id="myVideo" muted loop autoplay playsinline preload="auto" class="vcn-human-main-image"></video> -->
+            <video id="myVideo" muted loop autoplay playsinline preload="auto" 
+class="vcn-human-main-image"></video>
             <img src="/img/image/skelton.png" class="vcn-human-main-image" />
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <!-- Disease Bundles Container -->

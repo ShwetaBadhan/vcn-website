@@ -40,7 +40,7 @@
             </div>
 
             <p class="mb-3">
-              Have an account? <a href="#" class="link-text">Sign In</a>
+              Have an account? <a href="/login" class="link-text">Sign In</a>
             </p>
 
             <div class="info-box">
@@ -247,14 +247,107 @@
 import { useCartStore } from '~/stores/cart'
 import { useAuthCart } from '~/composables/useAuthCart'
 import { onMounted } from 'vue'
+import { navigateTo } from '#app'
 
 const cartStore = useCartStore()
 const { initializeCart } = useAuthCart()
+
+// Checkout form functions
+const displayEmailForm = () => {
+  const form = document.getElementById('emailSignupForm')
+  if (form) {
+    form.classList.remove('hide-element')
+  }
+}
+
+const submitAccountInfo = () => {
+  const email = document.getElementById('userEmailInput')?.value
+  const password = document.getElementById('userPasswordInput')?.value
+
+  if (!email || !password) {
+    alert('Please enter both email and password')
+    return
+  }
+
+  // Hide account step content and show completed state
+  const accountContent = document.getElementById('accountStepContent')
+  const accountCompleted = document.getElementById('accountStepCompleted')
+  const shippingCard = document.getElementById('shippingStepCard')
+
+  if (accountContent) accountContent.classList.add('hide-element')
+  if (accountCompleted) accountCompleted.classList.remove('hide-element')
+
+  // Enable shipping step
+  if (shippingCard) {
+    shippingCard.classList.remove('step-disabled')
+    const shippingContent = document.getElementById('shippingStepContent')
+    if (shippingContent) shippingContent.classList.remove('hide-element')
+  }
+}
+
+const submitShippingInfo = () => {
+  const firstName = document.getElementById('firstNameInput')?.value
+  const lastName = document.getElementById('lastNameInput')?.value
+  const address = document.getElementById('addressInput')?.value
+  const city = document.getElementById('cityInput')?.value
+  const state = document.getElementById('stateInput')?.value
+  const zip = document.getElementById('zipInput')?.value
+
+  if (!firstName || !lastName || !address || !city || !state || !zip) {
+    alert('Please fill in all shipping fields')
+    return
+  }
+
+  // Hide shipping content and show completed state
+  const shippingContent = document.getElementById('shippingStepContent')
+  const shippingCompleted = document.getElementById('shippingStepCompleted')
+  const paymentCard = document.getElementById('paymentStepCard')
+
+  if (shippingContent) shippingContent.classList.add('hide-element')
+  if (shippingCompleted) shippingCompleted.classList.remove('hide-element')
+
+  // Enable payment step
+  if (paymentCard) {
+    paymentCard.classList.remove('step-disabled')
+    const paymentContent = document.getElementById('paymentStepContent')
+    if (paymentContent) paymentContent.classList.remove('hide-element')
+  }
+}
+
+const submitPaymentInfo = () => {
+  const cardNumber = document.getElementById('cardNumberInput')?.value
+  const expiry = document.getElementById('expiryInput')?.value
+  const cvv = document.getElementById('cvvInput')?.value
+  const cardName = document.getElementById('cardNameInput')?.value
+
+  if (!cardNumber || !expiry || !cvv || !cardName) {
+    alert('Please fill in all payment fields')
+    return
+  }
+
+  // Simulate order placement
+  alert('Order placed successfully!')
+  // Redirect to order confirmation or home
+  navigateTo('/order-confirmation')
+}
+
+const proceedWithGoogle = () => {
+  alert('Google sign-in would open here')
+}
 
 onMounted(async () => {
   await initializeCart()
   if (process.client && window.localStorage) {
     await cartStore.loadCart()
+  }
+
+  // Expose functions to window for onclick handlers
+  if (process.client) {
+    window.displayEmailForm = displayEmailForm
+    window.submitAccountInfo = submitAccountInfo
+    window.submitShippingInfo = submitShippingInfo
+    window.submitPaymentInfo = submitPaymentInfo
+    window.proceedWithGoogle = proceedWithGoogle
   }
 })
 
