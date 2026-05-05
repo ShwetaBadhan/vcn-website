@@ -325,7 +325,7 @@ const openForm = () => {
 
 const closeForm = () => {
   isOpen.value = false
-  document.body.style.overflow = 'auto'
+  document.body.style.overflow = ''
   // Reset form
   formData.mobile = ''
   formData.password = ''
