@@ -39,8 +39,12 @@
               <h1 class="product-details-title">{{ productName }}</h1>
 
               <div class="rating-section">
-                <img src="/img/icons/stars.png" alt="" />
-                <span class="rating-text">4.8 • (10069 Reviews)</span>
+                <div class="stars-display">
+                  <span v-for="star in 5" :key="star" class="star"
+                    :class="{ 'filled': star <= Math.round(averageRating) }">★</span>
+                </div>
+                <span class="rating-text">{{ averageRating.toFixed(1) }} • ({{ totalReviews }} Review{{ totalReviews !==
+                  1 ? 's' : '' }})</span>
               </div>
 
               <p class="product-details-description" v-html="productDescription">
@@ -142,6 +146,8 @@ import { ref, onMounted, computed, watch } from 'vue'
 import { useCartStore } from '~/stores/cart'
 import { useProductStore } from '~/stores/product'
 import { useAuthCart } from '~/composables/useAuthCart'
+import { getProductReviewsUrl } from '~/config/api/endpoints'
+import { useApi } from '~/config/api/useApi'
 
 const cartStore = useCartStore()
 const productStore = useProductStore()
@@ -152,6 +158,12 @@ const activeIndex = ref(null)
 const product = ref(null)
 const loading = ref(true)
 const error = ref('')
+
+// Reviews state
+const reviews = ref([])
+const averageRating = ref(0)
+const totalReviews = ref(0)
+const isLoadingReviews = ref(false)
 
 // Get product slug from URL path
 const productSlug = computed(() => route.params.slug)
@@ -182,7 +194,32 @@ onMounted(async () => {
   // Check if bundle is already in cart
   const existingBundle = cartStore.getItemById(bundleProduct.id)
   bundleInCart.value = !!existingBundle
+
+  // Fetch reviews
+  await fetchReviews()
 })
+
+// Fetch reviews from API
+const fetchReviews = async () => {
+  const productId = product.value?.id
+  if (!productId) return
+
+  isLoadingReviews.value = true
+  try {
+    const endpoint = getProductReviewsUrl(productId)
+    const { data, error: reviewsError } = await useApi().get(endpoint)
+
+    if (!reviewsError && data && data.success) {
+      reviews.value = data.data?.reviews || []
+      averageRating.value = data.data?.averageRating || 0
+      totalReviews.value = data.data?.totalReviews || 0
+    }
+  } catch (err) {
+    console.error('Error fetching reviews:', err)
+  } finally {
+    isLoadingReviews.value = false
+  }
+}
 
 // Selected variant
 const selectedVariant = ref(null)
@@ -645,5 +682,22 @@ const openProductPreview = (imageSrc) => {
   justify-content: center;
   overflow: hidden;
   border-radius: 8px;
+}
+
+/* Dynamic Stars Display */
+.stars-display {
+  display: inline-flex;
+  gap: 2px;
+  margin-right: 8px;
+}
+
+.stars-display .star {
+  font-size: 22px;
+  color: #ddd;
+  transition: color 0.2s ease;
+}
+
+.stars-display .star.filled {
+  color: #ffc107;
 }
 </style>

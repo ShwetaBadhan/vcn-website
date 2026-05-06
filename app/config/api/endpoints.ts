@@ -13,7 +13,10 @@ export const API_ENDPOINTS = {
   CART_READ: 'common/cart/read',
   CART_UPDATE: 'common/cart/update',
   CART_DELETE_ITEM: 'common/cart/delete/item',
-  CART_CLEAR: 'common/cart/delete/clear'
+  CART_CLEAR: 'common/cart/delete/clear',
+
+  // Review endpoints
+  REVIEW_CREATE: 'users/product-reviews/create'
 } as const
 
 // Helper to get product by slug URL
@@ -39,6 +42,11 @@ export const getCartDeleteItemUrl = (itemId: string | number, sessionId: string 
 // Helper to get cart clear URL
 export const getCartClearUrl = (sessionId: string | number): string => {
   return `common/cart/delete/clear?sessionId=${sessionId}`
+}
+
+// Helper to get product reviews URL
+export const getProductReviewsUrl = (productId: string | number): string => {
+  return `common/product-reviews/product/${productId}`
 }
 
 // Export types for better TypeScript support

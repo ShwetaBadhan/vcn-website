@@ -12,7 +12,8 @@
   <ProductDetailsDifferenceSection />
   <!-- <ProductDetailsStrengthenSection /> -->
   <ProductDetailsProducts />
-  <ProductDetailsReviewSection />
+  <ProductDetailsReviewSection
+    :product-id="productStore.selectedProduct?.id || productStore.selectedProductPage?.productId" />
 </template>
 
 <script setup>
