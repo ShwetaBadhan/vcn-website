@@ -150,11 +150,18 @@
                   placeholder="Name on Card" />
               </div>
               <div class="col-12">
-                <a class=" primary-action-btn w-100 final-order-btn" onclick="submitPaymentInfo()">
-                  Place Order - <span id="finalOrderTotal">₹{{ cartStore.cartTotal.toFixed(2) }}</span>
+                <a class="primary-action-btn w-100 final-order-btn" onclick="submitPaymentInfo()">
+                  Place Order - <span id="finalOrderTotal">₹{{ cartStore?.cartTotal?.toFixed(2) || '0.00' }}</span>
                 </a>
               </div>
             </div>
+          </div>
+
+          <div class="checkout-step-body hide-element" id="paymentStepCompleted">
+            <p class="completion-message">
+              <span class="step-check-icon">✓</span>
+              Payment information saved
+            </p>
           </div>
         </div>
       </div>
@@ -166,7 +173,7 @@
             <h3 class="cart-summary-title">Cart Summary</h3>
 
             <!-- Dynamic Cart Items from Store -->
-            <div v-for="item in cartStore.items" :key="item.id" class="d-flex mb-4 product-wrapper">
+            <div v-for="item in (cartStore?.items || [])" :key="item.id" class="d-flex mb-4 product-wrapper">
               <div class="product-image-container me-3">
                 <img :src="item.image || '/img/products/img1.png'" class="w-100" :alt="item.name"
                   @error="$event.target.src = '/img/products/img1.png'">
@@ -190,7 +197,7 @@
             </div>
 
             <!-- Empty Cart Message -->
-            <div v-if="cartStore.items.length === 0" class="text-center py-4">
+            <div v-if="!cartStore?.items || cartStore.items.length === 0" class="text-center py-4">
               <p>Your cart is empty</p>
               <a href="/all-products" class="btn-learn">Continue Shopping</a>
             </div>
@@ -214,7 +221,7 @@
             <!-- Order Summary -->
             <div class="summary-row">
               <span class="summary-label">Subtotal</span>
-              <span class="summary-value" id="orderSubtotal">₹{{ cartStore.cartSubtotal.toFixed(2) }}</span>
+              <span class="summary-value" id="orderSubtotal">₹{{ cartStore?.cartSubtotal?.toFixed(2) || '0.00' }}</span>
             </div>
             <div class="summary-row">
               <span class="summary-label">Shipping</span>
@@ -229,12 +236,12 @@
 
             <div class="total-row">
               <span>Total</span>
-              <span id="orderTotal">₹{{ cartStore.cartTotal.toFixed(2) }}</span>
+              <span id="orderTotal">₹{{ cartStore?.cartTotal?.toFixed(2) || '0.00' }}</span>
             </div>
 
             <p class="summary-footer-note">
               Final tax and shipping is calculated after shipping step is
-              complete. Recurring subtotal is ₹{{ cartStore.cartSubtotal.toFixed(2) }} per month.
+              complete. Recurring subtotal is ₹{{ cartStore?.cartSubtotal?.toFixed(2) || '0.00' }} per month.
             </p>
           </div>
         </div>
@@ -248,6 +255,7 @@ import { useCartStore } from '~/stores/cart'
 import { useAuthCart } from '~/composables/useAuthCart'
 import { onMounted } from 'vue'
 import { navigateTo } from '#app'
+import { useHead } from '#app'
 
 const cartStore = useCartStore()
 const { initializeCart } = useAuthCart()
@@ -260,14 +268,134 @@ const displayEmailForm = () => {
   }
 }
 
+// Validation helper functions
+const validateEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}
+
+const validatePassword = (password) => {
+  return password.length >= 8 && /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(password)
+}
+
+const validateCardNumber = (cardNumber) => {
+  const cleaned = cardNumber.replace(/\s/g, '')
+  return /^\d{13,19}$/.test(cleaned) && luhnCheck(cleaned)
+}
+
+const luhnCheck = (cardNumber) => {
+  let sum = 0
+  let isEven = false
+
+  for (let i = cardNumber.length - 1; i >= 0; i--) {
+    let digit = parseInt(cardNumber[i])
+
+    if (isEven) {
+      digit *= 2
+      if (digit > 9) digit -= 9
+    }
+
+    sum += digit
+    isEven = !isEven
+  }
+
+  return sum % 10 === 0
+}
+
+const validateExpiry = (expiry) => {
+  const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/
+  if (!expiryRegex.test(expiry)) return false
+
+  const [month, year] = expiry.split('/')
+  const currentYear = new Date().getFullYear() % 100
+  const currentMonth = new Date().getMonth() + 1
+
+  const expYear = parseInt(year)
+  const expMonth = parseInt(month)
+
+  if (expYear < currentYear) return false
+  if (expYear === currentYear && expMonth < currentMonth) return false
+
+  return true
+}
+
+const validateCVV = (cvv) => {
+  return /^\d{3,4}$/.test(cvv)
+}
+
+const validateZip = (zip) => {
+  return /^\d{6}$/.test(zip)
+}
+
+const showError = (elementId, message) => {
+  const element = document.getElementById(elementId)
+  if (element) {
+    element.classList.add('is-invalid')
+    element.classList.remove('is-valid')
+
+    // Remove existing error message
+    const existingError = element.parentNode.querySelector('.error-message')
+    if (existingError) existingError.remove()
+
+    // Add error message
+    const errorDiv = document.createElement('div')
+    errorDiv.className = 'error-message text-danger small mt-1'
+    errorDiv.textContent = message
+    element.parentNode.appendChild(errorDiv)
+  }
+}
+
+const clearError = (elementId) => {
+  const element = document.getElementById(elementId)
+  if (element) {
+    element.classList.remove('is-invalid')
+    element.classList.add('is-valid')
+
+    const errorMessage = element.parentNode.querySelector('.error-message')
+    if (errorMessage) errorMessage.remove()
+  }
+}
+
+const clearAllErrors = () => {
+  document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'))
+  document.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'))
+  document.querySelectorAll('.error-message').forEach(el => el.remove())
+}
+
 const submitAccountInfo = () => {
-  const email = document.getElementById('userEmailInput')?.value
+  clearAllErrors()
+
+  const email = document.getElementById('userEmailInput')?.value?.trim()
   const password = document.getElementById('userPasswordInput')?.value
 
-  if (!email || !password) {
-    alert('Please enter both email and password')
-    return
+  let isValid = true
+
+  // Email validation
+  if (!email) {
+    showError('userEmailInput', 'Email is required')
+    isValid = false
+  } else if (!validateEmail(email)) {
+    showError('userEmailInput', 'Please enter a valid email address')
+    isValid = false
+  } else {
+    clearError('userEmailInput')
   }
+
+  // Password validation
+  if (!password) {
+    showError('userPasswordInput', 'Password is required')
+    isValid = false
+  } else if (password.length < 8) {
+    showError('userPasswordInput', 'Password must be at least 8 characters')
+    isValid = false
+  } else if (!validatePassword(password)) {
+    showError('userPasswordInput', 'Password must contain at least one uppercase letter, one lowercase letter, and one number')
+    isValid = false
+  } else {
+    clearError('userPasswordInput')
+  }
+
+  if (!isValid) return
 
   // Hide account step content and show completed state
   const accountContent = document.getElementById('accountStepContent')
@@ -286,17 +414,81 @@ const submitAccountInfo = () => {
 }
 
 const submitShippingInfo = () => {
-  const firstName = document.getElementById('firstNameInput')?.value
-  const lastName = document.getElementById('lastNameInput')?.value
-  const address = document.getElementById('addressInput')?.value
-  const city = document.getElementById('cityInput')?.value
-  const state = document.getElementById('stateInput')?.value
-  const zip = document.getElementById('zipInput')?.value
+  clearAllErrors()
 
-  if (!firstName || !lastName || !address || !city || !state || !zip) {
-    alert('Please fill in all shipping fields')
-    return
+  const firstName = document.getElementById('firstNameInput')?.value?.trim()
+  const lastName = document.getElementById('lastNameInput')?.value?.trim()
+  const address = document.getElementById('addressInput')?.value?.trim()
+  const city = document.getElementById('cityInput')?.value?.trim()
+  const state = document.getElementById('stateInput')?.value?.trim()
+  const zip = document.getElementById('zipInput')?.value?.trim()
+
+  let isValid = true
+
+  // First Name validation
+  if (!firstName) {
+    showError('firstNameInput', 'First name is required')
+    isValid = false
+  } else if (firstName.length < 2) {
+    showError('firstNameInput', 'First name must be at least 2 characters')
+    isValid = false
+  } else {
+    clearError('firstNameInput')
   }
+
+  // Last Name validation
+  if (!lastName) {
+    showError('lastNameInput', 'Last name is required')
+    isValid = false
+  } else if (lastName.length < 2) {
+    showError('lastNameInput', 'Last name must be at least 2 characters')
+    isValid = false
+  } else {
+    clearError('lastNameInput')
+  }
+
+  // Address validation
+  if (!address) {
+    showError('addressInput', 'Address is required')
+    isValid = false
+  } else if (address.length < 10) {
+    showError('addressInput', 'Please enter a complete address')
+    isValid = false
+  } else {
+    clearError('addressInput')
+  }
+
+  // City validation
+  if (!city) {
+    showError('cityInput', 'City is required')
+    isValid = false
+  } else {
+    clearError('cityInput')
+  }
+
+  // State validation
+  if (!state) {
+    showError('stateInput', 'State is required')
+    isValid = false
+  } else if (state.length < 2) {
+    showError('stateInput', 'Please enter a valid state')
+    isValid = false
+  } else {
+    clearError('stateInput')
+  }
+
+  // ZIP validation
+  if (!zip) {
+    showError('zipInput', 'ZIP code is required')
+    isValid = false
+  } else if (!validateZip(zip)) {
+    showError('zipInput', 'Please enter a valid 6-digit ZIP code')
+    isValid = false
+  } else {
+    clearError('zipInput')
+  }
+
+  if (!isValid) return
 
   // Hide shipping content and show completed state
   const shippingContent = document.getElementById('shippingStepContent')
@@ -315,15 +507,60 @@ const submitShippingInfo = () => {
 }
 
 const submitPaymentInfo = () => {
-  const cardNumber = document.getElementById('cardNumberInput')?.value
-  const expiry = document.getElementById('expiryInput')?.value
-  const cvv = document.getElementById('cvvInput')?.value
-  const cardName = document.getElementById('cardNameInput')?.value
+  clearAllErrors()
 
-  if (!cardNumber || !expiry || !cvv || !cardName) {
-    alert('Please fill in all payment fields')
-    return
+  const cardNumber = document.getElementById('cardNumberInput')?.value?.trim()
+  const expiry = document.getElementById('expiryInput')?.value?.trim()
+  const cvv = document.getElementById('cvvInput')?.value?.trim()
+  const cardName = document.getElementById('cardNameInput')?.value?.trim()
+
+  let isValid = true
+
+  // Card Number validation
+  if (!cardNumber) {
+    showError('cardNumberInput', 'Card number is required')
+    isValid = false
+  } else if (!validateCardNumber(cardNumber)) {
+    showError('cardNumberInput', 'Please enter a valid card number')
+    isValid = false
+  } else {
+    clearError('cardNumberInput')
   }
+
+  // Expiry validation
+  if (!expiry) {
+    showError('expiryInput', 'Expiry date is required')
+    isValid = false
+  } else if (!validateExpiry(expiry)) {
+    showError('expiryInput', 'Please enter a valid expiry date (MM/YY)')
+    isValid = false
+  } else {
+    clearError('expiryInput')
+  }
+
+  // CVV validation
+  if (!cvv) {
+    showError('cvvInput', 'CVV is required')
+    isValid = false
+  } else if (!validateCVV(cvv)) {
+    showError('cvvInput', 'Please enter a valid CVV (3 or 4 digits)')
+    isValid = false
+  } else {
+    clearError('cvvInput')
+  }
+
+  // Card Name validation
+  if (!cardName) {
+    showError('cardNameInput', 'Name on card is required')
+    isValid = false
+  } else if (cardName.length < 3) {
+    showError('cardNameInput', 'Please enter the complete name as shown on card')
+    isValid = false
+  } else {
+    clearError('cardNameInput')
+  }
+
+  if (!isValid) return
 
   // Simulate order placement
   alert('Order placed successfully!')
@@ -335,19 +572,129 @@ const proceedWithGoogle = () => {
   alert('Google sign-in would open here')
 }
 
+// Real-time validation event listeners
+const addValidationListeners = () => {
+  // Email field validation
+  const emailInput = document.getElementById('userEmailInput')
+  if (emailInput) {
+    emailInput.addEventListener('blur', () => {
+      const email = emailInput.value?.trim()
+      if (email && !validateEmail(email)) {
+        showError('userEmailInput', 'Please enter a valid email address')
+      } else if (email) {
+        clearError('userEmailInput')
+      }
+    })
+  }
+
+  // Password field validation
+  const passwordInput = document.getElementById('userPasswordInput')
+  if (passwordInput) {
+    passwordInput.addEventListener('blur', () => {
+      const password = passwordInput.value
+      if (password && password.length < 8) {
+        showError('userPasswordInput', 'Password must be at least 8 characters')
+      } else if (password && !validatePassword(password)) {
+        showError('userPasswordInput', 'Password must contain uppercase, lowercase, and number')
+      } else if (password) {
+        clearError('userPasswordInput')
+      }
+    })
+  }
+
+  // Card number formatting and validation
+  const cardNumberInput = document.getElementById('cardNumberInput')
+  if (cardNumberInput) {
+    cardNumberInput.addEventListener('input', (e) => {
+      let value = e.target.value.replace(/\s/g, '')
+      let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value
+      e.target.value = formattedValue
+    })
+
+    cardNumberInput.addEventListener('blur', () => {
+      const cardNumber = cardNumberInput.value?.trim()
+      if (cardNumber && !validateCardNumber(cardNumber)) {
+        showError('cardNumberInput', 'Please enter a valid card number')
+      } else if (cardNumber) {
+        clearError('cardNumberInput')
+      }
+    })
+  }
+
+  // Expiry date formatting and validation
+  const expiryInput = document.getElementById('expiryInput')
+  if (expiryInput) {
+    expiryInput.addEventListener('input', (e) => {
+      let value = e.target.value.replace(/\D/g, '')
+      if (value.length >= 2) {
+        value = value.slice(0, 2) + '/' + value.slice(2, 4)
+      }
+      e.target.value = value
+    })
+
+    expiryInput.addEventListener('blur', () => {
+      const expiry = expiryInput.value?.trim()
+      if (expiry && !validateExpiry(expiry)) {
+        showError('expiryInput', 'Please enter a valid expiry date (MM/YY)')
+      } else if (expiry) {
+        clearError('expiryInput')
+      }
+    })
+  }
+
+  // CVV validation
+  const cvvInput = document.getElementById('cvvInput')
+  if (cvvInput) {
+    cvvInput.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/\D/g, '').slice(0, 4)
+    })
+
+    cvvInput.addEventListener('blur', () => {
+      const cvv = cvvInput.value?.trim()
+      if (cvv && !validateCVV(cvv)) {
+        showError('cvvInput', 'Please enter a valid CVV')
+      } else if (cvv) {
+        clearError('cvvInput')
+      }
+    })
+  }
+
+  // ZIP code validation
+  const zipInput = document.getElementById('zipInput')
+  if (zipInput) {
+    zipInput.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6)
+    })
+
+    zipInput.addEventListener('blur', () => {
+      const zip = zipInput.value?.trim()
+      if (zip && !validateZip(zip)) {
+        showError('zipInput', 'Please enter a valid 6-digit ZIP code')
+      } else if (zip) {
+        clearError('zipInput')
+      }
+    })
+  }
+}
+
 onMounted(async () => {
   await initializeCart()
-  if (process.client && window.localStorage) {
+  if (import.meta.client && window.localStorage) {
     await cartStore.loadCart()
   }
 
   // Expose functions to window for onclick handlers
-  if (process.client) {
+  if (import.meta.client) {
     window.displayEmailForm = displayEmailForm
     window.submitAccountInfo = submitAccountInfo
     window.submitShippingInfo = submitShippingInfo
     window.submitPaymentInfo = submitPaymentInfo
     window.proceedWithGoogle = proceedWithGoogle
+
+    // Add validation listeners after DOM is ready
+    setTimeout(() => {
+      addValidationListeners()
+    }, 100)
   }
 })
 

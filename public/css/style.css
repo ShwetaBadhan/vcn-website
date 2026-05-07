@@ -166,13 +166,8 @@ p {
 }
 
 .nav-img {
-  width: 55px;
+  width: 50px;
   height: auto;
-  transition: transform 0.3s ease;
-}
-
-.nav-img:hover {
-  transform: scale(1.05);
 }
 
 .navbar .container-fluid {
@@ -591,6 +586,30 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   transition: all 0.2s ease;
 }
 
+/* Ensure all text within dropdown items is white */
+.dropdown-item strong,
+.dropdown-item span,
+.dropdown-item p,
+.dropdown-item div {
+  color: white !important;
+}
+
+/* Override checkout page link colors for dropdown items - higher specificity */
+body.checkout-page .navbar .desktop-nav .dropdown-item,
+body.checkout-page .navbar .desktop-nav .dropdown-item strong,
+body.checkout-page .navbar .desktop-nav .dropdown-item span,
+body.checkout-page .navbar .desktop-nav .dropdown-item p,
+body.checkout-page .navbar .desktop-nav .dropdown-item div,
+body.checkout-page .navbar .desktop-nav .dropdown-item a {
+  color: white !important;
+}
+
+/* Override checkout page link colors for dropdown footer - higher specificity */
+body.checkout-page .navbar .desktop-nav .dropdown-footer a,
+body.checkout-page .navbar .desktop-nav .dropdown-footer {
+  color: white !important;
+}
+
 .dropdown-item:hover {
   background: rgba(255, 255, 255, 0.15) !important;
   transform: translateX(5px);
@@ -726,7 +745,8 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
     border-radius: 20px !important;
     padding: 8px !important;
     max-height: 450px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
     display: block;
     opacity: 0;
@@ -739,6 +759,11 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
     right: 0;
     top: calc(100% + 12px);
     width: 100%;
+    /* Hide scrollbar for all browsers */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
   }
 
   .desktop-nav .dropdown:hover .dropdown-menu {
@@ -750,14 +775,23 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
   .desktop-nav .dropdown-menu::-webkit-scrollbar {
     display: none;
+    width: 0;
+    height: 0;
   }
 
   .desktop-nav .dropdown-menu::-webkit-scrollbar-track {
     display: none;
+    background: transparent;
   }
 
   .desktop-nav .dropdown-menu::-webkit-scrollbar-thumb {
     display: none;
+    background: transparent;
+  }
+
+  .desktop-nav .dropdown-menu::-webkit-scrollbar-corner {
+    display: none;
+    background: transparent;
   }
 
   .desktop-nav .dropdown-item {
@@ -776,63 +810,11 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   .nav-right-wrapper {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     padding: 6px 11px;
     background: transparent;
     border-radius: 50px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Force separation between login and cart */
-  .nav-right-wrapper .login-link {
-    margin-right: 15px !important;
-    padding-right: 20px !important;
-    border-right: 2px solid rgba(255, 255, 255, 0.4) !important;
-    flex-shrink: 0 !important;
-    min-width: fit-content !important;
-  }
-
-  .nav-right-wrapper .navbar-btn {
-    margin-left: 15px !important;
-    flex-shrink: 0 !important;
-    min-width: fit-content !important;
-  }
-
-  /* Professional navbar improvements */
-  .navbar {
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  }
-
-  .navbar.scrolled {
-    background: rgba(0, 0, 0, 0.95) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-  }
-
-  /* Enhanced typography */
-  .login-link {
-    font-family: var(--vcn-font) !important;
-    font-weight: 600 !important;
-    font-size: 15px !important;
-    letter-spacing: 0.5px !important;
-    text-transform: uppercase !important;
-  }
-
-  .navbar-btn {
-    font-family: var(--vcn-font) !important;
-    font-weight: 700 !important;
-    font-size: 14px !important;
-    letter-spacing: 0.5px !important;
-    text-transform: uppercase !important;
-    box-shadow: 0 4px 15px rgba(94, 108, 31, 0.3) !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  }
-
-  .navbar-btn:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 20px rgba(94, 108, 31, 0.4) !important;
   }
 
   .navbar.scrolled .nav-right-wrapper {
@@ -849,8 +831,8 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
     font-weight: 500;
     transition: color 0.3s ease;
     padding: 8px 12px;
+    margin-right: 5px;
     white-space: nowrap;
-    display: inline-block;
   }
 
   .login-link:hover {
@@ -1099,7 +1081,7 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
     transition: all 0.3s ease;
     border: none;
     white-space: nowrap;
-    display: inline-block;
+    margin-left: 8px;
   }
 
   .navbar-btn:hover {
@@ -10502,16 +10484,63 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
 .form-input-field {
   padding: 12px 16px;
-  border: 1px solid var(--vcn-footer) a;
-  border-radius: 6px;
+  border: 2px solid #d0d5dd;
+  border-radius: 8px;
   font-size: 15px;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.form-input-field:hover {
+  border-color: #b0b8c0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .form-input-field:focus {
   border-color: var(--vcn-footer);
-  box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.1);
+  box-shadow: 0 0 0 3px rgba(29, 69, 3, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
   outline: none;
+}
+
+.form-input-field.is-invalid {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.form-input-field.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-input-field.is-valid {
+  border-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+}
+
+.form-input-field.is-valid:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .link-text {

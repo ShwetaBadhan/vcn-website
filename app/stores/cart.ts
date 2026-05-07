@@ -97,7 +97,7 @@ export const useCartStore = defineStore('cart', {
         this.saveCart()
 
         // Delete from backend if we have cartItemId
-        if (item?.cartItemId && process.client) {
+        if (item?.cartItemId && import.meta.client) {
           try {
             const { useCartApi } = await import('~/composables/useCartApi')
             const { deleteCartItem } = useCartApi()
@@ -194,7 +194,7 @@ export const useCartStore = defineStore('cart', {
 
     // Update cart item quantity on backend
     async updateCartItemBackend(cartItemId: string | number, quantity: number) {
-      if (process.client) {
+      if (import.meta.client) {
         try {
           const { useCartApi } = await import('~/composables/useCartApi')
           const { updateCart } = useCartApi()
@@ -424,8 +424,8 @@ export const useCartStore = defineStore('cart', {
 
     // Sync single cart item with backend
     async syncItemWithBackend(variantId: string | number, quantity: number = 1): Promise<{ cartItemId?: string | number; success: boolean } | null> {
-      console.log('syncItemWithBackend called:', { variantId, quantity, isClient: process.client })
-      if (process.client) {
+      console.log('syncItemWithBackend called:', { variantId, quantity, isClient: import.meta.client })
+      if (import.meta.client) {
         try {
           const { useCartApi } = await import('~/composables/useCartApi')
           const { addToCart, getSessionId } = useCartApi()
@@ -467,7 +467,7 @@ export const useCartStore = defineStore('cart', {
 
     // Load cart from backend API
     async loadFromBackend() {
-      if (process.client) {
+      if (import.meta.client) {
         try {
           const { useCartApi } = await import('~/composables/useCartApi')
           const { readCart, getSessionId } = useCartApi()

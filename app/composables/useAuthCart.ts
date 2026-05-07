@@ -24,7 +24,8 @@ interface LoginResult {
 }
 
 export const useAuthCart = () => {
-  const cartStore = useCartStore()
+  // Get cart store dynamically to avoid circular dependency
+  const getCartStore = () => useCartStore()
 
   // Mock auth state - replace with actual auth implementation
   const authState = useState<AuthState>('auth', () => ({
@@ -53,7 +54,7 @@ export const useAuthCart = () => {
       authState.value.token = mockToken
 
       // Handle cart login (merge guest cart with user cart)
-      await cartStore.handleUserLogin(mockUser.id)
+      await getCartStore().handleUserLogin(mockUser.id)
 
       return { success: true, user: mockUser }
     } catch (error) {
@@ -66,7 +67,7 @@ export const useAuthCart = () => {
   const logout = async () => {
     try {
       // Handle cart logout (save current cart as guest cart)
-      cartStore.handleUserLogout()
+      getCartStore().handleUserLogout()
 
       // Reset auth state
       authState.value.user = null
@@ -93,12 +94,12 @@ export const useAuthCart = () => {
     const user = authState.value.user
     if (isLoggedIn && user) {
       // User is logged in
-      cartStore.setUser(user.id, false)
-      await cartStore.loadCart()
+      getCartStore().setUser(user.id, false)
+      await getCartStore().loadCart()
     } else {
       // User is guest
-      cartStore.setUser(null, true)
-      await cartStore.loadCart()
+      getCartStore().setUser(null, true)
+      await getCartStore().loadCart()
     }
   }
 
