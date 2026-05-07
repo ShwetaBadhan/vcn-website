@@ -80,7 +80,7 @@
         </div>
 
         <!-- Step 2: Shipping Details -->
-        <div class="checkout-step-card step-disabled" id="shippingStepCard">
+        <div class="checkout-step-card" id="shippingStepCard">
           <div class="checkout-step-header">
             <div class="step-indicator">
               <span class="step-count-badge">2 of 3</span>
@@ -88,7 +88,7 @@
             <h2 class="step-title-text">Shipping Information</h2>
           </div>
 
-          <div class="checkout-step-body hide-element" id="shippingStepContent">
+          <div class="checkout-step-body" id="shippingStepContent">
             <div class="row g-3">
               <div class="col-md-6">
                 <input type="text" class="form-control form-input-field" id="firstNameInput" placeholder="First Name" />
@@ -125,7 +125,7 @@
         </div>
 
         <!-- Step 3: Payment Details -->
-        <div class="checkout-step-card step-disabled" id="paymentStepCard">
+        <div class="checkout-step-card" id="paymentStepCard">
           <div class="checkout-step-header">
             <div class="step-indicator">
               <span class="step-count-badge">3 of 3</span>
@@ -133,7 +133,7 @@
             <h2 class="step-title-text">Payment</h2>
           </div>
 
-          <div class="checkout-step-body hide-element" id="paymentStepContent">
+          <div class="checkout-step-body" id="paymentStepContent">
             <div class="row g-3">
               <div class="col-12">
                 <input type="text" class="form-control form-input-field" id="cardNumberInput"

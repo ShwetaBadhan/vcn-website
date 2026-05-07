@@ -10324,7 +10324,7 @@ body.checkout-page .navbar .desktop-nav .dropdown-footer {
 
 .step-count-badge {
   font-size: 12px;
-  color: var(--vcn-footer);
+  color: #333333;
   font-weight: 600;
   letter-spacing: 0.5px;
 }
@@ -10332,7 +10332,7 @@ body.checkout-page .navbar .desktop-nav .dropdown-footer {
 .step-title-text {
   font-size: 20px;
   font-weight: 600;
-  color: var(--vcn-footer);
+  color: #333333;
   margin: 8px 0 0 0;
 }
 
