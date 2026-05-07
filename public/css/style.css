@@ -166,8 +166,13 @@ p {
 }
 
 .nav-img {
-  width: 50px;
+  width: 55px;
   height: auto;
+  transition: transform 0.3s ease;
+}
+
+.nav-img:hover {
+  transform: scale(1.05);
 }
 
 .navbar .container-fluid {
@@ -771,11 +776,63 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
   .nav-right-wrapper {
     display: flex;
     align-items: center;
-    gap: 21px;
+    gap: 20px;
     padding: 6px 11px;
     background: transparent;
     border-radius: 50px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Force separation between login and cart */
+  .nav-right-wrapper .login-link {
+    margin-right: 15px !important;
+    padding-right: 20px !important;
+    border-right: 2px solid rgba(255, 255, 255, 0.4) !important;
+    flex-shrink: 0 !important;
+    min-width: fit-content !important;
+  }
+
+  .nav-right-wrapper .navbar-btn {
+    margin-left: 15px !important;
+    flex-shrink: 0 !important;
+    min-width: fit-content !important;
+  }
+
+  /* Professional navbar improvements */
+  .navbar {
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .navbar.scrolled {
+    background: rgba(0, 0, 0, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+  }
+
+  /* Enhanced typography */
+  .login-link {
+    font-family: var(--vcn-font) !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+  }
+
+  .navbar-btn {
+    font-family: var(--vcn-font) !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 4px 15px rgba(94, 108, 31, 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .navbar-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(94, 108, 31, 0.4) !important;
   }
 
   .navbar.scrolled .nav-right-wrapper {
@@ -791,6 +848,9 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
+    padding: 8px 12px;
+    white-space: nowrap;
+    display: inline-block;
   }
 
   .login-link:hover {
@@ -1038,6 +1098,8 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
     text-decoration: none;
     transition: all 0.3s ease;
     border: none;
+    white-space: nowrap;
+    display: inline-block;
   }
 
   .navbar-btn:hover {
