@@ -12,9 +12,7 @@ import HomeStories from '~/components/Home/Stories.vue'
 <template>
    <HomeHero />
    <HomeEssentialDuo />
-   <ClientOnly>
-      <HomeProducts key="products-1" />
-   </ClientOnly>
+   <HomeProducts key="products-1" />
    <HomeSurviveDigestion />
    <HomeDiseaseBundle />
    <ClientOnly>

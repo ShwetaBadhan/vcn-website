@@ -11,21 +11,21 @@
       <div class="vcn-stories-media-gallery">
         <div class="vcn-stories-media-gallery-track">
           <div class="vcn-stories-media-item">
-            <img :src="cleanImageUrl('/img/image/Stories from scientists  806.png')" alt="Story 1" loading="eager" />
+            <img :src="cleanImageUrl('/img/image/Stories from scientists  806.png')" alt="Story 1" loading="lazy" />
           </div>
 
           <div class="vcn-stories-media-item">
             <img :src="cleanImageUrl('/img/image/Stories from scientists  552by 864.png')" alt="Story 2"
-              loading="eager" />
+              loading="lazy" />
           </div>
 
           <div class="vcn-stories-media-item">
-            <img :src="cleanImageUrl('/img/image/Stories from scientists  806.png')" alt="Story 3" loading="eager" />
+            <img :src="cleanImageUrl('/img/image/Stories from scientists  806.png')" alt="Story 3" loading="lazy" />
           </div>
 
           <div class="vcn-stories-media-item">
-            <img :src="cleanImageUrl('img/image/Stories from scientists  644.png')" alt="Story 4" class="vcn-stories-4"
-              loading="eager" />
+            <img :src="cleanImageUrl('/img/image/Stories from scientists  644.png')" alt="Story 4" class="vcn-stories-4"
+              loading="lazy" />
             <div class="vcn-stories-media-overlay">
               "Pushing the boundaries on what personal probabilities are
               within our reach is going beyond norms and..."
@@ -35,11 +35,11 @@
 
           <div class="vcn-stories-media-item">
             <img :src="cleanImageUrl('/img/image/Stories from scientists  552by 864.png')" alt="Story 5"
-              loading="eager" />
+              loading="lazy" />
           </div>
 
           <div class="vcn-stories-media-item">
-            <img :src="cleanImageUrl('/img/image/Stories from scientists  806.png')" alt="Story 6" loading="eager" />
+            <img :src="cleanImageUrl('/img/image/Stories from scientists  806.png')" alt="Story 6" loading="lazy" />
           </div>
           <div class="vcn-stories-media-item">
             <div class="vcn-stories-media-overlay">
@@ -47,8 +47,8 @@
               that power impact for..."
               <span class="vcn-stories-media-overlay-source">FORBES</span>
             </div>
-            <img :src="cleanImageUrl('img/image/Stories from scientists  644.png')" alt="Story 7" class="vcn-stories-4"
-              loading="eager" />
+            <img :src="cleanImageUrl('/img/image/Stories from scientists  644.png')" alt="Story 7" class="vcn-stories-4"
+              loading="lazy" />
           </div>
         </div>
       </div>

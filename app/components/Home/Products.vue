@@ -45,7 +45,7 @@
                                     <h3 class="vcn-whole-body-product-title">{{ product.name }}</h3>
                                     <div class="vcn-whole-body-product-image">
                                         <img class="product-img" :src="getPrimaryImage(product)" :alt="product.name"
-                                            loading="eager" @error="handleImageError($event)" />
+                                            loading="lazy" @error="handleImageError($event)" />
                                         <video :ref="el => { if (el) videoRefs[index] = el }" class="product-video"
                                             muted loop playsinline preload="auto">
                                             <source :src="getCleanVideoUrl('/video/pvide.mp4')" type="video/mp4" />
