@@ -119,7 +119,7 @@
           </ul>
         </div>
 
-        <div class="nav-right-wrapper  d-flex align-items-center">
+        <div class="nav-right-wrapper d-none d-lg-flex align-items-center">
           <a href="#" class="login-link" @click.prevent="openForm">Login</a>
           <a href="/cart" class="navbar-btn">
             Cart
@@ -245,7 +245,7 @@
                 <img src="/img/drop-down/abput us.png" alt="VCN Labs" />
                 <strong>About Us</strong>
               </a>
-              <a class="dropdown-item" href="/vcn-labs">
+              <a class="dropdown-item" href="/book-consultancy">
                 <img src="/img/image/vcnlabs.png" alt="VCN Labs" />
                 <strong>Book Consultancy</strong>
               </a>
@@ -256,7 +256,7 @@
           <!-- Learn Accordion -->
           <div class="dropdown-content" id="learnAccordion">
             <div class="dropdown-menu-mobile">
-              <a class="dropdown-item" href="/blogs">
+              <a class="dropdown-item" href="/blog">
                 <img src="/img/drop-down/blog.png" alt="Research" />
                 Blogs
               </a>

@@ -230,6 +230,150 @@
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 992px) {
+  .terms-conditions {
+    padding: 40px 15px;
+  }
+
+  .office-pills-wrapper {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .office-pill-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .office-img-wrapper {
+    height: 180px;
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .terms-conditions {
+    padding: 30px 15px;
+  }
+
+  .office-pills-wrapper {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .office-pill-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .office-img-wrapper {
+    height: 160px;
+    margin-bottom: 12px;
+  }
+
+  .office-detail-row {
+    margin-bottom: 12px;
+  }
+
+  .office-detail-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .office-detail-label {
+    font-size: 10px;
+  }
+
+  .office-detail-value {
+    font-size: 13px;
+  }
+
+  .office-maps-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .terms-conditions {
+    padding: 20px 10px;
+  }
+
+  .office-pills-wrapper {
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+
+  .office-pill-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  .office-img-wrapper {
+    height: 140px;
+    margin-bottom: 10px;
+  }
+
+  .office-detail-row {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .office-detail-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .office-detail-value {
+    font-size: 12px;
+  }
+
+  .office-maps-btn {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  /* Contact Form Mobile Styles */
+  .contact-form-container {
+    margin-top: 30px;
+  }
+
+  .contact-form-title {
+    font-size: 24px !important;
+  }
+
+  .contact-field-wrapper {
+    margin-bottom: 16px;
+  }
+
+  .contact-field-label {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .contact-text-input,
+  .contact-select-input,
+  .contact-textarea-input {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .contact-textarea-input {
+    min-height: 100px;
+  }
+
+  .contact-submit-button {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  .contact-footer-text {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+}
 </style>
 
 <template>
@@ -237,7 +381,7 @@
     <div class="row">
 
       <!-- Left Side -->
-      <div class="col-6">
+      <div class="col-lg-6 col-12">
         <div class="contact-form-body">
           <div class="office-image-wrapper">
 
@@ -873,7 +1017,7 @@
       </div>
 
       <!-- Right Side: Contact Form -->
-      <div class="col-6">
+      <div class="col-lg-6 col-12">
         <div class="contact-form-container">
           <div class="contact-form-header">
             <h1 class="contact-form-title">Contact us</h1>
