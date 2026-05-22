@@ -103,9 +103,9 @@
               <a class="nav-link" href="#">About Us</a>
               <ul class="dropdown-menu">
                 <li>
-                  <NuxtLink class="dropdown-item" to="/blog">
+                  <NuxtLink class="dropdown-item" to="/vcn-R-D">
                     <img src="/img/drop-down/blog.png" alt="Research" />
-                    Blogs
+                    R & D
                   </NuxtLink>
                 </li>
                 <li>
@@ -243,11 +243,11 @@
 
               <a class="dropdown-item" href="/our-leadership">
                 <img src="/img/drop-down/abput us.png" alt="VCN Labs" />
-                <strong>About Us</strong>
+                <strong>V-Gano</strong>
               </a>
               <a class="dropdown-item" href="/book-consultancy">
                 <img src="/img/image/vcnlabs.png" alt="VCN Labs" />
-                <strong>Book Consultancy</strong>
+                <strong>V-Veda</strong>
               </a>
 
             </div>

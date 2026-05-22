@@ -52,7 +52,6 @@ export default defineNuxtConfig({
       // Disable broken route
       '/approach': { redirect: { to: '/404', statusCode: 404 } },
       '/entire-world': { redirect: { to: '/404', statusCode: 404 } },
-      '/vcn-labs': { redirect: { to: '/404', statusCode: 404 } },
       '/vcn-university': { redirect: { to: '/404', statusCode: 404 } },
       '/microbiome': { redirect: { to: '/404', statusCode: 404 } },
       '/practitioners': { redirect: { to: '/404', statusCode: 404 } },

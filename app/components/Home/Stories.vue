@@ -62,7 +62,7 @@
             <p class="vcn-stories-card-description">
               Because health is not just human.
             </p>
-            <a href="/vcn-labs" class="vcn-stories-card-btn">Read More</a>
+            <a href="/vcn-R-D" class="vcn-stories-card-btn">Read More</a>
           </div>
         </div>
 

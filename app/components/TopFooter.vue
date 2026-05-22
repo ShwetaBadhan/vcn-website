@@ -123,7 +123,7 @@
                     <!-- <a href="/sustainability" class="vcn-footer-link">Sustainability</a> -->
                   </li>
                   <li>
-                    <!-- <a href="/vcn-labs" class="vcn-footer-link">VCNLabs</a> -->
+                    <!-- <a href="/vcn-R-D" class="vcn-footer-link">VCN R&D</a> -->
                   </li>
                   <li>
                     <a href="/blog" class="vcn-footer-link">Blogs</a>

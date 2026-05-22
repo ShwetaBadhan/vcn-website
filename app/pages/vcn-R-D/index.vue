@@ -13,7 +13,7 @@
             </div>
         </div>
     </section>
-     <section class="microbiomes-section">
+     <!-- <section class="microbiomes-section">
         <div class="container">
             <div class="microbiome-circles">
                 <div class="microbiome-circle">
@@ -44,11 +44,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
 
    <!-- Section 01 - Strains -->
-    <section id="carbon-dioxide" class="approach-section">
+    <!-- <section id="carbon-dioxide" class="approach-section">
         <div class="container">
             <div class="section-header">
                 <span class="section-number">01</span>
@@ -77,9 +77,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
    <!-- Section 02 - Plastics -->
-    <section id="plastics" class="approach-section">
+    <!-- <section id="plastics" class="approach-section">
         <div class="container">
             <div class="section-header">
                 <span class="section-number">02</span>
@@ -101,10 +101,10 @@
                 </div>
             </div>
       
-    </section>
+    </section> -->
 
     <!-- Section 03 - Honey Bees -->
-    <section id="honey-bees" class="approach-section">
+    <!-- <section id="honey-bees" class="approach-section">
         <div class="container">
             <div class="section-header">
                 <span class="section-number">03</span>
@@ -142,9 +142,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Section 03 - Honey Bees -->
-    <section id="honey-bees" class="approach-section">
+    <!-- <section id="honey-bees" class="approach-section">
         <div class="container">
             <div class="section-header">
                 <span class="section-number">03</span>
@@ -182,9 +182,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Section 04 - Coral-->
-    <section id="coral" class="approach-section">
+    <!-- <section id="coral" class="approach-section">
         <div class="container">
             <div class="section-header">
                 <span class="section-number">04</span>
@@ -221,9 +221,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Section 05 - Agriculture-->
-    <section id="coral" class="approach-section">
+    <!-- <section id="coral" class="approach-section">
         <div class="container">
             <div class="section-header">
                 <span class="section-number">05</span>
@@ -237,9 +237,9 @@
                 
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Section 06 - Biomaterials-->
-    <section id="biomaterials" class="approach-section">
+    <!-- <section id="biomaterials" class="approach-section">
         <div class="container">
             <div class="section-header">
                 <span class="section-number">06</span>
@@ -253,7 +253,7 @@
                 
             </div>
         </div>
-    </section>
+    </section> -->
 </template>
 <script setup>
 useHead({
