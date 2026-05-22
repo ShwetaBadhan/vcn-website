@@ -42,7 +42,12 @@
                   </button>
                   <div v-show="openFaqIndex === index" class="strains-accordion-body-content"
                     style="display: block; padding: 0 25px 20px 25px;">
-                    <p style="padding: 10px; color: #333; background: #f8f9fa; border-radius: 4px;">{{ faq.answer }}</p>
+                    <ul
+                      style="padding: 10px 10px 10px 25px; color: #333; background: #f8f9fa; border-radius: 4px; margin: 0;">
+                      <li v-for="(line, i) in faq.answer.split(/\\n|\n/)" :key="i" style="margin-bottom: 6px;">
+                        {{ line.trim() }}
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>

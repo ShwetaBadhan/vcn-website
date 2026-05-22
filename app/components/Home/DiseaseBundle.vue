@@ -18,7 +18,7 @@
 
           <p data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">
             We focus on trusted, research-backed products that support everyday wellness and customer satisfaction. With
-            a growing presence across India, VCare Network also empowers individuals through meaningful direct selling
+            a growing presence across India, VCN also empowers individuals through meaningful direct selling
             opportunities.
           </p>
 

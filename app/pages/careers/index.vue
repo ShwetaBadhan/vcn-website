@@ -29,7 +29,7 @@
                   <h2>Be a part of the VCN Family</h2>
 
                   <p>
-                    At Vcare Network, our people drive our success. We welcome passionate, dedicated individuals who
+                    At VCN, our people drive our success. We welcome passionate, dedicated individuals who
                     want to grow and make an impact in the wellness industry.
                   </p>
                   <p>

@@ -58,8 +58,7 @@
         <!-- Card 1 -->
         <div class="vcn-stories-card" data-aos="fade-up" data-aos-duration="400">
           <div class="vcn-stories-card-content">
-            <h3 class="vcn-stories-card-title">VCN
-              Labs</h3>
+            <h3 class="vcn-stories-card-title">“VCN R&D</h3>
             <p class="vcn-stories-card-description">
               Because health is not just human.
             </p>
@@ -70,8 +69,7 @@
         <!-- Card 2 -->
         <div class="vcn-stories-card" data-aos="fade-up" data-aos-duration="400" data-aos-delay="100">
           <div class="vcn-stories-card-content">
-            <h3 class="vcn-stories-card-title">Change your health.
-
+            <h3 class="vcn-stories-card-title">BUSINESS OPPORTUNITY
             </h3>
             <p class="vcn-stories-card-description text-center">
               Feel lasting relief in one week with VCN-01

@@ -15,7 +15,7 @@
               <h1>Major Milestones</h1>
 
               <p>
-                Since our inception in 2009, Vcare Network has grown from a vision-driven initiative into a trusted name
+                Since our inception in 2009, VCN has grown from a vision-driven initiative into a trusted name
                 in the wellness and direct selling industry. What began as a commitment to deliver high-quality,
                 nature-inspired products has evolved into a strong nationwide presence backed by a dedicated network of
                 distributors and loyal customers. Over the years, we have expanded our product range, strengthened our
@@ -38,7 +38,7 @@
 
             <section class="timeline-content">
               <div class="milestone-card">
-                
+
 
                 <div class="milestone-info">
                   <h2>{{ activeYear }}</h2>

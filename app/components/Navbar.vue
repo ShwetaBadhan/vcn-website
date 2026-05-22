@@ -49,15 +49,15 @@
               <a class="nav-link" href="#">Science</a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="/our-journey">
+                  <a class="dropdown-item" href="/all-products">
                     <img src="/img/drop-down/abput us.png" alt="Approach" />
-                    <strong>About us</strong>
+                    <strong>V-GANO</strong>
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="/book-consultancy">
+                  <a class="dropdown-item" href="/all-products">
                     <img src="/img/image/vcnlabs.png" alt="VCN Labs" />
-                    <strong>Book Consultancy</strong>
+                    <strong>V-VEDA</strong>
                   </a>
                 </li>
                 <!-- <li>
@@ -100,7 +100,7 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="#">Learn</a>
+              <a class="nav-link" href="#">About Us</a>
               <ul class="dropdown-menu">
                 <li>
                   <NuxtLink class="dropdown-item" to="/blog">

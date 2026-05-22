@@ -7,7 +7,7 @@
           <h3>Grievance Redressal</h3>
 
           <p>
-            At Vcare Network, customer satisfaction is our priority. We are committed to addressing all concerns and
+            At VCN, customer satisfaction is our priority. We are committed to addressing all concerns and
             grievances in a timely and fair manner.
           </p>
 

@@ -88,6 +88,7 @@
             <p class="subscribe-text">
               30-day risk-free guarantee. Free US shipping.
             </p>
+            <!--
             <div class="vcn-accordion">
               <div class="vcn-acc-item" v-for="(item, index) in accordionItems" :key="index">
                 <button type="button" class="vcn-acc-header" @click="toggleAccordion(index)">
@@ -106,6 +107,7 @@
                 </div>
               </div>
             </div>
+            -->
             <div class="bundle-card mt-5">
               <div class="bundle-image">
                 <img src="/img/productsdetails/BOOSTER.png" alt="VCN-02 Daily Multivitamin" />
@@ -154,7 +156,7 @@ const productStore = useProductStore()
 const { initializeCart } = useAuthCart()
 const route = useRoute()
 
-const activeIndex = ref(null)
+// const activeIndex = ref(null)
 const product = ref(null)
 const loading = ref(true)
 const error = ref('')
@@ -357,53 +359,53 @@ const decrementBundle = () => {
   cartStore.decrementQuantity(bundleProduct.id)
 }
 
-// Dynamic accordion items based on API data
-const accordionItems = computed(() => {
-  if (!product.value) return []
-
-  const items = []
-
-  if (product.value.uses) {
-    items.push({
-      title: 'Uses *',
-      content: product.value.uses.split(/[,.]\s*/).filter(item => item.trim())
-    })
-  }
-
-  if (product.value.directionsForUse) {
-    items.push({
-      title: 'Direction For Use',
-      content: [product.value.directionsForUse]
-    })
-  }
-
-  if (product.value.cautions) {
-    items.push({
-      title: 'Cautions',
-      content: [product.value.cautions]
-    })
-  }
-
-  if (product.value.primaryBenefits) {
-    items.push({
-      title: 'Primary Benefits',
-      content: product.value.primaryBenefits.split(/[,.]\s*/).filter(item => item.trim())
-    })
-  }
-
-  if (product.value.ingredients) {
-    items.push({
-      title: 'Ingredients',
-      content: [product.value.ingredients]
-    })
-  }
-
-  return items
-})
-
-const toggleAccordion = (index) => {
-  activeIndex.value = activeIndex.value === index ? null : index
-}
+// // Dynamic accordion items based on API data
+// const accordionItems = computed(() => {
+//   if (!product.value) return []
+//
+//   const items = []
+//
+//   if (product.value.uses) {
+//     items.push({
+//       title: 'Uses *',
+//       content: product.value.uses.split(/[,.]\s*/).filter(item => item.trim())
+//     })
+//   }
+//
+//   if (product.value.directionsForUse) {
+//     items.push({
+//       title: 'Direction For Use',
+//       content: [product.value.directionsForUse]
+//     })
+//   }
+//
+//   if (product.value.cautions) {
+//     items.push({
+//       title: 'Cautions',
+//       content: [product.value.cautions]
+//     })
+//   }
+//
+//   if (product.value.primaryBenefits) {
+//     items.push({
+//       title: 'Primary Benefits',
+//       content: product.value.primaryBenefits.split(/[,.]\s*/).filter(item => item.trim())
+//     })
+//   }
+//
+//   if (product.value.ingredients) {
+//     items.push({
+//       title: 'Ingredients',
+//       content: [product.value.ingredients]
+//     })
+//   }
+//
+//   return items
+// })
+//
+// const toggleAccordion = (index) => {
+//   activeIndex.value = activeIndex.value === index ? null : index
+// }
 
 // Fetch individual product details with variants
 const fetchProductDetails = async (id) => {

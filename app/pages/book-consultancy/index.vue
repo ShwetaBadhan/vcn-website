@@ -64,6 +64,37 @@
                   v-model="formData.email">
               </div>
 
+              <!-- Gender -->
+              <div class="mb-3">
+                <label for="mid-gender" class="mid-form-label form-label">
+                  Gender <span class="text-danger">*</span>
+                </label>
+                <select class="form-select mid-form-input" id="mid-gender" v-model="formData.gender" required>
+                  <option value="" disabled selected>Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <!-- City & Pincode -->
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label for="mid-city" class="mid-form-label form-label">
+                    City <span class="text-danger">*</span>
+                  </label>
+                  <input type="text" class="form-control mid-form-input" id="mid-city" placeholder="City"
+                    v-model="formData.city" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="mid-pincode" class="mid-form-label form-label">
+                    Pincode <span class="text-danger">*</span>
+                  </label>
+                  <input type="text" class="form-control mid-form-input" id="mid-pincode" placeholder="Pincode"
+                    v-model="formData.pincode" required>
+                </div>
+              </div>
+
               <!-- Health Issues -->
               <div class="mb-4">
                 <label class="mid-form-label form-label">
@@ -78,6 +109,16 @@
                     </label>
                   </div>
                 </div>
+              </div>
+
+              <!-- Health Issue Description -->
+              <div class="mb-4" v-if="formData.healthIssues.length > 0">
+                <label for="mid-health-description" class="mid-form-label form-label">
+                  Describe Your Problem <span class="text-danger">*</span>
+                </label>
+                <textarea class="form-control mid-form-input" id="mid-health-description" rows="4"
+                  placeholder="Please describe your health issue in detail..." v-model="formData.healthIssueDescription"
+                  required></textarea>
               </div>
 
               <!-- Submit Button -->
@@ -224,7 +265,11 @@ const formData = ref({
   weight: '',
   phone: '',
   email: '',
-  healthIssues: []
+  gender: '',
+  city: '',
+  pincode: '',
+  healthIssues: [],
+  healthIssueDescription: ''
 })
 
 const healthIssues = [

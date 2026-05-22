@@ -10,31 +10,41 @@
           <h6>
             1. Introduction
           </h6>
-          <p>By using the Vcare Network website, you agree to follow these Terms & Conditions. If you do not agree,
+          <p>By using the VCN website, you agree to follow these Terms & Conditions. If you do not agree,
             please do not use the platform.</p>
           <h6>2. Use of Website</h6>
           <p>VCN provides an online platform for the purchase of healthcare and personal care products. All services are
             subject to availability and applicable policies.</p>
           <h6>3. Eligibility</h6>
-          <p>You must be at least 18 years of age to use our services. If you are under 18, you may access the website only under the supervision of a parent or legal guardian.</p>
+          <p>You must be at least 18 years of age to use our services. If you are under 18, you may access the website
+            only under the supervision of a parent or legal guardian.</p>
           <h6>4. Account Responsibility</h6>
           <p>You are responsible for maintaining your account details and all activities under your login.</p>
           <h6>5. Products & Orders</h6>
-          <p>All products are subject to availability and pricing at the time of purchase. The company may update or discontinue products without notice.</p>
+          <p>All products are subject to availability and pricing at the time of purchase. The company may update or
+            discontinue products without notice.</p>
           <h6>6. Orders & Delivery</h6>
-          <p>Orders placed on the website will be processed and delivered within India as per the confirmed order details. The company is not liable for delivery outside India or delays caused by unforeseen circumstances.</p>
+          <p>Orders placed on the website will be processed and delivered within India as per the confirmed order
+            details. The company is not liable for delivery outside India or delays caused by unforeseen circumstances.
+          </p>
           <h6>7. Direct Selling & Business Opportunity</h6>
-          <p>VCN operates under a direct selling model in compliance with applicable Indian laws. Earnings are based on product sales and not on recruitment. The company does not guarantee any fixed income, success, or profit levels.</p>
+          <p>VCN operates under a direct selling model in compliance with applicable Indian laws. Earnings are based on
+            product sales and not on recruitment. The company does not guarantee any fixed income, success, or profit
+            levels.</p>
           <h6>8. Intellectual Property</h6>
-          <p>All content on this website, including logos, text, images, and materials, is the property of Vcare Network and protected by applicable intellectual property laws.</p>
+          <p>All content on this website, including logos, text, images, and materials, is the property of VCN
+            and protected by applicable intellectual property laws.</p>
           <h6>9. Payments & Pricing</h6>
-          <p>All prices are listed in INR and are subject to change without prior notice. Applicable taxes and charges will be added at checkout. Payments must be made through approved methods available on the platform</p>
+          <p>All prices are listed in INR and are subject to change without prior notice. Applicable taxes and charges
+            will be added at checkout. Payments must be made through approved methods available on the platform</p>
           <h6>10. Termination</h6>
-          <p>The company reserves the right to suspend or terminate user access at any time due to violations of these terms, fraudulent activities, or misuse of the platform.</p>
+          <p>The company reserves the right to suspend or terminate user access at any time due to violations of these
+            terms, fraudulent activities, or misuse of the platform.</p>
           <h6>11. Changes to Terms</h6>
           <p>Terms may be updated at any time. Continued use of the website means you accept the changes.</p>
           <h6>12. Governing Law</h6>
-          <p>These Terms & Conditions are governed by the laws of India. Any disputes shall be subject to the jurisdiction of the courts in India.</p>
+          <p>These Terms & Conditions are governed by the laws of India. Any disputes shall be subject to the
+            jurisdiction of the courts in India.</p>
         </div>
       </div>
     </div>

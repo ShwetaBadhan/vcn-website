@@ -54,7 +54,7 @@ const faqCategories = ref([
     title: 'About VCN Business',
     questions: [
       {
-        question: 'What is Vcare Network (VCN)?',
+        question: 'What is VCN?',
         answer: "VCN is a direct selling company offering a wide range of wellness, healthcare, and personal care products inspired by natural ingredients and modern research."
       },
       {

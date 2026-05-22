@@ -7,16 +7,14 @@
         <div class="vcn-cobiotics-content" data-aos="fade-up" data-aos-duration="400">
           <span class="vcn-cobiotics-badge" data-aos="fade-up" data-aos-duration="400">Bundle + Save 25%</span>
           <h2 class="vcn-cobiotics-title" data-aos="fade-up" data-aos-duration="400">
-            Empowering Health. Enriching Lives.
+            OUR MONTHLY OFFERS
           </h2>
           <p class="vcn-cobiotics-description" data-aos="fade-up" data-aos-duration="400">
-            Step into a world of natural wellness, trusted personal care, and rewarding growth opportunities. VCare
-            Network is committed to providing quality products that nurture your health, support your everyday needs,
+            Step into a world of natural wellness, trusted personal care, and rewarding growth opportunities. VCN is committed to providing quality products that nurture your health, support your everyday needs,
             and
             inspire a better, healthier future.
           </p>
-          <NuxtLink to="/all-products" class="vcn-cobiotics-cta-btn" data-aos="fade-up" data-aos-duration="400">Shop
-            Daily Essentials Duo</NuxtLink>
+          <NuxtLink to="/all-products" class="vcn-cobiotics-cta-btn" data-aos="fade-up" data-aos-duration="400">Monthly Offers</NuxtLink>
         </div>
 
         <!-- Right Images -->
