@@ -1,12 +1,24 @@
+
+<script setup>
+import { useCmsStore } from '~/stores/cms'
+
+
+
+const cmsStore = useCmsStore()
+
+const footer = computed(() => cmsStore.bottomFooterData)
+
+
+</script>
 <template>
   <!-- Awaken Within Section -->
   <div class="bottom-footer-wrapper">
     <section class="vcn-awaken-section" id="awakenSection">
       <div class="vcn-awaken-gif-container vcn-loaded" id="awakenGif">
-        <img src="/img/gif/Makes-Life-Better-2.gif" alt="Awaken Within" class="vcn-awaken-gif" />
+        <img :src="footer.image" alt="Awaken Within" class="vcn-awaken-gif" />
       </div>
       <ClientOnly>
-        <div class="vcn-awaken-copyright vcn-loaded" id="awakenCopyright">© 2025 VCN</div>
+        <div class="vcn-awaken-copyright vcn-loaded" id="awakenCopyright">{{ footer.copyrightText }}</div>
       </ClientOnly>
     </section>
   </div>

@@ -30,7 +30,7 @@
             </a> -->
 
               <!-- Accordion -->
-              <div class="strains-custom-accordion">
+              <!-- <div class="strains-custom-accordion">
                 <div v-for="(faq, index) in faqs" :key="index" class="strains-accordion-item-wrapper">
                   <button class="strains-accordion-header-btn" type="button" @click="toggleFaq(index)"
                     :aria-expanded="openFaqIndex === index">
@@ -50,7 +50,7 @@
                     </ul>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
               <!-- Badges Grid -->
               <div class="strains-badges-grid-container">
@@ -72,48 +72,11 @@
 
 <script setup>
 const productStore = useProductStore()
-const openFaqIndex = ref(null)
-
-const toggleFaq = (index) => {
-  openFaqIndex.value = openFaqIndex.value === index ? null : index
-}
 
 const heroTitle = computed(() => productStore.selectedProductPage?.heroTitle || '11 Herbs that work harder to control your Blood Sugar.')
 const heroDescription = computed(() => productStore.selectedProductPage?.heroDescription || 'Chosen for their Ayurvedic potency to regulate glucose metabolism and build complete diabetic wellness.')
 const heroImage = computed(() => productStore.selectedProductPage?.heroImage || '/img/products/New-Project.png')
-const faqs = computed(() => {
-  const productPage = productStore.selectedProductPage
-  if (!productPage) return []
 
-  const apiFaqs = productPage.faqs || []
-  console.log('API FAQs from store:', apiFaqs)
-
-  if (apiFaqs.length > 0) {
-    console.log('Using API FAQs, count:', apiFaqs.length)
-    return apiFaqs
-  }
-
-  // Fallback defaults when API faqs is empty
-  console.log('Using fallback FAQs')
-  return [
-    {
-      question: 'Blood Sugar Control Blend',
-      answer: 'Karela: Contains Charantin & Momordicin that influence glucose metabolism and reduce high blood glucose levels. Vijayasar: Reduces excess fat, removes toxins, lowers blood sugar and purifies blood naturally. Gurmar: Highly effective in Type 1 & Type 2 Diabetes. Enhances insulin levels and reduces bad cholesterol (LDL).'
-    },
-    {
-      question: 'Immunity & Detox Blend',
-      answer: 'Giloy: Lowers blood sugar and lipid levels, relieves excessive thirst and improves body strength. Neem: Improves insulin sensitivity and controls high blood glucose by stimulating insulin production in Beta cells. Amla: Helps proper absorption of insulin, reduces high sugar levels and relieves eye-related diabetic problems.'
-    },
-    {
-      question: 'Metabolic & Pancreas Support Blend',
-      answer: 'Methi: Lowers blood glucose, improves glucose tolerance and manages metabolic symptoms of Type 1 & Type 2 Diabetes. Chirata: Antioxidant & anti-inflammatory properties that prevent pancreatic cell damage and enhance insulin release. Jamun: Contains Jamboline to reduce starch-to-glucose conversion and controls frequent urination & thirst in diabetics.'
-    },
-    {
-      question: 'Organ Health & Repair Blend',
-      answer: 'Punarnava: Best natural diuretic to reduce sugar, blood pressure and cholesterol. Supports liver, kidneys and eye health. Aloe Vera: Reduces glucose and triglyceride levels, assists in wound healing and does not elevate blood sugar. Shudh Shilajit: Fulvic acid in Shilajit repairs damaged pancreas, enables insulin release and flushes out body toxins.'
-    }
-  ]
-})
 
 const iconValues = computed(() => {
   const apiIcons = productStore.selectedProductPage?.iconValues || []

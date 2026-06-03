@@ -1,3 +1,11 @@
+<script setup>
+import { useCmsStore } from '~/stores/cms'
+
+const cmsStore = useCmsStore()
+
+const sidebar = computed(() => cmsStore.sidebar)
+</script>
+
 <template>
     <div class="menu-list">
 
@@ -10,19 +18,10 @@
             <a class="menu-item" href="/careers">Careers at VCN</a>
             <a class="menu-item" href="/faqs">FAQs</a>
        </div> -->
-           
-          
- 
-
         <div class="sidebar-inner">
-            <NuxtLink class="menu-item" to="/our-journey" active-class="active">Our Journey</NuxtLink>
-
-            <NuxtLink class="menu-item" to="/about-us" active-class="active">VCN India</NuxtLink>
-            <!-- <NuxtLink class="menu-item" to="/how-vcn-works" active-class="active">How VCN Business Works</NuxtLink> -->
-            <NuxtLink class="menu-item" to="/our-leadership" active-class="active">Our Leadership</NuxtLink>
-            <NuxtLink class="menu-item" to="/news" active-class="active">News</NuxtLink>
-            <NuxtLink class="menu-item" to="/careers" active-class="active">Careers at VCN</NuxtLink>
-            <NuxtLink class="menu-item" to="/faqs" active-class="active">FAQs</NuxtLink>
+            <NuxtLink v-for="item in sidebar" :key="item.link" class="menu-item" :to="item.link" active-class="active">
+                {{ item.title }}
+            </NuxtLink>
         </div>
     </div>
 </template>

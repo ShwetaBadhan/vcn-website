@@ -14,16 +14,16 @@
                 <div class="row align-items-center">
                   <div class="col-lg-6">
                     <div class="hero-image">
-                      <img src="/img/leadership/ourleadership.jpeg" alt="Leadership" />
+                      <img :src="leadership.hero.image" :alt="leadership.hero.title" />
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="hero-contents">
-                      <h1 class="hero-title">Our leadership</h1>
+                      <h1 class="hero-title">{{ leadership.hero.title }}</h1>
 
-                      
+
                       <p class="hero-text">
-                        Our leadership is driven by vision, integrity, and a commitment to excellence. With years of industry experience, our leaders guide the organization with a clear focus on innovation, quality, and sustainable growth. They inspire a culture of trust, empower our community, and continuously strive to create opportunities that help individuals achieve both personal and professional success.
+                              {{ leadership.hero.description }}
                       </p>
                     </div>
                   </div>
@@ -61,50 +61,62 @@
 
             <!-- Board of Directors Section -->
             <section class="board-section">
-              <div class="container">
-                <h2 class="section-title">Board of directors</h2>
-                <div class="row">
-                  <div v-for="(member, index) in boardMembers" :key="index" class="col-lg-4 col-md-6 mb-4">
-                    <div class="team-card">
-                      <div class="team-image">
-                        <img :src="member.image" :alt="member.name" />
-                      </div>
-                      <div class="team-info">
-                        <h3 class="team-name">{{ member.name }}</h3>
-                        <p class="team-titles">{{ member.title }}</p>
-                        <button @click="openBio(member)" class="view-bio-btn">
-                          View Bio
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- <div class="text-center mt-4">
-                  <button class="view-all-btn">
-                    <i class="bi bi-arrow-down"></i> View All
-                  </button>
-                </div> -->
-              </div>
-            </section>
+  <div class="container">
+    <h2 class="section-title">
+      {{ leadership.boardSection.title }}
+    </h2>
+
+    <div class="row">
+      <div
+        v-for="(member, index) in leadership.boardSection.members"
+        :key="index"
+        class="col-lg-4 col-md-6 mb-4"
+      >
+        <div class="team-card">
+          <div class="team-image">
+            <img
+              :src="member.image"
+              :alt="member.name"
+            />
+          </div>
+
+          <div class="team-info">
+            <h3 class="team-name">
+              {{ member.name }}
+            </h3>
+
+            <p class="team-titles">
+              {{ member.title }}
+            </p>
+
+            <button
+              @click="openBio(member)"
+              class="view-bio-btn"
+            >
+              {{ leadership.boardSection.btntext }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
             <!-- Connect Section -->
             <section class="connect-section">
               <div class="container">
                 <div class="row align-items-center">
                   <div class="col-lg-4">
-                    <h2 class="connect-title">Connect with our leadership</h2>
+                    <h2 class="connect-title">{{ leadership.connectSection.title }}</h2>
                   </div>
                   <div class="col-lg-5">
                     <p class="connect-text">
-                      We give everyone the opportunity to communicate directly
-                      with the chairman of the board, individual directors,
-                      non-management directors as a group or the entire board of
-                      directors.
+                     {{leadership.connectSection.description }}
                     </p>
                   </div>
                   <div class="col-lg-3">
                     <button class="contact-btn">
-                      <i class="bi bi-plus-circle"></i> Contact the Board
+                      <i class="bi bi-plus-circle"></i> {{ leadership.connectSection.buttonText }}
                     </button>
                   </div>
                 </div>
@@ -151,6 +163,17 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useCmsStore } from '~/stores/cms'
+
+const cmsStore = useCmsStore()
+
+const leadership = computed(() =>
+  cmsStore.getPageSection('about', 'leadership')
+)
+
+
+
 import { ref } from "vue";
 
 useHead({

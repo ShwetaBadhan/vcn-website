@@ -38,7 +38,7 @@ export const useCartStore = defineStore('cart', {
     },
 
     async addToCart(product: CartItem & { variantId?: string | number }) {
-      console.log('addToCart called with:', product)
+      
       // Check for existing item by ID (convert to string for comparison)
       const productId = String(product.id)
       const existingItem = this.items.find((item: CartItem) => String(item.id) === productId)
@@ -71,12 +71,10 @@ export const useCartStore = defineStore('cart', {
 
         // Sync with backend if variantId is provided
         if (product.variantId) {
-          console.log('Syncing new item with backend, variantId:', product.variantId)
+          
           const response = await this.syncItemWithBackend(product.variantId, 1)
-          console.log('Full sync response:', response)
           // Update item with cartItemId from backend if available
           if (response?.cartItemId) {
-            console.log('Setting cartItemId:', response.cartItemId)
             newItem.cartItemId = response.cartItemId
             this.saveCart()
           } else {
@@ -104,7 +102,6 @@ export const useCartStore = defineStore('cart', {
 
             const response = await deleteCartItem(item.cartItemId)
             if (response.success) {
-              console.log('Cart item deleted from backend')
             } else if (response.message?.includes('404') || response.message?.includes('400')) {
               console.log('Backend delete API error - item removed from localStorage only')
             } else {
@@ -136,18 +133,18 @@ export const useCartStore = defineStore('cart', {
 
     async incrementQuantity(productId: string | number) {
       const item = this.items.find((item: CartItem) => item.id === productId)
-      console.log('incrementQuantity called for productId:', productId, 'item:', item, 'cartItemId:', item?.cartItemId)
+     
       if (item) {
         item.quantity += 1
         this.saveCart()
 
         // Sync with backend if we have cartItemId
         if (item.cartItemId) {
-          console.log('Calling updateCartItemBackend with cartItemId:', item.cartItemId, 'quantity:', item.quantity)
+          
           await this.updateCartItemBackend(item.cartItemId, item.quantity)
         } else if (item.variantId) {
           // No cartItemId but we have variantId - sync with backend first to get cartItemId
-          console.log('No cartItemId found, syncing with backend using variantId:', item.variantId)
+          
           const response = await this.syncItemWithBackend(item.variantId, item.quantity)
           if (response?.cartItemId) {
             item.cartItemId = response.cartItemId
@@ -164,14 +161,12 @@ export const useCartStore = defineStore('cart', {
 
     async decrementQuantity(productId: string | number) {
       const item = this.items.find((item: CartItem) => item.id === productId)
-      console.log('decrementQuantity called for productId:', productId, 'item:', item, 'cartItemId:', item?.cartItemId)
       if (item && item.quantity > 1) {
         item.quantity -= 1
         this.saveCart()
 
         // Sync with backend if we have cartItemId
         if (item.cartItemId) {
-          console.log('Calling updateCartItemBackend with cartItemId:', item.cartItemId, 'quantity:', item.quantity)
           await this.updateCartItemBackend(item.cartItemId, item.quantity)
         } else if (item.variantId) {
           // No cartItemId but we have variantId - sync with backend first to get cartItemId
@@ -202,7 +197,6 @@ export const useCartStore = defineStore('cart', {
           const response = await updateCart(cartItemId, quantity)
 
           if (response.success) {
-            console.log('Cart item quantity updated on backend')
           } else {
             // Silently ignore 404 errors (API not deployed)
             if (response.message?.includes('404')) {
@@ -424,27 +418,24 @@ export const useCartStore = defineStore('cart', {
 
     // Sync single cart item with backend
     async syncItemWithBackend(variantId: string | number, quantity: number = 1): Promise<{ cartItemId?: string | number; success: boolean } | null> {
-      console.log('syncItemWithBackend called:', { variantId, quantity, isClient: import.meta.client })
+      
       if (import.meta.client) {
         try {
           const { useCartApi } = await import('~/composables/useCartApi')
           const { addToCart, getSessionId } = useCartApi()
 
           this.sessionId = getSessionId()
-          console.log('Session ID:', this.sessionId)
+          
 
           const response = await addToCart(variantId, quantity)
-          console.log('addToCart response:', response)
 
           if (response.success) {
-            console.log('Cart item synced with backend successfully')
             // Extract cartItemId from response if available
             const cartItemId = response.items?.[0]?.cartItemId || response.cartItemId
             return { cartItemId, success: true }
           } else {
             // Check if it's a 404 (API not deployed yet) - work in local-only mode
             if (response.message?.includes('404')) {
-              console.log('Backend cart API not available (404) - working in localStorage mode')
               return { success: true } // Return success to allow local cart to work
             }
             console.warn('Failed to sync cart item with backend:', response.message)

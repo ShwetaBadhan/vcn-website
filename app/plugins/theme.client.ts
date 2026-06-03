@@ -7,5 +7,4 @@ export default defineNuxtPlugin(async () => {
     await themeStore.loadTheme()
   }
 
-  console.log('🔌 Theme plugin initialized')
 })

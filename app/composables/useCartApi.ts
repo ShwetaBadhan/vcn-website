@@ -46,7 +46,7 @@ export const useCartApi = () => {
       const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`
       const fullURL = `${cleanBaseURL}${cleanEndpoint}`
 
-      console.log('🔥 API CALL:', { method, fullURL, endpoint, body })
+      
 
       // Build request options - only add body and content-type if needed
       const options: any = { method }
@@ -61,7 +61,6 @@ export const useCartApi = () => {
       // DELETE without body should not have content-type header
 
       const data = await $fetch<T>(fullURL, options)
-      console.log('✅ API SUCCESS:', data)
       return { data, error: null }
     } catch (err: any) {
       console.error('❌ API ERROR:', err.message, err.statusCode, err.statusMessage)
@@ -72,7 +71,6 @@ export const useCartApi = () => {
 
   // Add item to cart on backend (creates cart if doesn't exist)
   const addToCart = async (variantId: string | number, quantity: number = 1, sessionId?: string | number): Promise<CartCreateResponse> => {
-    console.log('useCartApi.addToCart called:', { variantId, quantity, sessionId })
     try {
       const sid = String(sessionId || getSessionId())
       const requestBody: CartCreateRequest = {
@@ -81,10 +79,8 @@ export const useCartApi = () => {
         sessionId: sid
       }
 
-      console.log('API Request Body:', requestBody)
 
       const { data, error } = await apiCall<CartCreateResponse>('POST', API_ENDPOINTS.CART_CREATE, requestBody)
-      console.log('API Response:', { data, error })
 
       if (error) {
         console.error('Cart add item error:', error)
@@ -171,8 +167,6 @@ export const useCartApi = () => {
 
   // Update cart item quantity on backend
   const updateCart = async (cartItemId: string | number, quantity: number): Promise<CartUpdateResponse> => {
-    console.log('useCartApi.updateCart called:', { cartItemId, quantity })
-    console.log('Base URL:', baseURL)
     try {
       // API expects: { cartItemId, quantity } with sessionId as query parameter
       const sid = getSessionId()
@@ -184,12 +178,9 @@ export const useCartApi = () => {
       const endpoint = `${API_ENDPOINTS.CART_UPDATE}?sessionId=${sid}`
       const cleanBase = baseURL.replace(/\/$/, '')
       const fullURL = `${cleanBase}/${endpoint}`
-      console.log('PATCH API Request Body:', requestBody)
-      console.log('PATCH API Full URL:', fullURL)
-      console.log('Current sessionId from localStorage:', localStorage.getItem('vcn-session-id'))
 
       const { data, error } = await apiCall<CartUpdateResponse>('PATCH', endpoint, requestBody)
-      console.log('PATCH API Response:', { data, error })
+      
 
       if (error) {
         console.error('Cart update error:', error)

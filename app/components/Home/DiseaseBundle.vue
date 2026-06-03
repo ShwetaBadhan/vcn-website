@@ -12,24 +12,21 @@
           <span>VCN</span>
         </div>
 
-        <ClientOnly>
-          <h2 class="vcn-human-heading" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">Trusted
-            Wellness. Growing Opportunities.</h2>
+        
+          <h2 class="vcn-human-heading" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">{{ heading
+          }}</h2>
 
           <p data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">
-            We focus on trusted, research-backed products that support everyday wellness and customer satisfaction. With
-            a growing presence across India, VCN also empowers individuals through meaningful direct selling
-            opportunities.
+            {{ description }}
           </p>
 
           <button class="vcn-human-cta-button" id="openBundles" @click="openBundles" data-aos="zoom-in"
             data-aos-duration="800" data-aos-delay="400">
-            Disease Bundles
+            {{ ctaText }}
             <span class="vcn-human-border">
               <span class="vcn-human-play-icon">></span>
             </span>
           </button>
-        </ClientOnly>
       </div>
 
       <!-- Right Content - Video/Bundles Area
@@ -49,64 +46,23 @@ class="vcn-human-main-image"></video>
       <div class="bundles-header">
         <button type="button" class="close-button" id="closeBtn" @click="closeBundles">✕</button>
         <h2 class="bundles-title">
-          Proven Bundles For Your Health Needs!
+          {{ bundlesTitle }}
         </h2>
         <p class="bundles-subtitle">
-          Check out our custom bundles based on your current health
-          conditions
+          {{ bundlesSubtitle }}
         </p>
       </div>
 
       <div class="disease-grid">
-        <!-- Acidity Card -->
-        <div class="disease-card">
+        <div v-for="(card, i) in diseaseCards" :key="i" class="disease-card">
           <div class="disease-card-image">
             <div class="disease-icon">
-              <img :src="cleanUrl('/img/image/acidty.png')" alt="" />
+              <img :src="cleanUrl(card.image)" :alt="card.title" />
             </div>
           </div>
           <div class="disease-card-body">
-            <h3 class="disease-title">Acidity</h3>
-            <a href="/bundle-details" class="learn-more-btn">LEARN MORE</a>
-          </div>
-        </div>
-
-        <!-- Thyroid Card -->
-        <div class="disease-card">
-          <div class="disease-card-image">
-            <div class="disease-icon">
-              <img :src="cleanUrl('/img/image/thyroid.png')" alt="" />
-            </div>
-          </div>
-          <div class="disease-card-body">
-            <h3 class="disease-title">Thyroid</h3>
-            <a href="/bundle-details" class="learn-more-btn">LEARN MORE</a>
-          </div>
-        </div>
-
-        <!-- Diabetes Card -->
-        <div class="disease-card">
-          <div class="disease-card-image">
-            <div class="disease-icon">
-              <img :src="cleanUrl('/img/image/diabetes.png')" alt="" />
-            </div>
-          </div>
-          <div class="disease-card-body">
-            <h3 class="disease-title">Diabetes</h3>
-            <a href="/bundle-details" class="learn-more-btn">LEARN MORE</a>
-          </div>
-        </div>
-
-        <!-- Fatty Liver Card -->
-        <div class="disease-card">
-          <div class="disease-card-image">
-            <div class="disease-icon">
-              <img :src="cleanUrl('/img/image/liver.png')" alt="" />
-            </div>
-          </div>
-          <div class="disease-card-body">
-            <h3 class="disease-title">Fatty Liver</h3>
-            <a href="/bundle-details" class="learn-more-btn">LEARN MORE</a>
+            <h3 class="disease-title">{{ card.title }}</h3>
+            <a :href="card.link" class="learn-more-btn">LEARN MORE</a>
           </div>
         </div>
       </div>
@@ -120,9 +76,54 @@ class="vcn-human-main-image"></video>
 </template>
 
 <script>
+import { computed } from 'vue'
+import { useCmsStore } from '~/stores/cms'
+import { useCmsApi } from '~/composables/useCmsApi'
 import Hls from 'hls.js';
 
 export default {
+  setup() {
+    const cmsStore = useCmsStore()
+    const { getCmsImageUrl } = useCmsApi()
+
+    const section = computed(() => cmsStore.getSectionByKey('disease-bundles'))
+
+    const heading = computed(() => section.value?.title || 'Trusted Wellness. Growing Opportunities.')
+    const description = computed(() => section.value?.description || 'We focus on trusted, research-backed products that support everyday wellness and customer satisfaction. With a growing presence across India, VCN also empowers individuals through meaningful direct selling opportunities.')
+    const ctaText = computed(() => section.value?.buttonText || 'Disease Bundles')
+    const bundlesTitle = computed(() => section.value?.subtitle || 'Proven Bundles For Your Health Needs!')
+    const bundlesSubtitle = computed(() => section.value?.config?.bundlesSubtitle || section.value?.extraData?.bundlesSubtitle || 'Check out our custom bundles based on your current health conditions')
+
+    // Disease cards from CMS items, fallback to hardcoded
+    const diseaseCards = computed(() => {
+      const items = section.value?.items || []
+      if (items.length > 0) {
+        return items.map(item => ({
+          title: item.title || 'Disease',
+          image: getCmsImageUrl(item.image, ''),
+          link: item.extraData?.link || item.config?.link || '/bundle-details'
+        }))
+      }
+      return [
+        { title: 'Acidity', image: '/img/image/acidty.png', link: '/bundle-details' },
+        { title: 'Thyroid', image: '/img/image/thyroid.png', link: '/bundle-details' },
+        { title: 'Diabetes', image: '/img/image/diabetes.png', link: '/bundle-details' },
+        { title: 'Fatty Liver', image: '/img/image/liver.png', link: '/bundle-details' }
+      ]
+    })
+
+    return {
+      section,
+      heading,
+      description,
+      ctaText,
+      bundlesTitle,
+      bundlesSubtitle,
+      diseaseCards,
+      getCmsImageUrl
+    }
+  },
+
   data() {
     return {
       isBundlesActive: false
@@ -134,9 +135,29 @@ export default {
     },
     openBundles() {
       this.isBundlesActive = true;
+      // Prevent background scrolling when the bundles overlay is open
+      if (process?.client) {
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+        document.documentElement.style.height = '100%';
+      }
     },
     closeBundles() {
       this.isBundlesActive = false;
+      // Restore page scrolling
+      if (process?.client) {
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        document.documentElement.style.height = '';
+      }
+    }
+  },
+  beforeUnmount() {
+    // Ensure overflow is restored if component is destroyed while overlay open
+    if (process?.client) {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.documentElement.style.height = '';
     }
   },
   mounted() {
@@ -173,3 +194,27 @@ export default {
 };
 
 </script>
+
+<style scoped>
+/* Ensure the disease bundles overlay does not sit under the fixed navbar on this page.
+   This style only affects this component and won't change global layout. */
+.disease-bundles-container {
+  /* offset from top so navbar doesn't overlap */
+  top: 80px !important;
+  bottom: 0 !important;
+  height: calc(100vh - 80px) !important;
+  box-sizing: border-box !important;
+  /* keep existing stacking but ensure it remains above page content while below global overlays */
+  z-index: 10010 !important;
+  pointer-events: auto !important;
+  overflow-y: auto !important;
+  padding-top: 20px; /* small internal gap so header content isn't flush to top */
+}
+
+@media (max-width: 991px) {
+  .disease-bundles-container {
+    top: 90px !important;
+    height: calc(100vh - 90px) !important;
+  }
+}
+</style>

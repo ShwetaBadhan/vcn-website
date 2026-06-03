@@ -10,28 +10,24 @@
           <div class="news-content">
             <!-- HERO -->
             <section class="news-hero">
-              <img src="/img/news/news.png" class="news-banner" />
+              <img :src="newsData.hero.image" :alt="newsData.hero.title" class="news-banner" />
 
               <div class="hero-title">
-                <h1>VCN In News</h1>
+                <h1>{{ newsData.hero.title }}</h1>
               </div>
             </section>
 
             <!-- MEDIA TITLE -->
 
             <div class="media-heading">
-              <h2>Media Coverage</h2>
+              <h2>{{ newsData.mediaCoverage.title }}</h2>
             </div>
 
             <!-- YEAR FILTER -->
 
             <div class="year-tabs">
-              <button
-                v-for="year in years"
-                :key="year"
-                @click="activeYear = year"
-                :class="{ active: activeYear === year }"
-              >
+              <button v-for="year in newsData.years" :key="year" @click="activeYear = year"
+                :class="{ active: activeYear === year }">
                 {{ year }}
               </button>
             </div>
@@ -39,19 +35,23 @@
             <!-- NEWS GRID -->
 
             <div class="news-grid">
-              <div
-                class="news-card"
-                v-for="item in filteredNews"
-                :key="item.title"
-              >
-                <div class="news-logo">A</div>
+              <div v-for="item in filteredNews" :key="item.title" class="news-card">
+                <div class="news-logo">
+                  {{ item.logo }}
+                </div>
 
                 <div class="news-info">
-                  <span class="news-date">{{ item.date }}</span>
+                  <span class="news-date">
+                    {{ item.date }}
+                  </span>
 
-                  <h3 class="news-title">{{ item.title }}</h3>
+                  <h3 class="news-title">
+                    {{ item.title }}
+                  </h3>
 
-                  <p class="news-source">{{ item.source }}</p>
+                  <p class="news-source">
+                    {{ item.source }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -62,58 +62,26 @@
   </section>
 </template>
 <script setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
+import { useCmsStore } from '~/stores/cms'
 
-const activeYear = ref(2026);
-
-const years = [2026, 2025, 2024, 2023];
-
-const news = [
-  {
-    year: 2026,
-    date: "February 18, 2026",
-    title:
-      "VCN expands wellness portfolio with new herbal range.",
-    source: "Business Standard",
-  },
-
-  {
-    year: 2026,
-    date: "February 10, 2026",
-    title: "VCN focuses on empowering women entrepreneurs nationwide.",
-    source: "The Hindu BusinessLine",
-  },
-
-  {
-    year: 2026,
-    date: "January 28, 2026",
-    title: "VCN promotes natural health solutions in urban markets.",
-    source: "Financial Express",
-  },
-
-  {
-    year: 2026,
-    date: "January 20, 2026",
-    title: "Rising demand for organic products boosts VCN’s growth.",
-    source: "Mint",
-  },
-  {
-    year: 2026,
-    date: "January 12, 2026",
-    title: "Wellness industry trends: VCN highlights importance of preventive healthcare.",
-    source: "India Today",
-  },
-];
-
+const cmsStore = useCmsStore()
+const newsData = computed(
+  () => cmsStore.getPageSection('about', 'news')
+)
+const activeYear = ref(2026)
 const filteredNews = computed(() =>
-  news.filter((item) => item.year === activeYear.value),
-);
+  newsData.value.articles?.filter(
+    item => item.year === activeYear.value
+  ) 
+)
 useHead({
   bodyAttrs: {
     class: "product-details-page",
   },
 });
 </script>
+
 <style scoped>
 .news-content {
   padding: 30px;

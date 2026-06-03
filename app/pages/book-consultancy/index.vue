@@ -6,7 +6,7 @@
 
           <!-- Left Column - Form -->
           <div class="col-lg-5">
-            <h1 class="mid-page-title mb-4">Consultation Form</h1>
+            <h1 class="mid-page-title mb-4"> {{ consultation.leftContent.title }}</h1>
 
             <form class="mid-consultation-form" @submit.prevent="submitForm">
 
@@ -14,66 +14,76 @@
               <div class="row g-3 mb-3">
                 <div class="col-md-6">
                   <label for="mid-first-name" class="mid-form-label form-label">
-                    First Name <span class="text-danger">*</span>
+                    {{ consultation.leftContent.formFields.firstName.label }}<span class="text-danger">*</span>
                   </label>
-                  <input type="text" class="form-control mid-form-input" id="mid-first-name" placeholder="First Name"
+                  <input type="text" class="form-control mid-form-input" id="mid-first-name"
+                    :placeholder="consultation.leftContent.formFields.firstName.placeholder"
                     v-model="formData.firstName" required>
                 </div>
                 <div class="col-md-6">
                   <label for="mid-last-name" class="mid-form-label form-label">
-                    Last Name <span class="text-danger">*</span>
+                    {{ consultation.leftContent.formFields.lastName.label }}<span class="text-danger">*</span>
                   </label>
-                  <input type="text" class="form-control mid-form-input" id="mid-last-name" placeholder="Last Name"
-                    v-model="formData.lastName" required>
+                  <input type="text" class="form-control mid-form-input" id="mid-last-name"
+                    :placeholder="consultation.leftContent.formFields.lastName.placeholder" v-model="formData.lastName"
+                    required>
                 </div>
               </div>
 
               <!-- Age -->
               <div class="mb-3">
                 <label for="mid-age" class="mid-form-label form-label">
-                  Age <span class="text-danger">*</span>
+                  {{ consultation.leftContent.formFields.age.label }} <span class="text-danger">*</span>
                 </label>
-                <input type="number" class="form-control mid-form-input" id="mid-age" placeholder="Ex. 22"
-                  v-model="formData.age" required>
+                <input type="number" class="form-control mid-form-input" id="mid-age"
+                  :placeholder="consultation.leftContent.formFields.age.placeholder" v-model="formData.age" required>
               </div>
 
               <!-- Weight -->
               <div class="mb-3">
                 <label for="mid-weight" class="mid-form-label form-label">
-                  Weight (in kg) <span class="text-danger">*</span>
+                  {{ consultation.leftContent.formFields.weight.label }} <span class="text-danger">*</span>
                 </label>
-                <input type="number" class="form-control mid-form-input" id="mid-weight" placeholder="Ex. 45"
-                  v-model="formData.weight" required>
+                <input type="number" class="form-control mid-form-input" id="mid-weight"
+                  :placeholder="consultation.leftContent.formFields.weight.placeholder" v-model="formData.weight"
+                  required>
               </div>
 
               <!-- Phone -->
               <div class="mb-3">
                 <label for="mid-phone" class="mid-form-label form-label">
-                  Phone/Mobile (With Country Code) <span class="text-danger">*</span>
+                  {{ consultation.leftContent.formFields.phone.label }} <span class="text-danger">*</span>
                 </label>
-                <input type="tel" class="form-control mid-form-input" id="mid-phone" placeholder="917750824146"
-                  v-model="formData.phone" required>
+                <input type="tel" class="form-control mid-form-input" id="mid-phone"
+                  :placeholder="consultation.leftContent.formFields.phone.placeholder" v-model="formData.phone"
+                  required>
               </div>
 
               <!-- Email -->
               <div class="mb-3">
                 <label for="mid-email" class="mid-form-label form-label">
-                  Email
+                  {{ consultation.leftContent.formFields.email.label }}
                 </label>
-                <input type="email" class="form-control mid-form-input" id="mid-email" placeholder="Email Address"
-                  v-model="formData.email">
+                <input type="email" class="form-control mid-form-input" id="mid-email"
+                  :placeholder="consultation.leftContent.formFields.email.placeholder" v-model="formData.email">
               </div>
 
               <!-- Gender -->
               <div class="mb-3">
                 <label for="mid-gender" class="mid-form-label form-label">
-                  Gender <span class="text-danger">*</span>
+                  {{ consultation.leftContent.formFields.gender.label }}
+                  <span class="text-danger">*</span>
                 </label>
+
                 <select class="form-select mid-form-input" id="mid-gender" v-model="formData.gender" required>
-                  <option value="" disabled selected>Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
+                  <option value="" disabled>
+                    {{ consultation.leftContent.formFields.gender.placeholder }}
+                  </option>
+
+                  <option v-for="option in consultation.leftContent.formFields.gender.options" :key="option"
+                    :value="option">
+                    {{ option }}
+                  </option>
                 </select>
               </div>
 
@@ -81,14 +91,15 @@
               <div class="row g-3 mb-3">
                 <div class="col-md-6">
                   <label for="mid-city" class="mid-form-label form-label">
-                    City <span class="text-danger">*</span>
+                    {{ consultation.leftContent.formFields.city.label }} <span class="text-danger">*</span>
                   </label>
-                  <input type="text" class="form-control mid-form-input" id="mid-city" placeholder="City"
-                    v-model="formData.city" required>
+                  <input type="text" class="form-control mid-form-input" id="mid-city"
+                    :placeholder="consultation.leftContent.formFields.city.placeholder" v-model="formData.city"
+                    required>
                 </div>
                 <div class="col-md-6">
                   <label for="mid-pincode" class="mid-form-label form-label">
-                    Pincode <span class="text-danger">*</span>
+                    {{ consultation.leftContent.formFields.pincode.label }} <span class="text-danger">*</span>
                   </label>
                   <input type="text" class="form-control mid-form-input" id="mid-pincode" placeholder="Pincode"
                     v-model="formData.pincode" required>
@@ -98,12 +109,16 @@
               <!-- Health Issues -->
               <div class="mb-4">
                 <label class="mid-form-label form-label">
-                  Health Issues (Select At Least One) <span class="text-danger">*</span>
+                  {{ consultation.leftContent.healthIssues.label }}
+                  <span class="text-danger">*</span>
                 </label>
+
                 <div class="mid-checkbox-group">
-                  <div v-for="(issue, index) in healthIssues" :key="index" class="form-check mb-2">
+                  <div v-for="(issue, index) in consultation.leftContent.healthIssues.options" :key="index"
+                    class="form-check mb-2">
                     <input class="form-check-input mid-checkbox" type="checkbox" :value="issue"
                       :id="'mid-issue-' + index" v-model="formData.healthIssues">
+
                     <label class="form-check-label mid-checkbox-label" :for="'mid-issue-' + index">
                       {{ issue }}
                     </label>
@@ -114,16 +129,16 @@
               <!-- Health Issue Description -->
               <div class="mb-4" v-if="formData.healthIssues.length > 0">
                 <label for="mid-health-description" class="mid-form-label form-label">
-                  Describe Your Problem <span class="text-danger">*</span>
+                  {{ consultation.leftContent.descriptionField.label }}<span class="text-danger">*</span>
                 </label>
                 <textarea class="form-control mid-form-input" id="mid-health-description" rows="4"
-                  placeholder="Please describe your health issue in detail..." v-model="formData.healthIssueDescription"
-                  required></textarea>
+                  :placeholder="consultation.leftContent.descriptionField.placeholder"
+                  v-model="formData.healthIssueDescription" required></textarea>
               </div>
 
               <!-- Submit Button -->
               <button type="submit" class="btn mid-submit-btn px-4">
-                Submit Form
+                {{ consultation.leftContent.submitButton }}
               </button>
             </form>
           </div>
@@ -131,32 +146,26 @@
           <!-- Right Column - Stats & Image -->
           <div class="col-lg-7">
             <div class="mid-stats-section text-center mb-4">
-              <h2 class="mid-stats-subtitle mb-2">Your Health, Our Priority</h2>
-              <h1 class="mid-stats-title fw-bold mb-4">5 Lakh Happy Customers</h1>
+              <h2 class="mid-stats-subtitle mb-2">{{ consultation.rightContent.subtitle }}</h2>
+              <h1 class="mid-stats-title fw-bold mb-4">{{ consultation.rightContent.title }}</h1>
 
               <div class="row g-3 mb-4">
-                <div class="col-md-4">
+                <div v-for="(stat, index) in consultation.rightContent.stats" :key="index" class="col-md-4">
                   <div class="mid-stat-item p-3">
-                    <div class="mid-stat-number fw-bold fs-4 mb-1">50+</div>
-                    <div class="mid-stat-label">Experts</div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="mid-stat-item p-3">
-                    <div class="mid-stat-number fw-bold fs-4 mb-1">Free</div>
-                    <div class="mid-stat-label">Consultation</div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="mid-stat-item p-3">
-                    <div class="mid-stat-number fw-bold fs-4 mb-1">Regular</div>
-                    <div class="mid-stat-label">Follow-ups</div>
+                    <div class="mid-stat-number fw-bold fs-4 mb-1">
+                      {{ stat.value }}
+                    </div>
+
+                    <div class="mid-stat-label">
+                      {{ stat.label }}
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="mid-stats-image-container">
-                <img src="/img/image/Consultation.png" alt="Health Experts" class="img-fluid rounded">
+                <img :src="consultation.rightContent.image.src" :alt="consultation.rightContent.image.alt"
+                  class="img-fluid rounded">
               </div>
             </div>
 
@@ -168,21 +177,14 @@
             <!-- Branch Locations -->
             <div class="col-lg-6">
               <div class="mid-branch-card p-4 h-100">
-                <div class="mb-4">
+                <div v-for="(branch, index) in consultation.branchLocations" :key="index"
+                  :class="{ 'mb-4': index !== consultation.branchLocations.length - 1 }">
                   <h3 class="mid-branch-title mb-2">
-                    Visit our Team of Trained Health Experts at our Gurgaon Branch
+                    {{ branch.title }}
                   </h3>
+
                   <p class="mid-branch-address text-muted mb-0">
-                    Unit No. 307 & 308, Tower A, Pioneer Urban Square, Golf Course Ext Rd,
-                    Sector 62, Gurugram, Ghata, Haryana 122005
-                  </p>
-                </div>
-                <div>
-                  <h3 class="mid-branch-title mb-2">
-                    Visit our Team of Trained Health Experts at our Jalandhar Branch –
-                  </h3>
-                  <p class="mid-branch-address text-muted mb-0">
-                    SCO 41, Chotti Baradari Part 2, Opposite PIMS Hospital, Jalandhar, Punjab 144001
+                    {{ branch.address }}
                   </p>
                 </div>
               </div>
@@ -192,48 +194,31 @@
             <div class="col-lg-6">
               <div class="mid-contact-card p-4 h-100">
 
-                <!-- Global Support (Jalandhar) -->
-                <div class="mb-4">
-                  <h3 class="mid-contact-title mb-3">Contact our Global Support Team at –</h3>
-                  <ul class="mid-contact-list list-unstyled mb-0">
-                    <li class="mb-2">
-                      <span class="mid-contact-label">Address:</span>
-                      VCN Tower, 37/2 Cool Road, Jalandhar, Punjab, INDIA-144001
-                    </li>
-                    <li class="mb-2">
-                      <span class="mid-contact-label">Phone:</span>
-                      +91-181-4010154, M:+919876453626
-                    </li>
-                    <li class="mb-2">
-                      <span class="mid-contact-label">Email:</span>
-                      info@vcnhealth.com
-                    </li>
-                    <li class="mb-2">
-                      <span class="mid-contact-label">Working Hours:</span>
-                      Mon – Sat: 9:00 AM – 6:00 PM
-                    </li>
-                  </ul>
-                </div>
+                <div v-for="(contact, index) in consultation.contactInformation" :key="index"
+                  :class="{ 'mb-4': index !== consultation.contactInformation.length - 1 }">
+                  <h3 class="mid-contact-title mb-3">
+                    {{ contact.title }}
+                  </h3>
 
-                <!-- India Domestic Team (Mumbai) -->
-                <div>
-                  <h3 class="mid-contact-title mb-3">Contact our India (Domestic) Team</h3>
                   <ul class="mid-contact-list list-unstyled mb-0">
                     <li class="mb-2">
                       <span class="mid-contact-label">Address:</span>
-                      VCN Shop No.24/25, Block C. PPR Village, Chandigarh Express way
+                      {{ contact.address }}
                     </li>
+
                     <li class="mb-2">
                       <span class="mid-contact-label">Phone:</span>
-                      +91 22 3456 7890
+                      {{ contact.phone }}
                     </li>
+
                     <li class="mb-2">
                       <span class="mid-contact-label">Email:</span>
-                      mumbai@vcnhealth.com
+                      {{ contact.email }}
                     </li>
+
                     <li class="mb-2">
                       <span class="mid-contact-label">Working Hours:</span>
-                      Mon – Sat: 9:00 AM – 6:00 PM
+                      {{ contact.workingHours }}
                     </li>
                   </ul>
                 </div>
@@ -250,7 +235,18 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { computed, ref } from 'vue'
+import { useCmsStore } from '~/stores/cms'
+
+const cmsStore = useCmsStore()
+
+const consultation = computed(
+  () => cmsStore.getPageSection('consultation', 'consultation')
+)
+
+// const healthIssues = computed(
+//   () => leftContent.value.healthIssues?.options
+// )
 
 useHead({
   bodyAttrs: {
@@ -271,15 +267,6 @@ const formData = ref({
   healthIssues: [],
   healthIssueDescription: ''
 })
-
-const healthIssues = [
-  'Thyroid',
-  'Weight gain',
-  'Hormonal issues',
-  'Hair Fall',
-  'Pigmentation',
-  'Other'
-]
 
 const submitForm = () => {
   console.log('Form submitted:', formData.value)

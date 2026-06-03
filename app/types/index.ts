@@ -35,3 +35,15 @@ export type {
 
 // Re-export ThemeData as default for convenience
 export type { ThemeData as default } from './theme.ts'
+
+// CMS Types
+export type {
+  CmsMediaImage,
+  CmsSection,
+  CmsSectionItem,
+  CmsPage,
+  CmsApiResponse,
+  CmsSectionsResponse,
+  CmsQueryParams,
+  CmsState
+} from './cms.ts'

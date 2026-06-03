@@ -170,6 +170,30 @@ p {
   top: 0px;
 }
 
+/* Add extra top gap for pages that use `product-details-page` body class
+   (about-us, bundle pages, many detail pages). This avoids content overlapping
+   with the fixed navbar on those routes. */
+body.product-details-page main {
+  padding-top: 80px;
+}
+
+@media (max-width: 991px) {
+  body.product-details-page main {
+    padding-top: 90px;
+  }
+}
+
+/* Remove top gap completely on the homepage */
+body.home-page main {
+  padding-top: 0 !important;
+}
+
+@media (max-width: 991px) {
+  body.home-page main {
+    padding-top: 0 !important;
+  }
+}
+
 .nav-img {
   width: 65px;
   height: auto;
@@ -4499,7 +4523,7 @@ body.checkout-page .navbar .desktop-nav .dropdown-footer {
 }
 
 .product-gallery .gallery-item {
-  background: #e8e8e0;
+  /* background: #e8e8e0; */
   border-radius: 12px;
   overflow: hidden;
   /* height: 215px; */

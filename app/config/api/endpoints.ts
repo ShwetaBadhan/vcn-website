@@ -16,7 +16,10 @@ export const API_ENDPOINTS = {
   CART_CLEAR: 'common/cart/delete/clear',
 
   // Review endpoints
-  REVIEW_CREATE: 'users/product-reviews/create'
+  REVIEW_CREATE: 'users/product-reviews/create',
+
+  // CMS endpoints
+  CMS_PAGES_READ: 'common/cms-pages/read'
 } as const
 
 // Helper to get product by slug URL

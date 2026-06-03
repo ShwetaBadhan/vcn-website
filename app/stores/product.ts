@@ -46,23 +46,41 @@ export const useProductStore = defineStore('product', {
 
     // Get primary image for product
     getPrimaryImage: () => (product: Product) => {
-      // Check product.images array from API
-      if (product.images && product.images.length > 0) {
-        const primaryImage = product.images.find((img: { isPrimary: boolean }) => img.isPrimary) || product.images[0]
-        if (primaryImage?.image) return primaryImage.image
-      }
+      // Product Images
+      if (product.images?.length) {
+        const primaryImage =
+          product.images.find(img => img?.isPrimary && img?.media) ||
+          product.images.find(img => img?.media)
 
-      // Check variant productImages
-      if (product.variants && product.variants.length > 0) {
-        const defaultVariant = product.variants.find((v: { isDefault: boolean }) => v.isDefault) || product.variants[0]
-        if (defaultVariant?.productImages && defaultVariant.productImages.length > 0) {
-          const primaryImage = defaultVariant.productImages.find((img: { isPrimary: boolean }) => img.isPrimary) || defaultVariant.productImages[0]
-          if (primaryImage?.image) return primaryImage.image
+        if (primaryImage?.media) {
+          return (
+            primaryImage.media.variants?.webp ||
+            primaryImage.media.webpUrl ||
+            primaryImage.media.fileUrl
+          )
         }
       }
 
-      // Fallback to product.image or default
-      return product.image || '/img/products/img1.png'
+      // Variant Images
+      if (product.variants?.length) {
+        const defaultVariant =
+          product.variants.find(v => v.isDefault) ||
+          product.variants[0]
+
+        const primaryImage =
+          defaultVariant?.productImages?.find(img => img?.isPrimary && img?.media) ||
+          defaultVariant?.productImages?.find(img => img?.media)
+
+        if (primaryImage?.media) {
+          return (
+            primaryImage.media.variants?.webp ||
+            primaryImage.media.webpUrl ||
+            primaryImage.media.fileUrl
+          )
+        }
+      }
+
+      return '/img/products/img1.png'
     }
   },
 
@@ -167,7 +185,7 @@ export const useProductStore = defineStore('product', {
         const config = useRuntimeConfig()
         const baseURL = config.public.apiBaseUrl
 
-        const data = await $fetch(`${baseURL}common/product-page/read/slug/${slug}`)
+        const data = await $fetch(`${baseURL}common/product/read/slug/${slug}`)
 
         if (data && (data as any).data) {
           this.selectedProductPage = (data as any).data as ProductPage

@@ -14,9 +14,31 @@ export interface ProductVariant {
 /**
  * Product image with primary flag
  */
+export interface MediaVariants {
+  webp?: string
+  thumb?: string
+  medium?: string
+  large?: string
+  original?: string
+}
+
+export interface Media {
+  id: number
+  fileUrl: string
+  fileName?: string
+  mimeType?: string
+  webpUrl?: string | null
+  variants?: MediaVariants
+}
+
 export interface ProductImage {
-  image: string
+  id: number
+  productId?: number
+  productVariantId?: number
+  mediaId: number
   isPrimary: boolean
+  isActive?: boolean
+  media?: Media
 }
 
 /**

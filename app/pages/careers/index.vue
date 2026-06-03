@@ -6,43 +6,47 @@
         <div class="col-md-3 col-lg-3 sidebar-section d-none d-md-block">
           <AboutSidebar />
         </div>
+
         <div class="col-md-9 col-lg-9">
           <div class="careers-content">
 
             <!-- TOP TABS -->
             <div class="tabs">
-              <button :class="{ active: activeTab === 'overview' }" @click="activeTab = 'overview'">
-                Overview
-              </button>
-
-              <button :class="{ active: activeTab === 'culture' }" @click="activeTab = 'culture'">
-                Culture at VCN
+              <button
+                v-for="tab in careers.tabs"
+                :key="tab.key"
+                :class="{ active: activeTab === tab.key }"
+                @click="activeTab = tab.key"
+              >
+                {{ tab.label }}
               </button>
             </div>
 
+            <!-- OVERVIEW TAB -->
             <div v-if="activeTab === 'overview'">
+
               <!-- HERO IMAGE -->
               <section class="hero-sectioning">
-                <img src="" class="hero-img">
+                <img
+                  :src="careers.overview.hero.image"
+                  :alt="careers.overview.hero.title"
+                  class="hero-img"
+                >
 
                 <div class="hero-card">
-                  <h2>Be a part of the VCN Family</h2>
+                  <h2>
+                    {{ careers.overview.hero.title }}
+                  </h2>
 
-                  <p>
-                    At VCN, our people drive our success. We welcome passionate, dedicated individuals who
-                    want to grow and make an impact in the wellness industry.
-                  </p>
-                  <p>
-                    Being part of VCN means working in a supportive, dynamic environment where your ideas matter and
-                    your growth is encouraged. Whether you're starting out or aiming higher, we offer opportunities to
-                    learn, lead, and succeed.
-                  </p>
-                  <p>
-                    Join us and be part of a team committed to innovation, excellence, and empowering lives every day.
+                  <p
+                    v-for="(paragraph, index) in careers.overview.hero.description"
+                    :key="index"
+                  >
+                    {{ paragraph }}
                   </p>
 
                   <button class="primary-btn">
-                    FIND OPEN POSITIONS
+                    {{ careers.overview.hero.buttonText }}
                   </button>
                 </div>
               </section>
@@ -50,19 +54,24 @@
               <!-- CULTURE SECTION -->
               <section class="culture-section">
 
-                <h2>#IVCN</h2>
+                <h2>
+                  {{ careers.overview.culture.hashTag }}
+                </h2>
 
                 <div class="culture-card">
 
-                  <img src="">
+                  <img
+                    :src="careers.overview.culture.image"
+                    :alt="careers.overview.culture.title"
+                  >
 
                   <div>
-                    <h3>Celebrating Milestones Together</h3>
+                    <h3>
+                      {{ careers.overview.culture.title }}
+                    </h3>
 
                     <p>
-                      At VCN India, we believe in nurturing talent and
-                      celebrating growth while building a strong culture
-                      of collaboration and achievement.
+                      {{ careers.overview.culture.description }}
                     </p>
                   </div>
 
@@ -73,33 +82,36 @@
               <!-- VP MESSAGE -->
               <section class="vp-section">
 
-                <h2>Words from our Vice President (HR)</h2>
+                <h2>
+                  {{ careers.overview.vicePresident.heading }}
+                </h2>
 
                 <div class="vp-card">
 
                   <div class="vp-profile">
 
-                    <img src="">
+                    <img
+                      :src="careers.overview.vicePresident.image"
+                      :alt="careers.overview.vicePresident.name"
+                    >
 
-                    <h4>Ritika Malik</h4>
+                    <h4>
+                      {{ careers.overview.vicePresident.name }}
+                    </h4>
 
-                    <span>Vice President - Human Resources</span>
+                    <span>
+                      {{ careers.overview.vicePresident.designation }}
+                    </span>
 
                   </div>
 
                   <div class="vp-message">
 
-                    <p>
-                      At VCN, we believe in the power of people. Our vision
-                      of helping people live better lives starts with our team.
-                      We nurture passion, encourage innovation and provide
-                      opportunities for employees to grow and succeed.
-                    </p>
-
-                    <p>
-                      Being a part of VCN means working with talented people
-                      from across the globe while making a meaningful impact
-                      in communities and markets.
+                    <p
+                      v-for="(message, index) in careers.overview.vicePresident.messages"
+                      :key="index"
+                    >
+                      {{ message }}
                     </p>
 
                   </div>
@@ -113,20 +125,30 @@
             <!-- CULTURE TAB -->
             <div v-if="activeTab === 'culture'">
 
-              <!-- RELATED ARTICLES -->
               <section class="articles">
 
-                <h2>Related Articles</h2>
+                <h2>
+                  {{ careers.cultureTab.heading }}
+                </h2>
 
-                <div class="article-card">
+                <div
+                  v-for="(article, index) in careers.cultureTab.articles"
+                  :key="index"
+                  class="article-card"
+                >
 
                   <div class="article-icon">
-                    A
+                    {{ article.icon }}
                   </div>
 
                   <div>
-                    <span>October 3, 2021</span>
-                    <h4>Team building and collaboration in the corporate world</h4>
+                    <span>
+                      {{ article.date }}
+                    </span>
+
+                    <h4>
+                      {{ article.title }}
+                    </h4>
                   </div>
 
                 </div>
@@ -141,10 +163,16 @@
       </div>
     </div>
   </section>
-
 </template>
 <script setup>
-import { ref } from "vue"
+import { computed, ref } from "vue"
+import { useCmsStore } from '~/stores/cms'
+
+const cmsStore = useCmsStore()
+
+const careers = computed(
+  () => cmsStore.getPageSection('about', 'careers')
+)
 
 const activeTab = ref("overview")
 useHead({

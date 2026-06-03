@@ -55,7 +55,6 @@ export const useThemeStore = defineStore('theme', {
           } else {
             // API returned null - use defaults
             this.theme = null
-            console.log('ℹ️ No active theme found, using defaults')
           }
           this.applyThemeToCSS()
           this.updateFavicon()
@@ -88,11 +87,7 @@ export const useThemeStore = defineStore('theme', {
       // Update gradient based on primary and secondary
       root.style.setProperty('--vcn-gradient', `linear-gradient(135deg, ${colors.primaryColor}, ${colors.secondaryColor})`)
 
-      console.log('🎨 Theme applied:', colors.name, {
-        primary: colors.primaryColor,
-        secondary: colors.secondaryColor,
-        accent: colors.accentColor
-      })
+      
     },
 
     updateFavicon() {
@@ -101,7 +96,6 @@ export const useThemeStore = defineStore('theme', {
       const faviconLink = document.querySelector('link[rel="shortcut icon"]') as HTMLLinkElement
       if (faviconLink && this.faviconUrl) {
         faviconLink.href = this.faviconUrl
-        console.log('🌐 Favicon updated:', this.faviconUrl)
       }
     },
 

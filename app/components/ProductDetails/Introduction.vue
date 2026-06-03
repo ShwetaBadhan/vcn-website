@@ -88,7 +88,7 @@
             <p class="subscribe-text">
               30-day risk-free guarantee. Free US shipping.
             </p>
-            <!--
+            
             <div class="vcn-accordion">
               <div class="vcn-acc-item" v-for="(item, index) in accordionItems" :key="index">
                 <button type="button" class="vcn-acc-header" @click="toggleAccordion(index)">
@@ -107,7 +107,7 @@
                 </div>
               </div>
             </div>
-            -->
+            
             <div class="bundle-card mt-5">
               <div class="bundle-image">
                 <img src="/img/productsdetails/BOOSTER.png" alt="VCN-02 Daily Multivitamin" />
@@ -248,23 +248,39 @@ const productMrp = computed(() => {
   return mrp ? parseFloat(mrp).toFixed(2) : null
 })
 const productImage = computed(() => {
-  // Check product.images array from API (uses .image property)
-  if (product.value?.images && product.value.images.length > 0) {
-    const primaryImage = product.value.images.find(img => img.isPrimary) || product.value.images[0]
-    if (primaryImage?.image) return primaryImage.image
-  }
+  // Product Images
+  if (product.value?.images?.length) {
+    const primaryImage =
+      product.value.images.find(img => img.isPrimary) ||
+      product.value.images[0]
 
-  // Check variant productImages (uses .image property)
-  if (product.value?.variants && product.value.variants.length > 0) {
-    const defaultVariant = product.value.variants.find(v => v.isDefault) || product.value.variants[0]
-    if (defaultVariant?.productImages && defaultVariant.productImages.length > 0) {
-      const primaryImage = defaultVariant.productImages.find(img => img.isPrimary) || defaultVariant.productImages[0]
-      if (primaryImage?.image) return primaryImage.image
+    if (primaryImage?.media) {
+      return (
+        primaryImage.media.variants?.webp ||
+        primaryImage.media.webpUrl ||
+        primaryImage.media.fileUrl
+      )
     }
   }
 
-  // Fallback to product.image or default
-  return product.value?.image || '/img/products/New-Project.png'
+  // Variant Images
+  if (product.value?.variants?.length) {
+    const defaultVariant =
+      product.value.variants.find(v => v.isDefault) ||
+      product.value.variants[0]
+
+    if (defaultVariant?.productImages?.length) {
+      const primaryImage =
+        defaultVariant.productImages.find(img => img.isPrimary) ||
+        defaultVariant.productImages[0]
+
+      if (primaryImage?.media?.fileUrl) {
+        return primaryImage.media.fileUrl
+      }
+    }
+  }
+
+  return '/img/products/New-Project.png'
 })
 
 // Track selected main image
@@ -279,29 +295,37 @@ const selectImage = (imageSrc) => {
 const allProductImages = computed(() => {
   const images = []
 
-  // Add product-level images
+  // Product images
   if (product.value?.images?.length) {
     product.value.images.forEach(img => {
-      if (img?.image && !images.includes(img.image) && img.image !== displayImage.value) {
-        images.push(img.image)
+      const imageUrl =
+  img?.media?.variants?.webp ||
+  img?.media?.webpUrl ||
+  img?.media?.fileUrl
+
+      if (imageUrl && !images.includes(imageUrl)) {
+        images.push(imageUrl)
       }
     })
   }
 
-  // Add variant images
+  // Variant images
   if (product.value?.variants?.length) {
     product.value.variants.forEach(variant => {
-      if (variant?.productImages?.length) {
-        variant.productImages.forEach(img => {
-          if (img?.image && !images.includes(img.image) && img.image !== displayImage.value) {
-            images.push(img.image)
-          }
-        })
-      }
+      variant.productImages?.forEach(img => {
+        const imageUrl =
+  img?.media?.variants?.webp ||
+  img?.media?.webpUrl ||
+  img?.media?.fileUrl
+
+        if (imageUrl && !images.includes(imageUrl)) {
+          images.push(imageUrl)
+        }
+      })
     })
   }
 
-  return images.length > 0 ? images : [product.value?.image || '/img/products/New-Project.png']
+  return images
 })
 
 // Main image to display
@@ -359,53 +383,53 @@ const decrementBundle = () => {
   cartStore.decrementQuantity(bundleProduct.id)
 }
 
-// // Dynamic accordion items based on API data
-// const accordionItems = computed(() => {
-//   if (!product.value) return []
-//
-//   const items = []
-//
-//   if (product.value.uses) {
-//     items.push({
-//       title: 'Uses *',
-//       content: product.value.uses.split(/[,.]\s*/).filter(item => item.trim())
-//     })
-//   }
-//
-//   if (product.value.directionsForUse) {
-//     items.push({
-//       title: 'Direction For Use',
-//       content: [product.value.directionsForUse]
-//     })
-//   }
-//
-//   if (product.value.cautions) {
-//     items.push({
-//       title: 'Cautions',
-//       content: [product.value.cautions]
-//     })
-//   }
-//
-//   if (product.value.primaryBenefits) {
-//     items.push({
-//       title: 'Primary Benefits',
-//       content: product.value.primaryBenefits.split(/[,.]\s*/).filter(item => item.trim())
-//     })
-//   }
-//
-//   if (product.value.ingredients) {
-//     items.push({
-//       title: 'Ingredients',
-//       content: [product.value.ingredients]
-//     })
-//   }
-//
-//   return items
-// })
-//
-// const toggleAccordion = (index) => {
-//   activeIndex.value = activeIndex.value === index ? null : index
-// }
+// Dynamic accordion items based on API data
+const accordionItems = computed(() => {
+  if (!product.value) return []
+
+  const items = []
+
+  if (product.value.uses) {
+    items.push({
+      title: 'Uses *',
+      content: product.value.uses.split(/[,.]\s*/).filter(item => item.trim())
+    })
+  }
+
+  if (product.value.directionsForUse) {
+    items.push({
+      title: 'Direction For Use',
+      content: [product.value.directionsForUse]
+    })
+  }
+
+  if (product.value.cautions) {
+    items.push({
+      title: 'Cautions',
+      content: [product.value.cautions]
+    })
+  }
+
+  if (product.value.primaryBenefits) {
+    items.push({
+      title: 'Primary Benefits',
+      content: product.value.primaryBenefits.split(/[,.]\s*/).filter(item => item.trim())
+    })
+  }
+
+  if (product.value.ingredients) {
+    items.push({
+      title: 'Ingredients',
+      content: [product.value.ingredients]
+    })
+  }
+
+  return items
+})
+
+const toggleAccordion = (index) => {
+  activeIndex.value = activeIndex.value === index ? null : index
+}
 
 // Fetch individual product details with variants
 const fetchProductDetails = async (id) => {
@@ -427,20 +451,19 @@ const fetchProductDetails = async (id) => {
 
 // Helper function to resolve product image (same logic as productImage computed)
 const resolveProductImage = () => {
-  // Check product.images array from API (uses .image property)
+  // Prefer store helper which handles media.variant/fileUrl/webp consistently
+  if (product.value) {
+    const img = productStore.getPrimaryImage(product.value)
+    if (img) return img
+  }
+
+  // Fallbacks for older response shapes
   if (product.value?.images && product.value.images.length > 0) {
     const primaryImage = product.value.images.find(img => img.isPrimary) || product.value.images[0]
-    if (primaryImage?.image) return primaryImage.image
+    return primaryImage?.image || product.value?.image || '/img/products/New-Project.png'
   }
 
-  // Check variant productImages (uses .image property)
-  if (selectedVariant.value?.productImages && selectedVariant.value.productImages.length > 0) {
-    const primaryImage = selectedVariant.value.productImages.find(img => img.isPrimary) || selectedVariant.value.productImages[0]
-    if (primaryImage?.image) return primaryImage.image
-  }
-
-  // Fallback to product.image or default
-  return product.value?.image
+  return product.value?.image || '/img/products/New-Project.png'
 }
 
 // Add variant to cart
@@ -663,15 +686,29 @@ const openProductPreview = (imageSrc) => {
   opacity: 1;
 }
 
+.gallery-item {
+  display: block;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
 .gallery-item .thumb {
   cursor: pointer;
   transition: opacity 0.2s;
+  display: block;
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
   object-position: center;
-  /* background-color: #f8f9fa; */
-  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .gallery-item {
+    height: 150px;
+  }
 }
 
 .gallery-item:hover .thumb {

@@ -4,7 +4,7 @@
     <nav class="navbar" :class="{ 'scrolled': isHydrated && isScrolled }" id="navbar">
       <div class="container-fluid">
         <!-- Mobile Layout -->
-        <a class="navbar-brand d-lg-none" href="#">
+        <a class="navbar-brand d-lg-none" href="/">
           <img src="/img/logo/logo.png" alt="Logo" class="nav-img" />
         </a>
 
@@ -36,7 +36,7 @@
                 <!-- Dynamic products from backend (limit 5) -->
                 <li v-for="product in shopProducts" :key="product.id">
                   <a class="dropdown-item" :href="`/product-details/${product.slug}`">
-                    <img :src="getProductImage(product)" :alt="product.name" />
+                    <img :src="productStore.getPrimaryImage(product)" :alt="product.name" />
                     {{ product.name }}
                   </a>
                 </li>
@@ -288,6 +288,11 @@ import RegistrationForm from '@/components/RegistrationForm.vue'
 import { useCartStore } from '~/stores/cart'
 import { useAuthCart } from '~/composables/useAuthCart'
 import { useApi } from '~/config/api/useApi'
+import { useProductStore } from '~/stores/product'
+
+
+//product store
+const productStore = useProductStore()
 
 // Cart store - proper Nuxt/Pinia pattern
 const cartStore = useCartStore()
