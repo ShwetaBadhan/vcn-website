@@ -6,7 +6,7 @@
       <div class="col-lg-12" v-if="cartStore.items.length === 0">
         <div class="empty-cart-message">
           <h3>Your cart is empty</h3>
-          <p>Looks like you haven't added any products to your cart yet.</p>
+          <p class="text-center">Looks like you haven't added any products to your cart yet.</p>
           <a href="/all-products" class="btn-learn">Continue Shopping</a>
         </div>
       </div>
@@ -31,9 +31,9 @@
           </div>
           <div class="col-lg-3 text-center mt-3 mt-lg-0">
             <div class="cart-quantity-control">
-              <button class="cart-qty-button" @click="cartStore.decrementQuantity(item.id)">−</button>
+              <button class="cart-qty-button" @click="handleDecrement(item.id)">−</button>
               <div class="cart-qty-display">{{ item.quantity }}</div>
-              <button class="cart-qty-button" @click="cartStore.incrementQuantity(item.id)">+</button>
+              <button class="cart-qty-button" @click="handleIncrement(item.id)">+</button>
             </div>
           </div>
           <div class="col-lg-3 text-end mt-3 mt-lg-0">
@@ -53,56 +53,15 @@
         <h2 class="cart-recommendations-title">You Might Also Like:</h2>
 
         <div class="row g-4">
-          <div class="col-md-4">
+          <div v-for="product in recommendedProducts" :key="product.id" class="col-md-4">
             <div class="cart-product-card">
-              <img src="https://res.cloudinary.com/dljz0lko8/image/upload/v1693433672/cart/DS01_2x.png" alt="VCN-01"
-                class="cart-suggested-image" />
-              <div class="cart-suggested-name">VCN-01</div>
-              <div class="cart-suggested-description">Daily Synbiotic</div>
+              <img :src="product.image" :alt="product.name" class="cart-suggested-image" />
+              <div class="cart-suggested-name">{{ product.name }}</div>
+              <div class="cart-suggested-description">{{ product.description }}</div>
               <div class="cart-price-wrapper">
-                <span class="cart-current-price">$37.49</span>
-                <span class="cart-original-price">$49.99</span>
-                <button
-                  @click="addRecommendedProduct('ds01', 'VCN-01', 37.49, 'https://res.cloudinary.com/dljz0lko8/image/upload/v1693433672/cart/DS01_2x.png')"
-                  class="cart-add-btn">
-                  Add
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="cart-product-card">
-              <img
-                src="https://res.cloudinary.com/dljz0lko8/image/upload/v1755802720/cross-sell-module/dm02-cross-sell.png"
-                alt="DM-02™" class="cart-suggested-image" />
-              <div class="cart-suggested-name">DM-02™</div>
-              <div class="cart-suggested-description">Daily Multivitamin</div>
-              <div class="cart-price-wrapper">
-                <span class="cart-current-price">$29.99</span>
-                <span class="cart-original-price">$39.99</span>
-                <button
-                  @click="addRecommendedProduct('dm02', 'DM-02™', 29.99, 'https://res.cloudinary.com/dljz0lko8/image/upload/v1755802720/cross-sell-module/dm02-cross-sell.png')"
-                  class="cart-add-btn">
-                  Add
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="cart-product-card">
-              <img
-                src="https://res.cloudinary.com/dljz0lko8/image/upload/v1755802719/cross-sell-module/pm02-cross-sell.png"
-                alt="PM-02™" class="cart-suggested-image" />
-              <div class="cart-suggested-name">PM-02™</div>
-              <div class="cart-suggested-description">Sleep + Restore</div>
-              <div class="cart-price-wrapper">
-                <span class="cart-current-price">$26.24</span>
-                <span class="cart-original-price">$34.99</span>
-                <button
-                  @click="addRecommendedProduct('pm02', 'PM-02™', 26.24, 'https://res.cloudinary.com/dljz0lko8/image/upload/v1755802719/cross-sell-module/pm02-cross-sell.png')"
-                  class="cart-add-btn">
+                <span class="cart-current-price">₹{{ product.currentPrice }}</span>
+                <span class="cart-original-price">₹{{ product.originalPrice }}</span>
+                <button @click="addRecommendedProduct(product)" class="cart-add-btn">
                   Add
                 </button>
               </div>
@@ -135,15 +94,15 @@
           <div class="cart-total-section">
             <div class="cart-total-row" v-if="cartStore.discount > 0">
               <span class="cart-total-label">Subtotal</span>
-              <span class="cart-total-amount">${{ cartStore.cartSubtotal.toFixed(2) }}</span>
+              <span class="cart-total-amount">₹{{ cartStore.cartSubtotal.toFixed(2) }}</span>
             </div>
             <div class="cart-total-row" v-if="cartStore.discount > 0">
               <span class="cart-total-label">Discount</span>
-              <span class="cart-total-amount discount">-${{ cartStore.discount.toFixed(2) }}</span>
+              <span class="cart-total-amount discount">-₹{{ cartStore.discount.toFixed(2) }}</span>
             </div>
             <div class="cart-total-row">
               <span class="cart-total-label">Total</span>
-              <span class="cart-total-amount">${{ cartStore.cartTotal.toFixed(2) }}</span>
+              <span class="cart-total-amount">₹{{ cartStore.cartTotal.toFixed(2) }}</span>
             </div>
           </div>
 
@@ -159,32 +118,65 @@
 
 <script setup>
 import { useCartStore } from '~/stores/cart'
+import { useProductStore } from '~/stores/product'
 import { useAuthCart } from '~/composables/useAuthCart'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
 const cartStore = useCartStore()
+const productStore = useProductStore()
 const { authState, initializeCart } = useAuthCart()
 const promoInput = ref('')
+
+// Fetch products from store
+productStore.fetchProducts()
+
+// Recommended products - dynamically from store (first 3 products)
+const recommendedProducts = computed(() => {
+  return productStore.allProducts.slice(0, 3).map(product => {
+    const pricing = productStore.getProductPricing(product)
+    return {
+      id: product.id,
+      name: product.name,
+      description: product.description?.substring(0, 50) + '...' || 'Daily Wellness Product',
+      currentPrice: pricing.price,
+      originalPrice: pricing.oldPrice,
+      image: productStore.getPrimaryImage(product)
+    }
+  })
+})
 
 // Initialize cart data on mount
 onMounted(async () => {
   // Initialize cart based on auth state
   await initializeCart()
 
-  // Load cart data from appropriate source
+  // Load cart data from localStorage first
   if (process.client && window.localStorage) {
     await cartStore.loadCart()
   }
+
+  // Sync with backend API (load server cart and merge with local)
+  await cartStore.loadFromBackend()
 })
 
-const addRecommendedProduct = (id, name, price, image) => {
-  cartStore.addToCart({
-    id,
-    name,
-    price,
-    image,
-    subscription: 'One-time purchase'
+const addRecommendedProduct = async (product) => {
+  await cartStore.addToCart({
+    id: product.id,
+    name: product.name,
+    price: product.currentPrice,
+    mrp: product.originalPrice,
+    image: product.image,
+    subscription: 'One-time purchase',
+    variantId: product.variantId || product.id
   })
+}
+
+const handleIncrement = async (itemId) => {
+  await cartStore.incrementQuantity(itemId)
+}
+
+const handleDecrement = async (itemId) => {
+  await cartStore.decrementQuantity(itemId)
 }
 
 const applyPromo = () => {
@@ -203,9 +195,9 @@ const removePromo = () => {
 
 useHead({
   bodyAttrs: {
-    class: 'cart-page'
-  }
-})
+    class: "product-details-page",
+  },
+});
 </script>
 
 <style scoped>

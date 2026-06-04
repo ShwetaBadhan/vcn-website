@@ -6,18 +6,17 @@
             <div class="vcn-whole-body-header">
                 <div class="vcn-whole-body-title-wrapper">
                     <h2 class="vcn-whole-body-main-title">
-                        Natural Wellness You Can Trust
+                        {{ productsSection.header.title }}
                     </h2>
                 </div>
                 <div>
                     <p class="vcn-whole-body-subtitle">
-                        Explore our wide range of health, wellness, and personal care products designed to support your
-                        everyday needs.
+                        {{productsSection.header.subtitle}}
                     </p>
                 </div>
                 <div>
-                    <a href="/all-products" class="vcn-whole-body-view-link">
-                        Shop All <span class="vcn-arrow">→</span>
+                    <a :href="productsSection.header.buttonLink" class="vcn-whole-body-view-link">
+                        {{ productsSection.header.buttonText }} <span class="vcn-arrow">→</span>
                     </a>
                 </div>
             </div>
@@ -38,21 +37,20 @@
                                     @mouseleave="handleMouseLeave(index)">
                                     <div class="vcn-whole-body-product-badges">
                                         <span v-if="index === 0"
-                                            class="vcn-whole-body-badge vcn-whole-body-badge-bestseller">Bestseller</span>
-                                        <span v-else class="vcn-whole-body-badge vcn-whole-body-badge-new">New</span>
+                                            class="vcn-whole-body-badge vcn-whole-body-badge-bestseller">{{productsSection.productCard.badges.bestseller}}</span>
+                                        <span v-else class="vcn-whole-body-badge vcn-whole-body-badge-new">{{productsSection.productCard.badges.new}}</span>
                                     </div>
-                                    <span class="vcn-whole-body-product-label">VCN-02</span>
+                                    <span class="vcn-whole-body-product-label">{{productsSection.productCard.productLabel}}</span>
                                     <h3 class="vcn-whole-body-product-title">{{ product.name }}</h3>
                                     <div class="vcn-whole-body-product-image">
                                         <img class="product-img" :src="getPrimaryImage(product)" :alt="product.name"
-                                            loading="eager" @error="handleImageError($event)" />
+                                            loading="lazy" @error="handleImageError($event)" />
                                         <video :ref="el => { if (el) videoRefs[index] = el }" class="product-video"
                                             muted loop playsinline preload="auto">
-                                            <source :src="getCleanVideoUrl('/video/pvide.mp4')" type="video/mp4" />
+                                            <source :src="productsSection.productCard.video" type="video/mp4" />
                                         </video>
                                     </div>
-                                    <a :href="`/product-details/${product.slug}`" class="vcn-whole-body-shop-btn">Shop
-                                        Now</a>
+                                    <a :href="`/product-details/${product.slug}`" class="vcn-whole-body-shop-btn">{{productsSection.productCard.shopButtonText}}</a>
                                 </div>
                             </NuxtLink>
                         </div>
@@ -67,7 +65,13 @@
 <script setup>
 import { reactive, ref, onMounted, onUnmounted, computed } from 'vue'
 import { useProductStore } from '~/stores/product'
+import { useCmsStore } from '~/stores/cms'
 
+const cmsStore = useCmsStore()
+
+const productsSection = computed(() =>
+  cmsStore.getPageSection('home', 'featuredProducts')
+)
 const productStore = useProductStore()
 
 const products = computed(() => productStore.featuredProducts)

@@ -125,15 +125,20 @@ const getCartItem = (productId) => {
   return cartStore.getItemById(productId)
 }
 
-const addToCart = (product) => {
+const addToCart = async (product) => {
   const pricing = getProductPricing(product)
-  cartStore.addToCart({
+  // Get default variant ID for backend API
+  const defaultVariant = product.variants?.find(v => v.isDefault) || product.variants?.[0]
+  const variantId = defaultVariant?.id || product.id
+
+  await cartStore.addToCart({
     id: product.id,
     name: product.name,
     price: parseFloat(pricing.price).toFixed(2),
     mrp: pricing.oldPrice ? parseFloat(pricing.oldPrice).toFixed(2) : null,
     image: getPrimaryImage(product),
-    subscription: 'One-time purchase'
+    subscription: 'One-time purchase',
+    variantId: variantId  // Pass variantId for backend API
   })
 }
 </script>

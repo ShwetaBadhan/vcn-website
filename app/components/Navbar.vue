@@ -4,7 +4,7 @@
     <nav class="navbar" :class="{ 'scrolled': isHydrated && isScrolled }" id="navbar">
       <div class="container-fluid">
         <!-- Mobile Layout -->
-        <a class="navbar-brand d-lg-none" href="#">
+        <a class="navbar-brand d-lg-none" href="/">
           <img src="/img/logo/logo.png" alt="Logo" class="nav-img" />
         </a>
 
@@ -36,7 +36,7 @@
                 <!-- Dynamic products from backend (limit 5) -->
                 <li v-for="product in shopProducts" :key="product.id">
                   <a class="dropdown-item" :href="`/product-details/${product.slug}`">
-                    <img :src="getProductImage(product)" :alt="product.name" />
+                    <img :src="productStore.getPrimaryImage(product)" :alt="product.name" />
                     {{ product.name }}
                   </a>
                 </li>
@@ -49,23 +49,21 @@
               <a class="nav-link" href="#">Science</a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="/approach">
-                    <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487791/library/nav/science/approach.png"
-                      alt="Approach" />
-                    <strong>Approach<br />Micro</strong>
+                  <a class="dropdown-item" href="/all-products">
+                    <img src="/img/drop-down/abput us.png" alt="Approach" />
+                    <strong>V-GANO</strong>
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="/vcn-labs">
+                  <a class="dropdown-item" href="/all-products">
                     <img src="/img/image/vcnlabs.png" alt="VCN Labs" />
-                    <strong>VCN Labs</strong>
+                    <strong>V-VEDA</strong>
                   </a>
                 </li>
-                <li>
+                <!-- <li>
                   <a class="dropdown-item" href="/approach#scientists">
                     <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487801/library/nav/science/scientists.png"
+                      src=""
                       alt="VCN Labs" />
                     <strong>Scientists</strong>
                   </a>
@@ -73,59 +71,55 @@
                 <li>
                   <a class="dropdown-item" href="/sustainability">
                     <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487761/library/nav/science/sustainability.png"
+                      src=""
                       alt="VCN Labs" />
                     <strong>Sustainability</strong>
                   </a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                   <a href="" class="dropdown-item"><strong>References</strong></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" class="dropdown-item"><strong>VCN-01 Daily Synbiotic</strong></a>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong></strong></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" class="dropdown-item"><strong>DM-02™ Daily Multivitamin</strong></a>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong></strong></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" class="dropdown-item"><strong>VCN-02 Energy + Focus</strong></a>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong></strong></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" class="dropdown-item"><strong>PM-02™ Sleep + Restore</strong></a>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong></strong></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" class="dropdown-item"><strong>PDS-08® Pediatric Synbiotic</strong></a>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong></strong></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" class="dropdown-item"><strong>VS-01™ Vaginal Synbiotic</strong></a>
-                </li>
+                  <a href="javascript:void(0)" class="dropdown-item"><strong></strong></a>
+                </li> -->
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="#">Learn</a>
+              <a class="nav-link" href="#">About Us</a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="/microbiome">
-                    <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487912/library/nav/learn/microbiome.png"
-                      alt="Research" />
-                    Microbiome
-                  </a>
+                  <NuxtLink class="dropdown-item" to="/vcn-R-D">
+                    <img src="/img/drop-down/blog.png" alt="Research" />
+                    R & D
+                  </NuxtLink>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
-                    <img
-                      src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487978/library/nav/learn/probiotics.png"
-                      alt="Research" />
-                    Probiotics
-                  </a>
+                  <NuxtLink class="dropdown-item" to="/contact-us">
+                    <img src="/img/drop-down/sustainability.png" alt="Research" />
+                    Contact Us
+                  </NuxtLink>
                 </li>
               </ul>
             </li>
           </ul>
         </div>
 
-        <div class="nav-right-wrapper  d-flex align-items-center">
+        <div class="nav-right-wrapper d-none d-lg-flex align-items-center">
           <a href="#" class="login-link" @click.prevent="openForm">Login</a>
           <a href="/cart" class="navbar-btn">
             Cart
@@ -134,6 +128,10 @@
             </ClientOnly>
           </a>
 
+        </div>
+
+        <!-- Sign In Modal (Teleport to body for proper stacking) -->
+        <teleport to="body">
           <!-- Overlay -->
           <transition name="fade">
             <div v-if="isOpen" class="overlay" @click="closeForm"></div>
@@ -182,7 +180,6 @@
 
                   <div class="register-section">
                     <h3>Register <span class="info-icon">ⓘ</span></h3>
-                    <!-- NEW CODE (paste karo): -->
                     <button type="button" class="register-btn" @click="openRegistration('preferred-customer')">
                       PREFERRED CUSTOMER
                     </button>
@@ -192,15 +189,14 @@
                   </div>
 
                   <div class="footer-links">
-                    <a href="#" @click="showRegistration = true">Terms & Conditions</a>
-                    <a href="#">Privacy</a>
+                    <a href="/terms-conditions" @click="showRegistration = true">Terms & Conditions</a>
+                    <a href="/privacy-policy">Privacy</a>
                   </div>
                 </form>
               </div>
             </div>
           </transition>
-
-        </div>
+        </teleport>
 
 
 
@@ -244,45 +240,29 @@
           <!-- Science Accordion -->
           <div class="dropdown-content" id="scienceAccordion">
             <div class="dropdown-menu-mobile">
-              <a class="dropdown-item" href="/approach">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487791/library/nav/science/approach.png"
-                  alt="Approach" />
-                <strong>Approach<br />Micro</strong>
+
+              <a class="dropdown-item" href="/our-leadership">
+                <img src="/img/drop-down/abput us.png" alt="VCN Labs" />
+                <strong>V-Gano</strong>
               </a>
-              <a class="dropdown-item" href="/vcn-labs">
+              <a class="dropdown-item" href="/book-consultancy">
                 <img src="/img/image/vcnlabs.png" alt="VCN Labs" />
-                <strong>VCN Labs</strong>
+                <strong>V-Veda</strong>
               </a>
-              <a class="dropdown-item" href="/approach#scientists">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487801/library/nav/science/scientists.png"
-                  alt="VCN Labs" />
-                <strong>Scientists</strong>
-              </a>
-              <a class="dropdown-item" href="sustainability">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487761/library/nav/science/sustainability.png"
-                  alt="VCN Labs" />
-                <strong>Sustainability</strong>
-              </a>
+
             </div>
           </div>
 
           <!-- Learn Accordion -->
           <div class="dropdown-content" id="learnAccordion">
             <div class="dropdown-menu-mobile">
-              <a class="dropdown-item" href="/microbiome">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487912/library/nav/learn/microbiome.png"
-                  alt="Research" />
-                Microbiome
+              <a class="dropdown-item" href="/blog">
+                <img src="/img/drop-down/blog.png" alt="Research" />
+                Blogs
               </a>
-              <a class="dropdown-item" href="#">
-                <img
-                  src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755487978/library/nav/learn/probiotics.png"
-                  alt="Research" />
-                Probiotics
+              <a class="dropdown-item" href="/contact-us">
+                <img src="/img/drop-down/sustainability.png" alt="Research" />
+                Contact Us
               </a>
             </div>
           </div>
@@ -308,6 +288,11 @@ import RegistrationForm from '@/components/RegistrationForm.vue'
 import { useCartStore } from '~/stores/cart'
 import { useAuthCart } from '~/composables/useAuthCart'
 import { useApi } from '~/config/api/useApi'
+import { useProductStore } from '~/stores/product'
+
+
+//product store
+const productStore = useProductStore()
 
 // Cart store - proper Nuxt/Pinia pattern
 const cartStore = useCartStore()
@@ -345,7 +330,7 @@ const openForm = () => {
 
 const closeForm = () => {
   isOpen.value = false
-  document.body.style.overflow = 'auto'
+  document.body.style.overflow = ''
   // Reset form
   formData.mobile = ''
   formData.password = ''
@@ -446,7 +431,7 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 998;
+  z-index: 9998;
 }
 
 /* Slide Form Container */
@@ -457,10 +442,12 @@ onUnmounted(() => {
   width: 100%;
   max-width: 450px;
   height: 100vh;
+  max-height: 100vh;
   background-color: white;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
-  z-index: 999;
+  z-index: 9999;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* Close Button */
@@ -472,12 +459,12 @@ onUnmounted(() => {
   background: none;
   border: none;
   cursor: pointer;
-  color: #45663c;
-  z-index: 1000;
+  color: var(--vcn-primary);
+  z-index: 10000;
 }
 
 .close-btn:hover {
-  color: #45663c;
+  color: var(--vcn-primary);
 }
 
 /* Form Content */
@@ -487,7 +474,7 @@ onUnmounted(() => {
 
 .form-content h2 {
   margin-bottom: 30px;
-  color: #45663c;
+  color: var(--vcn-primary);
   font-size: 28px;
 }
 
@@ -498,14 +485,14 @@ onUnmounted(() => {
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  color: #45663c;
+  color: var(--vcn-primary);
   font-size: 14px;
 }
 
 .form-input {
   width: 100%;
   padding: 12px 15px;
-  border: 1px solid #45663c;
+  border: 1px solid var(--vcn-primary);
   border-radius: 8px;
   font-size: 14px;
   transition: border-color 0.3s;
@@ -513,7 +500,7 @@ onUnmounted(() => {
 
 .form-input:focus {
   outline: none;
-  border-color: #45663c;
+  border-color: var(--vcn-primary);
 }
 
 .password-wrapper {
@@ -535,7 +522,7 @@ onUnmounted(() => {
   display: block;
   text-align: right;
   margin-bottom: 20px;
-  color: #45663c;
+  color: var(--vcn-primary);
   text-decoration: none;
   font-size: 14px;
 }
@@ -547,7 +534,7 @@ onUnmounted(() => {
 .signin-btn {
   width: 100%;
   padding: 14px;
-  background-color: #45663c;
+  background-color: var(--vcn-primary);
   color: white;
   border: none;
   border-radius: 25px;
@@ -559,7 +546,7 @@ onUnmounted(() => {
 }
 
 .signin-btn:hover {
-  background-color: #45663c;
+  background-color: var(--vcn-primary);
 }
 
 .social-login {
@@ -569,7 +556,7 @@ onUnmounted(() => {
 
 .social-login p {
   margin-bottom: 10px;
-  color: #45663c;
+  color: var(--vcn-primary);
 }
 
 .social-icons {
@@ -582,7 +569,7 @@ onUnmounted(() => {
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  border: 1px solid #45663c;
+  border: 1px solid var(--vcn-primary);
   background: white;
   cursor: pointer;
   display: flex;
@@ -601,27 +588,27 @@ onUnmounted(() => {
 
 .register-section h3 {
   margin-bottom: 15px;
-  color: #45663c;
+  color: var(--vcn-primary);
   font-size: 20px;
 }
 
 .info-icon {
   font-size: 14px;
-  color: #45663c;
+  color: var(--vcn-primary);
 }
 
 .register-btn {
   width: 100%;
   padding: 12px;
   margin-bottom: 10px;
-  border: 2px solid #45663c;
+  border: 2px solid var(--vcn-primary);
   background: white;
   border-radius: 25px;
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s;
-  color: #45663c;
+  color: var(--vcn-primary);
 }
 
 .register-btn:hover {
@@ -648,8 +635,8 @@ onUnmounted(() => {
 
 /* Cart Count Badge */
 .cart-count-badge {
-  background: #d3fa99;
-  color: #45663c;
+  background: var(--vcn-badge);
+  color: var(--vcn-primary);
   border-radius: 50%;
   padding: 2px 6px;
   font-size: 11px;

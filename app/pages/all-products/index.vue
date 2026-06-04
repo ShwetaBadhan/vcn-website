@@ -5,7 +5,7 @@
 
     <div class="vcn-breadcrumb-content">
       <h1 class="vcn-breadcrumb-title">
-        Whole Body Health, Made Possible by Your Microbiome
+        Your Wellness Journey Begins Now
       </h1>
     </div>
   </div>
@@ -54,11 +54,11 @@
         <!-- Right Image Section -->
         <div class="col-lg-3">
           <div class="vcn-image-section h-100">
-            <img src="/img/about/about-3.webp" alt="Fresh produce" class="vcn-bg-image" />
+            <img src="/img/about/about-3.png" alt="Fresh produce" class="vcn-bg-image" />
 
             <div class="vcn-image-overlay">
               <p class="vcn-image-text">
-                Is VCN-01 the right probiotic for you? Take the Quiz
+                Discover if VCN-01 Fits Your Needs — Take the Quiz
               </p>
             </div>
           </div>

@@ -1,12 +1,32 @@
 <template>
-    <section class="product-detail-section mt-3">
-        <div class="container-fluid">
-            <div class="row">
-                <!-- Left Sidebar Navigation -->
-                <div
-                    class="col-md-3 col-lg-3 sidebar-section d-none d-md-block"
-                >
-                    <AboutSidebar />
+  <section class="product-detail-section mt-3">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Left Sidebar Navigation -->
+        <div class="col-md-3 col-lg-3 sidebar-section d-none d-md-block">
+          <AboutSidebar />
+        </div>
+        <div class="col-md-9 col-lg-9">
+          <div class="leadership-page">
+            <!-- Hero Section -->
+            <section class="hero-sectioning">
+              <div class="container-fluid">
+                <div class="row align-items-center">
+                  <div class="col-lg-6">
+                    <div class="hero-image">
+                      <img :src="leadership.hero.image" :alt="leadership.hero.title" />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="hero-contents">
+                      <h1 class="hero-title">{{ leadership.hero.title }}</h1>
+
+
+                      <p class="hero-text">
+                              {{ leadership.hero.description }}
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-md-9 col-lg-9">
                     <div class="leadership-page">
@@ -42,209 +62,127 @@
                                                 community and platform.
                                             </p>
 
-                                            <p class="hero-text">
-                                                Our leadership is driven by
-                                                vision, integrity, and a
-                                                commitment to excellence. With
-                                                years of industry experience,
-                                                our leaders guide the
-                                                organization with a clear focus
-                                                on innovation, quality, and
-                                                sustainable growth. They inspire
-                                                a culture of trust, empower our
-                                                community, and continuously
-                                                strive to create opportunities
-                                                that help individuals achieve
-                                                both personal and professional
-                                                success.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- Management Section -->
-                        <section class="management-section">
-                            <div class="container">
-                                <h2 class="section-title">Management</h2>
-                                <div class="row">
-                                    <div
-                                        v-for="(
-                                            member, index
-                                        ) in managementTeam"
-                                        :key="index"
-                                        class="col-lg-4 col-md-6 mb-4"
-                                    >
-                                        <div class="team-card">
-                                            <div class="team-image">
-                                                <img
-                                                    :src="member.image"
-                                                    :alt="member.name"
-                                                />
-                                            </div>
-                                            <div class="team-info">
-                                                <h3 class="team-name">
-                                                    {{ member.name }}
-                                                </h3>
-                                                <p class="team-titles">
-                                                    {{ member.title }}
-                                                </p>
-                                                <button
-                                                    @click="openBio(member)"
-                                                    class="view-bio-btn"
-                                                >
-                                                    View Bio
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center mt-4">
-                                    <button class="view-all-btn">
-                                        <i class="bi bi-arrow-down"></i> View
-                                        All
-                                    </button>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- Board of Directors Section -->
-                        <section class="board-section">
-                            <div class="container">
-                                <h2 class="section-title">
-                                    Board of directors
-                                </h2>
-                                <div class="row">
-                                    <div
-                                        v-for="(member, index) in boardMembers"
-                                        :key="index"
-                                        class="col-lg-4 col-md-6 mb-4"
-                                    >
-                                        <div class="team-card">
-                                            <div class="team-image">
-                                                <img
-                                                    :src="member.image"
-                                                    :alt="member.name"
-                                                />
-                                            </div>
-                                            <div class="team-info">
-                                                <h3 class="team-name">
-                                                    {{ member.name }}
-                                                </h3>
-                                                <p class="team-titles">
-                                                    {{ member.title }}
-                                                </p>
-                                                <button
-                                                    @click="openBio(member)"
-                                                    class="view-bio-btn"
-                                                >
-                                                    View Bio
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center mt-4">
-                                    <button class="view-all-btn">
-                                        <i class="bi bi-arrow-down"></i> View
-                                        All
-                                    </button>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- Connect Section -->
-                        <section class="connect-section">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-4">
-                                        <h2 class="connect-title">
-                                            Connect with our leadership
-                                        </h2>
-                                    </div>
-                                    <div class="col-lg-5">
-                                        <p class="connect-text">
-                                            We give everyone the opportunity to
-                                            communicate directly with the
-                                            chairman of the board, individual
-                                            directors, non-management directors
-                                            as a group or the entire board of
-                                            directors.
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <button class="contact-btn">
-                                            <i class="bi bi-plus-circle"></i>
-                                            Contact the Board
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- Bio Modal -->
-                        <div
-                            v-if="showModal"
-                            class="modal-overlay"
-                            @click.self="closeBio"
-                        >
-                            <div class="modal-content">
-                                <button class="modal-close" @click="closeBio">
-                                    <i class="bi bi-x"></i>
-                                </button>
-                                <div class="modal-body">
-                                    <div class="modal-image">
-                                        <img
-                                            :src="selectedMember.image"
-                                            :alt="selectedMember.name"
-                                        />
-                                    </div>
-                                    <div class="modal-info">
-                                        <h2 class="modal-name">
-                                            {{ selectedMember.name }}
-                                        </h2>
-                                        <p class="modal-title">
-                                            {{ selectedMember.title }}
-                                        </p>
-                                        <div class="modal-description">
-                                            <p>{{ selectedMember.bio }}</p>
-                                        </div>
-                                        <div
-                                            class="modal-details"
-                                            v-if="
-                                                selectedMember.education ||
-                                                selectedMember.experience
-                                            "
-                                        >
-                                            <div
-                                                v-if="selectedMember.education"
-                                                class="detail-section"
-                                            >
-                                                <h4>Education</h4>
-                                                <p>
-                                                    {{
-                                                        selectedMember.education
-                                                    }}
-                                                </p>
-                                            </div>
-                                            <div
-                                                v-if="selectedMember.experience"
-                                                class="detail-section"
-                                            >
-                                                <h4>Experience</h4>
-                                                <p>
-                                                    {{
-                                                        selectedMember.experience
-                                                    }}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <!--   Section -->
+            <!-- <section class="management-section">
+              <div class="container">
+                <h2 class="section-title">Management</h2>
+                <div class="row">
+                  <div v-for="(member, index) in managementTeam" :key="index" class="col-lg-4 col-md-6 mb-4">
+                    <div class="team-card">
+                      <div class="team-image">
+                        <img :src="member.image" :alt="member.name" />
+                      </div>
+                      <div class="team-info">
+                        <h3 class="team-name">{{ member.name }}</h3>
+                        <p class="team-titles">{{ member.title }}</p>
+                        <button @click="openBio(member)" class="view-bio-btn">
+                          View Bio
+                        </button>
+                      </div>
                     </div>
+                  </div>
+                </div>
+                <div class="text-center mt-4">
+                  <button class="view-all-btn">
+                    <i class="bi bi-arrow-down"></i> View All
+                  </button>
+                </div>
+              </div>
+            </section> -->
+
+            <!-- Board of Directors Section -->
+            <section class="board-section">
+  <div class="container">
+    <h2 class="section-title">
+      {{ leadership.boardSection.title }}
+    </h2>
+
+    <div class="row">
+      <div
+        v-for="(member, index) in leadership.boardSection.members"
+        :key="index"
+        class="col-lg-4 col-md-6 mb-4"
+      >
+        <div class="team-card">
+          <div class="team-image">
+            <img
+              :src="member.image"
+              :alt="member.name"
+            />
+          </div>
+
+          <div class="team-info">
+            <h3 class="team-name">
+              {{ member.name }}
+            </h3>
+
+            <p class="team-titles">
+              {{ member.title }}
+            </p>
+
+            <button
+              @click="openBio(member)"
+              class="view-bio-btn"
+            >
+              {{ leadership.boardSection.btntext }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+            <!-- Connect Section -->
+            <section class="connect-section">
+              <div class="container">
+                <div class="row align-items-center">
+                  <div class="col-lg-4">
+                    <h2 class="connect-title">{{ leadership.connectSection.title }}</h2>
+                  </div>
+                  <div class="col-lg-5">
+                    <p class="connect-text">
+                     {{leadership.connectSection.description }}
+                    </p>
+                  </div>
+                  <div class="col-lg-3">
+                    <button class="contact-btn">
+                      <i class="bi bi-plus-circle"></i> {{ leadership.connectSection.buttonText }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Bio Modal -->
+            <div v-if="showModal" class="modal-overlay" @click.self="closeBio">
+              <div class="modal-content">
+                <button class="modal-close" @click="closeBio">
+                  <i class="bi bi-x"></i>
+                </button>
+                <div class="modal-body">
+                  <div class="modal-image">
+                    <img :src="selectedMember.image" :alt="selectedMember.name" />
+                  </div>
+                  <div class="modal-info">
+                    <h2 class="modal-name">{{ selectedMember.name }}</h2>
+                    <p class="modal-title">{{ selectedMember.title }}</p>
+                    <div class="modal-description">
+                      <p>{{ selectedMember.bio }}</p>
+                    </div>
+                    <div class="modal-details" v-if="
+                      selectedMember.education || selectedMember.experience
+                    ">
+                      <div v-if="selectedMember.education" class="detail-section">
+                        <h4>Education</h4>
+                        <p>{{ selectedMember.education }}</p>
+                      </div>
+                      <div v-if="selectedMember.experience" class="detail-section">
+                        <h4>Experience</h4>
+                        <p>{{ selectedMember.experience }}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>
@@ -252,6 +190,17 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useCmsStore } from '~/stores/cms'
+
+const cmsStore = useCmsStore()
+
+const leadership = computed(() =>
+  cmsStore.getPageSection('about', 'leadership')
+)
+
+
+
 import { ref } from "vue";
 
 useHead({
@@ -321,55 +270,60 @@ const selectedMember = ref({});
 // ]);
 
 const boardMembers = ref([
-    {
-        name: "Harminder Singh ",
-        title: "Director",
-        image: "/img/leadership/our team 4.png",
-        bio: "Harminder Singh serves as Director, providing strategic vision and leadership to the board.",
-        education: "MBA from University of Chicago",
-        experience: "Over 30 years in executive leadership",
-    },
-    {
-        name: "Jasdeep Bawa",
-        title: "Director",
-        image: "/img/leadership/our team 2.png",
-        bio: "Jasdeep Bawa brings extensive medical and public health expertise to the board.",
-        education: "MD, Former U.S. Surgeon General",
-        experience: "Distinguished career in medicine and public health",
-    },
-    {
-        name: "Lynda Cloud",
-        title: "Director",
-        image: "/img/leadership/our team 3.png",
-        bio: "Lynda Cloud provides strategic guidance on governance and compliance matters.",
-        education: "MBA in Finance",
-        experience: "20+ years in corporate governance",
-    },
-    {
-        name: "Celine Del Genes",
-        title: "Director",
-        image: "/img/leadership/our team 5.png",
-        bio: "Celine Del Genes contributes expertise in international business and market expansion.",
-        education: "MBA from INSEAD",
-        experience: "Global business leadership experience",
-    },
-    {
-        name: "Sophie L'Hélias",
-        title: "Director",
-        image: "/img/leadership/our team.png",
-        bio: "Sophie L'Hélias brings insights on digital transformation and innovation.",
-        education: "MS in Technology Management",
-        experience: "Leadership in tech and digital strategy",
-    },
-    // {
-    //   name: "Michael Levitt",
-    //   title: "Director",
-    //   image:
-    //     "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-    //   bio: "Michael Levitt offers strategic counsel on mergers, acquisitions, and corporate development.",
-    //   education: "MBA from Wharton",
-    //   experience: "30 years in corporate development",
-    // },
+  {
+    name: "Harminder Singh Sodhi ",
+    title: "Managing Director",
+    image:
+      "/img/leadership/our team 4.png",
+    bio: "A visionary leader committed to excellence and growth, he has played a key role in shaping the organization’s strategic direction. With a forward-thinking approach and strong industry experience, his leadership emphasizes innovation, integrity, and value creation—driving the company toward sustained success.",
+    // education: "MBA from University of Chicago",
+    // experience: "Over 30 years in executive leadership",
+  },
+  {
+    name: "Jasdeep Bawa",
+    title: "Managing Director",
+    image:
+      "/img/leadership/our team 2.png",
+    bio: "A dynamic leader with a clear vision for growth, he brings strong expertise and strategic insight to the organization. His approach centers on innovation, operational excellence, and building lasting value, helping drive the company forward with integrity and a results-oriented mindset.",
+    // education: "MD, Former U.S. Surgeon General",
+    // experience: "Distinguished career in medicine and public health",
+  },
+  {
+    name: "Pardeep Singh Bedi",
+    title: "Director",
+    image:
+      "/img/leadership/our team 3.png",
+    bio: "A strategic thinker and dedicated leader, he contributes significantly to the company’s vision and growth. With a focus on innovation and efficiency, he plays a key role in strengthening operations and delivering consistent value.",
+    // education: "MBA in Finance",
+    // experience: "20+ years in corporate governance",
+  },
+  {
+    name: "Ramakant Makkar",
+    title: "Director",
+    image:
+      "/img/leadership/our team 5.png",
+    bio: "With a strong understanding of industry dynamics, he brings clarity and direction to the organization. His leadership is driven by integrity, smart decision-making, and a commitment to long-term success.",
+    // education: "MBA from INSEAD",
+    // experience: "Global business leadership experience",
+  },
+  {
+    name: "Pardeep Gupta",
+    title: "Director",
+    image:
+      "/img/leadership/our team.png",
+    bio: "An experienced professional with a results-driven approach, he supports the organization’s expansion through effective strategies and leadership. His focus on quality, teamwork, and continuous improvement helps drive sustainable growth.",
+    // education: "MS in Technology Management",
+    // experience: "Leadership in tech and digital strategy",
+  },
+  // {
+  //   name: "Michael Levitt",
+  //   title: "Director",
+  //   image:
+  //     "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+  //   bio: "Michael Levitt offers strategic counsel on mergers, acquisitions, and corporate development.",
+  //   education: "MBA from Wharton",
+  //   experience: "30 years in corporate development",
+  // },
 ]);
 
 const openBio = (member) => {
@@ -387,9 +341,9 @@ const closeBio = () => {
 <style scoped>
 /* Hero Section */
 .hero-sectioning {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    padding: 80px 0;
-    margin-bottom: 60px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 80px 0;
+  margin-bottom: 60px;
 }
 
 .hero-image img {
@@ -445,10 +399,10 @@ const closeBio = () => {
 }
 
 .team-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
 .team-card:hover .team-image img {
@@ -597,14 +551,15 @@ const closeBio = () => {
 }
 
 @keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .modal-close {

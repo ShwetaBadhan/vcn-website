@@ -7,7 +7,7 @@
           <h3>Shipping & Delivery Policy</h3>
 
           <p>
-            At Vcare Network, we ensure timely and reliable delivery of your orders across India.
+            At VCN, we ensure timely and reliable delivery of your orders across India.
           </p>
 
           <p>
@@ -22,7 +22,7 @@
           </p>
 
           <p>
-            We partner with trusted logistics providers to ensure safe delivery; however, Vcare Network is not
+            We partner with trusted logistics providers to ensure safe delivery; however, VCN is not
             responsible for delays caused by courier partners or external factors beyond our control.
           </p>
 

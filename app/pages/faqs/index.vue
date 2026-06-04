@@ -1,31 +1,69 @@
 <template>
-  <section class="product-detail-section  mt-3">
+  <section class="product-detail-section mt-3">
     <div class="container-fluid">
       <div class="row">
         <!-- Left Sidebar Navigation -->
         <div class="col-md-3 col-lg-3 sidebar-section d-none d-md-block">
           <AboutSidebar />
         </div>
+
         <div class="col-md-9 col-lg-9 content-section">
           <section class="vcn-faq-section">
             <div class="vcn-faq-container">
-              <h2 class="vcn-faq-title">Frequently Asked Questions</h2>
+
+              <h2 class="vcn-faq-title">
+                {{ faq.title }}
+              </h2>
 
               <div class="vcn-faq-list">
-                <div v-for="(category, index) in faqCategories" :key="index" class="vcn-faq-item">
-                  <button class="vcn-faq-question-btn" @click="toggleAccordion(index)" type="button">
-                    <span>{{ category.title }}</span>
-                    <i class="bi" :class="activeIndex === index ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+
+                <div
+                  v-for="(category, index) in faq.categories"
+                  :key="index"
+                  class="vcn-faq-item"
+                >
+                  <button
+                    class="vcn-faq-question-btn"
+                    type="button"
+                    @click="toggleAccordion(index)"
+                  >
+                    <span>
+                      {{ category.title }}
+                    </span>
+
+                    <i
+                      class="bi"
+                      :class="
+                        activeIndex === index
+                          ? 'bi-chevron-up'
+                          : 'bi-chevron-down'
+                      "
+                    ></i>
                   </button>
 
-                  <div v-if="activeIndex === index" class="vcn-faq-answer-wrapper">
-                    <div v-for="(qa, qIndex) in category.questions" :key="qIndex" class="vcn-qa-card">
-                      <h4 class="vcn-qa-question-text">{{ qa.question }}</h4>
-                      <p class="vcn-qa-answer-text">{{ qa.answer }}</p>
+                  <div
+                    v-if="activeIndex === index"
+                    class="vcn-faq-answer-wrapper"
+                  >
+                    <div
+                      v-for="(qa, qIndex) in category.questions"
+                      :key="qIndex"
+                      class="vcn-qa-card"
+                    >
+                      <h4 class="vcn-qa-question-text">
+                        {{ qa.question }}
+                      </h4>
+
+                      <p class="vcn-qa-answer-text">
+                        {{ qa.answer }}
+                      </p>
                     </div>
                   </div>
+
                 </div>
+
               </div>
+
             </div>
           </section>
         </div>
@@ -35,26 +73,33 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useCmsStore } from '~/stores/cms'
 
+const cmsStore = useCmsStore()
+
+const faq = computed(
+  () => cmsStore.getPageSection('about', 'faq')
+)
+
+const activeIndex = ref(null)
+
+const toggleAccordion = (index) => {
+  activeIndex.value =
+    activeIndex.value === index ? null : index
+}
 useHead({
   bodyAttrs: {
     class: "product-details-page",
   },
 });
 
-const activeIndex = ref(null)
-
-const toggleAccordion = (index) => {
-  activeIndex.value = activeIndex.value === index ? null : index
-}
-
 const faqCategories = ref([
   {
     title: 'About VCN Business',
     questions: [
       {
-        question: 'What is Vcare Network (VCN)?',
+        question: 'What is VCN?',
         answer: "VCN is a direct selling company offering a wide range of wellness, healthcare, and personal care products inspired by natural ingredients and modern research."
       },
       {

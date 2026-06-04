@@ -1,3 +1,31 @@
+<script setup>
+import { computed } from 'vue'
+import { useCmsStore } from '~/stores/cms'
+
+const cmsStore = useCmsStore()
+const journey = computed(() =>
+  cmsStore.getPageSection('about', 'ourJourney')
+)
+const years = computed(() =>
+  journey.value?.timeline?.map(item => item.year) || []
+)
+
+const activeYear = ref('2009-2014')
+
+const activeTimeline = computed(() =>
+  journey.value?.timeline?.find(
+    item => item.year === activeYear.value
+  )
+)
+
+useHead({
+  bodyAttrs: {
+    class: "product-details-page",
+  },
+});
+</script>
+
+
 <template>
   <section class="product-detail-section  mt-3">
     <div class="container-fluid">
@@ -10,12 +38,12 @@
           <div class="journey-container">
             <!-- HERO SECTION -->
             <section class="journey-hero">
-              <img src="/img/leadership/ourleader.jpeg" class="hero-img" />
+              <img :src="journey.hero.image" class="hero-img" />
 
-              <h1>Major Milestones</h1>
+              <h1>{{ journey.hero.title }}</h1>
 
               <p>
-                Since our inception in 2009, Vcare Network has grown from a vision-driven initiative into a trusted name in the wellness and direct selling industry. What began as a commitment to deliver high-quality, nature-inspired products has evolved into a strong nationwide presence backed by a dedicated network of distributors and loyal customers. Over the years, we have expanded our product range, strengthened our systems, and continuously adapted to changing market needs. Each milestone in our journey reflects our focus on quality, innovation, and empowering individuals, driving us forward with the same passion to create a healthier and more prosperous future for all.
+                {{ journey.hero.description }}
 
               </p>
             </section>
@@ -32,29 +60,13 @@
 
             <section class="timeline-content">
               <div class="milestone-card">
-                <div class="milestone-image">
-                  <img v-if="activeYear === 1962" src="https://via.placeholder.com/350x220" />
-
-                  <img v-if="activeYear === 1959" src="https://via.placeholder.com/350x220" />
-                </div>
-
                 <div class="milestone-info">
                   <h2>{{ activeYear }}</h2>
 
-                  <h3 v-if="activeYear === 1962">
-                    VCN becomes international
-                  </h3>
+                  <h3>{{ activeTimeline?.title }}</h3>
 
-                  <h3 v-if="activeYear === 1959">Company Founded</h3>
-
-                  <p v-if="activeYear === 1962">
-                    VCN opens its first international office in Canada. This
-                    milestone marked the beginning of global expansion.
-                  </p>
-
-                  <p v-if="activeYear === 1959">
-                    VCN was founded with the vision of helping people achieve
-                    success through entrepreneurship.
+                  <p>
+                    {{ activeTimeline?.description }}
                   </p>
                 </div>
               </div>
@@ -65,25 +77,6 @@
     </div>
   </section>
 </template>
-
-<script setup>
-useHead({
-  bodyAttrs: {
-    class: "product-details-page",
-  },
-});
-</script>
-<script>
-export default {
-  data() {
-    return {
-      activeYear: 2015,
-
-      years: [2015, 1990, 1980, 1972, 1968, 1962, 1959],
-    };
-  },
-};
-</script>
 
 <style scoped>
 .journey-container {

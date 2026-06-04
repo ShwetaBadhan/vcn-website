@@ -48,6 +48,31 @@ export const useApi = () => {
     }
   }
 
+  // Generic PATCH request using $fetch
+  const patch = async <T = any>(endpoint: string, body: any): Promise<ApiResponse<T>> => {
+    try {
+      const data = await $fetch<T>(`${baseURL}${endpoint}`, {
+        method: 'PATCH',
+        body
+      })
+      return { data, error: null }
+    } catch (err: any) {
+      return { data: null, error: err.message || 'Network error' }
+    }
+  }
+
+  // Generic DELETE request using $fetch
+  const del = async <T = any>(endpoint: string): Promise<ApiResponse<T>> => {
+    try {
+      const data = await $fetch<T>(`${baseURL}${endpoint}`, {
+        method: 'DELETE'
+      })
+      return { data, error: null }
+    } catch (err: any) {
+      return { data: null, error: err.message || 'Network error' }
+    }
+  }
+
   // Fetch from predefined endpoint
   const getFromEndpoint = async <T = any>(endpointKey: ApiEndpointKey): Promise<ApiResponse<T>> => {
     const endpoint = API_ENDPOINTS[endpointKey]
@@ -70,6 +95,8 @@ export const useApi = () => {
     get,
     getFromUrl,
     post,
+    patch,
+    del,
     getFromEndpoint,
     postToEndpoint,
     prefetchEndpoint,

@@ -8,7 +8,7 @@
 
           <h6>1. Introduction</h6>
           <p>
-            Vcare Network is committed to protecting your privacy. This policy explains how we collect, use, and
+            VCN is committed to protecting your privacy. This policy explains how we collect, use, and
             safeguard your personal information.
           </p>
 

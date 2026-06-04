@@ -324,17 +324,20 @@ document.addEventListener('click', function (event) {
 // Initialize AOS when DOM is ready and AOS is loaded
 function initAOS() {
   if (typeof AOS !== 'undefined') {
-    AOS.init({
-      duration: 1000,
-      once: false,
-      easing: "ease-out",
-      mirror: true,
+    requestAnimationFrame(() => {
+      AOS.init({
+        duration: 1000,
+        once: false,
+        easing: "ease-out",
+        mirror: true,
+      });
     });
   } else {
-    // Retry after a short delay if AOS hasn't loaded yet
     setTimeout(initAOS, 100);
   }
 }
+
+window.addEventListener('load', initAOS);
 
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {

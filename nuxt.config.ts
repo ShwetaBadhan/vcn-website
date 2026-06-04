@@ -48,12 +48,20 @@ export default defineNuxtConfig({
       '/all-products': { isr: 300 },
       '/product-details': { isr: 300 },
       // Static pages - cache for 1 hour
-      '/': { isr: 3600 }
+      '/': { isr: 3600 },
+      // Disable broken route
+      '/approach': { redirect: { to: '/404', statusCode: 404 } },
+      '/entire-world': { redirect: { to: '/404', statusCode: 404 } },
+      '/vcn-university': { redirect: { to: '/404', statusCode: 404 } },
+      '/microbiome': { redirect: { to: '/404', statusCode: 404 } },
+      '/practitioners': { redirect: { to: '/404', statusCode: 404 } },
+      '/sustainability': { redirect: { to: '/404', statusCode: 404 } },
     }
   },
 
   css: [
     '~/assets/css/main.css',
+    '~/assets/css/scrollbar.css',
     'swiper/css'
   ],
 
@@ -65,8 +73,8 @@ export default defineNuxtConfig({
         // 🔸 Favicon
         {
           rel: 'shortcut icon',
-          type: 'image/x-icon',
-          href: '/images/logo/favicon.png'
+          type: 'image/png',
+          href: '/img/logo/logo.png'
         },
 
         // 🔸 Bootstrap Icons

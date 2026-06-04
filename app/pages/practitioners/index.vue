@@ -13,11 +13,11 @@
     </div>
   </section>
 
-  <section class="seed-health-wrapper">
-    <div class="seed-health-container">
-      <div class="seed-health-content-row">
-        <div class="seed-health-text-column">
-          <p class="seed-health-description">
+  <section class="vcn-health-wrapper">
+    <div class="vcn-health-container">
+      <div class="vcn-health-content-row">
+        <div class="vcn-health-text-column">
+          <p class="vcn-health-description">
             We founded VCN Health to realize the microbiome as a radical new
             pathway for well-being. We pioneer breakthrough research to
             develop clinically validated probiotics, prebiotics, and
@@ -26,8 +26,8 @@
             mission to set a new standard and evolve our paradigms of care.
           </p>
         </div>
-        <div class="seed-health-cta-column">
-          <a href="#" class="seed-health-connect-button">
+        <div class="vcn-health-cta-column">
+          <a href="#" class="vcn-health-connect-button">
             Connect with Our Practitioner Team
           </a>
         </div>
@@ -35,12 +35,12 @@
     </div>
   </section>
 
-  <section class="seed-benefits-section">
+  <section class="vcn-benefits-section">
     <div class="container">
       <div class="row align-items-center">
         <!-- Left: Video -->
         <div class="col-md-6">
-          <video playsinline autoplay loop muted class="seed-benefits-video">
+          <video playsinline autoplay loop muted class="vcn-benefits-video">
             <source
               src="https://res.cloudinary.com/dljz0lko8/video/upload/v1748379973/practitioners/capsule_close_rotate_alpha__1_720p.mp4"
               type="video/mp4" />
@@ -49,11 +49,11 @@
 
         <!-- Right: Content -->
         <div class="col-md-6">
-          <h1 class="seed-benefits-title">
+          <h1 class="vcn-benefits-title">
             VCN-01 Benefits In and Beyond the Gut
           </h1>
 
-          <p class="seed-benefits-description">
+          <p class="vcn-benefits-description">
             Our flagship innovation, VCN-01 Daily Synbiotic, is now available
             for your healthcare practice. Developed from a deep understanding
             of the complex interactions within the microbiome, our
@@ -64,13 +64,13 @@
           </p>
 
           <!-- FAQ List -->
-          <div class="seed-faq-list">
-            <div class="seed-faq-item">
-              <button class="seed-faq-question" aria-expanded="false">
+          <div class="vcn-faq-list">
+            <div class="vcn-faq-item">
+              <button class="vcn-faq-question" aria-expanded="false">
                 <span>Benefit Highlights</span>
-                <span class="seed-faq-icon">+</span>
+                <span class="vcn-faq-icon">+</span>
               </button>
-              <div class="seed-faq-answer">
+              <div class="vcn-faq-answer">
                 Our synbiotic is formulated with strains that preserve
                 ecosystem function, fortify the gut barrier, promote healthy
                 regularity, reinforce an optimal gut-skin axis, promote
@@ -79,24 +79,24 @@
               </div>
             </div>
 
-            <div class="seed-faq-item">
-              <button class="seed-faq-question" aria-expanded="false">
+            <div class="vcn-faq-item">
+              <button class="vcn-faq-question" aria-expanded="false">
                 <span>Mechanistic Highlights</span>
-                <span class="seed-faq-icon">+</span>
+                <span class="vcn-faq-icon">+</span>
               </button>
-              <div class="seed-faq-answer">
+              <div class="vcn-faq-answer">
                 Preclinical and clinical evidence demonstrates strains in
                 VCN-01 support tight junction integrity and healthy bacterial
                 toxin (LPS) exclusion in the digestive tract.*
               </div>
             </div>
 
-            <div class="seed-faq-item">
-              <button class="seed-faq-question" aria-expanded="false">
+            <div class="vcn-faq-item">
+              <button class="vcn-faq-question" aria-expanded="false">
                 <span>Strain Selection</span>
-                <span class="seed-faq-icon">+</span>
+                <span class="vcn-faq-icon">+</span>
               </button>
-              <div class="seed-faq-answer">
+              <div class="vcn-faq-answer">
                 Our methodology for selecting strains gives VCN-01 maximum
                 efficacy across a broad range of existing microbiomes and
                 their networks. Our microbial genomics capabilities allow us
@@ -110,12 +110,12 @@
               </div>
             </div>
 
-            <div class="seed-faq-item">
-              <button class="seed-faq-question" aria-expanded="false">
+            <div class="vcn-faq-item">
+              <button class="vcn-faq-question" aria-expanded="false">
                 <span>Clinical Research</span>
-                <span class="seed-faq-icon">+</span>
+                <span class="vcn-faq-icon">+</span>
               </button>
-              <div class="seed-faq-answer">
+              <div class="vcn-faq-answer">
                 VCN-01 stands on a foundation of rigorous scientific
                 validation, with 10 clinical trials and 14 pre-clinical trials
                 underpinning our strain-specific benefits. We have also
@@ -145,7 +145,7 @@
     </div>
   </section>
 
-  <section class="seed-recommend-main-section">
+  <section class="vcn-recommend-main-section">
     <div class="container">
       <div class="row align-items-center g-5">
         <!-- Product Image Column -->
@@ -153,13 +153,13 @@
           <div class="text-center">
             <img
               src="https://res.cloudinary.com/dljz0lko8/image/upload/f_auto,q_auto/v1755275863/practitioners-page-image.jpg"
-              alt="Seed Synbiotics Products" class="seed-recommend-product-image" />
+              alt="vcn Synbiotics Products" class="vcn-recommend-product-image" />
           </div>
         </div>
 
         <!-- Content Column -->
         <div class="col-lg-6 order-lg-2 order-1">
-          <div class="seed-recommend-icon-wrapper">
+          <div class="vcn-recommend-icon-wrapper">
             <svg width="48" height="41" viewBox="0 0 48 41" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M42.9945 0.727528C42.5933 0.324947 42.0591 0.0824217 41.492 0.0453685C32.7041 -0.494116 27.0195 3.94661 24.001 8.12427C20.9781 3.94661 15.2934 -0.498576 6.50564 0.0453685C5.93703 0.0817624 5.40121 0.324306 4.99865 0.727528C-0.645881 6.37206 -0.00830808 15.2669 0.0496532 16.1363C0.400506 19.6821 1.51709 23.1095 3.32223 26.1814C6.07316 31.0011 11.7489 37.408 23.203 40.6227L23.3857 40.6762L23.515 40.7074L23.6934 40.7386C23.7957 40.7474 23.8986 40.7474 24.001 40.7386C24.0989 40.7474 24.1974 40.7474 24.2952 40.7386L24.4558 40.7119L24.603 40.6762L24.8036 40.6182C45.9727 34.6616 47.8097 17.7682 47.9345 16.1854C47.9925 15.6681 48.7683 6.50136 42.9945 0.727528ZM21.6737 20.3853L15.3871 13.6083C15.1805 13.3778 14.9301 13.1908 14.6505 13.0581C14.3709 12.9254 14.0676 12.8497 13.7585 12.8354C13.4494 12.8211 13.1403 12.8685 12.8497 12.9747C12.559 13.0811 12.2924 13.2443 12.0655 13.4546C11.8385 13.6651 11.6557 13.9185 11.5277 14.2002C11.3996 14.482 11.3291 14.7866 11.3199 15.0959C11.3108 15.4052 11.3633 15.7134 11.4745 16.0023C11.5856 16.2911 11.7532 16.5549 11.9674 16.7783L21.6559 27.2202V35.2233C5.60501 29.3826 4.73559 16.4261 4.71331 15.8554C4.7111 15.8138 4.7111 15.7721 4.71331 15.7306C4.71331 15.6593 4.10248 8.98923 7.72283 4.65998H8.00371C10.8835 4.61313 13.7134 5.41459 16.1409 6.96452C18.5686 8.51445 20.4864 10.7443 21.6559 13.3764V13.4166L21.6737 20.3853ZM43.2976 15.7395C43.2955 15.7781 43.2955 15.8168 43.2976 15.8554C43.2664 16.435 42.4059 29.3871 26.3551 35.2278H26.3329V27.2426L26.3551 27.2202L36.0302 16.7783C36.2383 16.5534 36.4001 16.2898 36.5065 16.0025C36.6127 15.7151 36.6613 15.4096 36.6495 15.1035C36.6377 14.7972 36.5657 14.4965 36.4377 14.2181C36.3096 13.9398 36.1279 13.6894 35.9032 13.4812C35.6783 13.2731 35.4146 13.1112 35.1273 13.005C34.8399 12.8987 34.5345 12.8501 34.2282 12.8619C33.9221 12.8737 33.6213 12.9457 33.3429 13.0737C33.0645 13.2019 32.8142 13.3835 32.606 13.6083L26.3417 20.363H26.3194V13.4255L26.3417 13.3764C27.1175 11.6465 30.8315 4.66443 40.0162 4.66443H40.2837C43.8772 8.97139 43.3021 15.6726 43.2976 15.7395Z"
@@ -167,30 +167,30 @@
             </svg>
           </div>
 
-          <h2 class="seed-recommend-main-heading">
+          <h2 class="vcn-recommend-main-heading">
             Recommend VCN Synbiotics to Your Patients with Fullscript
           </h2>
 
-          <p class="seed-recommend-description-text">
+          <p class="vcn-recommend-description-text">
             Seamlessly access VCN synbiotics through Fullscript® for direct
             delivery to your patients or convenient distribution from your
             office.
           </p>
 
-          <a href="#" class="seed-recommend-cta-button">
+          <a href="#" class="vcn-recommend-cta-button">
             Recommend VCN on Fullscript®
           </a>
         </div>
       </div>
     </div>
   </section>
-  <section class="seed-grow-main-wrapper">
+  <section class="vcn-grow-main-wrapper">
     <div class="container-fluid">
       <div class="row g-4">
         <!-- Hero Content -->
         <div class="col-lg-5 mb-5">
-          <h1 class="seed-grow-hero-title">Grow with VCN</h1>
-          <p class="seed-grow-hero-subtitle">
+          <h1 class="vcn-grow-hero-title">Grow with VCN</h1>
+          <p class="vcn-grow-hero-subtitle">
             Our resources and healthcare education are designed to empower
             practitioners across the patient journey.
           </p>
@@ -198,8 +198,8 @@
 
         <!-- Card 1: Enrich Your Microbiome Education -->
         <div class="col-lg-3">
-          <div class="seed-grow-card-wrapper">
-            <div class="seed-grow-icon-container">
+          <div class="vcn-grow-card-wrapper">
+            <div class="vcn-grow-icon-container">
               <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="Group 1256">
                   <g id="Group 417">
@@ -278,28 +278,28 @@
               </svg>
             </div>
 
-            <h2 class="seed-grow-card-title">
+            <h2 class="vcn-grow-card-title">
               Enrich Your Microbiome Education
             </h2>
 
-            <p class="seed-grow-card-description">
+            <p class="vcn-grow-card-description">
               With a deep commitment to education and to providing actionable
               insights, we translate foundational concepts, our latest
               research, and discoveries from the frontlines of microbiome
               science.
             </p>
 
-            <a href="#" class="seed-grow-link-button">
+            <a href="#" class="vcn-grow-link-button">
               <span>Sign up for Education</span>
-              <span class="seed-grow-arrow-icon">→</span>
+              <span class="vcn-grow-arrow-icon">→</span>
             </a>
           </div>
         </div>
 
         <!-- Card 2: Connect with our Practitioner Team -->
         <div class="col-lg-3">
-          <div class="seed-grow-card-wrapper">
-            <div class="seed-grow-icon-container">
+          <div class="vcn-grow-card-wrapper">
+            <div class="vcn-grow-icon-container">
               <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M65 32.7451C65 50.4091 50.664 64.7451 33 64.7451C15.336 64.7451 1 50.4091 1 32.7451C1 15.0811 15.336 0.745117 33 0.745117C50.664 0.745117 65 15.0171 65 32.7451Z"
@@ -341,20 +341,20 @@
               </svg>
             </div>
 
-            <h2 class="seed-grow-card-title">
+            <h2 class="vcn-grow-card-title">
               Connect with our Practitioner Team
             </h2>
 
-            <p class="seed-grow-card-description">
+            <p class="vcn-grow-card-description">
               The skilled clinicians on our team are here to answer your
               questions and provide the information you need to make important
               patient decisions. We collaborate closely with our R+D team to
               provide clinician-to-clinician responses.
             </p>
 
-            <a href="#" class="seed-grow-link-button">
+            <a href="#" class="vcn-grow-link-button">
               <span>Connect with Clinical Specialists</span>
-              <span class="seed-grow-arrow-icon">→</span>
+              <span class="vcn-grow-arrow-icon">→</span>
             </a>
           </div>
         </div>
@@ -437,26 +437,26 @@
       </div>
     </div>
   </section>
-  <section class="seed-benefits-section">
+  <section class="vcn-benefits-section">
     <div class="container-fluid">
       <div class="row align-items-center">
         <!-- Right: Content -->
         <div class="col-md-6">
-          <h1 class="seed-benefits-title">
+          <h1 class="vcn-benefits-title">
             Microbial Innovation From Discoveryto Impact
           </h1>
 
-          <p class="seed-benefits-description">
+          <p class="vcn-benefits-description">
             We are a diverse, interdisciplinary collective of scientists,
             practitioners, designers, engineers, bioinformaticians, operators,
             and scientific communicators.
           </p>
-          <p class="seed-benefits-description">
+          <p class="vcn-benefits-description">
             We advance frontier microbiome science from discovery to
             real-world impact to develop breakthrough innovations in biotics,
             living medicines, and environmental solutions.
           </p>
-          <p class="seed-benefits-description">
+          <p class="vcn-benefits-description">
             Our development programs power a pipeline of innovations that
             encompass areas of health beyond the gut microbiome, including the
             vaginal microbiome, skin microbiome, oral microbiome, infant
@@ -482,13 +482,13 @@
         </div>
         <div class="col-lg-6">
           <!-- FAQ List -->
-          <div class="seed-faq-list">
-            <div class="seed-faq-item">
-              <button class="seed-faq-question" aria-expanded="false">
+          <div class="vcn-faq-list">
+            <div class="vcn-faq-item">
+              <button class="vcn-faq-question" aria-expanded="false">
                 <span>Practitioner Program</span>
-                <span class="seed-faq-icon">+</span>
+                <span class="vcn-faq-icon">+</span>
               </button>
-              <div class="seed-faq-answer">
+              <div class="vcn-faq-answer">
                 <strong>How do I recommend VCN-01 to my patients and can I stock it
                   in-office?</strong>
                 <br />
@@ -498,12 +498,12 @@
               </div>
             </div>
 
-            <div class="seed-faq-item">
-              <button class="seed-faq-question" aria-expanded="false">
+            <div class="vcn-faq-item">
+              <button class="vcn-faq-question" aria-expanded="false">
                 <span>Protocols + Usage</span>
-                <span class="seed-faq-icon">+</span>
+                <span class="vcn-faq-icon">+</span>
               </button>
-              <div class="seed-faq-answer">
+              <div class="vcn-faq-answer">
                 <strong>Who is VCN-01 recommended for?</strong> <br />
                 We developed VCN-01 to deliver benefits in and beyond the gut
                 to support the physiological systems essential to our
@@ -513,12 +513,12 @@
               </div>
             </div>
 
-            <div class="seed-faq-item">
-              <button class="seed-faq-question" aria-expanded="false">
+            <div class="vcn-faq-item">
+              <button class="vcn-faq-question" aria-expanded="false">
                 <span>Safety</span>
-                <span class="seed-faq-icon">+</span>
+                <span class="vcn-faq-icon">+</span>
               </button>
-              <div class="seed-faq-answer">
+              <div class="vcn-faq-answer">
                 <strong>What third-party testing does VCN-01 undergo?</strong>
                 <br />
                 As part of our mission to create a new standard in probiotics,
@@ -540,12 +540,12 @@
               </div>
             </div>
 
-            <div class="seed-faq-item">
-              <button class="seed-faq-question" aria-expanded="false">
+            <div class="vcn-faq-item">
+              <button class="vcn-faq-question" aria-expanded="false">
                 <span>Clinical Research</span>
-                <span class="seed-faq-icon">+</span>
+                <span class="vcn-faq-icon">+</span>
               </button>
-              <div class="seed-faq-answer">
+              <div class="vcn-faq-answer">
                 <strong>What scientific validation supports VCN-01?</strong>
                 <br />
                 VCN-01 stands on a foundation of rigorous scientific

@@ -23,13 +23,31 @@ export default defineNuxtPlugin((nuxtApp) => {
     })
 
     /* ===============================
+       SWIPER – PRODUCT DETAIL (5 products, 2-col grid per slide)
+    ================================ */
+    if (window.Swiper && document.querySelector('.vcn-product-detail-swiper')) {
+      const detailSwiperEl = document.querySelector('.vcn-product-detail-swiper')
+      const detailSlideCount = detailSwiperEl.querySelectorAll('.swiper-slide').length
+
+      new Swiper('.vcn-product-detail-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: detailSlideCount >= 2, // Only enable loop if enough slides
+        autoplay: { delay: 3500, disableOnInteraction: false }
+      })
+    }
+
+    /* ===============================
        SWIPER – PRODUCT
     ================================ */
     if (window.Swiper && document.querySelector('.vcn-whole-body-swiper')) {
+      const swiperEl = document.querySelector('.vcn-whole-body-swiper')
+      const slideCount = swiperEl.querySelectorAll('.swiper-slide').length
+
       new Swiper('.vcn-whole-body-swiper', {
         slidesPerView: 1,
         spaceBetween: 20,
-        loop: true,
+        loop: slideCount >= 8, // Only enable loop if enough slides
         autoplay: { delay: 3500, disableOnInteraction: false },
         pagination: {
           el: '.vcn-whole-body-swiper-pagination',
