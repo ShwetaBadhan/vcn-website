@@ -3,9 +3,12 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 offset-lg-2">
-          <h3>Website Accessibility Statement</h3>
+          <h3>{{ accessibility.title }}</h3>
 
-          <p>
+          <p v-for="(paragraph, index) in accessibility.content" :key="index">
+             {{ paragraph }}
+          </p>
+          <!-- <p>
             VCN is committed to ensuring that our website is accessible to all users, including individuals with
             disabilities. We strive to provide a seamless and user-friendly experience by following best practices for
             accessibility and usability. Our goal is to make our content easy to navigate, understand, and interact with
@@ -15,7 +18,7 @@
             We continuously work to improve accessibility features and welcome feedback to enhance user experience. If
             you encounter any difficulty while accessing our website or need assistance, please feel free to contact
             us—we are here to help.
-          </p>
+          </p> -->
         </div>
       </div>
     </div>
@@ -23,6 +26,14 @@
 
 </template>
 <script setup>
+import { useCmsStore } from '~/stores/cms'
+
+const cmsStore = useCmsStore()
+
+const accessibility = computed(
+  () => cmsStore.getPageSection('accessibility', 'accessibility')
+)
+
 useHead({
   bodyAttrs: {
     class: 'product-details-page'

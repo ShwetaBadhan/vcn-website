@@ -185,7 +185,7 @@ export const useProductStore = defineStore('product', {
         const config = useRuntimeConfig()
         const baseURL = config.public.apiBaseUrl
 
-        const data = await $fetch(`${baseURL}common/product/read/slug/${slug}`)
+        const data = await $fetch(`${baseURL}common/product-page/read/slug/${slug}`)
 
         if (data && (data as any).data) {
           this.selectedProductPage = (data as any).data as ProductPage

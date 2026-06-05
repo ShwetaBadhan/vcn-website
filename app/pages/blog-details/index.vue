@@ -1,287 +1,262 @@
 <template>
-     <section class="product-detail-section mt-3">
- <div class="blog-details-page">
-    
-    <!-- Breadcrumb -->
-    <nav class="breadcrumb-nav">
-      <div class="container">
-        <ol class="breadcrumb">
-          <li><a href="/">Home</a></li>
-          <li><a href="/blog">Health</a></li>
-          <li class="active">Fatty Liver Disease Guide: Causes, Symptoms & Risks</li>
-        </ol>
-      </div>
-    </nav>
+  <section class="product-detail-section mt-3">
+    <div class="blog-details-page">
 
-    <!-- Hero Section -->
-    <section class="blog-hero">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-7">
-            <h1 class="blog-title">Fatty Liver Disease Guide: Causes, Symptoms & Risks</h1>
-            <div class="blog-meta">
-              <span class="author">
-                <i class="bi bi-person"></i> Content Miduty
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb-nav">
+        <div class="container">
+          <ol class="breadcrumb">
+            <li v-for="(item, index) in blogDetails.breadcrumb.items" :key="index">
+              <a v-if="item.link" :href="item.link">
+                {{ item.label }}
+              </a>
+
+              <span v-else>
+                {{ item.label }}
               </span>
-              <span class="date">
-                <i class="bi bi-calendar"></i> 21 Feb, 2025
-              </span>
-              <span class="read-time">
-                <i class="bi bi-clock"></i> 18 min read
-              </span>
+            </li>
+          </ol>
+        </div>
+      </nav>
+
+      <!-- Hero Section -->
+      <section class="blog-hero">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-7">
+              <h1 class="blog-title">{{ blogDetails.hero.title }}</h1>
+              <div class="blog-meta">
+                <span class="author">
+                  <i class="bi bi-person"></i> {{ blogDetails.hero.author }}
+                </span>
+                <span class="date">
+                  <i class="bi bi-calendar"></i> {{ blogDetails.hero.date }}
+                </span>
+                <span class="read-time">
+                  <i class="bi bi-clock"></i> {{ blogDetails.hero.readTime }}
+                </span>
+              </div>
             </div>
-          </div>
-          <div class="col-lg-5">
-            <div class="hero-image">
-              <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fatty Liver Disease">
+            <div class="col-lg-5">
+              <div class="hero-image">
+                <img :src="blogDetails.hero.image" :alt="blogDetails.hero.title">
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Main Content -->
-    <section class="blog-content-section">
-      <div class="container">
-        <div class="row">
-          <!-- Main Article -->
-          <div class="col-lg-8">
-            <article class="article-content">
-              
-              <!-- Key Takeaways -->
-              <div class="key-takeaways">
-                <h2 class="section-heading">Key Takeaways</h2>
-                <div class="takeaways-list">
-                  <div class="takeaway-item">
-                    <span class="takeaway-number">1.</span>
-                    <div class="takeaway-content">
-                      <strong>Prevalence & Reversibility:</strong> Fatty liver disease is extremely common however can be recovered from through lifestyle changes during the course of time when diagnosed at the early stages.
-                    </div>
-                  </div>
-                  <div class="takeaway-item">
-                    <span class="takeaway-number">2.</span>
-                    <div class="takeaway-content">
-                      <strong>Role of Weight & Metabolism:</strong> Weight and metabolism have a significant impact on Prevention and/or Performance - Obesity, insulin resistance, high cholesterol and a poor diet are the primary causes for accumulation of fat in the liver.
-                    </div>
-                  </div>
-                  <div class="takeaway-item">
-                    <span class="takeaway-number">3.</span>
-                    <div class="takeaway-content">
-                      <strong>Silent Early Stages:</strong> In the early stages of fatty liver, it has generally no signs or symptoms and therefore regular check-ups and screening is very important for detection.
-                    </div>
-                  </div>
-                  <div class="takeaway-item">
-                    <span class="takeaway-number">4.</span>
-                    <div class="takeaway-content">
-                      <strong>Primary Treatment:</strong> Lifestyle is the primary form of treatment for fatty liver disease, whereby weight loss, exercise, limiting carbohydrates in your diet and preventing excess consumption of alcohol will have the greatest positive impact on your liver's health.
-                    </div>
-                  </div>
-                  <div class="takeaway-item">
-                    <span class="takeaway-number">5.</span>
-                    <div class="takeaway-content">
-                      <strong>Preventing Complications:</strong> Taking action at the early stages of fatty liver disease will potentially prevent the condition from progressing to cirrhosis, liver failure or any other complications and in turn provide an opportunity for a healthier lifestyle and extended longevity.
-                    </div>
-                  </div>
-                  <div class="takeaway-item">
-                    <span class="takeaway-number">6.</span>
-                    <div class="takeaway-content">
-                      <strong>Treatment & Management:</strong> Effective management involves lifestyle adjustments such as weight loss, following a liver-friendly diet, and engaging in regular physical activity. Additionally, medications and supplements like Milk Thistle and N-Acetylcysteine can help support liver health.
+      <!-- Main Content -->
+      <section class="blog-content-section">
+        <div class="container">
+          <div class="row">
+            <!-- Main Article -->
+            <div class="col-lg-8">
+              <article class="article-content">
+
+                <!-- Key Takeaways -->
+                <div class="key-takeaways">
+                  <h2 class="section-heading">{{ blogDetails.mainContent.keyTakeaways.title }}</h2>
+                  <div class="takeaways-list">
+                    <div v-for="(item, index) in blogDetails.mainContent.keyTakeaways.items" :key="index"
+                      class="takeaway-item">
+                      <span class="takeaway-number">
+                        {{ index + 1 }}.
+                      </span>
+
+                      <div class="takeaway-content">
+                        <strong>{{ item.title }}:</strong>
+                        {{ item.description }}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Article Body -->
-              <div class="article-body">
-                <h2 class="article-heading">What is Fatty Liver Disease?</h2>
-                <p>
-                  Fatty liver disease, also known as hepatic steatosis, is a condition characterized by the accumulation of excess fat in liver cells. When the liver contains more than 5-10% fat, it is considered a fatty liver. This condition has become increasingly common in recent years, affecting approximately 25% of the global population.
-                </p>
-                <p>
-                  The liver plays a crucial role in various bodily functions, including metabolism, detoxification, and nutrient storage. When excess fat accumulates, it can impair these functions and lead to inflammation and liver damage if left untreated.
-                </p>
+                <!-- Article Body -->
+                <div class="article-body">
+                  <h2 class="article-heading">{{ blogDetails.mainContent.articleBody.whatIsFattyLiver.heading }}</h2>
+                  <p v-for="(paragraph, index) in blogDetails.mainContent.articleBody.whatIsFattyLiver.paragraphs"
+                    :key="index">
+                    {{ paragraph }}
+                  </p>
 
-                <h3 class="sub-heading">Types of Fatty Liver Disease</h3>
-                <p>
-                  There are two main types of fatty liver disease:
-                </p>
-                <ul class="content-list">
-                  <li>
-                    <strong>Alcoholic Fatty Liver Disease (AFLD):</strong> Caused by excessive alcohol consumption, which impairs the liver's ability to break down fats.
-                  </li>
-                  <li>
-                    <strong>Non-Alcoholic Fatty Liver Disease (NAFLD):</strong> Occurs in people who drink little to no alcohol and is often associated with obesity, diabetes, and metabolic syndrome.
-                  </li>
-                </ul>
+                  <h3 class="sub-heading">{{ blogDetails.mainContent.articleBody.typesOfFattyLiver.heading }}</h3>
+                  <p>
+                    {{ blogDetails.mainContent.articleBody.typesOfFattyLiver.description }}
+                  </p>
+                  <ul class="content-list">
+                    <li v-for="(item, index) in blogDetails.mainContent.articleBody.typesOfFattyLiver.items"
+                      :key="index">
+                      <strong>{{ item.title }}</strong> {{ item.description }}
+                    </li>
+                  </ul>
 
-                <h3 class="sub-heading">Causes of Fatty Liver Disease</h3>
-                <p>
-                  Several factors contribute to the development of fatty liver disease:
-                </p>
-                <div class="causes-grid">
-                  <div class="cause-item">
-                    <i class="bi bi-circle-fill"></i>
+                  <h3 class="sub-heading">{{ blogDetails.mainContent.articleBody.causes.heading }}</h3>
+                  <p>
+                    {{ blogDetails.mainContent.articleBody.causes.description }}
+                  </p>
+                  <div class="causes-grid">
+                    <div v-for="(item, index) in blogDetails.mainContent.articleBody.causes.items" :key="index"
+                      class="cause-item">
+                      <i class="bi bi-circle-fill"></i>
+
+                      <div>
+                        <strong>{{ item.title }}:</strong>
+                        {{ item.description }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <h3 class="sub-heading">{{ blogDetails.mainContent.articleBody.symptoms.heading }}</h3>
+                  <p>
+                    {{ blogDetails.mainContent.articleBody.symptoms.description }}
+                  </p>
+                  <ul class="content-list">
+                    <li v-for="(symptom, index) in blogDetails.mainContent.articleBody.symptoms.items" :key="index">
+                      {{ symptom }}
+                    </li>
+                    <!-- <li>Fatigue and weakness</li>
+                    <li>Discomfort or pain in the upper right abdomen</li>
+                    <li>Unexplained weight loss</li>
+                    <li>Loss of appetite</li>
+                    <li>Nausea</li>
+                    <li>Yellowing of the skin and eyes (jaundice) in advanced cases</li> -->
+                  </ul>
+
+                  <div class="info-box">
+                    <i class="bi bi-exclamation-triangle"></i>
                     <div>
-                      <strong>Obesity and Overweight:</strong> Excess body weight, particularly around the abdomen, increases the risk of fat accumulation in the liver.
+                      <strong>{{ blogDetails.mainContent.articleBody.warningBox.title }}</strong> {{ blogDetails.mainContent.articleBody.warningBox.description }}
                     </div>
                   </div>
-                  <div class="cause-item">
-                    <i class="bi bi-circle-fill"></i>
-                    <div>
-                      <strong>Insulin Resistance:</strong> When cells don't respond properly to insulin, it can lead to increased fat storage in the liver.
-                    </div>
-                  </div>
-                  <div class="cause-item">
-                    <i class="bi bi-circle-fill"></i>
-                    <div>
-                      <strong>Poor Diet:</strong> High consumption of refined carbohydrates, sugars, and saturated fats contributes to liver fat buildup.
-                    </div>
-                  </div>
-                  <div class="cause-item">
-                    <i class="bi bi-circle-fill"></i>
-                    <div>
-                      <strong>High Cholesterol:</strong> Elevated levels of triglycerides and LDL cholesterol are linked to fatty liver disease.
+
+                  <h3 class="sub-heading">{{ blogDetails.mainContent.articleBody.diagnosis.heading }}</h3>
+                  <p>
+                    {{ blogDetails.mainContent.articleBody.diagnosis.description }}
+                  </p>
+                  <ul class="content-list">
+                    <li v-for="(method, index) in blogDetails.mainContent.articleBody.diagnosis.items" :key="index">
+                      <strong>{{ method.title }}:</strong> {{ method.description }}
+                    </li>
+                    <!-- <li><strong>Blood Tests:</strong> Liver function tests (LFTs) can detect elevated liver enzymes.
+                    </li>
+                    <li><strong>Imaging Tests:</strong> Ultrasound, CT scan, or MRI can visualize fat in the liver.</li>
+                    <li><strong>FibroScan:</strong> A specialized ultrasound that measures liver stiffness and fat
+                      content.</li>
+                    <li><strong>Liver Biopsy:</strong> In some cases, a small sample of liver tissue may be examined
+                      under a microscope.</li> -->
+                  </ul>
+                </div>
+
+                <!-- Share Section -->
+                <div class="article-footer">
+                  <div class="share-section">
+                    <span class="share-label">{{ blogDetails.mainContent.shareSection.label }}</span>
+                    <div class="share-buttons">
+                      <a href="#" class="share-btn facebook"><i class="bi bi-facebook"></i></a>
+                      <a href="#" class="share-btn twitter"><i class="bi bi-twitter"></i></a>
+                      <a href="#" class="share-btn linkedin"><i class="bi bi-linkedin"></i></a>
+                      <a href="#" class="share-btn whatsapp"><i class="bi bi-whatsapp"></i></a>
                     </div>
                   </div>
                 </div>
 
-                <h3 class="sub-heading">Symptoms and Warning Signs</h3>
-                <p>
-                  In the early stages, fatty liver disease often presents no symptoms, which is why it's called a "silent" condition. However, as the disease progresses, you may experience:
-                </p>
-                <ul class="content-list">
-                  <li>Fatigue and weakness</li>
-                  <li>Discomfort or pain in the upper right abdomen</li>
-                  <li>Unexplained weight loss</li>
-                  <li>Loss of appetite</li>
-                  <li>Nausea</li>
-                  <li>Yellowing of the skin and eyes (jaundice) in advanced cases</li>
-                </ul>
+              </article>
+            </div>
 
-                <div class="info-box">
-                  <i class="bi bi-exclamation-triangle"></i>
-                  <div>
-                    <strong>Important:</strong> Regular health check-ups and liver function tests are essential for early detection, especially if you have risk factors such as obesity, diabetes, or high cholesterol.
-                  </div>
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+              <aside class="blog-sidebar">
+
+                <!-- Quick Actions -->
+                <div class="sidebar-widget">
+                  <button class="action-btn primary">
+                    <i class="bi bi-list-ul"></i> {{ blogDetails.sidebar.quickActions.tocButton }}
+                  </button>
+                  <button class="action-btn secondary">
+                    <i class="bi bi-bag"></i> {{ blogDetails.sidebar.quickActions.productsButton }}
+                  </button>
                 </div>
 
-                <h3 class="sub-heading">Diagnosis and Screening</h3>
-                <p>
-                  Fatty liver disease is typically diagnosed through a combination of:
-                </p>
-                <ul class="content-list">
-                  <li><strong>Blood Tests:</strong> Liver function tests (LFTs) can detect elevated liver enzymes.</li>
-                  <li><strong>Imaging Tests:</strong> Ultrasound, CT scan, or MRI can visualize fat in the liver.</li>
-                  <li><strong>FibroScan:</strong> A specialized ultrasound that measures liver stiffness and fat content.</li>
-                  <li><strong>Liver Biopsy:</strong> In some cases, a small sample of liver tissue may be examined under a microscope.</li>
-                </ul>
-              </div>
-
-              <!-- Share Section -->
-              <div class="article-footer">
-                <div class="share-section">
-                  <span class="share-label">Share this article:</span>
-                  <div class="share-buttons">
-                    <a href="#" class="share-btn facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="share-btn twitter"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="share-btn linkedin"><i class="bi bi-linkedin"></i></a>
-                    <a href="#" class="share-btn whatsapp"><i class="bi bi-whatsapp"></i></a>
-                  </div>
-                </div>
-              </div>
-
-            </article>
-          </div>
-
-          <!-- Sidebar -->
-          <div class="col-lg-4">
-            <aside class="blog-sidebar">
-              
-              <!-- Quick Actions -->
-              <div class="sidebar-widget">
-                <button class="action-btn primary">
-                  <i class="bi bi-list-ul"></i> Table Of Contents
-                </button>
-                <button class="action-btn secondary">
-                  <i class="bi bi-bag"></i> Related Products
-                </button>
-              </div>
-
-              <!-- Recent Posts -->
-              <div class="sidebar-widget">
-                <h3 class="widget-title">Recent Posts</h3>
-                <div class="recent-posts">
-                  <div 
-                    v-for="(post, index) in recentPosts" 
-                    :key="index"
-                    class="recent-post-item"
-                  >
-                    <div class="post-thumbnail">
-                      <img :src="post.image" :alt="post.title">
-                    </div>
-                    <div class="post-info">
-                      <h4 class="post-title">{{ post.title }}</h4>
-                      <span class="post-date">{{ post.date }}</span>
+                <!-- Recent Posts -->
+                <div class="sidebar-widget">
+                  <h3 class="widget-title">{{ blogDetails.sidebar.heading }}</h3>
+                  <div class="recent-posts">
+                    <div v-for="(post, index) in blogDetails.sidebar.recentPosts" :key="index" class="recent-post-item">
+                      <div class="post-thumbnail">
+                        <img :src="post.image" :alt="post.title">
+                      </div>
+                      <div class="post-info">
+                        <h4 class="post-title">{{ post.title }}</h4>
+                        <span class="post-date">{{ post.date }}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Newsletter Signup -->
-              <div class="sidebar-widget newsletter-widget">
-                <h3 class="widget-title">Subscribe to Our Newsletter</h3>
-                <p>Get the latest health tips and articles delivered to your inbox.</p>
-                <form class="newsletter-form">
-                  <input type="email" placeholder="Enter your email" class="form-input">
-                  <button type="submit" class="subscribe-btn">Subscribe</button>
-                </form>
-              </div>
+                <!-- Newsletter Signup -->
+                <div class="sidebar-widget newsletter-widget">
+                  <h3 class="widget-title">{{ blogDetails.sidebar.newsletter.title }}</h3>
+                  <p>{{ blogDetails.sidebar.newsletter.description }}</p>
+                  <form class="newsletter-form">
+                    <input type="email" :placeholder="blogDetails.sidebar.newsletter.placeholder" class="form-input">
+                    <button type="submit" class="subscribe-btn">{{ blogDetails.sidebar.newsletter.buttonText }}</button>
+                  </form>
+                </div>
 
-            </aside>
+              </aside>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-  </div>
-     </section>
- 
+    </div>
+  </section>
+
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useCmsStore } from '~/stores/cms'
+
+const cmsStore = useCmsStore()
+
+const blogDetails = computed(
+  () => cmsStore.getPageSection('blogDetails', 'blogdetails')
+)
+
 useHead({
   bodyAttrs: {
     class: "product-details-page",
   },
 });
-const recentPosts = ref([
-  {
-    title: 'Is Grade 2 Fatty Liver Dangerous?',
-    date: '02 Feb, 2025',
-    image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'
-  },
-  {
-    title: 'Can a Grade 2 Fatty Liver Disease Be Cured Completely?',
-    date: '02 Feb, 2025',
-    image: 'https://images.unsplash.com/photo-1530026405186-ed1f1398f70f?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'
-  },
-  {
-    title: '7 Top Foods High in Magnesium and Zinc for Better Health',
-    date: '02 Feb, 2025',
-    image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'
-  },
-  {
-    title: 'Top 20 Probiotic Foods in India for a Healthy Gut & Immunity',
-    date: '01 Jan, 2025',
-    image: 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'
-  },
-  {
-    title: '10 Lifestyle Changes to Control Cholesterol at Home Naturally',
-    date: '01 Jan, 2025',
-    image: 'https://images.unsplash.com/photo-1434494838584-02fb06a4a96d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'
-  }
-])
+// const recentPosts = ref([
+//   {
+//     title: 'Is Grade 2 Fatty Liver Dangerous?',
+//     date: '02 Feb, 2025',
+//     image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'
+//   },
+//   {
+//     title: 'Can a Grade 2 Fatty Liver Disease Be Cured Completely?',
+//     date: '02 Feb, 2025',
+//     image: 'https://images.unsplash.com/photo-1530026405186-ed1f1398f70f?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'
+//   },
+//   {
+//     title: '7 Top Foods High in Magnesium and Zinc for Better Health',
+//     date: '02 Feb, 2025',
+//     image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'
+//   },
+//   {
+//     title: 'Top 20 Probiotic Foods in India for a Healthy Gut & Immunity',
+//     date: '01 Jan, 2025',
+//     image: 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'
+//   },
+//   {
+//     title: '10 Lifestyle Changes to Control Cholesterol at Home Naturally',
+//     date: '01 Jan, 2025',
+//     image: 'https://images.unsplash.com/photo-1434494838584-02fb06a4a96d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'
+//   }
+// ])
 </script>
 
 <style scoped>
@@ -365,7 +340,7 @@ const recentPosts = ref([
 .hero-image {
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
 .hero-image img {
@@ -597,7 +572,7 @@ const recentPosts = ref([
 
 .share-btn:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Sidebar */
@@ -765,12 +740,12 @@ const recentPosts = ref([
   .blog-title {
     font-size: 32px;
   }
-  
+
   .article-content {
     padding-right: 0;
     margin-bottom: 60px;
   }
-  
+
   .blog-sidebar {
     position: static;
   }
@@ -780,46 +755,46 @@ const recentPosts = ref([
   .blog-hero {
     padding: 40px 0;
   }
-  
+
   .blog-title {
     font-size: 28px;
   }
-  
+
   .blog-meta {
     gap: 20px;
   }
-  
+
   .section-heading {
     font-size: 24px;
   }
-  
+
   .article-heading {
     font-size: 26px;
   }
-  
+
   .sub-heading {
     font-size: 20px;
   }
-  
+
   .key-takeaways {
     padding: 24px;
   }
-  
+
   .takeaway-item {
     flex-direction: column;
     gap: 8px;
   }
-  
+
   .cause-item {
     flex-direction: column;
     gap: 8px;
   }
-  
+
   .info-box {
     flex-direction: column;
     gap: 12px;
   }
-  
+
   .share-section {
     flex-direction: column;
     align-items: flex-start;
