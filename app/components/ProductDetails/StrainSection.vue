@@ -6,7 +6,7 @@
           <!-- Left Column: Image -->
           <div class="col-lg-6 col-md-12">
             <div class="strains-product-image-container">
-              <img :src="heroImage" alt="Probiotic Capsule" class="w-100" />
+              <img :src="heroImage" alt="Probiotic Capsule" class="strains-product-image" />
             </div>
           </div>
 
@@ -98,3 +98,18 @@ const cleanUrl = (url) => {
   return url.replace(/^&/, '')
 }
 </script>
+
+<style scoped>
+.strains-product-image {
+  display: block;
+  width: 85%;
+  max-width: 300px !important;
+  margin: 0 auto;
+}
+
+@media (max-width: 767.98px) {
+  .strains-product-image {
+    width: 90%;
+  }
+}
+</style>

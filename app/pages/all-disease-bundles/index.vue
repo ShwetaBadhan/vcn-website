@@ -1,88 +1,50 @@
 <template>
-     <section class="terms-conditions">
-      <!-- Disease Bundles Container -->
-      <div class="container">
-        <div class="disease-grid">
-          <!-- Acidity Card -->
-          <div class="disease-card">
-            <div class="disease-card-image">
-              <div class="disease-icon">
-                <img
-                  src="https://vcarenetwork.in/login/public/uploads/section/category/acidity/img_6878efdd3a0b77.16525164.jpg"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="disease-card-body">
-              <h3 class="disease-title">Acidity</h3>
-              <a href="/bundle-details" class="learn-more-btn"
-                >LEARN MORE</a
-              >
+  <section class="terms-conditions">
+    <div class="container">
+      <div class="disease-grid">
+        <div
+          v-for="(bundle, index) in bundles?.bundles"
+          :key="index"
+          class="disease-card"
+        >
+          <div class="disease-card-image">
+            <div class="disease-icon">
+              <img
+                :src="bundle.image"
+                :alt="bundle.title"
+              />
             </div>
           </div>
 
-          <!-- Thyroid Card -->
-          <div class="disease-card">
-            <div class="disease-card-image">
-              <div class="disease-icon">
-                <img
-                  src="https://vcarenetwork.in/login/public/uploads/section/category/thyroid/img_6878efe483e352.82786474.jpg"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="disease-card-body">
-              <h3 class="disease-title">Thyroid</h3>
-              <a href="/bundle-details" class="learn-more-btn"
-                >LEARN MORE</a
-              >
-            </div>
-          </div>
+          <div class="disease-card-body">
+            <h3 class="disease-title">
+              {{ bundle.title }}
+            </h3>
 
-          <!-- Diabetes Card -->
-          <div class="disease-card">
-            <div class="disease-card-image">
-              <div class="disease-icon">
-                <img
-                  src="https://vcarenetwork.in/login/public/uploads/section/category/diabetes/img_6878efebd79712.26526712.jpg"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="disease-card-body">
-              <h3 class="disease-title">Diabetes</h3>
-              <a href="/bundle-details" class="learn-more-btn"
-                >LEARN MORE</a
-              >
-            </div>
-          </div>
-
-          <!-- Fatty Liver Card -->
-          <div class="disease-card">
-            <div class="disease-card-image">
-              <div class="disease-icon">
-                <img
-                  src="https://vcarenetwork.in/login/public/uploads/section/category/fatty-liver/img_6878eff29458b6.66484526.jpg"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="disease-card-body">
-              <h3 class="disease-title">Fatty Liver</h3>
-              <a href="/bundle-details" class="learn-more-btn"
-                >LEARN MORE</a
-              >
-            </div>
+            <NuxtLink
+              :to="bundle.link"
+              class="learn-more-btn"
+            >
+              LEARN MORE
+            </NuxtLink>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 </template>
 
 <script setup>
+import { useCmsStore } from '~/stores/cms'
+
+const cmsStore = useCmsStore()
+
+const bundles = computed(
+  () => cmsStore.getPageSection('bundles', 'bundles')
+)
 useHead({
   bodyAttrs: {
-    class: '/product-details-page'
+    class: 'product-details-page'
   }
 })
 </script>

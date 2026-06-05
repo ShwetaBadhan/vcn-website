@@ -5,7 +5,7 @@
 
     <div class="vcn-breadcrumb-content">
       <h1 class="vcn-breadcrumb-title">
-        Your Wellness Journey Begins Now
+        {{ allProducts.hero.title }}
       </h1>
     </div>
   </div>
@@ -34,7 +34,7 @@
             <!-- Content -->
             <div class="col-lg-8">
               <span v-if="product.isNew" class="vcn-whole-body-product-label">NEW</span>
-              <span class="vcn-whole-body-product-label">Bestseller</span>
+              <span class="vcn-whole-body-product-label">{{ allProducts.labels.bestseller }}</span>
               <span v-if="product.label" class="vcn-whole-body-product-label">{{ product.label }}</span>
               <h2 class="vcn-product-title">{{ product.name }}</h2>
               <p class="vcn-product-description"
@@ -43,7 +43,7 @@
               <div class="vcn-product-price">₹{{ getProductPricing(product).price }}</div>
               <div class="vcn-product-buttons">
                 <a :href="`/product-details/${product.slug}`" class="vcn-btn-secondary">
-                  Learn More
+                  {{ allProducts.btn.learnMore }}
                 </a>
               </div>
             </div>
@@ -54,11 +54,11 @@
         <!-- Right Image Section -->
         <div class="col-lg-3">
           <div class="vcn-image-section h-100">
-            <img src="/img/about/about-3.png" alt="Fresh produce" class="vcn-bg-image" />
+            <img :src="allProducts.sidebarCard.image" :alt="allProducts.sidebarCard.text" class="vcn-bg-image" />
 
             <div class="vcn-image-overlay">
               <p class="vcn-image-text">
-                Discover if VCN-01 Fits Your Needs — Take the Quiz
+                {{ allProducts.sidebarCard.text }}
               </p>
             </div>
           </div>
@@ -74,6 +74,11 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import { useProductStore } from '~/stores/product'
+const cmsStore = useCmsStore()
+
+const allProducts = computed(
+  () => cmsStore.getPageSection('products', 'products')
+)
 
 const productStore = useProductStore()
 
@@ -100,3 +105,10 @@ const handleImageError = (event, product) => {
   event.target.src = '/img/products/img1.png'
 }
 </script>
+
+<style scoped>
+.vcn-breadcrumb-container {
+  margin-top: -90px !important;
+  padding-top: 85px !important;
+}
+</style>

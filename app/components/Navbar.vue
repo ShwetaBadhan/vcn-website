@@ -31,7 +31,7 @@
 
           <ul class="desktop-nav">
             <li class="nav-item dropdown">
-              <a class="nav-link" href="#">Shop</a>
+              <a class="nav-link" href="/all-products">Shop</a>
               <ul class="dropdown-menu">
                 <!-- Dynamic products from backend (limit 5) -->
                 <li v-for="product in shopProducts" :key="product.id">

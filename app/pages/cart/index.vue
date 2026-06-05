@@ -1,22 +1,22 @@
 <template>
   <div class="cart-main-wrapper">
-    <h1 class="cart-page-title">Your Cart</h1>
+    <h1 class="cart-page-title">{{ cart.title }}</h1>
 
     <div class="row">
       <div class="col-lg-12" v-if="cartStore.items.length === 0">
         <div class="empty-cart-message">
-          <h3>Your cart is empty</h3>
-          <p class="text-center">Looks like you haven't added any products to your cart yet.</p>
-          <a href="/all-products" class="btn-learn">Continue Shopping</a>
+          <h3>{{ cart.emptyCart.heading }}</h3>
+          <p class="text-center">{{ cart.emptyCart.description }}</p>
+          <a href="/all-products" class="btn-learn">{{ cart.emptyCart.buttonText }}</a>
         </div>
       </div>
 
       <div class="col-lg-12" v-else>
         <!-- Cart Header -->
         <div class="cart-table-header row">
-          <div class="col-6 cart-header-product">Product</div>
-          <div class="col-3 cart-header-product text-center">Quantity</div>
-          <div class="col-3 cart-header-product text-end">Price</div>
+          <div class="col-6 cart-header-product">{{ cart.tableHeader.product }}</div>
+          <div class="col-3 cart-header-product text-center">{{ cart.tableHeader.quantity }}</div>
+          <div class="col-3 cart-header-product text-end">{{ cart.tableHeader.price }}</div>
         </div>
 
         <!-- Cart Items -->
@@ -42,7 +42,7 @@
               ₹{{ (item.price * item.quantity).toFixed(2) }}
             </div>
             <button class="cart-remove-btn" @click="cartStore.removeFromCart(item.id)">
-              Remove
+              {{ cart.cartItem.removeButton }}
             </button>
           </div>
         </div>
@@ -50,7 +50,7 @@
 
       <div class="col-lg-8" v-if="cartStore.items.length > 0">
         <!-- Recommendations -->
-        <h2 class="cart-recommendations-title">You Might Also Like:</h2>
+        <h2 class="cart-recommendations-title">{{ cart.recommendations.heading }}</h2>
 
         <div class="row g-4">
           <div v-for="product in recommendedProducts" :key="product.id" class="col-md-4">
@@ -62,7 +62,7 @@
                 <span class="cart-current-price">₹{{ product.currentPrice }}</span>
                 <span class="cart-original-price">₹{{ product.originalPrice }}</span>
                 <button @click="addRecommendedProduct(product)" class="cart-add-btn">
-                  Add
+                  {{cart.recommendations.addButton}}
                 </button>
               </div>
             </div>
@@ -75,17 +75,17 @@
         <div class="cart-sidebar-wrapper">
           <!-- Promo Code -->
           <div class="cart-promo-section">
-            <div class="cart-promo-label">Promo Code</div>
+            <div class="cart-promo-label">{{ cart.promo.label }}</div>
             <div class="cart-promo-input-group">
-              <input type="text" v-model="promoInput" class="cart-promo-input" placeholder="Enter Promo Code"
+              <input type="text" v-model="promoInput" class="cart-promo-input" :placeholder="cart.promo.placeholder"
                 @keyup.enter="applyPromo" />
               <button class="cart-promo-apply-btn" @click="applyPromo" :disabled="!promoInput.trim()">
-                Apply
+                {{ cart.promo.applyButton }}
               </button>
             </div>
             <div v-if="cartStore.promoCode" class="promo-applied">
-              <span class="promo-success">Promo code applied: {{ cartStore.promoCode }}</span>
-              <button @click="removePromo" class="promo-remove">Remove</button>
+              <span class="promo-success">{{cart.promoMessages.applied}} {{ cartStore.promoCode }}</span>
+              <button @click="removePromo" class="promo-remove">{{ cart.cartActions.remove }}</button>
             </div>
           </div>
           <hr />
@@ -93,22 +93,22 @@
           <!-- Total -->
           <div class="cart-total-section">
             <div class="cart-total-row" v-if="cartStore.discount > 0">
-              <span class="cart-total-label">Subtotal</span>
+              <span class="cart-total-label">{{ cart.total.subtotal }}</span>
               <span class="cart-total-amount">₹{{ cartStore.cartSubtotal.toFixed(2) }}</span>
             </div>
             <div class="cart-total-row" v-if="cartStore.discount > 0">
-              <span class="cart-total-label">Discount</span>
+              <span class="cart-total-label">{{ cart.total.discount }}</span>
               <span class="cart-total-amount discount">-₹{{ cartStore.discount.toFixed(2) }}</span>
             </div>
             <div class="cart-total-row">
-              <span class="cart-total-label">Total</span>
+              <span class="cart-total-label">{{ cart.total.total }}</span>
               <span class="cart-total-amount">₹{{ cartStore.cartTotal.toFixed(2) }}</span>
             </div>
           </div>
 
           <!-- Checkout Button -->
           <div class="cart-checkout-btn">
-            <a href="/checkout" class="btn">Checkout</a>
+            <a :href="cart.checkoutButton.link" class="btn">{{ cart.checkoutButton.text }}</a>
           </div>
         </div>
       </div>
@@ -121,6 +121,13 @@ import { useCartStore } from '~/stores/cart'
 import { useProductStore } from '~/stores/product'
 import { useAuthCart } from '~/composables/useAuthCart'
 import { ref, onMounted, computed } from 'vue'
+import { useCmsStore } from '~/stores/cms'
+
+const cmsStore = useCmsStore()
+
+const cart = computed(
+  () => cmsStore.getPageSection('cart', 'cart')
+)
 
 const cartStore = useCartStore()
 const productStore = useProductStore()
@@ -183,7 +190,7 @@ const applyPromo = () => {
   if (promoInput.value.trim()) {
     const success = cartStore.applyPromoCode(promoInput.value.trim())
     if (!success) {
-      alert('Invalid promo code. Try SAVE10 for 10% off!')
+      alert(cart.value.promoMessages.invalid) // Show error message from CMS
     }
     promoInput.value = ''
   }

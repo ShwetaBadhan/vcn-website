@@ -160,6 +160,7 @@ const route = useRoute()
 const product = ref(null)
 const loading = ref(true)
 const error = ref('')
+const activeIndex = ref(0)
 
 // Reviews state
 const reviews = ref([])

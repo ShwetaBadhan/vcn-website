@@ -4,27 +4,19 @@
     <div class="container">
       <div class="row d-flex align-items-center">
         <div class="col-lg-6">
-          <h3>Acidity Supplement Bundle</h3>
+          <h3>{{ bundles.heroSection.title }}</h3>
           <p class="mt-3">
-            Effectively managing acidity and relieving the discomfort of
-            indigestion starts with a few mindful dietary changes.
-            Incorporating foods with natural anti-inflammatory properties can
-            help soothe the digestive system, while nutrient-rich options that
-            support the body’s natural digestive balance can reduce excess
-            acid buildup. At the same time, limiting heavy, oily, and highly
-            processed foods helps minimize the risk of acid reflux and
-            irritation. When combined with the right supplements, these habits
-            promote long-term digestive health and greater post-meal comfort.
+            {{ bundles.heroSection.description }}
           </p>
           <br />
-          <NuxtLink to="/book-consultancy" class="learn-more-btn mt-5">Talk to Experts</NuxtLink>
+          <NuxtLink :to="bundles.heroSection.buttonLink" class="learn-more-btn mt-5">{{ bundles.heroSection.buttonText
+          }}
+          </NuxtLink>
         </div>
         <div class="col-lg-6">
-          <img src="https://vcarenetwork.in/login/public/uploads/section/26/img_687de7647f0803.56861309.jpg"
-            class="w-100" alt="" />
+          <img :src="bundles.heroSection.image" class="w-100" alt="" />
           <p class="mt-2">
-            10% Discount on even quantities of the same item (e.g., 2, 4, 6,
-            etc.).
+            {{ bundles.heroSection.discountText }}
           </p>
         </div>
       </div>
@@ -33,85 +25,34 @@
 
   <section class="video-section">
     <div class="section-header">
-      <h2 class="section-title">How We Helped Our Customers</h2>
+      <h2 class="section-title">{{ bundles.videoSection.videos.title }}</h2>
     </div>
 
     <div class="video-grid">
-      <!-- Video Card 1 -->
-      <div class="video-card">
-        <div class="video-thumbnail-container" data-video-id="dQw4w9WgXcQ">
-          <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Video Thumbnail"
+      <div v-for="(video, index) in bundles.videoSection.videos" :key="index" class="video-card">
+        <div class="video-thumbnail-container" :data-video-id="video.videoId">
+          <img :src="`https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg`" :alt="video.title"
             class="video-thumbnail" />
-          <div class="video-overlay"></div>
-          <div class="play-button-overlay"></div>
-          <div class="video-player">
-            <iframe src=""
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-top-navigation">
-            </iframe>
-          </div>
-        </div>
-        <div class="video-content">
-          <h3 class="video-title">
-            The Key to Better Health
-          </h3>
-          <p class="video-description">
-            Discover how trillions of microbes in your body affect your
-            digestion, immunity, and overall wellbeing. Learn practical tips
-            to improve your gut health.
-          </p>
-        </div>
-      </div>
 
-      <!-- Video Card 2 -->
-      <div class="video-card">
-        <div class="video-thumbnail-container" data-video-id="jNQXAC9IVRw">
-          <img src="https://img.youtube.com/vi/jNQXAC9IVRw/maxresdefault.jpg" alt="Video Thumbnail"
-            class="video-thumbnail" />
           <div class="video-overlay"></div>
-          <div class="play-button-overlay"></div>
-          <div class="video-player">
-            <iframe src=""
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-top-navigation">
-            </iframe>
-          </div>
-        </div>
-        <div class="video-content">
-          <h3 class="video-title">
-            5 Foods That Boost Your Immune System Naturally
-          </h3>
-          <p class="video-description">
-            Learn about powerful superfoods that can strengthen your immune
-            system and help you stay healthy throughout the year.
-          </p>
-        </div>
-      </div>
 
-      <!-- Video Card 3 -->
-      <div class="video-card">
-        <div class="video-thumbnail-container" data-video-id="9bZkp7q19f0">
-          <img src="https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg" alt="Video Thumbnail"
-            class="video-thumbnail" />
-          <div class="video-overlay"></div>
           <div class="play-button-overlay"></div>
+
           <div class="video-player">
             <iframe src=""
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
-              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-top-navigation">
-            </iframe>
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-top-navigation" />
           </div>
         </div>
+
         <div class="video-content">
           <h3 class="video-title">
-            The Science of Sleep: How Rest Affects Your Health
+            {{ video.title }}
           </h3>
+
           <p class="video-description">
-            Explore the fascinating connection between quality sleep and your
-            physical and mental health. Get expert tips for better rest.
+            {{ video.description }}
           </p>
         </div>
       </div>
@@ -123,13 +64,11 @@
       <div class="row">
         <div class="col-12">
           <h2 class="vcn-acidity-main-heading">
-            What is Acidity/Acid Reflux?
+            {{ bundles.bundleBenefitsSection.heading }}
           </h2>
           <p class="vcn-acidity-intro-text">
-            Are you afraid of eating whenever you go out with family or
-            friends? Do you avoid eating your favorite foods because you are
-            a...
-            <button class="vcn-acidity-read-more-btn">Read more</button>
+            {{ bundles.bundleBenefitsSection.introText }}
+            <button class="vcn-acidity-read-more-btn">{{ bundles.bundleBenefitsSection.readMoreText }}</button>
           </p>
         </div>
       </div>
@@ -137,72 +76,22 @@
       <div class="row">
         <div class="col-12">
           <div class="vcn-acidity-bundle-container">
-            <h3 class="vcn-acidity-bundle-title">This bundle</h3>
+            <h3 class="vcn-acidity-bundle-title">{{ bundles.bundleBenefitsSection.bundleTitle }}</h3>
 
             <div class="row">
-              <!-- Benefit 1 -->
-              <div class="col-lg-6 col-md-6 col-12">
+              <div v-for="benefit in bundles.bundleBenefitsSection.benefits" :key="benefit.number"
+                class="col-lg-6 col-md-6 col-12">
                 <div class="vcn-acidity-benefit-card">
-                  <span class="vcn-acidity-benefit-number">1</span>
-                  <div class="vcn-acidity-benefit-icon">
-                    <img
-                      src="https://www.miduty.in/cdn/shop/files/Acidity_Acidity_85c2f53e-df09-4ac9-b8cf-347adb6875f6.svg?v=1689745405"
-                      alt="" />
-                  </div>
-                  <p class="vcn-acidity-benefit-text">
-                    Balances stomach acid
-                  </p>
-                </div>
-              </div>
+                  <span class="vcn-acidity-benefit-number">
+                    {{ benefit.number }}
+                  </span>
 
-              <!-- Benefit 2 -->
-              <div class="col-lg-6 col-md-6 col-12">
-                <div class="vcn-acidity-benefit-card">
-                  <span class="vcn-acidity-benefit-number">2</span>
                   <div class="vcn-acidity-benefit-icon">
-                    <img src="https://www.miduty.in/cdn/shop/files/Acidity_Digetion.svg?v=1689745460" alt="" />
+                    <img :src="benefit.icon" :alt="benefit.text" />
                   </div>
-                  <p class="vcn-acidity-benefit-text">
-                    Helps with protein digestion
-                  </p>
-                </div>
-              </div>
 
-              <!-- Benefit 3 -->
-              <div class="col-lg-6 col-md-6 col-12">
-                <div class="vcn-acidity-benefit-card">
-                  <span class="vcn-acidity-benefit-number">3</span>
-                  <div class="vcn-acidity-benefit-icon">
-                    <img src="https://www.miduty.in/cdn/shop/files/Frame_1_2.svg?v=1689763787" alt="" />
-                  </div>
                   <p class="vcn-acidity-benefit-text">
-                    Increases vitamin B12 absorption
-                  </p>
-                </div>
-              </div>
-
-              <!-- Benefit 4 -->
-              <div class="col-lg-6 col-md-6 col-12">
-                <div class="vcn-acidity-benefit-card">
-                  <span class="vcn-acidity-benefit-number">4</span>
-                  <div class="vcn-acidity-benefit-icon">
-                    <img
-                      src="https://www.miduty.in/cdn/shop/files/Acidity_Energy_95e1a5b8-acf6-4183-b7d0-df639ac815ab.svg?v=1689745524"
-                      alt="" />
-                  </div>
-                  <p class="vcn-acidity-benefit-text">Boosts energy levels</p>
-                </div>
-              </div>
-
-              <!-- Benefit 5 -->
-              <div class="col-lg-6 col-md-6 col-12">
-                <div class="vcn-acidity-benefit-card">
-                  <span class="vcn-acidity-benefit-number">5</span>
-                  <div class="vcn-acidity-benefit-icon">
-                    <img src="http://miduty.in/cdn/shop/files/Acidity_Good_bacteria.svg?v=1689745749" alt="" />
-                  </div>
-                  <p class="vcn-acidity-benefit-text">
-                    Promotes good bacterial growth
+                    {{ benefit.text }}
                   </p>
                 </div>
               </div>
@@ -216,7 +105,7 @@
   <section class="vcn-new-product">
     <div class="container-fluid">
       <div class="row g-3">
-        <h2 class="vcn-acidity-main-heading">Acidity Bundle contains</h2>
+        <h2 class="vcn-acidity-main-heading">{{ bundles.productsSection.heading }}</h2>
         <!-- Dynamic Products -->
         <div v-for="(product, index) in bundleProducts" :key="product.id" class="col-md-6">
           <div class="product-card">
@@ -232,7 +121,7 @@
               <div class="product-price">
                 ₹{{ getProductPrice(product).price }}
                 <span v-if="getProductPrice(product).oldPrice" class="old-price">₹{{ getProductPrice(product).oldPrice
-                }}</span>
+                  }}</span>
               </div>
               <div class="product-actions">
                 <NuxtLink :to="`/product-details/${product.slug}`" class="btn-learn">Learn More</NuxtLink>
@@ -253,172 +142,38 @@
     </div>
   </section>
   <div class="acidity-info-container">
-    <h1 class="main-heading">Know More About Acidity</h1>
+    <h1 class="main-heading">{{ bundles.knowMoreSection.heading }}</h1>
     <div class="expand-section">
-      <!-- What's the reason section -->
-      <div class="expandable-section" :class="{ active: activeSection === 'reasonSection' }">
-        <div class="accordion-trigger" @click="toggleSection('reasonSection')">
+      <div v-for="section in bundles.knowMoreSection.accordions" :key="section.id" class="expandable-section"
+        :class="{ active: activeSection === section.id }">
+        <div class="accordion-trigger" @click="toggleSection(section.id)">
           <div class="trigger-left-area">
             <div class="circle-badge">
-              <img src="https://www.miduty.in/cdn/shop/files/reason-faq-img.png?v=1681489769" alt="" />
+              <img :src="section.image" :alt="section.title" />
             </div>
-            <h3 class="accordion-label">What's the reason?</h3>
-          </div>
-          <span class="arrow-indicator">›</span>
-        </div>
-        <div class="panel-body" v-show="activeSection === 'reasonSection'">
-          <div class="items-layout">
-            <div class="feature-block">
-              <div class="feature-symbol">🌶️</div>
-              <div class="feature-details">
-                <h3 class="detail-title">Hiatal Hernia</h3>
-                <p class="detail-text">
-                  A large hiatal hernia can cause food and acid to back into
-                  the esophagus, causing heartburn and chest reflex.
-                </p>
-              </div>
-            </div>
-            <div class="feature-block">
-              <div class="feature-symbol">🤰</div>
-              <div class="feature-details">
-                <h3 class="detail-title">Pregnancy</h3>
-                <p class="detail-text">
-                  Heartburn or acid reflux, is prevalent throughout pregnancy.
-                  This can be caused by hormonal changes and the growing baby
-                  pressing against your abdominal area.
-                </p>
-              </div>
-            </div>
-            <div class="feature-block">
-              <div class="feature-symbol">🍔</div>
-              <div class="feature-details">
-                <h3 class="detail-title">Unhealthy food habits</h3>
-                <p class="detail-text">
-                  Smoking and acidity can be caused by eating a diet high in
-                  junk food, unhealthy fats, and excess spices. This may lead
-                  to similar symptoms depending heavily on a diet.
-                </p>
-              </div>
-            </div>
-            <div class="feature-block">
-              <div class="feature-symbol">⚡</div>
-              <div class="feature-details">
-                <h3 class="detail-title">Magnesium Deficiency</h3>
-                <p class="detail-text">
-                  The esophageal sphincter may spasm in the absence of enough
-                  magnesium, allowing the acid from the stomach to invade the
-                  sensitive esophageal lining.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- What to avoid section -->
-      <div class="expandable-section" :class="{ active: activeSection === 'avoidSection' }">
-        <div class="accordion-trigger" @click="toggleSection('avoidSection')">
-          <div class="trigger-left-area">
-            <div class="circle-badge">
-              <img src="https://www.miduty.in/cdn/shop/files/avoid.png?v=1690353201" alt="" />
-            </div>
-            <h3 class="accordion-label">What to avoid</h3>
+            <h3 class="accordion-label">
+              {{ section.title }}
+            </h3>
           </div>
-          <span class="arrow-indicator">›</span>
-        </div>
-        <div class="panel-body" v-show="activeSection === 'avoidSection'">
-          <div class="items-layout">
-            <div class="feature-block">
-              <div class="feature-symbol">☕</div>
-              <div class="feature-details">
-                <h3 class="detail-title">Caffeine & Alcohol</h3>
-                <p class="detail-text">
-                  Both can relax the lower esophageal sphincter, increasing
-                  acid reflux.
-                </p>
-              </div>
-            </div>
-            <div class="feature-block">
-              <div class="feature-symbol">🍕</div>
-              <div class="feature-details">
-                <h3 class="detail-title">Fatty Foods</h3>
-                <p class="detail-text">
-                  High-fat meals slow down digestion and can trigger acid
-                  production.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Risk Factors section -->
-      <div class="expandable-section" :class="{ active: activeSection === 'riskSection' }">
-        <div class="accordion-trigger" @click="toggleSection('riskSection')">
-          <div class="trigger-left-area">
-            <div class="circle-badge">
-              <img src="https://www.miduty.in/cdn/shop/files/Group_2609999.png?v=1681698542" alt="" />
-            </div>
-            <h3 class="accordion-label">Risk Factors</h3>
-          </div>
           <span class="arrow-indicator">›</span>
         </div>
-        <div class="panel-body" v-show="activeSection === 'riskSection'">
-          <div class="items-layout">
-            <div class="feature-block">
-              <div class="feature-symbol">🚬</div>
-              <div class="feature-details">
-                <h3 class="detail-title">Smoking</h3>
-                <p class="detail-text">
-                  Weakens the lower esophageal sphincter and increases acid
-                  production.
-                </p>
-              </div>
-            </div>
-            <div class="feature-block">
-              <div class="feature-symbol">⚖️</div>
-              <div class="feature-details">
-                <h3 class="detail-title">Obesity</h3>
-                <p class="detail-text">
-                  Extra weight puts pressure on the abdomen, pushing stomach
-                  contents upward.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Golden Tips section -->
-      <div class="expandable-section" :class="{ active: activeSection === 'tipsSection' }">
-        <div class="accordion-trigger" @click="toggleSection('tipsSection')">
-          <div class="trigger-left-area">
-            <div class="circle-badge">
-              <img src="https://www.miduty.in/cdn/shop/files/golden-tips.png?v=1690353144" alt="" />
-            </div>
-            <h3 class="accordion-label">Golden Tips</h3>
-          </div>
-          <span class="arrow-indicator">›</span>
-        </div>
-        <div class="panel-body" v-show="activeSection === 'tipsSection'">
+        <div class="panel-body" v-show="activeSection === section.id">
           <div class="items-layout">
-            <div class="feature-block">
-              <div class="feature-symbol">🥗</div>
-              <div class="feature-details">
-                <h3 class="detail-title">Eat Smaller Meals</h3>
-                <p class="detail-text">
-                  Consuming smaller, more frequent meals reduces pressure on
-                  the stomach.
-                </p>
+            <div v-for="(item, index) in section.items" :key="index" class="feature-block">
+              <div class="feature-symbol">
+                {{ item.icon }}
               </div>
-            </div>
-            <div class="feature-block">
-              <div class="feature-symbol">😴</div>
+
               <div class="feature-details">
-                <h3 class="detail-title">Elevate Your Head</h3>
+                <h3 class="detail-title">
+                  {{ item.title }}
+                </h3>
+
                 <p class="detail-text">
-                  Sleep with your head elevated to prevent acid from flowing
-                  back into the esophagus.
+                  {{ item.description }}
                 </p>
               </div>
             </div>
@@ -429,73 +184,52 @@
   </div>
 
   <div class="care-wrapper">
-    <h1 class="primary-heading">Complete Acidity Care</h1>
+    <h1 class="primary-heading">{{ bundles.completeCareSection.heading }}</h1>
     <p class="intro-paragraph">
-      Eating a well adequate diet should be your top priority, but also there
-      are some supplements that can help improve or heal the digestive tract
-      and can also lower the symptoms.
+      {{bundles.completeCareSection.description}}
     </p>
 
     <div class="row g-4">
-      <!-- Diet Card -->
-      <div class="col-lg-6 col-md-12">
-        <div class="care-card">
-          <div class="icon-circle">
-            <img src="https://www.miduty.in/cdn/shop/files/diet-img.png?v=1681574626" alt="" />
-          </div>
-          <h2 class="card-heading">Diet</h2>
-          <p class="card-content">
-            If you want to eliminate acidity and symptoms related to
-            indigestion, you need to improve your diet first. It's important
-            to choose GMO-free meals as often as possible for ideal digestive
-            health and acid relief.
-          </p>
-        </div>
+  <div
+    v-for="(card, index) in bundles.completeCareSection.cards"
+    :key="index"
+    class="col-lg-6 col-md-12"
+  >
+    <div class="care-card">
+      <div class="icon-circle">
+        <img :src="card.image" :alt="card.title" />
       </div>
 
-      <!-- Dietary Supplements Card -->
-      <div class="col-lg-6 col-md-12">
-        <div class="care-card">
-          <div class="icon-circle">
-            <img
-              src="https://www.miduty.in/cdn/shop/files/Group_2610004_bd189e4e-5823-4dd7-b501-ebc1c196ee48.png?v=1684265691"
-              alt="" />
-          </div>
-          <h2 class="card-heading">Dietary Supplements</h2>
-          <p class="card-content">
-            To help support your digestive system it's wise to consider
-            supplements as well which will help improve acidity and will also
-            help you to beat stress. Start immediately with
-            <span class="highlight-text">Betaine HCL + Pepsin, Vitamin B12, Leaky Gut</span>
-          </p>
-        </div>
-      </div>
+      <h2 class="card-heading">
+        {{ card.title }}
+      </h2>
 
-      <!-- Physical Activity Card -->
-      <div class="col-lg-6 col-md-12">
-        <div class="care-card">
-          <div class="icon-circle">
-            <img
-              src="https://www.miduty.in/cdn/shop/files/Group_2610005_048a856a-3bb5-4516-85d0-a5f1a0a8bc61.png?v=1684265729"
-              alt="" />
-          </div>
-          <h2 class="card-heading">
-            Physical activity- Workouts & exercises
-          </h2>
-          <p class="card-content">
-            Try yoga, meditation, and exercise to manage stress. Lack of
-            physical activity and stress can worsen the symptoms of acid
-            reflux and can disrupt digestion.
-          </p>
+      <p class="card-content">
+        {{ card.description }}
+
+        <div
+          v-if="card.highlight"
+          class="highlight-text"
+        >
+          {{ card.highlight }}
         </div>
-      </div>
+      </p>
     </div>
+  </div>
+</div>
   </div>
 </template>
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useProductStore } from '~/stores/product'
 import { useCartStore } from '~/stores/cart'
+import { useCmsStore } from '~/stores/cms'
+
+const cmsStore = useCmsStore()
+
+const bundles = computed(
+  () => cmsStore.getPageSection('bundleDetails', 'bundleDetails')
+)
 
 useHead({
   bodyAttrs: {
