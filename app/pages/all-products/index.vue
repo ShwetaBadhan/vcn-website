@@ -73,12 +73,46 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue'
+import { useCmsStore } from '~/stores/cms'
+import { useCmsApi } from '~/composables/useCmsApi'
 import { useProductStore } from '~/stores/product'
-const cmsStore = useCmsStore()
 
-const allProducts = computed(
-  () => cmsStore.getPageSection('products', 'products')
-)
+const cmsStore = useCmsStore()
+const { getCmsImageUrl } = useCmsApi()
+
+onMounted(async () => {
+  await cmsStore.fetchSectionsBySlug('products')
+})
+
+const allProducts = computed(() => {
+  const section = cmsStore.getSectionByKey('products') || cmsStore.getSectionByKey('all-products')
+  const fallback = cmsStore.getPageSection('products', 'products') || {
+    hero: { title: '' },
+    sidebarCard: { image: '', text: '' },
+    labels: { bestseller: '' },
+    btn: { learnMore: '' }
+  }
+  
+  if (section) {
+    return {
+      hero: {
+        title: section.title || fallback.hero.title
+      },
+      sidebarCard: {
+        image: getCmsImageUrl(section.image || section.backgroundImage || section.mobileImage, fallback.sidebarCard.image),
+        text: section.description || section.subtitle || fallback.sidebarCard.text
+      },
+      labels: {
+        bestseller: section.config?.bestsellerLabel || section.extraData?.bestsellerLabel || fallback.labels.bestseller
+      },
+      btn: {
+        learnMore: section.buttonText || fallback.btn.learnMore
+      }
+    }
+  }
+  
+  return fallback
+})
 
 const productStore = useProductStore()
 

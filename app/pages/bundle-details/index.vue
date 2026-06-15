@@ -141,7 +141,7 @@
       </div>
     </div>
   </section>
-  <div class="acidity-info-container">
+  <section class="acidity-info-container">
     <h1 class="main-heading">{{ bundles.knowMoreSection.heading }}</h1>
     <div class="expand-section">
       <div v-for="section in bundles.knowMoreSection.accordions" :key="section.id" class="expandable-section"
@@ -181,9 +181,9 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="care-wrapper">
+  <section class="care-wrapper">
     <h1 class="primary-heading">{{ bundles.completeCareSection.heading }}</h1>
     <p class="intro-paragraph">
       {{bundles.completeCareSection.description}}
@@ -217,7 +217,7 @@
     </div>
   </div>
 </div>
-  </div>
+  </section>
 </template>
 <script setup>
 import { ref, computed, onMounted } from 'vue'

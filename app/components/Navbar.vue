@@ -100,7 +100,7 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="#">About Us</a>
+              <a class="nav-link" href="/about-us">About Us</a>
               <ul class="dropdown-menu">
                 <li>
                   <NuxtLink class="dropdown-item" to="/vcn-R-D">

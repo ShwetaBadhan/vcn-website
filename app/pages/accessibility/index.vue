@@ -26,13 +26,35 @@
 
 </template>
 <script setup>
+import { onMounted, computed } from 'vue'
 import { useCmsStore } from '~/stores/cms'
 
 const cmsStore = useCmsStore()
 
-const accessibility = computed(
-  () => cmsStore.getPageSection('accessibility', 'accessibility')
-)
+onMounted(async () => {
+  await cmsStore.fetchSectionsBySlug('accessibility')
+})
+
+const accessibility = computed(() => {
+  const section = cmsStore.getSectionByKey('accessibility')
+  const fallback = cmsStore.getPageSection('accessibility', 'accessibility') || { title: '', content: [] }
+  
+  if (section) {
+    let content = []
+    if (section.items && section.items.length > 0) {
+      content = section.items.map(item => item.description || item.title || '').filter(Boolean)
+    } else if (section.description) {
+      content = [section.description]
+    }
+    
+    return {
+      title: section.title || fallback.title,
+      content: content.length > 0 ? content : fallback.content
+    }
+  }
+  
+  return fallback
+})
 
 useHead({
   bodyAttrs: {

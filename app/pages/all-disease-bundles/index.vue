@@ -35,13 +35,36 @@
 </template>
 
 <script setup>
+import { onMounted, computed } from 'vue'
 import { useCmsStore } from '~/stores/cms'
+import { useCmsApi } from '~/composables/useCmsApi'
 
 const cmsStore = useCmsStore()
+const { getCmsImageUrl } = useCmsApi()
 
-const bundles = computed(
-  () => cmsStore.getPageSection('bundles', 'bundles')
-)
+onMounted(async () => {
+  await cmsStore.fetchSectionsBySlug('bundles')
+})
+
+const bundles = computed(() => {
+  const section = cmsStore.getSectionByKey('disease-bundles')
+  const fallback = cmsStore.getPageSection('bundles', 'bundles') || { bundles: [] }
+  
+  if (section && section.items && section.items.length > 0) {
+    const cmsBundles = section.items.map(item => ({
+      title: item.title || 'Disease',
+      image: getCmsImageUrl(item.image, ''),
+      link: item.extraData?.link || item.config?.link || '/bundle-details'
+    }))
+    
+    return {
+      bundles: cmsBundles
+    }
+  }
+  
+  return fallback
+})
+
 useHead({
   bodyAttrs: {
     class: 'product-details-page'

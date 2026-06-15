@@ -36,5 +36,4 @@ const hero = computed(() =>
       <a :href="hero.buttonLink" class="hero-btn">{{ hero.buttonText }}</a>
     </div>
   </section>
-  <!-- hero section ends -->
 </template>

@@ -9,7 +9,6 @@ export const HOME_PAGE_DATA = {
         description: "Discover products you trust and opportunities that grow with you.",
         buttonText: "Shop Now",
         buttonLink: "/all-products",
-        mode: "local"
     },
 
     offers: {
@@ -241,4 +240,4 @@ export const HOME_PAGE_DATA = {
             },
         ],
     },
-}
+}   
