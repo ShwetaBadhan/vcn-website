@@ -35,27 +35,33 @@
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue'
+import { computed } from 'vue'
 import { useCmsStore } from '~/stores/cms'
 import { useCmsApi } from '~/composables/useCmsApi'
 
 const cmsStore = useCmsStore()
 const { getCmsImageUrl } = useCmsApi()
 
-onMounted(async () => {
-  await cmsStore.fetchSectionsBySlug('bundles')
-})
+// Fetch page sections from API during SSR/routing
+await useAsyncData('disease-bundles-cms', () => cmsStore.fetchSectionsBySlug('disease-bundles'))
 
 const bundles = computed(() => {
   const section = cmsStore.getSectionByKey('disease-bundles')
   const fallback = cmsStore.getPageSection('bundles', 'bundles') || { bundles: [] }
   
   if (section && section.items && section.items.length > 0) {
-    const cmsBundles = section.items.map(item => ({
-      title: item.title || 'Disease',
-      image: getCmsImageUrl(item.image, ''),
-      link: item.extraData?.link || item.config?.link || '/bundle-details'
-    }))
+    const cmsBundles = section.items.map(item => {
+      // Find matching fallback item by title to use its local image asset as a fallback
+      const fallbackItem = fallback.bundles?.find(
+        fb => fb.title.trim().toLowerCase() === item.title?.trim().toLowerCase()
+      )
+      
+      return {
+        title: item.title || 'Disease',
+        image: getCmsImageUrl(item.image || item.extraData?.image, '') || fallbackItem?.image || '/img/image/acidty.png',
+        link: item.buttonLink || item.extraData?.link || item.config?.link || fallbackItem?.link || '/bundle-details'
+      }
+    })
     
     return {
       bundles: cmsBundles

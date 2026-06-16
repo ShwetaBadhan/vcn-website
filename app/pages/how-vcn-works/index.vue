@@ -12,7 +12,11 @@
         <div class="col-md-9 col-lg-9">
 
           <!-- Hero Image -->
-          <img :src="howvcnworks.heroImage" :alt="howvcnworks.heading" class="hero-banner" />
+          <img
+            :src="howvcnworks.heroImage"
+            :alt="howvcnworks.heading"
+            class="hero-banner"
+          />
 
           <!-- Welcome Banner -->
           <div class="welcome-box">
@@ -28,18 +32,26 @@
           <div class="content-section">
 
             <!-- Intro Content -->
-            <p v-for="(paragraph, index) in howvcnworks.description" :key="`intro-${index}`">
+            <p
+              v-for="(paragraph, index) in howvcnworks.description"
+              :key="`intro-${index}`"
+            >
               {{ paragraph }}
             </p>
 
             <!-- Dynamic Sections -->
-            <template v-for="(section, sectionIndex) in howvcnworks.sections" :key="`section-${sectionIndex}`">
+            <template
+              v-for="(section, sectionIndex) in howvcnworks.sections"
+              :key="`section-${sectionIndex}`"
+            >
               <h2 class="section-title">
                 {{ section.title }}
               </h2>
 
-              <p v-for="(paragraph, paragraphIndex) in section.content"
-                :key="`paragraph-${sectionIndex}-${paragraphIndex}`">
+              <p
+                v-for="(paragraph, paragraphIndex) in section.content"
+                :key="`paragraph-${sectionIndex}-${paragraphIndex}`"
+              >
                 {{ paragraph }}
               </p>
             </template>
@@ -54,8 +66,11 @@
 
                 <div class="row g-3">
 
-                  <div v-for="(item, index) in howvcnworks.moreAbout?.[0]?.items" :key="index"
-                    class="col-md-3 col-sm-6">
+                  <div
+                    v-for="(item, index) in howvcnworks.moreAbout?.[0]?.items"
+                    :key="index"
+                    class="col-md-3 col-sm-6"
+                  >
                     <div class="info-card">
                       <div class="d-flex justify-content-between align-items-start">
 
@@ -85,8 +100,11 @@
 
                 <div class="row g-3 justify-content-center">
 
-                  <div v-for="(card, index) in howvcnworks.moreAbout?.[0]?.ctaCards" :key="index"
-                    class="col-md-5 col-sm-10">
+                  <div
+                    v-for="(card, index) in howvcnworks.moreAbout?.[0]?.ctaCards"
+                    :key="index"
+                    class="col-md-5 col-sm-10"
+                  >
                     <div class="bottom-card">
 
                       <div class="bottom-icon" :class="card.iconClass">
@@ -118,19 +136,120 @@
     </div>
   </section>
 </template>
+
 <script setup>
 import { computed } from 'vue'
 import { useCmsStore } from '~/stores/cms'
 
 const cmsStore = useCmsStore()
 
-const howvcnworks = computed(() =>
-  cmsStore.getPageSection('howVcnWorks', 'howvcnworks')
+// Fetch page sections from API during SSR/routing
+await useAsyncData('how-vcn-works-cms', () =>
+  cmsStore.fetchSectionsBySlug('how-vcn-works')
 )
+
+const howvcnworks = computed(() => {
+  const sections = cmsStore.currentPage?.sections || []
+
+  // Find section by name or sectionKey
+  const section = sections.find(
+    s =>
+      s.name === 'howVcnWorks' ||
+      s.sectionKey === 'how-vcn-works'
+  )
+
+  // Use your existing fallback constant
+  const fallback =
+    cmsStore.getPageSection(
+      'howVcnWorks',
+      'howvcnworks'
+    ) || {}
+
+  if (!section) {
+    return fallback
+  }
+
+  const heroItem = section.items?.find(
+    item => item.name === 'hero'
+  )
+
+  const welcomeItem = section.items?.find(
+    item => item.name === 'welcome-banner'
+  )
+
+  const introItem = section.items?.find(
+    item => item.name === 'intro-content'
+  )
+
+  const contentSectionsItem = section.items?.find(
+    item => item.name === 'content-sections'
+  )
+
+  const moreAboutItem = section.items?.find(
+    item => item.name === 'more-about-us'
+  )
+
+  const bottomCtaItem = section.items?.find(
+    item => item.name === 'bottom-cta'
+  )
+
+  return {
+    heroImage:
+      heroItem?.image ||
+      fallback.heroImage,
+
+    welcome: {
+      title:
+        welcomeItem?.title ||
+        fallback.welcome?.title,
+
+      subtitle:
+        welcomeItem?.description ||
+        fallback.welcome?.subtitle
+    },
+
+    heading:
+      introItem?.title ||
+      fallback.heading,
+
+    description:
+      introItem?.extraData?.paragraphs ||
+      fallback.description ||
+      [],
+
+    sections:
+      contentSectionsItem?.extraData?.sections?.map(
+        item => ({
+          title: item.title,
+          content: item.paragraphs || []
+        })
+      ) ||
+      fallback.sections ||
+      [],
+
+    moreAbout: [
+      {
+        heading:
+          moreAboutItem?.title ||
+          fallback.moreAbout?.[0]?.heading,
+
+        items:
+          moreAboutItem?.extraData?.cards ||
+          fallback.moreAbout?.[0]?.items ||
+          [],
+
+        ctaCards:
+          bottomCtaItem?.extraData?.cards ||
+          fallback.moreAbout?.[0]?.ctaCards ||
+          []
+      }
+    ]
+  }
+})
 
 useHead({
   bodyAttrs: {
     class: "product-details-page",
   },
-});
+})
 </script>

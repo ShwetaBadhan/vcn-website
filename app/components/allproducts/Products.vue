@@ -16,7 +16,7 @@
 
       <!-- Products grid -->
       <div v-else class="row g-3">
-        <div v-for="product in products" :key="product.id || product.name" class="col-md-6">
+        <div v-for="product in products" :key="product.id || product.name" class="col-md-6 col-6">
           <div class="product-card">
             <div class="product-image-wrapper">
               <span class="product-badge">NEW</span>
@@ -142,3 +142,163 @@ const addToCart = async (product) => {
   })
 }
 </script>
+
+<style scoped>
+.vcn-new-product {
+  padding: 40px 0;
+}
+
+/* Premium smooth transitions for product cards and images */
+.product-card {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.product-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12) !important;
+}
+
+.product-image {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.06) !important;
+}
+
+/* Make cards vertical and adjust padding for 2-column layout under 768px */
+@media (max-width: 768px) {
+  .product-card {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 16px 12px !important;
+    gap: 12px !important;
+    border-radius: 16px !important;
+    height: 100% !important;
+    display: flex !important;
+  }
+
+  .product-image-wrapper {
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    margin-bottom: 10px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background: rgba(0, 0, 0, 0.02) !important;
+    border-radius: 12px !important;
+    padding: 0px !important;
+  }
+
+  .product-image {
+    max-height: 100% !important;
+    width: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .product-badge {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: 5px !important;
+  }
+
+  .product-content {
+    align-items: center !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .product-label {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    font-size: 9px !important;
+    padding: 2px 8px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .product-title {
+    font-size: 1.1rem !important;
+    line-height: 1.3 !important;
+    min-height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Hide description on 2-column mobile layout to keep it clean */
+  .product-description {
+    display: none !important;
+  }
+
+  .product-price {
+    font-size: 1.1rem !important;
+    margin-bottom: 10px !important;
+    font-weight: 700 !important;
+  }
+
+  .product-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+
+  .btn-learn,
+  .btn-cart {
+    width: 100% !important;
+    padding: 8px 12px !important;
+    font-size: 0.8rem !important;
+    text-align: center !important;
+    justify-content: center !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .cart-box {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .qty-box {
+    width: 100% !important;
+    justify-content: space-between !important;
+    padding: 6px 12px !important;
+  }
+
+  .qty-btn {
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .product-card {
+    padding: 12px 8px !important;
+    border-radius: 12px !important;
+  }
+
+  .product-image-wrapper {
+    padding: 0px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .product-title {
+    font-size: 0.95rem !important;
+    min-height: 38px !important;
+  }
+
+  .product-price {
+    font-size: 0.95rem !important;
+  }
+
+  .btn-learn,
+  .btn-cart {
+    padding: 6px 10px !important;
+    font-size: 0.75rem !important;
+  }
+}
+</style>

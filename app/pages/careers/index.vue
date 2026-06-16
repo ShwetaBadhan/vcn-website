@@ -165,21 +165,119 @@
   </section>
 </template>
 <script setup>
-import { computed, ref } from "vue"
+import { ref, computed } from 'vue'
 import { useCmsStore } from '~/stores/cms'
+import { useCmsApi } from '~/composables/useCmsApi'
 
 const cmsStore = useCmsStore()
+const { getCmsImageUrl } = useCmsApi()
 
-const careers = computed(
-  () => cmsStore.getPageSection('about', 'careers')
-)
+// Fetch page sections from API during SSR/routing
+await useAsyncData('careers-cms', () => cmsStore.fetchSectionsBySlug('careers'))
+
+const careers = computed(() => {
+  const sections = cmsStore.currentPage?.sections || []
+  
+  // Find sections
+  const heroSec = sections.find(s => s.name === 'hero' || s.sectionKey === 'careers-hero')
+  const cultureSec = sections.find(s => s.name === 'culture' || s.sectionKey === 'careers-culture')
+  const vpSec = sections.find(s => s.name === 'vicePresident' || s.sectionKey === 'careers-vp')
+  const cultureTabSec = sections.find(s => s.name === 'cultureTab' || s.sectionKey === 'careers-culture-tab')
+  
+  // Fallbacks
+  const fallback = cmsStore.getPageSection('about', 'careers')
+  
+  // Resolve hero image
+  const rawHeroImage = heroSec?.image || heroSec?.extraData?.image
+  let heroImage = ''
+  if (rawHeroImage) {
+    if (typeof rawHeroImage === 'string') {
+      heroImage = rawHeroImage
+    } else {
+      heroImage = getCmsImageUrl(rawHeroImage)
+    }
+  }
+
+  // Parse hero description
+  let heroDescription = fallback?.overview?.hero?.description || []
+  if (heroSec?.description) {
+    heroDescription = heroSec.description.split('\n').filter(p => p.trim())
+  }
+
+  // Parse culture section extraData
+  const cultureExtra = cultureSec?.extraData?._extraData || cultureSec?.extraData || {}
+  const rawCultureImage = cultureSec?.image || cultureExtra.image
+  let cultureImage = ''
+  if (rawCultureImage) {
+    if (typeof rawCultureImage === 'string') {
+      cultureImage = rawCultureImage
+    } else {
+      cultureImage = getCmsImageUrl(rawCultureImage)
+    }
+  }
+
+  // Parse VP section extraData
+  const vpExtra = vpSec?.extraData?._extraData || vpSec?.extraData || {}
+  const rawVpImage = vpSec?.image || vpExtra.image
+  let vpImage = ''
+  if (rawVpImage) {
+    if (typeof rawVpImage === 'string') {
+      vpImage = rawVpImage
+    } else {
+      vpImage = getCmsImageUrl(rawVpImage)
+    }
+  }
+
+  // Parse cultureTab articles
+  let parsedArticles = fallback?.cultureTab?.articles || []
+  if (cultureTabSec?.items && cultureTabSec.items.length > 0) {
+    parsedArticles = cultureTabSec.items.map(item => ({
+      title: item.extraData?.title || item.title || '',
+      date: item.extraData?.date || '',
+      icon: item.extraData?.icon || 'A'
+    }))
+  }
+
+  return {
+    tabs: fallback?.tabs || [
+      { key: "overview", label: "Overview" },
+      { key: "culture", label: "Culture at VCN" }
+    ],
+    overview: {
+      hero: {
+        title: heroSec?.title || fallback?.overview?.hero?.title || 'Be a part of the VCN Family',
+        description: heroDescription,
+        image: heroImage || fallback?.overview?.hero?.image || '/img/careers/careers-banner.png',
+        buttonText: heroSec?.buttonText || fallback?.overview?.hero?.buttonText || 'FIND OPEN POSITIONS'
+      },
+      culture: {
+        hashTag: cultureExtra.hashTag || fallback?.overview?.culture?.hashTag || '#IVCN',
+        title: cultureSec?.title || fallback?.overview?.culture?.title || 'Celebrating Milestones Together',
+        description: cultureSec?.description || fallback?.overview?.culture?.description || '',
+        image: cultureImage || fallback?.overview?.culture?.image || '/img/careers/culture.png'
+      },
+      vicePresident: {
+        heading: vpSec?.title || fallback?.overview?.vicePresident?.heading || 'Words from our Vice President (HR)',
+        name: vpExtra.name || fallback?.overview?.vicePresident?.name || 'Ritika Malik',
+        designation: vpExtra.designation || fallback?.overview?.vicePresident?.designation || 'Vice President - Human Resources',
+        messages: vpExtra.messages || fallback?.overview?.vicePresident?.messages || [],
+        image: vpImage || fallback?.overview?.vicePresident?.image || '/img/careers/vp.png'
+      }
+    },
+    cultureTab: {
+      heading: cultureTabSec?.title || fallback?.cultureTab?.heading || 'Related Articles',
+      articles: parsedArticles
+    }
+  }
+})
 
 const activeTab = ref("overview")
+
 useHead({
   bodyAttrs: {
     class: "product-details-page",
   },
-});
+})
 </script>
 <style scoped>
 .careers-content {

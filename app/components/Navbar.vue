@@ -228,7 +228,7 @@
               <!-- Dynamic products from backend (limit 5) -->
               <a v-for="product in shopProducts" :key="product.id" class="dropdown-item"
                 :href="`/product-details/${product.slug}`">
-                <img :src="getProductImage(product)" :alt="product.name" />
+                <img :src="productStore.getPrimaryImage(product)" :alt="product.name" />
                 {{ product.name }}
               </a>
               <div class="dropdown-footer">
@@ -358,26 +358,6 @@ const handleRegistrationComplete = (data) => {
 // Shop dropdown products
 const shopProducts = ref([])
 
-// Helper to get product image from API response structure
-const getProductImage = (product) => {
-  // Check product.images array from API (uses .image property)
-  if (product.images && product.images.length > 0) {
-    const primaryImage = product.images.find(img => img.isPrimary) || product.images[0]
-    if (primaryImage?.image) return primaryImage.image
-  }
-
-  // Check variant productImages (uses .image property)
-  if (product.variants && product.variants.length > 0) {
-    const defaultVariant = product.variants.find(v => v.isDefault) || product.variants[0]
-    if (defaultVariant?.productImages && defaultVariant.productImages.length > 0) {
-      const primaryImage = defaultVariant.productImages.find(img => img.isPrimary) || defaultVariant.productImages[0]
-      if (primaryImage?.image) return primaryImage.image
-    }
-  }
-
-  // Fallback
-  return product.image || '/img/products/img1.png'
-}
 
 // Fetch products for shop dropdown
 const fetchShopProducts = async () => {

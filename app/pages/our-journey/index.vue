@@ -1,16 +1,61 @@
 <script setup>
-import { computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useCmsStore } from '~/stores/cms'
+import { useCmsApi } from '~/composables/useCmsApi'
 
 const cmsStore = useCmsStore()
-const journey = computed(() =>
-  cmsStore.getPageSection('about', 'ourJourney')
-)
+const { getCmsImageUrl } = useCmsApi()
+
+// Fetch page sections from API during SSR/routing
+await useAsyncData('our-journey-cms', () => cmsStore.fetchSectionsBySlug('our-journey'))
+
+const journey = computed(() => {
+  const sections = cmsStore.currentPage?.sections || []
+  
+  // Find hero and timeline sections
+  const heroSec = sections.find(s => s.name === 'hero' || s.sectionKey === 'our-journey-hero')
+  const timelineSec = sections.find(s => s.name === 'timeline' || s.sectionKey === 'our-journey-timeline')
+  
+  // Extract timeline phases
+  const timelineItem = timelineSec?.items?.find(item => item.name === 'timeline-phases')
+  const apiPhases = timelineItem?.extraData?.phases || []
+  
+  // Fallbacks
+  const fallback = cmsStore.getPageSection('about', 'ourJourney')
+  
+  // Resolve Hero Image
+  const rawImage = heroSec?.image || heroSec?.extraData?.image
+  let heroImage = ''
+  if (rawImage) {
+    if (typeof rawImage === 'string') {
+      heroImage = rawImage
+    } else {
+      heroImage = getCmsImageUrl(rawImage)
+    }
+  }
+
+  return {
+    hero: {
+      title: heroSec?.title || fallback?.hero?.title || 'Our Journey',
+      description: heroSec?.description || fallback?.hero?.description || '',
+      image: heroImage || fallback?.hero?.image || '/img/about/banner.png'
+    },
+    timeline: apiPhases.length > 0 ? apiPhases : (fallback?.timeline || [])
+  }
+})
+
 const years = computed(() =>
   journey.value?.timeline?.map(item => item.year) || []
 )
 
-const activeYear = ref('2009-2014')
+const activeYear = ref('')
+
+// Watch for years loading and select the first active year
+watch(years, (newYears) => {
+  if (newYears.length > 0 && (!activeYear.value || !newYears.includes(activeYear.value))) {
+    activeYear.value = newYears[0]
+  }
+}, { immediate: true })
 
 const activeTimeline = computed(() =>
   journey.value?.timeline?.find(
@@ -22,7 +67,7 @@ useHead({
   bodyAttrs: {
     class: "product-details-page",
   },
-});
+})
 </script>
 
 

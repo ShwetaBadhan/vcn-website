@@ -1,12 +1,94 @@
 <script setup>
 import { computed } from 'vue'
 import { useCmsStore } from '~/stores/cms'
+import { useCmsApi } from '~/composables/useCmsApi'
 
 const cmsStore = useCmsStore()
+const { getCmsImageUrl } = useCmsApi()
 
-const about = computed(() =>
-  cmsStore.getPageSection('about', 'about')
-)
+// Fetch page sections from API during SSR/routing
+await useAsyncData('about-us-cms', () => cmsStore.fetchSectionsBySlug('about'))
+
+const about = computed(() => {
+  const sections = cmsStore.currentPage?.sections || []
+  
+  // Find sections by name/key
+  const heroSec = sections.find(s => s.name === 'hero' || s.sectionKey === 'about-hero')
+  const welcomeSec = sections.find(s => s.name === 'welcome' || s.sectionKey === 'about-welcome')
+  const contentSec = sections.find(s => s.name === 'content' || s.sectionKey === 'about-content')
+  const moreAboutSec = sections.find(s => s.name === 'moreAboutUs' || s.sectionKey === 'about-more')
+  
+  // Fallbacks
+  const fallback = cmsStore.getPageSection('about', 'about')
+  
+  // Resolve hero banner image
+  const rawHeroImage = heroSec?.image || heroSec?.extraData?.image
+  let heroBannerImage = ''
+  if (rawHeroImage) {
+    if (typeof rawHeroImage === 'string') {
+      heroBannerImage = rawHeroImage
+    } else {
+      heroBannerImage = getCmsImageUrl(rawHeroImage)
+    }
+  }
+
+  // Parse intro description (split string into paragraphs)
+  let parsedDescription = fallback?.description || []
+  if (contentSec?.description) {
+    parsedDescription = contentSec.description.split('\n').filter(p => p.trim())
+  }
+  
+  // Parse dynamic sections (Our Story, Helping Build a Healthier Future, etc.)
+  let parsedSections = fallback?.sections || []
+  if (contentSec?.items && contentSec.items.length > 0) {
+    parsedSections = contentSec.items.map(item => ({
+      title: item.extraData?.title || item.title || '',
+      content: item.extraData?.content || (item.description ? [item.description] : [])
+    }))
+  }
+  
+  // Parse moreAboutUs items and ctaCards
+  let parsedMoreAboutItems = fallback?.moreAboutUs?.[0]?.items || []
+  let parsedMoreAboutCta = fallback?.moreAboutUs?.[0]?.ctaCards || []
+  if (moreAboutSec?.items && moreAboutSec.items.length > 0) {
+    const items = moreAboutSec.items.filter(item => item.name?.startsWith('nav-item'))
+    if (items.length > 0) {
+      parsedMoreAboutItems = items.map(item => ({
+        title: item.extraData?.title || item.title || '',
+        icon: item.extraData?.icon || item.icon || 'bi-bullseye',
+        iconClass: item.extraData?.iconClass || 'icon-journey'
+      }))
+    }
+    
+    const ctas = moreAboutSec.items.filter(item => item.name?.startsWith('cta-card'))
+    if (ctas.length > 0) {
+      parsedMoreAboutCta = ctas.map(item => ({
+        title: item.extraData?.title || item.title || '',
+        icon: item.extraData?.icon || item.icon || 'bi-bullseye',
+        iconClass: item.extraData?.iconClass || 'icon-shopping',
+        buttonText: item.extraData?.buttonText || item.buttonText || 'Start Shopping'
+      }))
+    }
+  }
+
+  return {
+    heroImage: heroBannerImage || fallback?.heroImage || '/img/about/about-us.png',
+    welcome: {
+      title: welcomeSec?.title || fallback?.welcome?.title || 'Welcome to the world of VCN!',
+      subtitle: welcomeSec?.subtitle || fallback?.welcome?.subtitle || 'Helping people live better lives'
+    },
+    heading: contentSec?.title || fallback?.heading || 'This is VCN',
+    description: parsedDescription,
+    sections: parsedSections,
+    moreAboutUs: [
+      {
+        heading: moreAboutSec?.title || fallback?.moreAboutUs?.[0]?.heading || 'More about us',
+        items: parsedMoreAboutItems,
+        ctaCards: parsedMoreAboutCta
+      }
+    ]
+  }
+})
 
 const moreAbout = computed(() =>
   about.value?.moreAboutUs?.[0] 

@@ -48,3 +48,130 @@ const bgImage = computed(() => getCmsImageUrl(section.value?.backgroundImage, ''
     </div>
   </section>
 </template>
+
+<style scoped>
+.mid-consultation-cta {
+  background-color: #fff;
+  padding: 80px 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.mid-cta-image-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.mid-cta-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.mid-cta-image-wrapper:hover .mid-cta-image {
+  transform: scale(1.02);
+}
+
+.mid-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.1) 0%, rgba(25, 135, 84, 0.1) 100%);
+  pointer-events: none;
+}
+
+.mid-cta-content {
+  padding: 40px 0;
+}
+
+.mid-cta-heading {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--vcn-primary);
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+
+.mid-cta-text {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.view-more-btn {
+  display: inline-block;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+  .mid-consultation-cta {
+    padding: 60px 0;
+  }
+
+  .mid-cta-heading {
+    font-size: 32px;
+  }
+
+  .mid-cta-text {
+    font-size: 16px;
+  }
+
+  .mid-cta-content {
+    padding: 30px 0;
+    text-align: center;
+  }
+
+  .mid-cta-image-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .mid-consultation-cta {
+    padding: 50px 0;
+  }
+
+  .mid-cta-heading {
+    font-size: 28px;
+  }
+
+  .mid-cta-text {
+    font-size: 15px;
+  }
+
+  .view-more-btn {
+    padding: 12px 40px !important;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .mid-consultation-cta {
+    padding: 40px 0;
+  }
+
+  .mid-cta-heading {
+    font-size: 22px;
+  }
+
+  .mid-cta-text {
+    font-size: 14px;
+    margin-bottom: 1.5rem;
+  }
+
+  .view-more-btn {
+    padding: 12px 32px !important;
+    font-size: 14px;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+</style>

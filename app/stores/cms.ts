@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import type { CmsSection, CmsState } from '~/types'
 import { PAGE_DATA } from '~/constants'
+import { useCmsApi } from '~/composables/useCmsApi'
 
 export const useCmsStore = defineStore('cms', {
   state: (): CmsState => ({
@@ -61,15 +62,13 @@ export const useCmsStore = defineStore('cms', {
   actions: {
     // Fetch home page content
     async fetchHomePage() {
+      const { fetchHomePage } = useCmsApi()
       if (this.loading) return
 
       this.loading = true
       this.error = null
 
       try {
-        const { useCmsApi } = await import('~/composables/useCmsApi')
-        const { fetchHomePage, getCmsImageUrl } = useCmsApi()
-
         const response = await fetchHomePage()
 
         if (response?.success && response.data && response.data.length > 0) {
@@ -97,15 +96,13 @@ export const useCmsStore = defineStore('cms', {
 
     // Fetch page by slug
     async fetchPageBySlug(slug: string) {
+      const { fetchPageBySlug } = useCmsApi()
       if (this.loading) return
 
       this.loading = true
       this.error = null
 
       try {
-        const { useCmsApi } = await import('~/composables/useCmsApi')
-        const { fetchPageBySlug } = useCmsApi()
-
         const response = await fetchPageBySlug(slug)
 
         if (response?.success && response.data && response.data.length > 0) {
@@ -132,15 +129,13 @@ export const useCmsStore = defineStore('cms', {
 
     // Fetch sections by page slug (returns sections directly)
     async fetchSectionsBySlug(slug: string) {
+      const { fetchSectionsBySlug } = useCmsApi()
       if (this.loading) return
 
       this.loading = true
       this.error = null
 
       try {
-        const { useCmsApi } = await import('~/composables/useCmsApi')
-        const { fetchSectionsBySlug } = useCmsApi()
-
         const response = await fetchSectionsBySlug(slug)
 
         if (response?.success && response.data && response.data.length > 0) {

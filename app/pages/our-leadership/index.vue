@@ -163,152 +163,105 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useCmsStore } from '~/stores/cms'
+import { useCmsApi } from '~/composables/useCmsApi'
 
 const cmsStore = useCmsStore()
+const { getCmsImageUrl } = useCmsApi()
 
-const leadership = computed(() =>
-  cmsStore.getPageSection('about', 'leadership')
-)
+// Fetch page sections from API during SSR/routing
+await useAsyncData('leadership-cms', () => cmsStore.fetchSectionsBySlug('leadership'))
 
+const leadership = computed(() => {
+  const sections = cmsStore.currentPage?.sections || []
+  
+  // Find sections by name/key
+  const heroSec = sections.find(s => s.name === 'hero' || s.sectionKey === 'leadership-hero')
+  const boardSec = sections.find(s => s.name === 'boardSection' || s.sectionKey === 'leadership-board')
+  const connectSec = sections.find(s => s.name === 'connectSection' || s.sectionKey === 'leadership-connect')
+  
+  // Fallbacks
+  const fallback = cmsStore.getPageSection('about', 'leadership')
+  
+  // Resolve hero image
+  const rawHeroImage = heroSec?.image || heroSec?.extraData?.image
+  let heroImage = ''
+  if (rawHeroImage) {
+    if (typeof rawHeroImage === 'string') {
+      heroImage = rawHeroImage
+    } else {
+      heroImage = getCmsImageUrl(rawHeroImage)
+    }
+  }
 
+  // Parse board members
+  const fallbackMembers = fallback?.boardSection?.members || []
+  let parsedMembers = fallbackMembers
+  
+  if (boardSec?.items && boardSec.items.length > 0) {
+    parsedMembers = boardSec.items.map((m, idx) => {
+      const rawImg = m.image || m.extraData?.image
+      let memberImage = ''
+      if (rawImg) {
+        if (typeof rawImg === 'string') {
+          memberImage = rawImg
+        } else {
+          memberImage = getCmsImageUrl(rawImg)
+        }
+      }
+      
+      const mName = m.extraData?.name || m.title || ''
+      const fallbackM = fallbackMembers.find(fm => fm.name.trim().toLowerCase() === mName.trim().toLowerCase())
+      
+      return {
+        name: mName,
+        title: m.extraData?.title || m.subtitle || '',
+        image: memberImage || fallbackM?.image || `/img/leadership/our team.png`,
+        bio: m.extraData?.bio || m.description || ''
+      }
+    })
+  }
 
-import { ref } from "vue";
+  return {
+    hero: {
+      title: heroSec?.title || fallback?.hero?.title || 'Our leadership',
+      description: heroSec?.description || fallback?.hero?.description || '',
+      image: heroImage || fallback?.hero?.image || '/img/leadership/ourleadership.jpeg'
+    },
+    boardSection: {
+      title: boardSec?.title || fallback?.boardSection?.title || 'Board of directors',
+      btntext: boardSec?.items?.[0]?.extraData?.btntext || fallback?.boardSection?.btntext || 'View Bio',
+      members: parsedMembers
+    },
+    connectSection: {
+      title: connectSec?.title || fallback?.connectSection?.title || 'Connect with our leadership',
+      description: connectSec?.description || fallback?.connectSection?.description || '',
+      buttonText: connectSec?.buttonText || fallback?.connectSection?.buttonText || 'Contact the Board',
+      icon: connectSec?.extraData?._extraData?.icon || fallback?.connectSection?.icon || 'bi-plus-circle'
+    }
+  }
+})
 
 useHead({
   bodyAttrs: {
     class: "product-details-page",
   },
-});
-const showModal = ref(false);
-const selectedMember = ref({});
+})
 
-// const managementTeam = ref([
-//   {
-//     name: "Stephan Gratziani",
-//     title: "Chief Executive Officer",
-//     image:
-//       "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-//     bio: "Stephan Gratziani serves as Chief Executive Officer, bringing over 20 years of leadership experience in the health and wellness industry.",
-//     education:
-//       "MBA from Harvard Business School, BS in Business Administration",
-//     experience: "Previously served as COO at Global Wellness Corp for 15 years",
-//   },
-//   {
-//     name: "Rob Levy",
-//     title: "President",
-//     image:
-//       "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-//     bio: "Rob Levy leads our global operations as President, driving strategic initiatives and business growth across all markets.",
-//     education: "MBA from Stanford University, BA in Economics",
-//     experience: "20+ years in executive leadership roles",
-//   },
-//   {
-//     name: "John DeSimone",
-//     title: "Chief Financial Officer",
-//     image:
-//       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-//     bio: "John DeSimone oversees all financial operations and strategy as CFO, ensuring sustainable growth and fiscal responsibility.",
-//     education: "CPA, MBA in Finance",
-//     experience: "Former VP of Finance at Fortune 500 companies",
-//   },
-//   {
-//     name: "Frank Lamberti",
-//     title: "Chief Commercial Officer",
-//     image:
-//       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-//     bio: "Frank Lamberti drives our commercial strategy and market expansion as Chief Commercial Officer.",
-//     education: "MBA in Marketing, BS in Business",
-//     experience: "15 years in sales and marketing leadership",
-//   },
-//   {
-//     name: "Troy Hicks",
-//     title: "Chief Operating Officer",
-//     image:
-//       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-//     bio: "Troy Hicks ensures operational excellence and efficiency across all business units as COO.",
-//     education: "MS in Operations Management",
-//     experience: "Extensive background in operations and supply chain",
-//   },
-//   {
-//     name: "Henry Wang",
-//     title: "Chief Legal Officer",
-//     image:
-//       "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-//     bio: "Henry Wang provides legal guidance and ensures compliance across all global operations.",
-//     education: "JD from Yale Law School",
-//     experience: "25 years of corporate legal experience",
-//   },
-// ]);
-
-const boardMembers = ref([
-  {
-    name: "Harminder Singh Sodhi ",
-    title: "Managing Director",
-    image:
-      "/img/leadership/our team 4.png",
-    bio: "A visionary leader committed to excellence and growth, he has played a key role in shaping the organization’s strategic direction. With a forward-thinking approach and strong industry experience, his leadership emphasizes innovation, integrity, and value creation—driving the company toward sustained success.",
-    // education: "MBA from University of Chicago",
-    // experience: "Over 30 years in executive leadership",
-  },
-  {
-    name: "Jasdeep Bawa",
-    title: "Managing Director",
-    image:
-      "/img/leadership/our team 2.png",
-    bio: "A dynamic leader with a clear vision for growth, he brings strong expertise and strategic insight to the organization. His approach centers on innovation, operational excellence, and building lasting value, helping drive the company forward with integrity and a results-oriented mindset.",
-    // education: "MD, Former U.S. Surgeon General",
-    // experience: "Distinguished career in medicine and public health",
-  },
-  {
-    name: "Pardeep Singh Bedi",
-    title: "Director",
-    image:
-      "/img/leadership/our team 3.png",
-    bio: "A strategic thinker and dedicated leader, he contributes significantly to the company’s vision and growth. With a focus on innovation and efficiency, he plays a key role in strengthening operations and delivering consistent value.",
-    // education: "MBA in Finance",
-    // experience: "20+ years in corporate governance",
-  },
-  {
-    name: "Ramakant Makkar",
-    title: "Director",
-    image:
-      "/img/leadership/our team 5.png",
-    bio: "With a strong understanding of industry dynamics, he brings clarity and direction to the organization. His leadership is driven by integrity, smart decision-making, and a commitment to long-term success.",
-    // education: "MBA from INSEAD",
-    // experience: "Global business leadership experience",
-  },
-  {
-    name: "Pardeep Gupta",
-    title: "Director",
-    image:
-      "/img/leadership/our team.png",
-    bio: "An experienced professional with a results-driven approach, he supports the organization’s expansion through effective strategies and leadership. His focus on quality, teamwork, and continuous improvement helps drive sustainable growth.",
-    // education: "MS in Technology Management",
-    // experience: "Leadership in tech and digital strategy",
-  },
-  // {
-  //   name: "Michael Levitt",
-  //   title: "Director",
-  //   image:
-  //     "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  //   bio: "Michael Levitt offers strategic counsel on mergers, acquisitions, and corporate development.",
-  //   education: "MBA from Wharton",
-  //   experience: "30 years in corporate development",
-  // },
-]);
+const showModal = ref(false)
+const selectedMember = ref({})
 
 const openBio = (member) => {
-  selectedMember.value = member;
-  showModal.value = true;
-  document.body.style.overflow = "hidden";
-};
+  selectedMember.value = member
+  showModal.value = true
+  document.body.style.overflow = "hidden"
+}
 
 const closeBio = () => {
-  showModal.value = false;
-  document.body.style.overflow = "auto";
-};
+  showModal.value = false
+  document.body.style.overflow = "auto"
+}
 </script>
 
 <style scoped>

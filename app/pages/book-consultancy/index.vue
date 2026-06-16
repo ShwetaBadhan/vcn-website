@@ -101,7 +101,8 @@
                   <label for="mid-pincode" class="mid-form-label form-label">
                     {{ consultation.leftContent.formFields.pincode.label }} <span class="text-danger">*</span>
                   </label>
-                  <input type="text" class="form-control mid-form-input" id="mid-pincode" placeholder="Pincode"
+                  <input type="text" class="form-control mid-form-input" id="mid-pincode"
+                    :placeholder="consultation.leftContent.formFields.pincode.placeholder"
                     v-model="formData.pincode" required>
                 </div>
               </div>
@@ -237,22 +238,184 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useCmsStore } from '~/stores/cms'
+import { useCmsApi } from '~/composables/useCmsApi'
 
 const cmsStore = useCmsStore()
+const { getCmsImageUrl } = useCmsApi()
 
-const consultation = computed(
-  () => cmsStore.getPageSection('consultation', 'consultation')
-)
+// Fetch page sections from API during SSR/routing
+await useAsyncData('consultation-cms', () => cmsStore.fetchSectionsBySlug('consultation'))
 
-// const healthIssues = computed(
-//   () => leftContent.value.healthIssues?.options
-// )
+const consultation = computed(() => {
+  const sections = cmsStore.currentPage?.sections || []
+  
+  // Find consultation section by name or sectionKey
+  const consultationSec = sections.find(s => s.name === 'consultation' || s.sectionKey === 'consultation')
+  
+  // Fallbacks from PAGE_DATA (consultation page fallback)
+  const fallback = cmsStore.getPageSection('consultation', 'consultation') || {
+    leftContent: {
+      title: "Consultation Form",
+      formFields: {
+        firstName: { label: "First Name", placeholder: "First Name", required: true },
+        lastName: { label: "Last Name", placeholder: "Last Name", required: true },
+        age: { label: "Age", placeholder: "Ex. 22", required: true },
+        weight: { label: "Weight (in kg)", placeholder: "Ex. 45", required: true },
+        phone: { label: "Phone/Mobile (With Country Code)", placeholder: "917750824146", required: true },
+        email: { label: "Email", placeholder: "Email Address", required: false },
+        gender: { label: "Gender", placeholder: "Select Gender", required: true, options: ["Male", "Female", "Other"] },
+        city: { label: "City", placeholder: "City", required: true },
+        pincode: { label: "Pincode", placeholder: "Pincode", required: true }
+      },
+      healthIssues: {
+        label: "Health Issues (Select At Least One)",
+        options: ["Thyroid", "Weight gain", "Hormonal issues", "Hair Fall", "Pigmentation", "Other"]
+      },
+      descriptionField: {
+        label: "Describe Your Problem",
+        placeholder: "Please describe your health issue in detail..."
+      },
+      submitButton: "Submit Form"
+    },
+    rightContent: {
+      subtitle: "Your Health, Our Priority",
+      title: "5 Lakh Happy Customers",
+      stats: [
+        { value: "50+", label: "Experts" },
+        { value: "Free", label: "Consultation" },
+        { value: "Regular", label: "Follow-ups" }
+      ],
+      image: { src: "/img/image/Consultation.png", alt: "Health Experts" }
+    },
+    branchLocations: [
+      { title: "Visit our Team of Trained Health Experts at our Gurgaon Branch", address: "Unit No. 307 & 308, Tower A, Pioneer Urban Square, Golf Course Ext Rd, Sector 62, Gurugram, Ghata, Haryana 122005" },
+      { title: "Visit our Team of Trained Health Experts at our Jalandhar Branch –", address: "SCO 41, Chotti Baradari Part 2, Opposite PIMS Hospital, Jalandhar, Punjab 144001" }
+    ],
+    contactInformation: [
+      { title: "Contact our Global Support Team at –", address: "VCN Tower, 37/2 Cool Road, Jalandhar, Punjab, INDIA-144001", phone: "+91-181-4010154, M:+919876453626", email: "info@vcnhealth.com", workingHours: "Mon – Sat: 9:00 AM – 6:00 PM" },
+      { title: "Contact our India (Domestic) Team", address: "VCN Shop No.24/25, Block C. PPR Village, Chandigarh Express way", phone: "+91 22 3456 7890", email: "mumbai@vcnhealth.com", workingHours: "Mon – Sat: 9:00 AM – 6:00 PM" }
+    ]
+  }
+
+  if (!consultationSec) {
+    return fallback
+  }
+
+  // Find sub-items by name inside consultation items
+  const items = consultationSec.items || []
+  const formItem = items.find(item => item.name === 'consultation-form')
+  const statsItem = items.find(item => item.name === 'stats-panel')
+  const branchItem = items.find(item => item.name === 'branch-locations')
+  const contactItem = items.find(item => item.name === 'contact-information')
+
+  // Resolve leftContent (Form)
+  const leftContent = {
+    title: formItem?.title || fallback.leftContent.title,
+    formFields: {
+      firstName: {
+        label: formItem?.extraData?.formFields?.firstName?.label || fallback.leftContent.formFields.firstName.label,
+        placeholder: formItem?.extraData?.formFields?.firstName?.placeholder || fallback.leftContent.formFields.firstName.placeholder,
+        required: formItem?.extraData?.formFields?.firstName?.required !== undefined ? formItem.extraData.formFields.firstName.required : fallback.leftContent.formFields.firstName.required
+      },
+      lastName: {
+        label: formItem?.extraData?.formFields?.lastName?.label || fallback.leftContent.formFields.lastName.label,
+        placeholder: formItem?.extraData?.formFields?.lastName?.placeholder || fallback.leftContent.formFields.lastName.placeholder,
+        required: formItem?.extraData?.formFields?.lastName?.required !== undefined ? formItem.extraData.formFields.lastName.required : fallback.leftContent.formFields.lastName.required
+      },
+      age: {
+        label: formItem?.extraData?.formFields?.age?.label || fallback.leftContent.formFields.age.label,
+        placeholder: formItem?.extraData?.formFields?.age?.placeholder || fallback.leftContent.formFields.age.placeholder,
+        required: formItem?.extraData?.formFields?.age?.required !== undefined ? formItem.extraData.formFields.age.required : fallback.leftContent.formFields.age.required
+      },
+      weight: {
+        label: formItem?.extraData?.formFields?.weight?.label || fallback.leftContent.formFields.weight.label,
+        placeholder: formItem?.extraData?.formFields?.weight?.placeholder || fallback.leftContent.formFields.weight.placeholder,
+        required: formItem?.extraData?.formFields?.weight?.required !== undefined ? formItem.extraData.formFields.weight.required : fallback.leftContent.formFields.weight.required
+      },
+      phone: {
+        label: formItem?.extraData?.formFields?.phone?.label || fallback.leftContent.formFields.phone.label,
+        placeholder: formItem?.extraData?.formFields?.phone?.placeholder || fallback.leftContent.formFields.phone.placeholder,
+        required: formItem?.extraData?.formFields?.phone?.required !== undefined ? formItem.extraData.formFields.phone.required : fallback.leftContent.formFields.phone.required
+      },
+      email: {
+        label: formItem?.extraData?.formFields?.email?.label || fallback.leftContent.formFields.email.label,
+        placeholder: formItem?.extraData?.formFields?.email?.placeholder || fallback.leftContent.formFields.email.placeholder,
+        required: formItem?.extraData?.formFields?.email?.required !== undefined ? formItem.extraData.formFields.email.required : fallback.leftContent.formFields.email.required
+      },
+      gender: {
+        label: formItem?.extraData?.formFields?.gender?.label || fallback.leftContent.formFields.gender.label,
+        placeholder: formItem?.extraData?.formFields?.gender?.placeholder || fallback.leftContent.formFields.gender.placeholder,
+        required: formItem?.extraData?.formFields?.gender?.required !== undefined ? formItem.extraData.formFields.gender.required : fallback.leftContent.formFields.gender.required,
+        options: formItem?.extraData?.formFields?.gender?.options || fallback.leftContent.formFields.gender.options
+      },
+      city: {
+        label: formItem?.extraData?.formFields?.city?.label || fallback.leftContent.formFields.city.label,
+        placeholder: formItem?.extraData?.formFields?.city?.placeholder || fallback.leftContent.formFields.city.placeholder,
+        required: formItem?.extraData?.formFields?.city?.required !== undefined ? formItem.extraData.formFields.city.required : fallback.leftContent.formFields.city.required
+      },
+      pincode: {
+        label: formItem?.extraData?.formFields?.pincode?.label || fallback.leftContent.formFields.pincode.label,
+        placeholder: formItem?.extraData?.formFields?.pincode?.placeholder || fallback.leftContent.formFields.pincode.placeholder,
+        required: formItem?.extraData?.formFields?.pincode?.required !== undefined ? formItem.extraData.formFields.pincode.required : fallback.leftContent.formFields.pincode.required
+      }
+    },
+    healthIssues: {
+      label: formItem?.extraData?.healthIssues?.label || fallback.leftContent.healthIssues.label,
+      options: formItem?.extraData?.healthIssues?.options || fallback.leftContent.healthIssues.options
+    },
+    descriptionField: {
+      label: formItem?.extraData?.descriptionField?.label || fallback.leftContent.descriptionField.label,
+      placeholder: formItem?.extraData?.descriptionField?.placeholder || fallback.leftContent.descriptionField.placeholder
+    },
+    submitButton: formItem?.extraData?.submitButton || fallback.leftContent.submitButton
+  }
+
+  // Resolve rightContent (Stats & Image)
+  const rawImage = statsItem?.image || statsItem?.extraData?.image || consultationSec?.image
+  let imageSrc = fallback.rightContent.image.src
+  if (rawImage) {
+    if (typeof rawImage === 'string') {
+      imageSrc = rawImage
+    } else {
+      imageSrc = getCmsImageUrl(rawImage)
+    }
+  }
+
+  const rightContent = {
+    subtitle: statsItem?.subtitle || fallback.rightContent.subtitle,
+    title: statsItem?.title || fallback.rightContent.title,
+    stats: statsItem?.extraData?.stats || fallback.rightContent.stats,
+    image: {
+      src: imageSrc,
+      alt: statsItem?.extraData?.image?.alt || fallback.rightContent.image.alt
+    }
+  }
+
+  // Resolve branchLocations
+  let branchLocations = fallback.branchLocations
+  if (branchItem?.extraData?.locations && branchItem.extraData.locations.length > 0) {
+    branchLocations = branchItem.extraData.locations
+  }
+
+  // Resolve contactInformation
+  let contactInformation = fallback.contactInformation
+  if (contactItem?.extraData?.contacts && contactItem.extraData.contacts.length > 0) {
+    contactInformation = contactItem.extraData.contacts
+  }
+
+  return {
+    leftContent,
+    rightContent,
+    branchLocations,
+    contactInformation
+  }
+})
 
 useHead({
   bodyAttrs: {
     class: "product-details-page",
   },
-});
+})
 
 const formData = ref({
   firstName: '',

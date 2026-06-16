@@ -614,9 +614,148 @@ import { useCmsStore } from '~/stores/cms'
 
 const cmsStore = useCmsStore()
 
-const contact = computed(
-  () => cmsStore.getPageSection('contact', 'contact')
-)
+// Fetch page sections from API during SSR/routing
+await useAsyncData('contact-cms', () => cmsStore.fetchSectionsBySlug('contact'))
+
+const contact = computed(() => {
+  const sections = cmsStore.currentPage?.sections || []
+  
+  // Find contact section by name or sectionKey
+  const section = sections.find(s => s.name === 'contact' || s.sectionKey === 'contact')
+  
+  const fallback = cmsStore.getPageSection('contact', 'contact') || {
+    company: { name: "Falcon Marketing Pvt.Ltd", description: "VCN is the Brand Name of Falcon Marketing Pvt. Limited established in 2009 is a fast-growing direct selling company." },
+    offices: [],
+    contactForm: {
+      title: "Contact us",
+      fields: {
+        fullName: { label: "Full Name", placeholder: "Enter your full name" },
+        email: { label: "Email", placeholder: "Enter your email address" },
+        phone: { label: "Phone Number", placeholder: "Enter your phone number" },
+        office: { label: "Select Office", placeholder: "Select an office.", officeOptions: [] },
+        subject: { label: "Subject", placeholder: "Enter subject", subjectOptions: [] },
+        message: { label: "Message", placeholder: "Please include the product name and order number you're inquiring about" },
+        files: { label: "Attach Files", uploadLabelLimit: "Attach up to 10 files. Maximum size per file is 10 MB." },
+        formFooter: { text: "This site is protected by reCAPTCHA Enterprise and the Google", privacyPolicyLabel: "Privacy Policy", privacyPolicyLink: "/privacy-policy", termsOfServiceLabel: "Terms of Service", termsOfServiceLink: "/terms-conditions" }
+      },
+      submitButton: "Submit",
+      validation: { fullNameRequired: "Full name is required", fullNameMinLength: "Full name must be at least 2 characters", emailRequired: "Email is required", emailInvalid: "Please enter a valid email address", phoneRequired: "Phone number is required", phoneInvalid: "Please enter a valid phone number", officeRequired: "Please select an office", subjectRequired: "Subject is required", subjectMinLength: "Subject must be at least 3 characters", messageRequired: "Message is required", messageMinLength: "Message must be at least 10 characters", filesTooLarge: "File size exceeds allowed limit", invalidFileType: "Unsupported file format" },
+      alerts: { success: "Thank you! Your message has been submitted successfully.", error: "Something went wrong. Please try again later." }
+    }
+  }
+
+  if (!section) {
+    return fallback
+  }
+
+  const items = section.items || []
+  const companyItem = items.find(item => item.name === 'company')
+  const formItem = items.find(item => item.name === 'contact-form')
+  const validationItem = items.find(item => item.name === 'validation')
+  const alertsItem = items.find(item => item.name === 'alerts')
+  
+  // Resolve offices
+  const officeItems = items.filter(item => item.name?.startsWith('office-'))
+  let resolvedOffices = fallback.offices
+  if (officeItems.length > 0) {
+    resolvedOffices = officeItems.map(item => {
+      const fallbackOffice = fallback.offices.find(o => o.city?.toLowerCase() === item.title?.toLowerCase())
+      let badgeClass = 'badge-regional'
+      if (item.subtitle === 'Head Office') badgeClass = 'badge-head'
+      else if (item.subtitle === 'Warehouse') badgeClass = 'badge-warehouse'
+      else if (fallbackOffice?.badgeClass) badgeClass = fallbackOffice.badgeClass
+
+      return {
+        id: item.title?.toLowerCase() || '',
+        city: item.title || '',
+        type: item.subtitle || '',
+        badgeClass,
+        image: fallbackOffice?.image || '/img/bg/contact-us.png',
+        addressLabel: 'Address',
+        address: item.extraData?.address || '',
+        phoneLabel: 'Phone',
+        phone: item.extraData?.phone || '',
+        mobile: item.extraData?.mobile || null,
+        emailLabel: 'Email',
+        email: item.extraData?.email || '',
+        workingHoursLabel: 'Working Hours',
+        workingHours: item.extraData?.workingHours || '',
+        mapLabel: '📍 View on Google Maps →',
+        mapLink: item.extraData?.mapLink || ''
+      }
+    })
+  }
+
+  return {
+    company: {
+      name: companyItem?.title || fallback.company.name,
+      description: companyItem?.description || fallback.company.description
+    },
+    offices: resolvedOffices,
+    contactForm: {
+      title: formItem?.title || fallback.contactForm.title,
+      fields: {
+        fullName: {
+          label: formItem?.extraData?.fields?.fullName?.label || fallback.contactForm.fields.fullName.label,
+          placeholder: formItem?.extraData?.fields?.fullName?.placeholder || fallback.contactForm.fields.fullName.placeholder
+        },
+        email: {
+          label: formItem?.extraData?.fields?.email?.label || fallback.contactForm.fields.email.label,
+          placeholder: formItem?.extraData?.fields?.email?.placeholder || fallback.contactForm.fields.email.placeholder
+        },
+        phone: {
+          label: formItem?.extraData?.fields?.phone?.label || fallback.contactForm.fields.phone.label,
+          placeholder: formItem?.extraData?.fields?.phone?.placeholder || fallback.contactForm.fields.phone.placeholder
+        },
+        office: {
+          label: formItem?.extraData?.fields?.office?.label || fallback.contactForm.fields.office.label,
+          placeholder: formItem?.extraData?.fields?.office?.placeholder || fallback.contactForm.fields.office.placeholder,
+          officeOptions: formItem?.extraData?.fields?.office?.options?.map(opt => ({ label: opt, value: opt + ' Office' })) || fallback.contactForm.fields.office.officeOptions
+        },
+        subject: {
+          label: formItem?.extraData?.fields?.subject?.label || fallback.contactForm.fields.subject.label,
+          placeholder: formItem?.extraData?.fields?.subject?.placeholder || fallback.contactForm.fields.subject.placeholder,
+          subjectOptions: formItem?.extraData?.fields?.subject?.options?.map(opt => ({ label: opt, value: opt })) || fallback.contactForm.fields.subject.subjectOptions
+        },
+        message: {
+          label: formItem?.extraData?.fields?.message?.label || fallback.contactForm.fields.message.label,
+          placeholder: formItem?.extraData?.fields?.message?.placeholder || fallback.contactForm.fields.message.placeholder
+        },
+        files: {
+          label: formItem?.extraData?.fields?.files?.label || fallback.contactForm.fields.files.label,
+          uploadLabelLimit: formItem?.extraData?.fields?.files?.uploadLimitText || fallback.contactForm.fields.files.uploadLabelLimit
+        },
+        formFooter: {
+          text: formItem?.extraData?.footer?.text || fallback.contactForm.fields.formFooter.text,
+          privacyPolicyLabel: formItem?.extraData?.footer?.privacyPolicyLabel || fallback.contactForm.fields.formFooter.privacyPolicyLabel,
+          privacyPolicyLink: formItem?.extraData?.footer?.privacyPolicyLink || fallback.contactForm.fields.formFooter.privacyPolicyLink,
+          termsOfServiceLabel: formItem?.extraData?.footer?.termsOfServiceLabel || fallback.contactForm.fields.formFooter.termsOfServiceLabel,
+          termsOfServiceLink: formItem?.extraData?.footer?.termsOfServiceLink || fallback.contactForm.fields.formFooter.termsOfServiceLink
+        }
+      },
+      submitButton: formItem?.buttonText || fallback.contactForm.submitButton,
+      validation: {
+        fullNameRequired: validationItem?.extraData?.fullNameRequired || fallback.contactForm.validation.fullNameRequired,
+        fullNameMinLength: validationItem?.extraData?.fullNameMinLength || fallback.contactForm.validation.fullNameMinLength,
+        emailRequired: validationItem?.extraData?.emailRequired || fallback.contactForm.validation.emailRequired,
+        emailInvalid: validationItem?.extraData?.emailInvalid || fallback.contactForm.validation.emailInvalid,
+        phoneRequired: validationItem?.extraData?.phoneRequired || fallback.contactForm.validation.phoneRequired,
+        phoneInvalid: validationItem?.extraData?.phoneInvalid || fallback.contactForm.validation.phoneInvalid,
+        officeRequired: validationItem?.extraData?.officeRequired || fallback.contactForm.validation.officeRequired,
+        subjectRequired: validationItem?.extraData?.subjectRequired || fallback.contactForm.validation.subjectRequired,
+        subjectMinLength: validationItem?.extraData?.subjectMinLength || fallback.contactForm.validation.subjectMinLength,
+        messageRequired: validationItem?.extraData?.messageRequired || fallback.contactForm.validation.messageRequired,
+        messageMinLength: validationItem?.extraData?.messageMinLength || fallback.contactForm.validation.messageMinLength,
+        filesTooLarge: validationItem?.extraData?.filesTooLarge || fallback.contactForm.validation.filesTooLarge,
+        invalidFileType: validationItem?.extraData?.invalidFileType || fallback.contactForm.validation.invalidFileType
+      },
+      alerts: {
+        success: alertsItem?.extraData?.success || fallback.contactForm.alerts.success,
+        error: alertsItem?.extraData?.error || fallback.contactForm.alerts.error
+      }
+    }
+  }
+})
 
 const activeOffice = computed(() => {
   return contact.value?.offices?.find(
@@ -655,35 +794,36 @@ const errors = ref({})
 
 const validateForm = () => {
   errors.value = {}
+  const v = contact.value?.contactForm?.validation
 
   if (!formData.value.fullName.trim()) {
-    errors.value.fullName = 'Full name is required'
+    errors.value.fullName = v?.fullNameRequired || 'Full name is required'
   }
 
   if (!formData.value.email.trim()) {
-    errors.value.email = 'Email is required'
+    errors.value.email = v?.emailRequired || 'Email is required'
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.value.email)) {
-    errors.value.email = 'Please enter a valid email address'
+    errors.value.email = v?.emailInvalid || 'Please enter a valid email address'
   }
 
   if (!formData.value.phone.trim()) {
-    errors.value.phone = 'Phone number is required'
+    errors.value.phone = v?.phoneRequired || 'Phone number is required'
   } else if (!/^[\d\s\-\+\(\)]{10,15}$/.test(formData.value.phone.trim())) {
-    errors.value.phone = 'Please enter a valid phone number (10-15 digits)'
+    errors.value.phone = v?.phoneInvalid || 'Please enter a valid phone number (10-15 digits)'
   }
 
   if (!formData.value.office) {
-    errors.value.office = 'Please select an office'
+    errors.value.office = v?.officeRequired || 'Please select an office'
   }
 
   if (!formData.value.subject) {
-    errors.value.subject = 'Please select a subject'
+    errors.value.subject = v?.subjectRequired || 'Please select a subject'
   }
 
   if (!formData.value.message.trim()) {
-    errors.value.message = 'Message is required'
+    errors.value.message = v?.messageRequired || 'Message is required'
   } else if (formData.value.message.trim().length < 10) {
-    errors.value.message = 'Message must be at least 10 characters long'
+    errors.value.message = v?.messageMinLength || 'Message must be at least 10 characters long'
   }
 
   return Object.keys(errors.value).length === 0

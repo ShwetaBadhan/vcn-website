@@ -125,9 +125,88 @@ import { useCmsStore } from '~/stores/cms'
 
 const cmsStore = useCmsStore()
 
-const cart = computed(
-  () => cmsStore.getPageSection('cart', 'cart')
-)
+// Fetch page sections from API during SSR/routing
+await useAsyncData('cart-cms', () => cmsStore.fetchSectionsBySlug('cart'))
+
+const cart = computed(() => {
+  const sections = cmsStore.currentPage?.sections || []
+  
+  // Find cart section by name or sectionKey
+  const section = sections.find(s => s.name === 'cart' || s.sectionKey === 'cart')
+  
+  const fallback = cmsStore.getPageSection('cart', 'cart') || {
+    title: "Your Cart",
+    emptyCart: { heading: "Your cart is empty", description: "Looks like you haven't added any products to your cart yet.", buttonText: "Continue Shopping", buttonLink: "/all-products" },
+    tableHeader: { product: "Product", quantity: "Quantity", price: "Price" },
+    cartItem: { removeButton: "Remove" },
+    recommendations: { heading: "You Might Also Like:", addButton: "Add" },
+    promo: { label: "Promo Code", placeholder: "Enter Promo Code", applyButton: "Apply" },
+    total: { subtotal: "Subtotal", discount: "Discount", total: "Total" },
+    checkoutButton: { text: "Checkout", link: "/checkout" },
+    cartActions: { remove: "Remove" },
+    subscriptionText: "One-time purchase",
+    promoMessages: { invalid: "Invalid promo code. Try SAVE10 for 10% off!", applied: "Promo code applied:" }
+  }
+
+  if (!section) {
+    return fallback
+  }
+
+  const items = section.items || []
+  const emptyCartItem = items.find(item => item.name === 'empty-cart')
+  const headersItem = items.find(item => item.name === 'table-headers')
+  const cartItemItem = items.find(item => item.name === 'cart-item')
+  const recommendationsItem = items.find(item => item.name === 'recommendations')
+  const promoCodeItem = items.find(item => item.name === 'promo-code')
+  const totalsItem = items.find(item => item.name === 'totals')
+  const checkoutButtonItem = items.find(item => item.name === 'checkout-button')
+  const subscriptionItem = items.find(item => item.name === 'subscription')
+  const actionsItem = items.find(item => item.name === 'actions')
+
+  return {
+    title: section.title || fallback.title,
+    emptyCart: {
+      heading: emptyCartItem?.title || fallback.emptyCart.heading,
+      description: emptyCartItem?.description || fallback.emptyCart.description,
+      buttonText: emptyCartItem?.buttonText || fallback.emptyCart.buttonText,
+      buttonLink: emptyCartItem?.buttonLink || fallback.emptyCart.buttonLink
+    },
+    tableHeader: {
+      product: headersItem?.extraData?.product || fallback.tableHeader.product,
+      quantity: headersItem?.extraData?.quantity || fallback.tableHeader.quantity,
+      price: headersItem?.extraData?.price || fallback.tableHeader.price
+    },
+    cartItem: {
+      removeButton: cartItemItem?.buttonText || fallback.cartItem.removeButton
+    },
+    recommendations: {
+      heading: recommendationsItem?.title || fallback.recommendations.heading,
+      addButton: recommendationsItem?.extraData?.addButtonText || fallback.recommendations.addButton
+    },
+    promo: {
+      label: promoCodeItem?.title || fallback.promo.label,
+      placeholder: promoCodeItem?.extraData?.placeholder || fallback.promo.placeholder,
+      applyButton: promoCodeItem?.extraData?.applyButtonText || fallback.promo.applyButton
+    },
+    total: {
+      subtotal: totalsItem?.extraData?.subtotalLabel || fallback.total.subtotal,
+      discount: totalsItem?.extraData?.discountLabel || fallback.total.discount,
+      total: totalsItem?.extraData?.totalLabel || fallback.total.total
+    },
+    checkoutButton: {
+      text: checkoutButtonItem?.buttonText || checkoutButtonItem?.title || fallback.checkoutButton.text,
+      link: checkoutButtonItem?.buttonLink || fallback.checkoutButton.link
+    },
+    cartActions: {
+      remove: actionsItem?.extraData?.remove || fallback.cartActions.remove
+    },
+    subscriptionText: subscriptionItem?.description || fallback.subscriptionText,
+    promoMessages: {
+      invalid: promoCodeItem?.extraData?.messages?.invalid || fallback.promoMessages.invalid,
+      applied: promoCodeItem?.extraData?.messages?.applied || fallback.promoMessages.applied
+    }
+  }
+})
 
 const cartStore = useCartStore()
 const productStore = useProductStore()

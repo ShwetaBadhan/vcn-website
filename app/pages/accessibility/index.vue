@@ -26,29 +26,33 @@
 
 </template>
 <script setup>
-import { onMounted, computed } from 'vue'
+import { computed } from 'vue'
 import { useCmsStore } from '~/stores/cms'
 
 const cmsStore = useCmsStore()
 
-onMounted(async () => {
-  await cmsStore.fetchSectionsBySlug('accessibility')
-})
+// Fetch page sections from API during SSR/routing
+await useAsyncData('accessibility-cms', () => cmsStore.fetchSectionsBySlug('accessibility'))
 
 const accessibility = computed(() => {
   const section = cmsStore.getSectionByKey('accessibility')
   const fallback = cmsStore.getPageSection('accessibility', 'accessibility') || { title: '', content: [] }
   
   if (section) {
-    let content = []
-    if (section.items && section.items.length > 0) {
-      content = section.items.map(item => item.description || item.title || '').filter(Boolean)
-    } else if (section.description) {
-      content = [section.description]
+    const contentItem = section.items?.find(item => item.name === 'content')
+    const paragraphs = contentItem?.extraData?.paragraphs || []
+    
+    let content = paragraphs
+    if (content.length === 0) {
+      if (section.items && section.items.length > 0) {
+        content = section.items.map(item => item.description || item.title || '').filter(Boolean)
+      } else if (section.description) {
+        content = [section.description]
+      }
     }
     
     return {
-      title: section.title || fallback.title,
+      title: section.title || fallback.title || 'Website Accessibility Statement',
       content: content.length > 0 ? content : fallback.content
     }
   }

@@ -1,0 +1,273 @@
+﻿[
+    {
+        "id":  11,
+        "name":  "DBT Care Plus",
+        "slug":  "dbt-care-plus",
+        "image":  null,
+        "images":  [
+                       "@{id=1; productId=11; productVariantId=11; mediaId=12; updatedAt=2026-06-15T05:05:12.243Z; createdAt=2026-06-15T05:05:12.243Z; isPrimary=True; isActive=True; media=}"
+                   ]
+    },
+    {
+        "id":  12,
+        "name":  "V Veda Thyro Care Capsule",
+        "slug":  "v-veda-thyro-care-capsule",
+        "image":  null,
+        "images":  [
+                       "@{id=2; productId=12; productVariantId=12; mediaId=53; updatedAt=2026-06-15T05:11:05.036Z; createdAt=2026-06-15T05:11:05.036Z; isPrimary=True; isActive=True; media=}",
+                       "@{id=3; productId=12; productVariantId=12; mediaId=48; updatedAt=2026-06-15T05:11:41.115Z; createdAt=2026-06-15T05:11:41.115Z; isPrimary=False; isActive=True; media=}",
+                       "@{id=4; productId=12; productVariantId=12; mediaId=49; updatedAt=2026-06-15T05:11:59.909Z; createdAt=2026-06-15T05:11:59.909Z; isPrimary=False; isActive=True; media=}",
+                       "@{id=5; productId=12; productVariantId=12; mediaId=50; updatedAt=2026-06-15T05:12:06.622Z; createdAt=2026-06-15T05:12:06.622Z; isPrimary=False; isActive=True; media=}",
+                       "@{id=6; productId=12; productVariantId=12; mediaId=51; updatedAt=2026-06-15T05:12:11.488Z; createdAt=2026-06-15T05:12:11.488Z; isPrimary=False; isActive=True; media=}",
+                       "@{id=7; productId=12; productVariantId=12; mediaId=52; updatedAt=2026-06-15T05:12:25.038Z; createdAt=2026-06-15T05:12:25.038Z; isPrimary=False; isActive=True; media=}",
+                       "@{id=8; productId=12; productVariantId=12; mediaId=54; updatedAt=2026-06-15T05:12:32.588Z; createdAt=2026-06-15T05:12:32.588Z; isPrimary=False; isActive=True; media=}",
+                       "@{id=9; productId=12; productVariantId=12; mediaId=55; updatedAt=2026-06-15T05:12:43.977Z; createdAt=2026-06-15T05:12:43.977Z; isPrimary=False; isActive=True; media=}",
+                       "@{id=10; productId=12; productVariantId=12; mediaId=56; updatedAt=2026-06-15T05:12:49.594Z; createdAt=2026-06-15T05:12:49.594Z; isPrimary=False; isActive=True; media=}",
+                       "@{id=11; productId=12; productVariantId=12; mediaId=57; updatedAt=2026-06-15T05:13:20.428Z; createdAt=2026-06-15T05:13:20.428Z; isPrimary=False; isActive=True; media=}"
+                   ]
+    },
+    {
+        "id":  13,
+        "name":  "Migra Care Capsule",
+        "slug":  "migra-care-capsule",
+        "image":  null,
+        "images":  [
+                       "@{id=13; productId=13; productVariantId=13; mediaId=22; updatedAt=2026-06-15T05:15:14.370Z; createdAt=2026-06-15T05:15:14.370Z; isPrimary=False; isActive=True; media=}",
+                       "@{id=12; productId=13; productVariantId=13; mediaId=23; updatedAt=2026-06-15T05:15:17.635Z; createdAt=2026-06-15T05:14:58.544Z; isPrimary=True; isActive=True; media=}"
+                   ]
+    },
+    {
+        "id":  14,
+        "name":  "V Veda Giloy Capsules",
+        "slug":  "v-veda-giloy-capsules",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  15,
+        "name":  "V Veda Divine Drops",
+        "slug":  "v-veda-divine-drops",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  16,
+        "name":  "V Aloe Alovera Gel",
+        "slug":  "v-aloea-alovera-gel",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  17,
+        "name":  "V Heldi Curcumin",
+        "slug":  "v-heldi-curcumin",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  18,
+        "name":  "V Gano Daily",
+        "slug":  "v-gano-daily",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  19,
+        "name":  "V Gano Heart",
+        "slug":  "v-gano-heart",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  20,
+        "name":  "V Gano Ganoderma Extract Power",
+        "slug":  "v-gano-ganoderma-extract-power",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  21,
+        "name":  "Multivitamin Multimineral Tablets",
+        "slug":  "multivitamin-multimineral-tablets",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  22,
+        "name":  "V GANO Diabetes",
+        "slug":  "v-gano-diabetes",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  23,
+        "name":  "V GANO Herbal shampoo",
+        "slug":  "v-gano-herbal-shampoo",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  24,
+        "name":  "Nail Hair \u0026 Skin",
+        "slug":  "nail-hair-and-skin",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  25,
+        "name":  "V VEDA Intimate Cleanser",
+        "slug":  "v-veda-intimate-cleanser",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  26,
+        "name":  "V Gano Sakhi",
+        "slug":  "v-gano-sakhi",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  27,
+        "name":  "V Ora Green Breeze",
+        "slug":  "v-ora-green-breeze",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  28,
+        "name":  "V Ora Cream Soap",
+        "slug":  "v-ora-cream-soap",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  29,
+        "name":  "V Gano Ganoderma Scrub Soap",
+        "slug":  "v-gano-ganoderma-scrub-soap",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  30,
+        "name":  "V Gano Ganoderma Face Wash",
+        "slug":  "v-gano-ganoderma-face-wash",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  31,
+        "name":  "V Gano Extra",
+        "slug":  "v-gano-extra",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  32,
+        "name":  "Alpha Care",
+        "slug":  "alpha-care",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  33,
+        "name":  "V- Veda Thick and Grow",
+        "slug":  "v-veda-thick-and-grow",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  34,
+        "name":  "Relief Aura",
+        "slug":  "relief-aura",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  35,
+        "name":  "V VEDA Fluoride-free Formula Tooth gel",
+        "slug":  "v-veda-fluoride-free-formula-tooth-gel",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  36,
+        "name":  "V VEDA Moringa Capsules",
+        "slug":  "v-veda-moringa-capsules",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  37,
+        "name":  "NONI",
+        "slug":  "noni",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  38,
+        "name":  "V Gano Super Kid",
+        "slug":  "v-gano-super-kid",
+        "image":  null,
+        "images":  [
+
+                   ]
+    },
+    {
+        "id":  39,
+        "name":  "KLC",
+        "slug":  "klc",
+        "image":  null,
+        "images":  [
+
+                   ]
+    }
+]

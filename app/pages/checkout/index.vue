@@ -257,9 +257,129 @@ import { useCmsStore } from '~/stores/cms'
 
 const cmsStore = useCmsStore()
 
-const checkout = computed(
-  () => cmsStore.getPageSection('checkout', 'checkout')
-)
+// Fetch page sections from API during SSR/routing
+await useAsyncData('checkout-cms', () => cmsStore.fetchSectionsBySlug('checkout'))
+
+const checkout = computed(() => {
+  const sections = cmsStore.currentPage?.sections || []
+  
+  // Find checkout section by name or sectionKey
+  const section = sections.find(s => s.name === 'checkout' || s.sectionKey === 'checkout')
+  
+  const fallback = cmsStore.getPageSection('checkout', 'checkout') || {
+    accountStep: { step: "1 of 3", title: "Create Your Account", i: "G", googleButton: "Continue with Google", divider: "or", emailButton: "Sign Up with Email", emailPlaceholder: "Email", passwordPlaceholder: "Password", continueButton: "Continue", haveAccountText: "Have an account?", signInButton: "Sign In", completedMessage: "Account created successfully" },
+    learnSection: { title: "LEARN AS YOU VCN", description: "Your body is home to 38 trillion bacteria. 95% of these (36 Trillion) live in your gut.", checkboxText: "Guide me along the way with tips, information, and nerdy reads. Unsubscribe anytime." },
+    shippingStep: { step: "2 of 3", title: "Shipping Information", firstNamePlaceholder: "First Name", lastNamePlaceholder: "Last Name", addressPlaceholder: "Address", cityPlaceholder: "City", statePlaceholder: "State", zipPlaceholder: "ZIP", continueButton: "Continue to Payment", completedMessage: "Shipping information saved" },
+    paymentStep: { step: "3 of 3", title: "Payment", cardNumberPlaceholder: "Card Number", expiryPlaceholder: "MM/YY", cvvPlaceholder: "CVV", cardNamePlaceholder: "Name on Card", placeOrderButton: "Place Order -", completedMessage: "Payment information saved" },
+    cartSummary: { title: "Cart Summary", emptyCartMessage: "Your cart is empty", continueShopping: "Continue Shopping", promo: { title: "Promo Code", description: "We found you a better deal! Applied holiday30 (30% off) for higher savings.", placeholder: "Enter Promo Code", applyButton: "Apply" }, subtotal: "Subtotal", shipping: "Shipping", taxes: "Taxes", free: "Free", total: "Total", recurringNote: "Final tax and shipping is calculated after shipping step is complete. Recurring subtotal is" },
+    validation: { emailRequired: "Email is required", invalidEmail: "Please enter a valid email address", passwordRequired: "Password is required", passwordMinLength: "Password must be at least 8 characters", passwordFormat: "Password must contain at least one uppercase letter, one lowercase letter, and one number", firstNameRequired: "First name is required", firstNameMinLength: "First name must be at least 2 characters", lastNameRequired: "Last name is required", lastNameMinLength: "Last name must be at least 2 characters", addressRequired: "Address is required", addressInvalid: "Please enter a complete address", cityRequired: "City is required", stateRequired: "State is required", stateInvalid: "Please enter a valid state", zipRequired: "ZIP code is required", zipInvalid: "Please enter a valid 6-digit ZIP code", cardNumberRequired: "Card number is required", cardNumberInvalid: "Please enter a valid card number", expiryRequired: "Expiry date is required", expiryInvalid: "Please enter a valid expiry date (MM/YY)", cvvRequired: "CVV is required", cvvInvalid: "Please enter a valid CVV (3 or 4 digits)", cardNameRequired: "Name on card is required", cardNameInvalid: "Please enter the complete name as shown on card" },
+    alerts: { googleSignin: "Google sign-in would open here", orderSuccess: "Order placed successfully!" }
+  }
+
+  if (!section) {
+    return fallback
+  }
+
+  const items = section.items || []
+  const accountItem = items.find(item => item.name === 'account-step')
+  const learnItem = items.find(item => item.name === 'learn-section')
+  const shippingItem = items.find(item => item.name === 'shipping-step')
+  const paymentItem = items.find(item => item.name === 'payment-step')
+  const cartSummaryItem = items.find(item => item.name === 'cart-summary')
+  const validationItem = items.find(item => item.name === 'validation')
+  const alertsItem = items.find(item => item.name === 'alerts')
+
+  return {
+    accountStep: {
+      step: accountItem?.extraData?.step || fallback.accountStep.step,
+      title: accountItem?.title || fallback.accountStep.title,
+      i: accountItem?.extraData?.icon || fallback.accountStep.i,
+      googleButton: accountItem?.extraData?.googleButtonText || fallback.accountStep.googleButton,
+      divider: accountItem?.extraData?.dividerText || fallback.accountStep.divider,
+      emailButton: accountItem?.extraData?.emailButtonText || fallback.accountStep.emailButton,
+      emailPlaceholder: accountItem?.extraData?.emailPlaceholder || fallback.accountStep.emailPlaceholder,
+      passwordPlaceholder: accountItem?.extraData?.passwordPlaceholder || fallback.accountStep.passwordPlaceholder,
+      continueButton: accountItem?.extraData?.continueButtonText || fallback.accountStep.continueButton,
+      haveAccountText: accountItem?.extraData?.haveAccountText || fallback.accountStep.haveAccountText,
+      signInButton: accountItem?.extraData?.signInButtonText || fallback.accountStep.signInButton,
+      completedMessage: accountItem?.extraData?.completedMessage || fallback.accountStep.completedMessage
+    },
+    learnSection: {
+      title: learnItem?.title || fallback.learnSection.title,
+      description: learnItem?.description || fallback.learnSection.description,
+      checkboxText: learnItem?.extraData?.checkboxText || fallback.learnSection.checkboxText
+    },
+    shippingStep: {
+      step: shippingItem?.extraData?.step || fallback.shippingStep.step,
+      title: shippingItem?.title || fallback.shippingStep.title,
+      firstNamePlaceholder: shippingItem?.extraData?.firstNamePlaceholder || fallback.shippingStep.firstNamePlaceholder,
+      lastNamePlaceholder: shippingItem?.extraData?.lastNamePlaceholder || fallback.shippingStep.lastNamePlaceholder,
+      addressPlaceholder: shippingItem?.extraData?.addressPlaceholder || fallback.shippingStep.addressPlaceholder,
+      cityPlaceholder: shippingItem?.extraData?.cityPlaceholder || fallback.shippingStep.cityPlaceholder,
+      statePlaceholder: shippingItem?.extraData?.statePlaceholder || fallback.shippingStep.statePlaceholder,
+      zipPlaceholder: shippingItem?.extraData?.zipPlaceholder || fallback.shippingStep.zipPlaceholder,
+      continueButton: shippingItem?.extraData?.continueButtonText || fallback.shippingStep.continueButton,
+      completedMessage: shippingItem?.extraData?.completedMessage || fallback.shippingStep.completedMessage
+    },
+    paymentStep: {
+      step: paymentItem?.extraData?.step || fallback.paymentStep.step,
+      title: paymentItem?.title || fallback.paymentStep.title,
+      cardNumberPlaceholder: paymentItem?.extraData?.cardNumberPlaceholder || fallback.paymentStep.cardNumberPlaceholder,
+      expiryPlaceholder: paymentItem?.extraData?.expiryPlaceholder || fallback.paymentStep.expiryPlaceholder,
+      cvvPlaceholder: paymentItem?.extraData?.cvvPlaceholder || fallback.paymentStep.cvvPlaceholder,
+      cardNamePlaceholder: paymentItem?.extraData?.cardNamePlaceholder || fallback.paymentStep.cardNamePlaceholder,
+      placeOrderButton: paymentItem?.extraData?.placeOrderButtonText || fallback.paymentStep.placeOrderButton,
+      completedMessage: paymentItem?.extraData?.completedMessage || fallback.paymentStep.completedMessage
+    },
+    cartSummary: {
+      title: cartSummaryItem?.title || fallback.cartSummary.title,
+      emptyCartMessage: cartSummaryItem?.extraData?.emptyCartMessage || fallback.cartSummary.emptyCartMessage,
+      continueShopping: cartSummaryItem?.extraData?.continueShoppingText || fallback.cartSummary.continueShopping,
+      promo: {
+        title: cartSummaryItem?.extraData?.promo?.title || fallback.cartSummary.promo.title,
+        description: cartSummaryItem?.extraData?.promo?.description || fallback.cartSummary.promo.description,
+        placeholder: cartSummaryItem?.extraData?.promo?.placeholder || fallback.cartSummary.promo.placeholder,
+        applyButton: cartSummaryItem?.extraData?.promo?.applyButtonText || fallback.cartSummary.promo.applyButton
+      },
+      subtotal: cartSummaryItem?.extraData?.subtotalLabel || fallback.cartSummary.subtotal,
+      shipping: cartSummaryItem?.extraData?.shippingLabel || fallback.cartSummary.shipping,
+      taxes: cartSummaryItem?.extraData?.taxesLabel || fallback.cartSummary.taxes,
+      free: cartSummaryItem?.extraData?.freeLabel || fallback.cartSummary.free,
+      total: cartSummaryItem?.extraData?.totalLabel || fallback.cartSummary.total,
+      recurringNote: cartSummaryItem?.extraData?.recurringNote || fallback.cartSummary.recurringNote
+    },
+    validation: {
+      emailRequired: validationItem?.extraData?.emailRequired || fallback.validation.emailRequired,
+      invalidEmail: validationItem?.extraData?.invalidEmail || fallback.validation.invalidEmail,
+      passwordRequired: validationItem?.extraData?.passwordRequired || fallback.validation.passwordRequired,
+      passwordMinLength: validationItem?.extraData?.passwordMinLength || fallback.validation.passwordMinLength,
+      passwordFormat: validationItem?.extraData?.passwordFormat || fallback.validation.passwordFormat,
+      firstNameRequired: validationItem?.extraData?.firstNameRequired || fallback.validation.firstNameRequired,
+      firstNameMinLength: validationItem?.extraData?.firstNameMinLength || fallback.validation.firstNameMinLength,
+      lastNameRequired: validationItem?.extraData?.lastNameRequired || fallback.validation.lastNameRequired,
+      lastNameMinLength: validationItem?.extraData?.lastNameMinLength || fallback.validation.lastNameMinLength,
+      addressRequired: validationItem?.extraData?.addressRequired || fallback.validation.addressRequired,
+      addressInvalid: validationItem?.extraData?.addressInvalid || fallback.validation.addressInvalid,
+      cityRequired: validationItem?.extraData?.cityRequired || fallback.validation.cityRequired,
+      stateRequired: validationItem?.extraData?.stateRequired || fallback.validation.stateRequired,
+      stateInvalid: validationItem?.extraData?.stateInvalid || fallback.validation.stateInvalid,
+      zipRequired: validationItem?.extraData?.zipRequired || fallback.validation.zipRequired,
+      zipInvalid: validationItem?.extraData?.zipInvalid || fallback.validation.zipInvalid,
+      cardNumberRequired: validationItem?.extraData?.cardNumberRequired || fallback.validation.cardNumberRequired,
+      cardNumberInvalid: validationItem?.extraData?.cardNumberInvalid || fallback.validation.cardNumberInvalid,
+      expiryRequired: validationItem?.extraData?.expiryRequired || fallback.validation.expiryRequired,
+      expiryInvalid: validationItem?.extraData?.expiryInvalid || fallback.validation.expiryInvalid,
+      cvvRequired: validationItem?.extraData?.cvvRequired || fallback.validation.cvvRequired,
+      cvvInvalid: validationItem?.extraData?.cvvInvalid || fallback.validation.cvvInvalid,
+      cardNameRequired: validationItem?.extraData?.cardNameRequired || fallback.validation.cardNameRequired,
+      cardNameInvalid: validationItem?.extraData?.cardNameInvalid || fallback.validation.cardNameInvalid
+    },
+    alerts: {
+      googleSignin: alertsItem?.extraData?.googleSignin || fallback.alerts.googleSignin,
+      orderSuccess: alertsItem?.extraData?.orderSuccess || fallback.alerts.orderSuccess
+    }
+  }
+})
 
 const cartStore = useCartStore()
 const { initializeCart } = useAuthCart()

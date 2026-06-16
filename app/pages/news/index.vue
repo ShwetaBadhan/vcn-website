@@ -62,24 +62,77 @@
   </section>
 </template>
 <script setup>
-import { computed, ref } from "vue";
+import { ref, computed, watch } from 'vue'
 import { useCmsStore } from '~/stores/cms'
+import { useCmsApi } from '~/composables/useCmsApi'
 
 const cmsStore = useCmsStore()
-const newsData = computed(
-  () => cmsStore.getPageSection('about', 'news')
-)
+const { getCmsImageUrl } = useCmsApi()
+
+// Fetch page sections from API during SSR/routing
+await useAsyncData('news-cms', () => cmsStore.fetchSectionsBySlug('news'))
+
+const newsData = computed(() => {
+  const sections = cmsStore.currentPage?.sections || []
+  
+  // Find sections
+  const heroSec = sections.find(s => s.name === 'hero' || s.sectionKey === 'news-hero')
+  const mediaSec = sections.find(s => s.name === 'mediaCoverage' || s.sectionKey === 'news-media-coverage')
+  
+  // Fallbacks
+  const fallback = cmsStore.getPageSection('about', 'news')
+  
+  // Resolve hero image
+  const rawHeroImage = heroSec?.image || heroSec?.extraData?.image
+  let heroImage = ''
+  if (rawHeroImage) {
+    if (typeof rawHeroImage === 'string') {
+      heroImage = rawHeroImage
+    } else {
+      heroImage = getCmsImageUrl(rawHeroImage)
+    }
+  }
+
+  // Parse years and articles
+  const apiExtra = mediaSec?.extraData?._extraData || mediaSec?.extraData || {}
+  const years = apiExtra.years || fallback?.years || [2026, 2025, 2024, 2023]
+  const articles = apiExtra.articles || fallback?.articles || []
+
+  return {
+    hero: {
+      title: heroSec?.title || fallback?.hero?.title || 'VCN In News',
+      image: heroImage || fallback?.hero?.image || '/img/news/news.png'
+    },
+    mediaCoverage: {
+      title: mediaSec?.title || fallback?.mediaCoverage?.title || 'Media Coverage'
+    },
+    years,
+    articles
+  }
+})
+
 const activeYear = ref(2026)
+
+const yearsList = computed(() => newsData.value.years || [])
+
+// Watch for years loading and select the first active year
+watch(yearsList, (newYears) => {
+  if (newYears.length > 0 && (!activeYear.value || !newYears.includes(activeYear.value))) {
+    activeYear.value = newYears[0]
+  }
+}, { immediate: true })
+
 const filteredNews = computed(() =>
   newsData.value.articles?.filter(
-    item => item.year === activeYear.value
+    item => Number(item.year) === Number(activeYear.value)
   ) 
 )
+
 useHead({
   bodyAttrs: {
     class: "product-details-page",
   },
-});
+})
 </script>
 
 <style scoped>

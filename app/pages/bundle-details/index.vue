@@ -25,7 +25,7 @@
 
   <section class="video-section">
     <div class="section-header">
-      <h2 class="section-title">{{ bundles.videoSection.videos.title }}</h2>
+      <h2 class="section-title">{{ bundles.videoSection.title }}</h2>
     </div>
 
     <div class="video-grid">
@@ -224,12 +224,155 @@ import { ref, computed, onMounted } from 'vue'
 import { useProductStore } from '~/stores/product'
 import { useCartStore } from '~/stores/cart'
 import { useCmsStore } from '~/stores/cms'
+import { useCmsApi } from '~/composables/useCmsApi'
 
 const cmsStore = useCmsStore()
+const { getCmsImageUrl } = useCmsApi()
 
-const bundles = computed(
-  () => cmsStore.getPageSection('bundleDetails', 'bundleDetails')
-)
+// Fetch page sections from API during SSR/routing
+await useAsyncData('bundle-details-cms', () => cmsStore.fetchSectionsBySlug('bundle-details'))
+
+const bundles = computed(() => {
+  const sections = cmsStore.currentPage?.sections || []
+  
+  // Find sections by name/key
+  const heroSec = sections.find(s => s.name === 'heroSection' || s.sectionKey === 'bundle-details-hero')
+  const videoSec = sections.find(s => s.name === 'videoSection' || s.sectionKey === 'bundle-details-videos')
+  const benefitsSec = sections.find(s => s.name === 'bundleBenefitsSection' || s.sectionKey === 'bundle-benefits')
+  const productsSec = sections.find(s => s.name === 'productsSection' || s.sectionKey === 'bundle-products')
+  const knowMoreSec = sections.find(s => s.name === 'knowMoreSection' || s.sectionKey === 'know-more-acidity')
+  const careSec = sections.find(s => s.name === 'completeCareSection' || s.sectionKey === 'complete-care')
+  
+  const fallback = cmsStore.getPageSection('bundleDetails', 'bundleDetails') || {
+    heroSection: { title: '', description: '', buttonText: '', buttonLink: '', image: '', discountText: '' },
+    videoSection: { title: '', videos: [] },
+    bundleBenefitsSection: { heading: '', introText: '', readMoreText: '', bundleTitle: '', benefits: [] },
+    productsSection: { heading: '' },
+    knowMoreSection: { heading: '', accordions: [] },
+    completeCareSection: { heading: '', description: '', cards: [] }
+  }
+
+  // Resolve heroSection
+  let heroImage = fallback.heroSection.image
+  const rawHeroImage = heroSec?.extraData?.image || heroSec?.image
+  if (rawHeroImage) {
+    if (typeof rawHeroImage === 'string') {
+      heroImage = rawHeroImage
+    } else {
+      heroImage = getCmsImageUrl(rawHeroImage)
+    }
+  }
+
+  const resolvedHero = {
+    title: heroSec?.title || fallback.heroSection.title,
+    description: heroSec?.description || fallback.heroSection.description,
+    buttonText: heroSec?.buttonText || fallback.heroSection.buttonText,
+    buttonLink: heroSec?.buttonLink || fallback.heroSection.buttonLink,
+    image: heroImage,
+    discountText: heroSec?.extraData?._extraData?.discountText || heroSec?.extraData?.discountText || fallback.heroSection.discountText
+  }
+
+  // Resolve videoSection
+  const resolvedVideoTitle = videoSec?.title || fallback.videoSection.title
+  let resolvedVideos = fallback.videoSection.videos
+  if (videoSec?.items && videoSec.items.length > 0) {
+    resolvedVideos = videoSec.items.map(item => ({
+      videoId: item.extraData?.videoId || '',
+      title: item.title || '',
+      description: item.description || ''
+    }))
+  }
+
+  const resolvedVideoSection = {
+    title: resolvedVideoTitle,
+    videos: resolvedVideos
+  }
+
+  // Resolve bundleBenefitsSection
+  let resolvedBenefits = fallback.bundleBenefitsSection.benefits
+  if (benefitsSec?.items && benefitsSec.items.length > 0) {
+    resolvedBenefits = benefitsSec.items.map(item => {
+      let iconSrc = item.extraData?.icon || item.image || ''
+      if (iconSrc && typeof iconSrc !== 'string') {
+        iconSrc = getCmsImageUrl(iconSrc)
+      }
+      return {
+        number: item.extraData?.number || 1,
+        icon: iconSrc,
+        text: item.title || item.extraData?.text || ''
+      }
+    })
+  }
+
+  const resolvedBenefitsSection = {
+    heading: benefitsSec?.title || fallback.bundleBenefitsSection.heading,
+    introText: benefitsSec?.description || fallback.bundleBenefitsSection.introText,
+    readMoreText: benefitsSec?.extraData?._extraData?.readMoreText || benefitsSec?.extraData?.readMoreText || fallback.bundleBenefitsSection.readMoreText,
+    bundleTitle: benefitsSec?.extraData?._extraData?.bundleTitle || benefitsSec?.extraData?.bundleTitle || fallback.bundleBenefitsSection.bundleTitle,
+    benefits: resolvedBenefits
+  }
+
+  // Resolve productsSection
+  const resolvedProductsSection = {
+    heading: productsSec?.title || fallback.productsSection.heading
+  }
+
+  // Resolve knowMoreSection
+  let resolvedAccordions = fallback.knowMoreSection.accordions
+  if (knowMoreSec?.items && knowMoreSec.items.length > 0) {
+    resolvedAccordions = knowMoreSec.items.map(item => {
+      const fallbackAcc = fallback.knowMoreSection.accordions.find(a => a.id === item.name)
+      let accImage = item.extraData?.image || item.image || fallbackAcc?.image || ''
+      if (accImage && typeof accImage !== 'string') {
+        accImage = getCmsImageUrl(accImage)
+      }
+      return {
+        id: item.name || '',
+        title: item.title || '',
+        image: accImage,
+        items: item.extraData?.items || []
+      }
+    })
+  }
+
+  const resolvedKnowMoreSection = {
+    heading: knowMoreSec?.title || fallback.knowMoreSection.heading,
+    accordions: resolvedAccordions
+  }
+
+  // Resolve completeCareSection
+  let resolvedCards = fallback.completeCareSection.cards
+  if (careSec?.items && careSec.items.length > 0) {
+    resolvedCards = careSec.items.map((item, idx) => {
+      const fallbackCard = fallback.completeCareSection.cards[idx] || fallback.completeCareSection.cards.find(c => c.title === item.title)
+      let cardImage = item.extraData?.image || item.image || fallbackCard?.image || ''
+      if (cardImage && typeof cardImage !== 'string') {
+        cardImage = getCmsImageUrl(cardImage)
+      }
+      return {
+        title: item.title || '',
+        image: cardImage,
+        description: item.description || '',
+        highlight: item.extraData?.highlight || null
+      }
+    })
+  }
+
+  const resolvedCompleteCareSection = {
+    heading: careSec?.title || fallback.completeCareSection.heading,
+    description: careSec?.description || fallback.completeCareSection.description,
+    cards: resolvedCards
+  }
+
+  return {
+    heroSection: resolvedHero,
+    videoSection: resolvedVideoSection,
+    bundleBenefitsSection: resolvedBenefitsSection,
+    productsSection: resolvedProductsSection,
+    knowMoreSection: resolvedKnowMoreSection,
+    completeCareSection: resolvedCompleteCareSection
+  }
+})
 
 useHead({
   bodyAttrs: {

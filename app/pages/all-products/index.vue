@@ -33,9 +33,11 @@
 
             <!-- Content -->
             <div class="col-lg-8">
-              <span v-if="product.isNew" class="vcn-whole-body-product-label">NEW</span>
-              <span class="vcn-whole-body-product-label">{{ allProducts.labels.bestseller }}</span>
-              <span v-if="product.label" class="vcn-whole-body-product-label">{{ product.label }}</span>
+              <div class="vcn-whole-body-product-badges">
+                <span v-if="product.isNew" class="vcn-whole-body-badge vcn-whole-body-badge-new">NEW</span>
+                <span v-if="allProducts.labels.bestseller" class="vcn-whole-body-badge vcn-whole-body-badge-bestseller">{{ allProducts.labels.bestseller }}</span>
+                <span v-if="product.label" class="vcn-whole-body-badge vcn-whole-body-badge-new">{{ product.label }}</span>
+              </div>
               <h2 class="vcn-product-title">{{ product.name }}</h2>
               <p class="vcn-product-description"
                 v-html="product.description || 'Premium product for your wellness needs'">
@@ -80,12 +82,17 @@ import { useProductStore } from '~/stores/product'
 const cmsStore = useCmsStore()
 const { getCmsImageUrl } = useCmsApi()
 
-onMounted(async () => {
-  await cmsStore.fetchSectionsBySlug('products')
-})
+// Fetch page sections from API during SSR/routing
+await useAsyncData('products-cms', () => cmsStore.fetchSectionsBySlug('products'))
 
 const allProducts = computed(() => {
-  const section = cmsStore.getSectionByKey('products') || cmsStore.getSectionByKey('all-products')
+  const sections = cmsStore.currentPage?.sections || []
+  
+  // Find sections
+  const heroSec = sections.find(s => s.name === 'hero' || s.sectionKey === 'products-hero')
+  const sidebarSec = sections.find(s => s.name === 'sidebarCard' || s.sectionKey === 'products-sidebar-card')
+  const uiLabelsSec = sections.find(s => s.name === 'uiLabels' || s.sectionKey === 'products-ui-labels')
+  
   const fallback = cmsStore.getPageSection('products', 'products') || {
     hero: { title: '' },
     sidebarCard: { image: '', text: '' },
@@ -93,25 +100,35 @@ const allProducts = computed(() => {
     btn: { learnMore: '' }
   }
   
-  if (section) {
-    return {
-      hero: {
-        title: section.title || fallback.hero.title
-      },
-      sidebarCard: {
-        image: getCmsImageUrl(section.image || section.backgroundImage || section.mobileImage, fallback.sidebarCard.image),
-        text: section.description || section.subtitle || fallback.sidebarCard.text
-      },
-      labels: {
-        bestseller: section.config?.bestsellerLabel || section.extraData?.bestsellerLabel || fallback.labels.bestseller
-      },
-      btn: {
-        learnMore: section.buttonText || fallback.btn.learnMore
-      }
+  // Resolve sidebar image
+  const rawSidebarImage = sidebarSec?.image || sidebarSec?.extraData?.image
+  let sidebarImage = ''
+  if (rawSidebarImage) {
+    if (typeof rawSidebarImage === 'string') {
+      sidebarImage = rawSidebarImage
+    } else {
+      sidebarImage = getCmsImageUrl(rawSidebarImage)
     }
   }
-  
-  return fallback
+
+  // Parse extraData labels
+  const apiExtra = uiLabelsSec?.extraData?.extraData || uiLabelsSec?.extraData || {}
+
+  return {
+    hero: {
+      title: heroSec?.title || fallback.hero.title
+    },
+    sidebarCard: {
+      image: sidebarImage || fallback.sidebarCard.image,
+      text: sidebarSec?.description || fallback.sidebarCard.text
+    },
+    labels: {
+      bestseller: apiExtra.bestseller || fallback.labels.bestseller
+    },
+    btn: {
+      learnMore: apiExtra.learnMore || fallback.btn.learnMore
+    }
+  }
 })
 
 const productStore = useProductStore()
@@ -144,5 +161,49 @@ const handleImageError = (event, product) => {
 .vcn-breadcrumb-container {
   margin-top: -90px !important;
   padding-top: 85px !important;
+}
+
+.vcn-whole-body-product-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.vcn-whole-body-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.vcn-whole-body-badge-bestseller {
+  background-color: #c9f5a6;
+  color: #1e331e;
+}
+
+.vcn-whole-body-badge-new {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--vcn-white, #ffffff);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+  .vcn-whole-body-badge {
+    padding: 4px 8px;
+    font-size: 0.6rem;
+    letter-spacing: 0.3px;
+  }
+
+  .vcn-whole-body-product-badges {
+    margin-bottom: 10px;
+    gap: 4px;
+  }
 }
 </style>

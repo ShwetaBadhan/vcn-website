@@ -217,4 +217,34 @@ export default {
     height: calc(100vh - 90px) !important;
   }
 }
+
+/* Responsive 2-column layout for disease grid on mobile */
+@media (max-width: 576px) {
+  .disease-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .disease-card {
+    border-radius: 12px 12px 12px 0 !important;
+  }
+
+  .disease-card-body {
+    padding: 12px 8px !important;
+  }
+
+  .disease-title {
+    font-size: 1rem !important;
+    margin-bottom: 10px !important;
+  }
+
+  .learn-more-btn {
+    padding: 6px 14px !important;
+    font-size: 0.75rem !important;
+    border-radius: 20px !important;
+    display: inline-block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
 </style>

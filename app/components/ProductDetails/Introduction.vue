@@ -6,16 +6,14 @@
         <!-- MAIN PRODUCT IMAGE -->
         <div class="col-lg-7">
           <div class="product-img-wrapper">
-            <div class="product-image-cards"
-              style="max-height: 500px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-              <img id="mainImage" :src="displayImage" :alt="productName" @click="openProductPreview(displayImage)"
-                style="max-width: 100%; max-height: 500px; width: auto; height: auto; object-fit: contain;" />
+            <div class="product-image-cards">
+              <img id="mainImage" :src="displayImage" :alt="productName" @click="openProductPreview(displayImage)" />
             </div>
           </div>
 
           <!-- THUMBNAILS - Dynamic product images -->
-          <div class="row mt-3" v-if="allProductImages.length > 0">
-            <div v-for="(img, index) in allProductImages" :key="index" class="col-6 mb-3">
+          <div class="row g-2 mt-2" v-if="allProductImages.length > 0">
+            <div v-for="(img, index) in allProductImages" :key="index" class=" col-6 mb-2">
               <div class="product-gallery">
                 <div class="gallery-item" :class="{ 'active': selectedImage === img }">
                   <img class="thumb" :src="img" :alt="productName" @click="selectImage(img)" />
@@ -676,9 +674,42 @@ const openProductPreview = (imageSrc) => {
   font-weight: 600;
 }
 
+/* Main Product Image wrapper classes */
+.product-img-wrapper {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.product-image-cards {
+  max-height: 800px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 20px;
+  padding: 0px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+#mainImage {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain !important;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#mainImage:hover {
+  transform: scale(1.02);
+}
+
 /* Active thumbnail highlight */
 .gallery-item.active {
-  border: 2px solid var(--vcn-primary);
+  border: 2px solid var(--vcn-primary) !important;
   border-radius: 8px;
   overflow: hidden;
 }
@@ -688,40 +719,41 @@ const openProductPreview = (imageSrc) => {
 }
 
 .gallery-item {
-  display: block;
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.gallery-item .thumb {
-  cursor: pointer;
-  transition: opacity 0.2s;
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  object-fit: contain;
-  object-position: center;
-}
-
-@media (max-width: 768px) {
-  .gallery-item {
-    height: 150px;
-  }
-}
-
-.gallery-item:hover .thumb {
-  opacity: 0.8;
-}
-
-.gallery-item {
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   border-radius: 8px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto !important;
+  /* background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.05); */
+  padding: 2px;
+}
+
+.gallery-item .thumb,
+.thumb {
+  cursor: pointer;
+  transition: opacity 0.2s;
+  display: block;
+  width: 80% !important;
+  height: 70% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  object-position: center;
+}
+
+/* Avoid cropping on the booster/bundle card image */
+.bundle-image img {
+  width: 130px !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+
+.gallery-item:hover .thumb {
+  opacity: 0.8;
 }
 
 /* Dynamic Stars Display */
@@ -739,5 +771,107 @@ const openProductPreview = (imageSrc) => {
 
 .stars-display .star.filled {
   color: #ffc107;
+}
+
+/* Responsiveness adjustments for small viewports */
+@media (max-width: 991px) {
+  .product-detail-section {
+    padding-top: 60px !important;
+    padding-bottom: 40px !important;
+  }
+
+  .product-info {
+    margin-top: 30px;
+    padding: 24px !important;
+  }
+
+  .product-details-title {
+    font-size: 26px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-detail-section {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    padding-top: 40px !important;
+  }
+
+  .product-image-cards {
+    max-height: 600px;
+    padding: 0px;
+  }
+
+  .product-info {
+    padding: 20px !important;
+    border-radius: 12px !important;
+  }
+
+  .product-details-title {
+    font-size: 22px !important;
+    text-align: center;
+  }
+
+  .rating-section {
+    justify-content: center;
+  }
+
+  .price-section {
+    text-align: center;
+  }
+
+  .vcn-cobiotics-badge {
+    display: block;
+    width: fit-content;
+    margin: 10px auto !important;
+  }
+
+  .delivery-info {
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  .vcn-acc-header {
+    font-size: 16px !important;
+    padding: 14px 0 !important;
+  }
+
+  .vcn-benefits-list li {
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .product-image-cards {
+    max-height: 500px;
+    padding: 0px;
+    border-radius: 12px;
+  }
+
+  .variant-options {
+    justify-content: center;
+  }
+
+  .variant-btn {
+    min-width: 80px;
+    padding: 8px 10px;
+  }
+
+  .variant-sku {
+    font-size: 11px;
+  }
+
+  .variant-price {
+    font-size: 14px;
+  }
+
+  .btn-start-now {
+    padding: 12px 24px !important;
+    font-size: 14px !important;
+  }
+
+  .subscribe-text {
+    font-size: 0.9rem !important;
+  }
 }
 </style>

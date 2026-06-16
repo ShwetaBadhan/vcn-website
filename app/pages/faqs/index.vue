@@ -73,81 +73,52 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useCmsStore } from '~/stores/cms'
 
 const cmsStore = useCmsStore()
 
-const faq = computed(
-  () => cmsStore.getPageSection('about', 'faq')
-)
+// Fetch page sections from API during SSR/routing
+await useAsyncData('faqs-cms', () => cmsStore.fetchSectionsBySlug('faq'))
+
+const faq = computed(() => {
+  const sections = cmsStore.currentPage?.sections || []
+  
+  // Fallback
+  const fallback = cmsStore.getPageSection('about', 'faq')
+  
+  let parsedCategories = fallback?.categories || []
+  
+  if (sections.length > 0) {
+    parsedCategories = sections.map(sec => {
+      const questions = (sec.items || []).map(item => ({
+        question: item.extraData?.question || item.title || '',
+        answer: item.extraData?.answer || item.description || ''
+      }))
+      return {
+        title: sec.title || '',
+        questions
+      }
+    })
+  }
+
+  return {
+    title: fallback?.title || 'Frequently Asked Questions',
+    categories: parsedCategories
+  }
+})
 
 const activeIndex = ref(null)
 
 const toggleAccordion = (index) => {
-  activeIndex.value =
-    activeIndex.value === index ? null : index
+  activeIndex.value = activeIndex.value === index ? null : index
 }
+
 useHead({
   bodyAttrs: {
     class: "product-details-page",
   },
-});
-
-const faqCategories = ref([
-  {
-    title: 'About VCN Business',
-    questions: [
-      {
-        question: 'What is VCN?',
-        answer: "VCN is a direct selling company offering a wide range of wellness, healthcare, and personal care products inspired by natural ingredients and modern research."
-      },
-      {
-        question: 'How does the VCN business model work?',
-        answer: 'VCN operates on a direct selling model where individuals can become distributors, promote products, and earn income through sales and network growth.'
-      },
-    ]
-  },
-  {
-    title: 'Orders & Returns',
-    questions: [
-      {
-        question: 'How can I place an order?',
-        answer: 'Orders can be placed directly through the VCN website or via an authorized distributor.'
-      },
-      {
-        question: 'Can I modify or cancel my order?',
-        answer: 'Yes, orders can be modified or cancelled before they are processed or shipped. Please contact customer support promptly.'
-      },
-    ]
-  },
-  {
-    title: 'Shipping & Delivery',
-    questions: [
-      {
-        question: 'Do you offer nationwide delivery?',
-        answer: 'Yes, VCN delivers products across India through reliable logistics partners.'
-      },
-      {
-        question: 'Are there any shipping charges?',
-        answer: 'Shipping charges may vary based on order value and location. Offers may include free shipping on selected orders.'
-      }
-    ]
-  },
-  {
-    title: 'Loyalty Points (AmPoints)',
-    questions: [
-      {
-        question: 'What are AmPoints?',
-        answer: 'AmPoints are loyalty points earned on every purchase. 1 AmPoint is earned for every ₹100 spent, which can be redeemed for discounts on future purchases.'
-      },
-      {
-        question: 'How do I redeem AmPoints?',
-        answer: 'You can redeem AmPoints during checkout. 100 AmPoints = ₹100 discount. Points are valid for 12 months.'
-      }
-    ]
-  }
-])
+})
 </script>
 
 <style scoped>
