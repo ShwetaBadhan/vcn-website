@@ -159,7 +159,6 @@ onBeforeUnmount(() => {
 
 .vcn-testimonial-container {
   margin: 0 auto;
-  max-width: 1200px;
 }
 
 .vcn-testimonial-header {

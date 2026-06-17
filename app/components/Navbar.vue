@@ -220,7 +220,7 @@
               <NuxtLink class="nav-link" to="#" onclick="toggleAccordion(event, 'scienceAccordion')">Science</NuxtLink>
             </li>
             <li class="nav-item">
-              <NuxtLink class="nav-link" to="#" onclick="toggleAccordion(event, 'learnAccordion')">Learn</NuxtLink>
+              <NuxtLink class="nav-link" to="#" onclick="toggleAccordion(event, 'learnAccordion')">About</NuxtLink>
             </li>
             <li class="nav-item">
               <NuxtLink class="nav-link" to="login">Login</NuxtLink>

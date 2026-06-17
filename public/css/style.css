@@ -281,7 +281,6 @@ body.menu-open .custom-navbar-toggler .hamburger-line:nth-child(3) {
 
 /* Hover effect */
 .custom-navbar-toggler:hover .hamburger-line {
-  background: linear-gradient(135deg, #000 0%, #333 100%);
   height: 3px;
 }
 
@@ -385,7 +384,6 @@ body.menu-open .navbar-brand.d-lg-none {
   object-fit: contain;
   object-position: center;
   border-radius: 8px;
-  background-color: #f8f9fa;
 }
 
 .dropdown-footer {
@@ -832,7 +830,6 @@ body.checkout-page .navbar .desktop-nav .dropdown-footer {
     height: 70px;
     object-fit: contain;
     object-position: center;
-    background-color: #f8f9fa;
   }
 
   /* Right Section Container */
@@ -14476,3 +14473,33 @@ video {
 }
 
 /* Removed the lone border-radius property to fix CSS syntax errors */
+
+/* Mobile Shop Dropdown Pin & Scroll Fix */
+#shopAccordion.dropdown-content.show {
+  overflow-y: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  max-height: 50vh !important;
+}
+
+#shopAccordion .dropdown-menu-mobile {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  max-height: 50vh !important;
+  overflow: hidden !important;
+}
+
+#shopAccordion .mobile-products-scroll {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 5px;
+}
+
+#shopAccordion .dropdown-footer {
+  flex-shrink: 0 !important;
+  margin-top: auto !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 15px 0 5px 0 !important;
+}
