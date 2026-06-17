@@ -1,7 +1,24 @@
 export default defineNuxtPlugin((nuxtApp) => {
 
-  // Initialize hover effects after page loads
+  // Initialize hover effects and refresh animations after page loads
   nuxtApp.hook('page:finish', () => {
+    // Re-initialize or refresh AOS animations on page change
+    const refreshAOS = () => {
+      if (typeof window !== 'undefined' && window.AOS) {
+        window.AOS.init({
+          duration: 1000,
+          once: false,
+          easing: "ease-out",
+          mirror: true,
+        })
+        window.AOS.refresh()
+      } else {
+        setTimeout(refreshAOS, 100)
+      }
+    }
+    refreshAOS()
+    // Secondary refresh for layout settling
+    setTimeout(refreshAOS, 600)
 
     /* ===============================
        BOOTSTRAP DROPDOWN HOVER

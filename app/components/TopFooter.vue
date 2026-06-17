@@ -167,7 +167,7 @@ const handleSubscribe = async (event) => {
           <div class="vcn-footer-links-section">
             <div class="row">
               <!-- Products Column -->
-              <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+              <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">
                 <h4 class="vcn-footer-column-title">{{footer.columns[0].title}}</h4>
                 <ul class="vcn-footer-links-list">
                   <li v-for="link in footer.columns[0].links" :key="link.text">
@@ -177,7 +177,7 @@ const handleSubscribe = async (event) => {
               </div>
 
               <!-- About Column -->
-              <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+              <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">
                 <h4 class="vcn-footer-column-title">{{footer.columns[1].title}}</h4>
                 <ul class="vcn-footer-links-list">
                   <li v-for="link in footer.columns[1].links" :key="link.text">
@@ -202,7 +202,7 @@ const handleSubscribe = async (event) => {
               </div> -->
 
               <!-- Help Column -->
-              <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+              <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">
                 <h4 class="vcn-footer-column-title">{{ footer.columns[2].title }}</h4>
                 <ul class="vcn-footer-links-list">
                   <li v-for="link in footer.columns[2].links" :key="link.text">
@@ -216,7 +216,7 @@ const handleSubscribe = async (event) => {
               </div>
 
               <!-- Social Column -->
-              <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+              <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">
                 <h4 class="vcn-footer-column-title">{{ footer.columns[3].title }}</h4>
                 <ul class="vcn-footer-links-list">
                   <li v-for="link in footer.columns[3].links" :key="link.text">
@@ -233,7 +233,7 @@ const handleSubscribe = async (event) => {
               </div>
 
               <!-- Legal Column -->
-              <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+              <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">
                 <h4 class="vcn-footer-column-title">{{ footer.columns[4].title }}</h4>
                 <ul class="vcn-footer-links-list">
                   <li v-for="link in footer.columns[4].links" :key="link.text">

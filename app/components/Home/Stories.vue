@@ -61,10 +61,12 @@ const getGalleryImage = (index) => {
 }
 
 onMounted(() => {
-  const gallery = document.querySelector('.vcn-stories-media-gallery-track')
+  const parallaxWrapper = document.querySelector('.vcn-stories-media-gallery-parallax')
   const sectionEl = document.querySelector('.vcn-stories-section')
+  const galleryEl = document.querySelector('.vcn-stories-media-gallery')
+  const trackEl = document.querySelector('.vcn-stories-media-gallery-track')
 
-  if (!gallery || !sectionEl) return
+  if (!parallaxWrapper || !sectionEl) return
 
   let rafId = null
   let ticking = false
@@ -75,8 +77,9 @@ onMounted(() => {
 
     if (sectionRect.top < windowHeight && sectionRect.bottom > 0) {
       const sectionProgress = (windowHeight - sectionRect.top) / (windowHeight + sectionRect.height)
-      const moveAmount = sectionProgress * 800
-      gallery.style.transform = `translateX(-${moveAmount}px)`
+      const maxMove = window.innerWidth < 768 ? 650 : window.innerWidth < 992 ? 1000 : 1600
+      const moveAmount = sectionProgress * maxMove
+      parallaxWrapper.style.transform = `translateX(-${moveAmount}px)`
     }
     ticking = false
   }
@@ -91,15 +94,53 @@ onMounted(() => {
   window.addEventListener('scroll', handleScroll, { passive: true })
   updateGallery()
 
+  // Infinite scroll loop for horizontal swiping on mobile
+  if (galleryEl && trackEl) {
+    galleryEl.addEventListener('scroll', () => {
+      const halfWidth = trackEl.scrollWidth / 2
+      if (galleryEl.scrollLeft >= halfWidth) {
+        galleryEl.scrollLeft -= halfWidth
+      } else if (galleryEl.scrollLeft <= 0) {
+        galleryEl.scrollLeft += halfWidth
+      }
+    }, { passive: true })
+  }
+
   onUnmounted(() => {
     window.removeEventListener('scroll', handleScroll)
     if (rafId) cancelAnimationFrame(rafId)
+  })
+
+  // Refresh AOS when component mounts to make sure animations work
+  nextTick(() => {
+    const refreshAOS = () => {
+      if (typeof window !== 'undefined' && window.AOS) {
+        window.AOS.init({
+          duration: 1000,
+          once: false,
+          easing: "ease-out",
+          mirror: true,
+        })
+        window.AOS.refresh()
+      } else {
+        setTimeout(refreshAOS, 100)
+      }
+    }
+    refreshAOS()
+    // Secondary refresh for layout settling
+    setTimeout(refreshAOS, 600)
   })
 })
 
 watch(storyCards, () => {
   nextTick(() => {
     if (typeof window !== 'undefined' && window.AOS) {
+      window.AOS.init({
+        duration: 1000,
+        once: false,
+        easing: "ease-out",
+        mirror: true,
+      })
       window.AOS.refresh()
     }
   })
@@ -117,76 +158,80 @@ watch(storyCards, () => {
 
       <!-- Media Gallery (Images/Videos) -->
       <div class="vcn-stories-media-gallery">
-        <div class="vcn-stories-media-gallery-track">
-          <!-- Col 1 -->
-          <div class="vcn-stories-media-column col-tall">
-            <div class="vcn-stories-media-item item-circle">
-              <img :src="cleanImageUrl(getGalleryImage(0))" alt="Story 1" loading="lazy" />
-            </div>
-          </div>
+        <div class="vcn-stories-media-gallery-parallax">
+          <div class="vcn-stories-media-gallery-track">
+            <template v-for="loop in 2" :key="loop">
+              <!-- Col 1 -->
+              <div class="vcn-stories-media-column col-tall">
+                <div class="vcn-stories-media-item item-circle">
+                  <img :src="cleanImageUrl(getGalleryImage(0))" alt="Story 1" loading="lazy" />
+                </div>
+              </div>
 
-          <!-- Col 2 -->
-          <div class="vcn-stories-media-column col-tall">
-            <div class="vcn-stories-media-item item-tall-capsule">
-              <img :src="cleanImageUrl(getGalleryImage(1))" alt="Story 2" loading="lazy" />
-            </div>
-          </div>
-          <!-- Col 4 -->
-          <div class="vcn-stories-media-column col-stacked">
-            <div class="vcn-stories-media-item item-oval">
-              <img :src="cleanImageUrl(getGalleryImage(3))" alt="Story 4" loading="lazy" />
-            </div>
-            <div class="vcn-stories-text-card card-light">
-              <div class="card-header">
+              <!-- Col 2 -->
+              <div class="vcn-stories-media-column col-tall">
+                <div class="vcn-stories-media-item item-tall-capsule">
+                  <img :src="cleanImageUrl(getGalleryImage(1))" alt="Story 2" loading="lazy" />
+                </div>
               </div>
-              <div class="card-body">
-                <p class="card-quote">"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi voluptate
-                  distinctio beatae illum quas odit."</p>
+              <!-- Col 4 -->
+              <div class="vcn-stories-media-column col-stacked">
+                <div class="vcn-stories-media-item item-oval">
+                  <img :src="cleanImageUrl(getGalleryImage(3))" alt="Story 4" loading="lazy" />
+                </div>
+                <div class="vcn-stories-text-card card-light">
+                  <div class="card-header">
+                  </div>
+                  <div class="card-body">
+                    <p class="card-quote">"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi voluptate
+                      distinctio beatae illum quas odit."</p>
+                  </div>
+                  <div class="card-footer">
+                    <span class="card-logo fast-company">FAST COMPANY</span>
+                  </div>
+                </div>
               </div>
-              <div class="card-footer">
-                <span class="card-logo fast-company">FAST COMPANY</span>
-              </div>
-            </div>
-          </div>
 
-          <!-- Col 5 -->
-          <div class="vcn-stories-media-column col-tall">
-            <div class="vcn-stories-media-item item-tall-capsule">
-              <img :src="cleanImageUrl(getGalleryImage(4))" alt="Story 5" loading="lazy" />
-            </div>
-          </div>
+              <!-- Col 5 -->
+              <div class="vcn-stories-media-column col-tall">
+                <div class="vcn-stories-media-item item-tall-capsule">
+                  <img :src="cleanImageUrl(getGalleryImage(4))" alt="Story 5" loading="lazy" />
+                </div>
+              </div>
 
-          <!-- Col 6 -->
-          <div class="vcn-stories-media-column col-stacked">
-            <div class="vcn-stories-text-card card-dark">
-              <div class="card-header">
+              <!-- Col 6 -->
+              <div class="vcn-stories-media-column col-stacked">
+                <div class="vcn-stories-text-card card-dark">
+                  <div class="card-header">
+                  </div>
+                  <div class="card-body">
+                    <p class="card-quote">"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis dicta
+                      architecto dolores aut fuga magnam nobis sunt officiis rerum sequi."</p>
+                  </div>
+                  <div class="card-footer">
+                    <span class="card-logo forbes">Forbes</span>
+                  </div>
+                </div>
+                <div class="vcn-stories-media-item item-oval item-oval-lg">
+                  <img :src="cleanImageUrl(getGalleryImage(5))" alt="Story 6" loading="lazy" />
+                </div>
               </div>
-              <div class="card-body">
-                <p class="card-quote">"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis dicta
-                  architecto dolores aut fuga magnam nobis sunt officiis rerum sequi."</p>
-              </div>
-              <div class="card-footer">
-                <span class="card-logo forbes">Forbes</span>
-              </div>
-            </div>
-            <div class="vcn-stories-media-item item-oval">
-              <img :src="cleanImageUrl(getGalleryImage(5))" alt="Story 6" loading="lazy" />
-            </div>
-          </div>
 
-          <!-- Col 7 -->
-          <div class="vcn-stories-media-column col-stacked">
-            <div class="vcn-stories-media-item item-oval">
-              <img :src="cleanImageUrl(getGalleryImage(6))" alt="Story 7" loading="lazy" />
-            </div>
-            <div class="vcn-stories-text-card card-light">
-              <div class="card-header">
+              <!-- Col 7 -->
+              <div class="vcn-stories-media-column col-stacked">
+                <div class="vcn-stories-media-item item-oval">
+                  <img :src="cleanImageUrl(getGalleryImage(6))" alt="Story 7" loading="lazy" />
+                </div>
+                <div class="vcn-stories-text-card card-light">
+                  <div class="card-header">
+                  </div>
+                  <div class="card-body">
+                    <p class="card-quote">"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi voluptate distinctio
+                      beatae illum quas odit."</p>
+                  </div>
+                </div>
               </div>
-              <div class="card-body">
-                <p class="card-quote">"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi voluptate distinctio
-                  beatae illum quas odit."</p>
-              </div>
-            </div>
+            </template>
           </div>
         </div>
       </div>
@@ -201,7 +246,7 @@ watch(storyCards, () => {
               <p class="vcn-stories-card-description">
                 {{ card.description }}
               </p>
-              <a :href="card.buttonLink" class="vcn-stories-card-btn">{{ card.buttonText }}</a>
+              <NuxtLink :to="card.buttonLink" class="vcn-stories-card-btn">{{ card.buttonText }}</NuxtLink>
             </div>
           </div>
         </div>
@@ -240,12 +285,12 @@ watch(storyCards, () => {
   display: flex;
   margin-bottom: 50px;
   overflow-x: auto;
-  overflow-y: hidden;
   padding: 10px 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
   height: auto;
 }
+
 
 .vcn-stories-media-gallery::-webkit-scrollbar {
   display: none;
@@ -253,24 +298,29 @@ watch(storyCards, () => {
 
 .vcn-stories-media-gallery-track {
   display: flex;
-  gap: 24px;
+  gap: 36px;
   align-items: center;
+  will-change: transform;
+}
+
+.vcn-stories-media-gallery-parallax {
+  will-change: transform;
 }
 
 .vcn-stories-media-column {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 28px;
   flex-shrink: 0;
   justify-content: center;
 }
 
 .col-tall {
-  width: 290px;
+  width: 290px !important;
 }
 
 .col-stacked {
-  width: 320px;
+  width: 320px !important;
 }
 
 .vcn-stories-media-item {
@@ -286,10 +336,10 @@ watch(storyCards, () => {
 }
 
 .vcn-stories-media-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
 }
 
 .item-tall-capsule {
@@ -303,8 +353,12 @@ watch(storyCards, () => {
 }
 
 .item-oval {
-  height: 220px;
+  height: 290px;
   border-radius: 50%;
+}
+
+.item-oval-lg {
+  height: 240px;
 }
 
 .vcn-stories-media-item .card-body {
@@ -586,6 +640,7 @@ watch(storyCards, () => {
 }
 
 @media (max-width: 992px) {
+
   .vcn-stories-section {
     padding-left: 20px;
     padding-right: 20px;
@@ -602,36 +657,40 @@ watch(storyCards, () => {
   }
 
   .vcn-stories-media-gallery-track {
-    gap: 16px;
+    gap: 32px;
   }
 
   .vcn-stories-media-column {
-    gap: 16px;
+    gap: 24px;
   }
 
   .col-tall {
-    width: 220px;
+    width: 275px !important;
   }
 
   .col-stacked {
-    width: 250px;
+    width: 305px !important;
   }
 
   .item-tall-capsule {
-    height: 340px;
+    height: 450px;
     border-radius: 24px;
   }
 
   .item-circle {
-    height: 220px;
+    height: 330px;
   }
 
   .item-oval {
-    height: 162px;
+    height: 320px;
+  }
+
+  .item-oval-lg {
+    height: 300px;
   }
 
   .vcn-stories-text-card {
-    height: 162px;
+    height: 180px;
     border-radius: 18px;
     padding: 16px;
   }
@@ -696,36 +755,40 @@ watch(storyCards, () => {
   }
 
   .vcn-stories-media-gallery-track {
-    gap: 12px;
+    gap: 28px;
   }
 
   .vcn-stories-media-column {
-    gap: 12px;
+    gap: 22px;
   }
 
   .col-tall {
-    width: 180px;
+    width: 235px !important;
   }
 
   .col-stacked {
-    width: 210px;
+    width: 265px !important;
   }
 
   .item-tall-capsule {
-    height: 280px;
+    height: 390px;
     border-radius: 18px;
   }
 
   .item-circle {
-    height: 180px;
+    height: 290px;
   }
 
   .item-oval {
-    height: 134px;
+    height: 300px;
+  }
+
+  .item-oval-lg {
+    height: 280px;
   }
 
   .vcn-stories-text-card {
-    height: 134px;
+    height: 150px;
     border-radius: 14px;
     padding: 12px;
   }
@@ -790,42 +853,47 @@ watch(storyCards, () => {
   }
 
   .vcn-stories-media-gallery-track {
-    gap: 8px;
+    gap: 24px;
   }
 
   .vcn-stories-media-column {
-    gap: 8px;
+    gap: 20px;
   }
 
   .col-tall {
-    width: 140px;
+    width: 275px !important;
   }
 
   .col-stacked {
-    width: 160px;
+    width: 310px !important;
   }
 
   .item-tall-capsule {
-    height: 220px;
+    height: 420px;
+    width: 370;
     border-radius: 14px;
   }
 
   .item-circle {
-    height: 140px;
+    height: 250px;
   }
 
   .item-oval {
-    height: 106px;
+    height: 270px;
+  }
+
+  .item-oval-lg {
+    height: 260px;
   }
 
   .vcn-stories-text-card {
-    height: 106px;
+    height: 125px;
     border-radius: 10px;
     padding: 8px;
   }
 
   .card-quote {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     line-height: 1.25;
   }
 

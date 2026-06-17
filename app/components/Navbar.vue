@@ -4,18 +4,18 @@
     <nav class="navbar" :class="{ 'scrolled': isHydrated && isScrolled }" id="navbar">
       <div class="container-fluid">
         <!-- Mobile Layout -->
-        <a class="navbar-brand d-lg-none" href="/">
+        <NuxtLink class="navbar-brand d-lg-none" to="/">
           <img src="/img/logo/logo.png" alt="Logo" class="nav-img" />
-        </a>
+        </NuxtLink>
 
         <!-- HTML -->
         <div class="d-lg-none d-flex align-items-center">
-          <a href="/cart" class="mobile-cart">
+          <NuxtLink to="/cart" class="mobile-cart">
             Cart
             <ClientOnly>
               <span v-if="cartStore.cartCount > 0" class="cart-count-badge">{{ cartStore.cartCount }}</span>
             </ClientOnly>
-          </a>
+          </NuxtLink>
           <button class="custom-navbar-toggler" type="button" onclick="toggleMenu()" aria-label="Toggle menu">
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
@@ -25,45 +25,45 @@
 
         <!-- Desktop Layout -->
         <div class="nav-left-wrapper d-none d-lg-flex">
-          <a class="navbar-brand" href="/">
+          <NuxtLink class="navbar-brand" to="/">
             <img src="/img/logo/logo.png" alt="Logo" class="nav-img" />
-          </a>
+          </NuxtLink>
 
           <ul class="desktop-nav">
             <li class="nav-item dropdown">
-              <a class="nav-link" href="/all-products">Shop</a>
+              <NuxtLink class="nav-link" to="/all-products">Shop</NuxtLink>
               <ul class="dropdown-menu">
                 <!-- Scrollable product list -->
                 <li class="dropdown-products-scroll">
                   <ul class="dropdown-products-list">
                     <li v-for="product in shopProducts" :key="product.id">
-                      <a class="dropdown-item" :href="`/product-details/${product.slug}`">
+                      <NuxtLink class="dropdown-item" :to="`/product-details/${product.slug}`">
                         <img :src="productStore.getPrimaryImage(product)" :alt="product.name" />
                         {{ product.name }}
-                      </a>
+                      </NuxtLink>
                     </li>
                   </ul>
                 </li>
                 <!-- Fixed footer pinned at bottom -->
                 <li class="dropdown-footer">
-                  <a href="/all-products">Shop All Products →</a>
+                  <NuxtLink to="/all-products">Shop All Products →</NuxtLink>
                 </li>
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="#">Science</a>
+              <NuxtLink class="nav-link" to="#">Science</NuxtLink>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="/all-products">
+                  <NuxtLink class="dropdown-item" to="/all-products">
                     <img src="/img/drop-down/abput us.png" alt="Approach" />
                     <strong>V-GANO</strong>
-                  </a>
+                  </NuxtLink>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="/all-products">
+                  <NuxtLink class="dropdown-item" to="/all-products">
                     <img src="/img/image/vcnlabs.png" alt="VCN Labs" />
                     <strong>V-VEDA</strong>
-                  </a>
+                  </NuxtLink>
                 </li>
                 <!-- <li>
                   <a class="dropdown-item" href="/approach#scientists">
@@ -105,7 +105,7 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="/about-us">About Us</a>
+              <NuxtLink class="nav-link" to="/about-us">About Us</NuxtLink>
               <ul class="dropdown-menu">
                 <li>
                   <NuxtLink class="dropdown-item" to="/vcn-R-D">
@@ -125,13 +125,13 @@
         </div>
 
         <div class="nav-right-wrapper d-none d-lg-flex align-items-center">
-          <a href="#" class="login-link" @click.prevent="openForm">Login</a>
-          <a href="/cart" class="navbar-btn">
+          <NuxtLink to="#" class="login-link" @click.prevent="openForm">Login</NuxtLink>
+          <NuxtLink to="/cart" class="navbar-btn">
             Cart
             <ClientOnly>
               <span v-if="cartStore.cartCount > 0" class="cart-count-badge">{{ cartStore.cartCount }}</span>
             </ClientOnly>
-          </a>
+          </NuxtLink>
 
         </div>
 
@@ -167,7 +167,7 @@
                     </div>
                   </div>
 
-                  <a href="#" class="forgot-password">Forgot Password</a>
+                  <NuxtLink to="#" class="forgot-password">Forgot Password</NuxtLink>
 
                   <button type="submit" class="signin-btn">SIGN IN</button>
 
@@ -194,8 +194,8 @@
                   </div>
 
                   <div class="footer-links">
-                    <a href="/terms-conditions" @click="showRegistration = true">Terms & Conditions</a>
-                    <a href="/privacy-policy">Privacy</a>
+                    <NuxtLink to="/terms-conditions" @click="showRegistration = true">Terms & Conditions</NuxtLink>
+                    <NuxtLink to="/privacy-policy">Privacy</NuxtLink>
                   </div>
                 </form>
               </div>
@@ -214,16 +214,16 @@
 
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#" onclick="toggleAccordion(event, 'shopAccordion')">Shop</a>
+              <NuxtLink class="nav-link" to="#" onclick="toggleAccordion(event, 'shopAccordion')">Shop</NuxtLink>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" onclick="toggleAccordion(event, 'scienceAccordion')">Science</a>
+              <NuxtLink class="nav-link" to="#" onclick="toggleAccordion(event, 'scienceAccordion')">Science</NuxtLink>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" onclick="toggleAccordion(event, 'learnAccordion')">Learn</a>
+              <NuxtLink class="nav-link" to="#" onclick="toggleAccordion(event, 'learnAccordion')">Learn</NuxtLink>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="login">Login</a>
+              <NuxtLink class="nav-link" to="login">Login</NuxtLink>
             </li>
           </ul>
 
@@ -232,15 +232,15 @@
             <div class="dropdown-menu-mobile">
               <!-- Scrollable product list -->
               <div class="mobile-products-scroll">
-                <a v-for="product in shopProducts" :key="product.id" class="dropdown-item"
-                  :href="`/product-details/${product.slug}`">
+                <NuxtLink v-for="product in shopProducts" :key="product.id" class="dropdown-item"
+                  :to="`/product-details/${product.slug}`">
                   <img :src="productStore.getPrimaryImage(product)" :alt="product.name" />
                   {{ product.name }}
-                </a>
+                </NuxtLink>
               </div>
               <!-- Fixed footer pinned at bottom -->
               <div class="dropdown-footer">
-                <a href="/all-products">Shop All Products →</a>
+                <NuxtLink to="/all-products">Shop All Products →</NuxtLink>
               </div>
             </div>
           </div>
@@ -249,14 +249,14 @@
           <div class="dropdown-content" id="scienceAccordion">
             <div class="dropdown-menu-mobile">
 
-              <a class="dropdown-item" href="/our-leadership">
+              <NuxtLink class="dropdown-item" to="/our-leadership">
                 <img src="/img/drop-down/abput us.png" alt="VCN Labs" />
                 <strong>V-Gano</strong>
-              </a>
-              <a class="dropdown-item" href="/book-consultancy">
+              </NuxtLink>
+              <NuxtLink class="dropdown-item" to="/book-consultancy">
                 <img src="/img/image/vcnlabs.png" alt="VCN Labs" />
                 <strong>V-Veda</strong>
-              </a>
+              </NuxtLink>
 
             </div>
           </div>
@@ -264,14 +264,14 @@
           <!-- Learn Accordion -->
           <div class="dropdown-content" id="learnAccordion">
             <div class="dropdown-menu-mobile">
-              <a class="dropdown-item" href="/blog">
+              <NuxtLink class="dropdown-item" to="/blog">
                 <img src="/img/drop-down/blog.png" alt="Research" />
                 Blogs
-              </a>
-              <a class="dropdown-item" href="/contact-us">
+              </NuxtLink>
+              <NuxtLink class="dropdown-item" to="/contact-us">
                 <img src="/img/drop-down/sustainability.png" alt="Research" />
                 Contact Us
-              </a>
+              </NuxtLink>
             </div>
           </div>
         </div>

@@ -38,9 +38,9 @@ const bgImage = computed(() => getCmsImageUrl(section.value?.backgroundImage, ''
             <p class="mid-cta-text mb-4" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
               {{ text }}
             </p>
-            <a :href="ctaLink" class="view-more-btn" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="500">
+            <NuxtLink :to="ctaLink" class="view-more-btn" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="500">
               {{ ctaText }}
-            </a>
+            </NuxtLink>
           </div>
         </div>
 

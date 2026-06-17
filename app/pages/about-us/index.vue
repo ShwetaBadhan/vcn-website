@@ -172,7 +172,7 @@ useHead({
                   <div
                     v-for="(item, index) in moreAbout.items"
                     :key="index"
-                    class="col-md-3 col-sm-6"
+                    class="col-6 col-md-3"
                   >
                     <div class="info-card">
                       <div class="d-flex justify-content-between align-items-start">
@@ -212,7 +212,7 @@ useHead({
                   <div
                     v-for="(card, index) in moreAbout.ctaCards"
                     :key="index"
-                    class="col-md-5 col-sm-10"
+                    class="col-6 col-md-5"
                   >
                     <div class="bottom-card">
 

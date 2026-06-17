@@ -33,7 +33,7 @@ const hero = computed(() =>
     <div class="hero-content">
       <h1>{{ hero.title }}</h1>
       <p>{{ hero.description }}</p>
-      <a :href="hero.buttonLink" class="hero-btn">{{ hero.buttonText }}</a>
+      <NuxtLink :to="hero.buttonLink" class="hero-btn">{{ hero.buttonText }}</NuxtLink>
     </div>
   </section>
 </template>

@@ -62,13 +62,13 @@ class="vcn-human-main-image"></video>
           </div>
           <div class="disease-card-body">
             <h3 class="disease-title">{{ card.title }}</h3>
-            <a :href="card.link" class="learn-more-btn">LEARN MORE</a>
+            <NuxtLink :to="card.link" class="learn-more-btn">LEARN MORE</NuxtLink>
           </div>
         </div>
       </div>
 
       <div class="view-more-section">
-        <a href="/all-disease-bundles" class="view-more-btn">VIEW MORE</a>
+        <NuxtLink to="/all-disease-bundles" class="view-more-btn">VIEW MORE</NuxtLink>
       </div>
     </div>
   </section>

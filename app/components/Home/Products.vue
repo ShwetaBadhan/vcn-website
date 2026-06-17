@@ -15,9 +15,9 @@
                     </p>
                 </div>
                 <div class="vcn-whole-body-btn-wrapper d-none d-md-block">
-                    <a :href="productsSection.header.buttonLink" class="vcn-whole-body-view-link">
+                    <NuxtLink :to="productsSection.header.buttonLink" class="vcn-whole-body-view-link">
                         {{ productsSection.header.buttonText }} <span class="vcn-arrow">→</span>
-                    </a>
+                    </NuxtLink>
                 </div>
             </div>
 
@@ -52,8 +52,8 @@
                                             <source :src="productsSection.productCard.video" type="video/mp4" />
                                         </video>
                                     </div>
-                                    <a :href="`/product-details/${product.slug}`"
-                                        class="vcn-whole-body-shop-btn">{{ productsSection.productCard.shopButtonText }}</a>
+                                    <NuxtLink :to="`/product-details/${product.slug}`"
+                                        class="vcn-whole-body-shop-btn">{{ productsSection.productCard.shopButtonText }}</NuxtLink>
                                 </div>
                             </NuxtLink>
                         </div>
@@ -63,9 +63,9 @@
 
             <!-- Mobile Shop All Link (visible on small screens only) -->
             <div class="vcn-whole-body-mobile-btn-wrapper d-flex d-md-none">
-                <a :href="productsSection.header.buttonLink" class="vcn-whole-body-view-link">
+                <NuxtLink :to="productsSection.header.buttonLink" class="vcn-whole-body-view-link">
                     {{ productsSection.header.buttonText }} <span class="vcn-arrow">→</span>
-                </a>
+                </NuxtLink>
             </div>
         </div>
     </section>

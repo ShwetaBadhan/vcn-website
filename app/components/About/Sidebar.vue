@@ -55,7 +55,7 @@ onUnmounted(() => {
 
     <!-- Mobile Dropdown (visible on mobile only) -->
     <div class="mobile-sidebar-dropdown d-md-none">
-      <div class="dropdown-header" @click.stop="toggleDropdown">
+      <div class="sidebar-dropdown-header" @click.stop="toggleDropdown">
         <span class="active-title-text">{{ activeItem.title }}</span>
         <svg class="chevron-icon" :class="{ open: isOpen }" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="6 9 12 15 18 9"></polyline>
@@ -63,11 +63,11 @@ onUnmounted(() => {
       </div>
       
       <transition name="fade-slide">
-        <div v-if="isOpen" class="dropdown-list">
+        <div v-if="isOpen" class="sidebar-dropdown-list">
           <NuxtLink 
             v-for="item in sidebar" 
             :key="item.link" 
-            class="dropdown-item" 
+            class="sidebar-dropdown-item" 
             :to="item.link" 
             active-class="active"
             @click="closeDropdown"
@@ -97,7 +97,7 @@ onUnmounted(() => {
   z-index: 100;
 }
 
-.dropdown-header {
+.sidebar-dropdown-header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -126,7 +126,7 @@ onUnmounted(() => {
   transform: rotate(180deg);
 }
 
-.dropdown-list {
+.sidebar-dropdown-list {
   position: absolute;
   top: 100%;
   left: 0;
@@ -139,29 +139,29 @@ onUnmounted(() => {
   flex-direction: column;
 }
 
-.dropdown-item {
+.sidebar-dropdown-item {
   padding: 14px 24px;
   font-size: 1rem;
   font-weight: 500;
-  color: #4b5563;
+  color: #4b5563 !important;
   text-decoration: none;
   border-bottom: 1px solid #f3f4f6;
   transition: background-color 0.2s ease, color 0.2s ease;
   text-align: left;
 }
 
-.dropdown-item:last-child {
+.sidebar-dropdown-item:last-child {
   border-bottom: none;
 }
 
-.dropdown-item:hover {
+.sidebar-dropdown-item:hover {
   background-color: #f9fafb;
-  color: #111827;
+  color: #111827 !important;
 }
 
-.dropdown-item.active {
-  background-color: #eff6ff; /* light blue/purple active background from photo */
-  color: #1e40af; /* active blue/indigo color */
+.sidebar-dropdown-item.active {
+  background-color: #eff6ff !important;
+  color: #1e40af !important;
   font-weight: 600;
 }
 
