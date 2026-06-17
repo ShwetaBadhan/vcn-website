@@ -49,16 +49,11 @@ useHead({
             </section>
 
             <!-- TIMELINE YEARS -->
-            <section class="timeline-nav">
+            <section class="timeline-nav timeline-content">
               <button v-for="year in years" :key="year" @click="activeYear = year"
                 :class="{ active: activeYear === year }">
                 {{ year }}
               </button>
-            </section>
-
-            <!-- MILESTONE CONTENT -->
-
-            <section class="timeline-content">
               <div class="milestone-card">
                 <div class="milestone-info">
                   <h2>{{ activeYear }}</h2>

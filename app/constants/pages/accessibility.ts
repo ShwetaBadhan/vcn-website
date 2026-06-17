@@ -7,4 +7,4 @@ export const ACCESSIBILITY_PAGE_DATA = {
             `We continuously work to improve accessibility features and welcome feedback to enhance user experience. If you encounter any difficulty while accessing our website or need assistance, please feel free to contact us—we are here to help.`
         ]
     }
-}
+}   

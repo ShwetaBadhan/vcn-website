@@ -216,20 +216,91 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useCmsStore } from '~/stores/cms'
+import { useCmsApi } from '~/composables/useCmsApi'
 
 const cmsStore = useCmsStore()
+const { getCmsImageUrl } = useCmsApi()
 
-const blogDetails = computed(
-  () => cmsStore.getPageSection('blogDetails', 'blogdetails')
-)
+onMounted(async () => {
+  await cmsStore.fetchSectionsBySlug('blog-details')
+})
+
+const blogDetails = computed(() => {
+  const fallback = cmsStore.getPageSection('blogDetails', 'blogdetails') || {
+    breadcrumb: { items: [] },
+    hero: { title: '', author: '', date: '', readTime: '', image: '' },
+    mainContent: {
+      keyTakeaways: { title: '', items: [] },
+      articleBody: {
+        whatIsFattyLiver: { heading: '', paragraphs: [] },
+        typesOfFattyLiver: { heading: '', description: '', items: [] },
+        causes: { heading: '', description: '', items: [] },
+        symptoms: { heading: '', description: '', items: [] },
+        warningBox: { title: '', description: '' },
+        diagnosis: { heading: '', description: '', items: [] }
+      },
+      shareSection: { label: '' }
+    },
+    sidebar: {
+      quickActions: { tocButton: '', productsButton: '' },
+      heading: '',
+      recentPosts: [],
+      newsletter: { title: '', description: '', placeholder: '', buttonText: '' }
+    }
+  }
+
+  const heroSection = cmsStore.getSectionByKey('blog-details-hero') || cmsStore.getSectionByKey('hero')
+  const contentSection = cmsStore.getSectionByKey('blog-details-content') || cmsStore.getSectionByKey('content')
+  const sidebarSection = cmsStore.getSectionByKey('blog-details-sidebar') || cmsStore.getSectionByKey('sidebar')
+  const generalSection = cmsStore.getSectionByKey('blog-details')
+
+  if (!heroSection && !contentSection && !sidebarSection && !generalSection) {
+    return fallback
+  }
+
+  const result = { ...fallback }
+
+  if (heroSection) {
+    result.hero = {
+      title: heroSection.title || fallback.hero.title,
+      author: heroSection.config?.author || heroSection.extraData?.author || fallback.hero.author,
+      date: heroSection.config?.date || heroSection.extraData?.date || fallback.hero.date,
+      readTime: heroSection.config?.readTime || heroSection.extraData?.readTime || fallback.hero.readTime,
+      image: getCmsImageUrl(heroSection.image || heroSection.backgroundImage, fallback.hero.image)
+    }
+  }
+
+  if (contentSection || generalSection) {
+    const section = contentSection || generalSection
+    if (section.title) {
+      result.hero.title = section.title
+    }
+  }
+
+  if (sidebarSection) {
+    result.sidebar = {
+      ...fallback.sidebar,
+      heading: sidebarSection.title || fallback.sidebar.heading,
+      recentPosts: sidebarSection.items && sidebarSection.items.length > 0
+        ? sidebarSection.items.map(item => ({
+            title: item.title || '',
+            date: item.subtitle || item.extraData?.date || '',
+            image: getCmsImageUrl(item.image, '')
+          }))
+        : fallback.sidebar.recentPosts
+    }
+  }
+
+  return result
+})
 
 useHead({
   bodyAttrs: {
     class: "product-details-page",
   },
-});
+})
 // const recentPosts = ref([
 //   {
 //     title: 'Is Grade 2 Fatty Liver Dangerous?',

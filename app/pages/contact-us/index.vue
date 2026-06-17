@@ -389,626 +389,72 @@
             <div class="mb-4">
 
               <h2 style="font-size: 20px; font-weight: 700; margin-top: 10px; color: #1a1a1a;">
-                Falcon Marketing Pvt.Ltd
+                {{ contact.company.name }}
               </h2>
-              <p style="color: #777; font-size: 13px;">VCN is the Brand Name of Falcon Marketing Pvt. Limited
-                established in 2009 is a fast-growing direct selling company. </p>
+              <p style="color: #777; font-size: 13px;">{{ contact.company.description }} </p>
             </div>
 
             <!-- Pill Buttons -->
             <div class="office-pills-wrapper">
-              <button class="office-pill-btn" :class="{ active: activeTab === 'jalandhar' }"
-                @click="activeTab = 'jalandhar'">
-                <span class="pill-dot"></span> Jalandhar
-              </button>
-              <button class="office-pill-btn" :class="{ active: activeTab === 'phagwara' }"
-                @click="activeTab = 'phagwara'">
-                <span class="pill-dot"></span> Phagwara
-              </button>
-              <button class="office-pill-btn" :class="{ active: activeTab === 'ludhiana' }"
-                @click="activeTab = 'ludhiana'">
-                <span class="pill-dot"></span> Ludhiana
-              </button>
-              <button class="office-pill-btn" :class="{ active: activeTab === 'khanna' }" @click="activeTab = 'khanna'">
-                <span class="pill-dot"></span> Khanna
-              </button>
-              <button class="office-pill-btn" :class="{ active: activeTab === 'moga' }" @click="activeTab = 'moga'">
-                <span class="pill-dot"></span> Moga
-              </button>
-              <button class="office-pill-btn" :class="{ active: activeTab === 'hoshiarpur' }"
-                @click="activeTab = 'hoshiarpur'">
-                <span class="pill-dot"></span> Hoshiarpur
-              </button>
-              <button class="office-pill-btn" :class="{ active: activeTab === 'batala' }" @click="activeTab = 'batala'">
-                <span class="pill-dot"></span> Batala
-              </button>
-              <button class="office-pill-btn" :class="{ active: activeTab === 'dasuya' }" @click="activeTab = 'dasuya'">
-                <span class="pill-dot"></span> Dasuya
-              </button>
-              <button class="office-pill-btn" :class="{ active: activeTab === 'delhi' }" @click="activeTab = 'delhi'">
-                <span class="pill-dot"></span> New Delhi
-              </button>
-              <button class="office-pill-btn" :class="{ active: activeTab === 'palampur' }"
-                @click="activeTab = 'palampur'">
-                <span class="pill-dot"></span> Palampur
+              <button v-for="office in contact.offices" :key="office.id" class="office-pill-btn"
+                :class="{ active: activeTab === office.id }" @click="activeTab = office.id">
+                <span class="pill-dot"></span>
+                {{ office.city }}
               </button>
             </div>
 
             <!-- ✅ jalandhar — v-show only, no extra class -->
-            <div v-show="activeTab === 'jalandhar'">
-              <div class="office-img-wrapper">
-                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
-                <span class="office-type-badge badge-head">🏢 Head Office</span>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Address</div>
-                  <p class="office-detail-value">VCN Tower, 37/2 Cool Road , Jalandhar,Punjab,INDIA-144001</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.333 9.192a1.745 1.745 0 0 1-.459-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Phone</div>
-                  <p class="office-detail-value">+91-181-4010154 M:+919876453626</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.114l4.758-2.876L1 5.383v5.731z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Email</div>
-                  <p class="office-detail-value">info@vcnhealth.com</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Working Hours</div>
-                  <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
-                </div>
-              </div>
-              <a href="https://maps.app.goo.gl/vmrjPjwU42DTeKn56" target="_blank" class="office-maps-btn">
-                📍 View on Google Maps →
-              </a>
-            </div>
 
-            <!-- ✅ phagwara -->
-            <div v-show="activeTab === 'phagwara'">
+            <div v-if="activeOffice">
               <div class="office-img-wrapper">
-                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
-                <span class="office-type-badge badge-regional">🏢 Regional Office</span>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Address</div>
-                  <p class="office-detail-value">VCN Shop No.24/25, Block C. PPR Village, Chandigarh Express way</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.333 9.192a1.745 1.745 0 0 1-.459-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Phone</div>
-                  <p class="office-detail-value">+91 22 3456 7890</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.114l4.758-2.876L1 5.383v5.731z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Email</div>
-                  <p class="office-detail-value">mumbai@vcnhealth.com</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Working Hours</div>
-                  <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
-                </div>
-              </div>
-              <a href="https://maps.app.goo.gl/NW8HrZd9rnr7NNmE9" target="_blank" class="office-maps-btn">
-                📍 View on Google Maps →
-              </a>
-            </div>
+                <img :src="activeOffice.image" :alt="activeOffice.city" />
 
-            <!-- ✅ ludhiana -->
-            <div v-show="activeTab === 'ludhiana'">
-              <div class="office-img-wrapper">
-                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
-                <span class="office-type-badge badge-warehouse">🏢 Regional Office</span>
+                <span class="office-type-badge" :class="activeOffice.badgeClass">
+                  🏢 {{ activeOffice.type }}
+                </span>
               </div>
+
               <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                  </svg>
-                </div>
                 <div>
-                  <div class="office-detail-label">Address</div>
-                  <p class="office-detail-value">SCO No. 107, Lower Ground Floor, Phase-1, Urban Estate Dugri,
-                    Ludhiana-141002,Punjab</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.333 9.192a1.745 1.745 0 0 1-.459-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Phone</div>
-                  <p class="office-detail-value">+91 80 4567 8901</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.114l4.758-2.876L1 5.383v5.731z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Email</div>
-                  <p class="office-detail-value">bangalore@vcnhealth.com</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Working Hours</div>
-                  <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
-                </div>
-              </div>
-              <a href="https://maps.app.goo.gl/RdNP2Bs3yrySrywQ7" target="_blank" class="office-maps-btn">
-                📍 View on Google Maps →
-              </a>
-            </div>
-            <!-- ✅ khanna -->
-            <div v-show="activeTab === 'khanna'">
-              <div class="office-img-wrapper">
-                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
-                <span class="office-type-badge badge-warehouse">🏢 Regional Office</span>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Address</div>
-                  <p class="office-detail-value">Office No. 03, 2nd Floor, Suryaa Tower , Near Main Bus Stand, G.T.
-                    Road, Khanna-141401 (Punjab)</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.333 9.192a1.745 1.745 0 0 1-.459-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Phone</div>
-                  <p class="office-detail-value">+91 80 4567 8901</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.114l4.758-2.876L1 5.383v5.731z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Email</div>
-                  <p class="office-detail-value">bangalore@vcnhealth.com</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Working Hours</div>
-                  <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
-                </div>
-              </div>
-              <a href="https://maps.app.goo.gl/VPj6nXCdQq9AN2GEA" target="_blank" class="office-maps-btn">
-                📍 View on Google Maps →
-              </a>
-            </div>
-            <!-- ✅ moga -->
-            <div v-show="activeTab === 'moga'">
-              <div class="office-img-wrapper">
-                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
-                <span class="office-type-badge badge-warehouse">🏢 Regional Office</span>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Address</div>
-                  <p class="office-detail-value">26 SCF, Above Axis Bank, G.T. Road, Moga (Punjab)</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.333 9.192a1.745 1.745 0 0 1-.459-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Phone</div>
-                  <p class="office-detail-value">+91 80 4567 8901</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.114l4.758-2.876L1 5.383v5.731z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Email</div>
-                  <p class="office-detail-value">bangalore@vcnhealth.com</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Working Hours</div>
-                  <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
-                </div>
-              </div>
-              <a href="https://maps.app.goo.gl/VPj6nXCdQq9AN2GEA" target="_blank" class="office-maps-btn">
-                📍 View on Google Maps →
-              </a>
-            </div>
-            <!-- ✅ HOSHIARPUR -->
-            <div v-show="activeTab === 'hoshiarpur'">
-              <div class="office-img-wrapper">
-                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
-                <span class="office-type-badge badge-warehouse">🏢 Regional Office</span>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Address</div>
-                  <p class="office-detail-value">Universal Tower, Opp. I.T.I. Poly Tech. College, Above Coffee Cafe Day,
-                    Jalandhar Road, Hoshiarpur (Punjab)</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.333 9.192a1.745 1.745 0 0 1-.459-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Phone</div>
-                  <p class="office-detail-value">+91 80 4567 8901</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.114l4.758-2.876L1 5.383v5.731z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Email</div>
-                  <p class="office-detail-value">bangalore@vcnhealth.com</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Working Hours</div>
-                  <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
-                </div>
-              </div>
-              <a href="https://maps.app.goo.gl/VPj6nXCdQq9AN2GEA" target="_blank" class="office-maps-btn">
-                📍 View on Google Maps →
-              </a>
-            </div>
-            <!-- ✅ Batala -->
-            <div v-show="activeTab === 'batala'">
-              <div class="office-img-wrapper">
-                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
-                <span class="office-type-badge badge-warehouse">🏢 Regional Office</span>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Address</div>
-                  <p class="office-detail-value">Ground Floor, Jalandhar road, Near Guru Nanak Dev Academy, Batala</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.333 9.192a1.745 1.745 0 0 1-.459-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Phone</div>
-                  <p class="office-detail-value">+91 80 4567 8901</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.114l4.758-2.876L1 5.383v5.731z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Email</div>
-                  <p class="office-detail-value">bangalore@vcnhealth.com</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Working Hours</div>
-                  <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
-                </div>
-              </div>
-              <a href="https://maps.app.goo.gl/VPj6nXCdQq9AN2GEA" target="_blank" class="office-maps-btn">
-                📍 View on Google Maps →
-              </a>
-            </div>
-            <!-- ✅ Batala -->
-            <div v-show="activeTab === 'dasuya'">
-              <div class="office-img-wrapper">
-                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
-                <span class="office-type-badge badge-warehouse">🏢 Regional Office</span>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Address</div>
-                  <p class="office-detail-value">Chopra Complex, Hoshiarpur Road, Dasuya(Punjab)</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.333 9.192a1.745 1.745 0 0 1-.459-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Phone</div>
-                  <p class="office-detail-value">+91 80 4567 8901</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.114l4.758-2.876L1 5.383v5.731z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Email</div>
-                  <p class="office-detail-value">bangalore@vcnhealth.com</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Working Hours</div>
-                  <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
-                </div>
-              </div>
-              <a href="https://maps.app.goo.gl/VPj6nXCdQq9AN2GEA" target="_blank" class="office-maps-btn">
-                📍 View on Google Maps →
-              </a>
-            </div>
-            <!-- ✅ delhi -->
-            <div v-show="activeTab === 'delhi'">
-              <div class="office-img-wrapper">
-                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
-                <span class="office-type-badge badge-warehouse">🏢 Regional Office</span>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Address</div>
-                  <p class="office-detail-value">C - 364 Basement, Zensity Salon Building, Oxford School Line, Near
-                    Amritsari Kulcha ( Budhella ) Vikas Puri, New Delhi110059</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.333 9.192a1.745 1.745 0 0 1-.459-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Phone</div>
-                  <p class="office-detail-value">+91 80 4567 8901</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.114l4.758-2.876L1 5.383v5.731z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Email</div>
-                  <p class="office-detail-value">bangalore@vcnhealth.com</p>
-                </div>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Working Hours</div>
-                  <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
-                </div>
-              </div>
-              <a href="https://maps.app.goo.gl/VPj6nXCdQq9AN2GEA" target="_blank" class="office-maps-btn">
-                📍 View on Google Maps →
-              </a>
-            </div>
-            <!-- ✅ delhi -->
-            <div v-show="activeTab === 'palampur'">
-              <div class="office-img-wrapper">
-                <img src="/img/bg/contact-us.png" alt="New Delhi Office" />
-                <span class="office-type-badge badge-warehouse">🏢 Regional Office</span>
-              </div>
-              <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="office-detail-label">Address</div>
-                  <p class="office-detail-value">Ward No.2 , Near ICICI Bank , Baijnath Road , Palampur , Kangra (HP)
+                  <div class="office-detail-label">{{ activeOffice.addressLabel }}</div>
+                  <p class="office-detail-value">
+                    {{ activeOffice.address }}
                   </p>
                 </div>
               </div>
+
               <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.333 9.192a1.745 1.745 0 0 1-.459-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z" />
-                  </svg>
-                </div>
                 <div>
-                  <div class="office-detail-label">Phone</div>
-                  <p class="office-detail-value">+91 80 4567 8901</p>
+                  <div class="office-detail-label">{{ activeOffice.phoneLabel }}</div>
+                  <p class="office-detail-value">
+                    {{ activeOffice.phone }}
+                    <span v-if="activeOffice.mobile">
+                      M: {{ activeOffice.mobile }}
+                    </span>
+                  </p>
                 </div>
               </div>
+
               <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.114l4.758-2.876L1 5.383v5.731z" />
-                  </svg>
-                </div>
                 <div>
-                  <div class="office-detail-label">Email</div>
-                  <p class="office-detail-value">bangalore@vcnhealth.com</p>
+                  <div class="office-detail-label">{{ activeOffice.emailLabel }}</div>
+                  <p class="office-detail-value">
+                    {{ activeOffice.email }}
+                  </p>
                 </div>
               </div>
+
               <div class="office-detail-row">
-                <div class="office-detail-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                  </svg>
-                </div>
                 <div>
-                  <div class="office-detail-label">Working Hours</div>
-                  <p class="office-detail-value">Mon – Sat: 9:00 AM – 6:00 PM</p>
+                  <div class="office-detail-label">{{ activeOffice.workingHoursLabel }}</div>
+                  <p class="office-detail-value">
+                    {{ activeOffice.workingHours }}
+                  </p>
                 </div>
               </div>
-              <a href="https://maps.app.goo.gl/VPj6nXCdQq9AN2GEA" target="_blank" class="office-maps-btn">
-                📍 View on Google Maps →
+
+              <a :href="activeOffice.mapLink" target="_blank" class="office-maps-btn">
+                {{ activeOffice.mapLabel }}
               </a>
             </div>
 
@@ -1020,7 +466,7 @@
       <div class="col-lg-6 col-12">
         <div class="contact-form-container">
           <div class="contact-form-header">
-            <h1 class="contact-form-title">Contact us</h1>
+            <h1 class="contact-form-title">{{ contact.contactForm.title }}</h1>
           </div>
           <div class="contact-form-body">
             <form @submit.prevent="submitForm" novalidate>
@@ -1034,48 +480,45 @@
 
               <div class="contact-field-wrapper">
                 <label class="contact-field-label" for="fullNameField">
-                  Full name <span class="contact-required-mark">*</span>
+                  {{ contact.contactForm.fields.fullName.label }} <span class="contact-required-mark">*</span>
                 </label>
                 <input type="text" id="fullNameField" class="contact-text-input"
                   :class="{ 'contact-input-error': errors.fullName }" v-model="formData.fullName"
-                  placeholder="Enter your full name" required />
+                  :placeholder="contact.contactForm.fields.fullName.placeholder" required />
                 <span v-if="errors.fullName" class="contact-error-message">{{ errors.fullName }}</span>
               </div>
               <div class="contact-field-wrapper">
                 <label class="contact-field-label" for="emailField">
-                  Email <span class="contact-required-mark">*</span>
+                  {{ contact.contactForm.fields.email.label }} <span class="contact-required-mark">*</span>
                 </label>
                 <input type="email" id="emailField" class="contact-text-input"
                   :class="{ 'contact-input-error': errors.email }" v-model="formData.email"
-                  placeholder="Enter your email address" required />
+                  :placeholder="contact.contactForm.fields.email.placeholder" required />
                 <span v-if="errors.email" class="contact-error-message">{{ errors.email }}</span>
               </div>
               <div class="contact-field-wrapper">
                 <label class="contact-field-label" for="phoneField">
-                  Phone Number <span class="text-danger">*</span>
+                  {{ contact.contactForm.fields.phone.label }} <span class="contact-required-mark">*</span>
                 </label>
                 <input type="tel" id="phoneField" class="contact-text-input" v-model="formData.phone"
-                  placeholder="Enter your phone number" :class="{ 'contact-input-error': errors.phone }" />
+                  :placeholder="contact.contactForm.fields.phone.placeholder"
+                  :class="{ 'contact-input-error': errors.phone }" />
                 <span v-if="errors.phone" class="contact-error-message">{{ errors.phone }}</span>
               </div>
               <div class="contact-field-wrapper">
                 <label class="contact-field-label" for="officeField">
-                  Select Office <span class="contact-required-mark">*</span>
+                  {{ contact.contactForm.fields.office.label }} <span class="contact-required-mark">*</span>
                 </label>
                 <div class="contact-select-wrapper">
                   <select id="officeField" class="contact-select-input"
                     :class="{ 'contact-input-error': errors.office }" v-model="formData.office" required>
-                    <option value="">Select an office</option>
-                    <option value="Jalandhar Office">Jalandhar</option>
-                    <option value="Phagwara Office">Phagwara</option>
-                    <option value="Ludhiana Office">Ludhiana</option>
-                    <option value="Khanna Office">Khanna</option>
-                    <option value="Moga Office">Moga</option>
-                    <option value="Hoshiarpur Office">Hoshiarpur</option>
-                    <option value="Batala Office">Batala</option>
-                    <option value="Dasuya Office">Dasuya</option>
-                    <option value="Delhi Office">New Delhi</option>
-                    <option value="Palampur Office">Palampur</option>
+                    <option value="">
+                      {{ contact.contactForm.fields.office.placeholder }}
+                    </option>
+                    <option v-for="office in contact.contactForm.fields.office.officeOptions" :key="office.value"
+                      :value="office.value">
+                      {{ office.label }}
+                    </option>
                   </select>
                   <span class="contact-select-arrow">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -1089,17 +532,16 @@
               </div>
               <div class="contact-field-wrapper">
                 <label class="contact-field-label" for="subjectField">
-                  Subject <span class="contact-required-mark">*</span>
+                  {{ contact.contactForm.fields.subject.label }} <span class="contact-required-mark">*</span>
                 </label>
                 <div class="contact-select-wrapper">
                   <select id="subjectField" class="contact-select-input"
                     :class="{ 'contact-input-error': errors.subject }" v-model="formData.subject" required>
-                    <option value="">Select a subject</option>
-                    <option value="Product Inquiry">Product Inquiry</option>
-                    <option value="Order & Delivery">Order & Delivery</option>
-                    <option value="Support">Support</option>
-                    <option value="Feedback">Feedback</option>
-                    <option value="Other">Other</option>
+                    <option value="">{{ contact.contactForm.fields.subject.placeholder }}</option>
+                    <option v-for="subject in contact.contactForm.fields.subject.subjectOptions" :key="subject.value"
+                      :value="subject.value">
+                      {{ subject.label }}
+                    </option>
                   </select>
                   <span class="contact-select-arrow">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -1113,11 +555,11 @@
               </div>
               <div class="contact-field-wrapper">
                 <label class="contact-field-label" for="messageField">
-                  Message <span class="contact-required-mark">*</span>
+                  {{ contact.contactForm.fields.message.label }} <span class="contact-required-mark">*</span>
                 </label>
                 <textarea id="messageField" class="contact-textarea-input"
                   :class="{ 'contact-input-error': errors.message }" v-model="formData.message"
-                  placeholder="Please include the product name and order number you're inquiring about"
+                  :placeholder="contact.contactForm.fields.message.placeholder"
                   required></textarea>
                 <span v-if="errors.message" class="contact-error-message">{{ errors.message }}</span>
               </div>
@@ -1130,14 +572,14 @@
                           d="M13.75 5.62496V14.4416C13.75 16.1833 12.475 17.7333 10.7416 17.9C8.74998 18.0916 7.08331 16.5333 7.08331 14.5833V4.28329C7.08331 3.19163 7.86665 2.19996 8.94998 2.09163C10.2 1.96663 11.25 2.94163 11.25 4.16663V12.9166C11.25 13.375 10.875 13.75 10.4166 13.75C9.95831 13.75 9.58331 13.375 9.58331 12.9166V5.62496C9.58331 5.28329 9.29998 4.99996 8.95831 4.99996C8.61665 4.99996 8.33331 5.28329 8.33331 5.62496V12.8C8.33331 13.8916 9.11665 14.8833 10.2 14.9916C11.45 15.1166 12.5 14.1416 12.5 12.9166V4.30829C12.5 2.56663 11.225 1.01663 9.49165 0.849959C7.50831 0.658292 5.83331 2.21663 5.83331 4.16663V14.3916C5.83331 16.7833 7.58331 18.925 9.96665 19.15C12.7083 19.4 15 17.2666 15 14.5833V5.62496C15 5.28329 14.7166 4.99996 14.375 4.99996C14.0333 4.99996 13.75 5.28329 13.75 5.62496Z">
                         </path>
                       </svg>
-                      <span>Attach Files</span>
+                      <span>{{ contact.contactForm.fields.files.label }}</span>
                     </div>
                   </label>
                   <input type="file" id="fileUploadInput" class="contact-file-input-hidden" @change="handleFileUpload"
                     multiple accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png" />
                 </div>
                 <div class="contact-file-info-text">
-                  Attach up to 10 files. Maximum size per file is 10 MB.
+                  {{ contact.contactForm.fields.files.uploadLabelLimit }}
                 </div>
                 <div v-if="formData.files.length > 0" class="contact-files-list">
                   <div v-for="(file, index) in formData.files" :key="index" class="contact-file-item">
@@ -1151,9 +593,9 @@
                 {{ isSubmitting ? 'Sending...' : 'Send Message' }}
               </button>
               <p class="contact-footer-text">
-                This site is protected by reCAPTCHA Enterprise and the Google
-                <a href="#" class="contact-footer-link">Privacy Policy</a> and
-                <a href="#" class="contact-footer-link">Terms of Service</a> apply.
+                {{ contact.contactForm.fields.formFooter.text }} <br />
+                <a :href="contact.contactForm.fields.formFooter.privacyPolicyLink" class="contact-footer-link">{{ contact.contactForm.fields.formFooter.privacyPolicyLabel }}</a> and
+                <a :href="contact.contactForm.fields.formFooter.termsOfServiceLink" class="contact-footer-link">{{ contact.contactForm.fields.formFooter.termsOfServiceLabel }}</a> apply.
               </p>
             </form>
           </div>
@@ -1165,9 +607,22 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useApi } from '~/config/api/useApi'
 import { API_ENDPOINTS } from '~/config/api/endpoints'
+import { useCmsStore } from '~/stores/cms'
+
+const cmsStore = useCmsStore()
+
+const contact = computed(
+  () => cmsStore.getPageSection('contact', 'contact')
+)
+
+const activeOffice = computed(() => {
+  return contact.value?.offices?.find(
+    office => office.id === activeTab.value
+  )
+})
 
 const toast = useToast()
 

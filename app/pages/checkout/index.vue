@@ -375,25 +375,29 @@ const submitAccountInfo = () => {
   let isValid = true
 
   // Email validation
-  if (!email) {
-    showError('userEmailInput', 'Email is required')
-    isValid = false
-  } else if (!validateEmail(email)) {
-    showError('userEmailInput', 'Please enter a valid email address')
-    isValid = false
-  } else {
-    clearError('userEmailInput')
-  }
+if (!email) {
+  showError(
+    'userEmailInput',
+    checkout.value.validation.emailRequired
+  )
+  isValid = false
+} else if(!validateEmail(email)) {
+  showError(
+    'userEmailInput',
+    checkout.value.validation.invalidEmail
+  )
+  isValid = false
+}
 
   // Password validation
   if (!password) {
-    showError('userPasswordInput', 'Password is required')
+    showError('userPasswordInput', checkout.value.validation.passwordRequired)
     isValid = false
   } else if (password.length < 8) {
-    showError('userPasswordInput', 'Password must be at least 8 characters')
+    showError('userPasswordInput', checkout.value.validation.passwordMinLength)
     isValid = false
   } else if (!validatePassword(password)) {
-    showError('userPasswordInput', 'Password must contain at least one uppercase letter, one lowercase letter, and one number')
+    showError('userPasswordInput', checkout.value.validation.passwordFormat)
     isValid = false
   } else {
     clearError('userPasswordInput')
@@ -431,10 +435,10 @@ const submitShippingInfo = () => {
 
   // First Name validation
   if (!firstName) {
-    showError('firstNameInput', 'First name is required')
+    showError('firstNameInput',checkout.value.validation.firstNameRequired)
     isValid = false
   } else if (firstName.length < 2) {
-    showError('firstNameInput', 'First name must be at least 2 characters')
+    showError('firstNameInput', checkout.value.validation.firstNameMinLength)
     isValid = false
   } else {
     clearError('firstNameInput')
@@ -442,10 +446,10 @@ const submitShippingInfo = () => {
 
   // Last Name validation
   if (!lastName) {
-    showError('lastNameInput', 'Last name is required')
+    showError('lastNameInput', checkout.value.validation.lastNameRequired)
     isValid = false
   } else if (lastName.length < 2) {
-    showError('lastNameInput', 'Last name must be at least 2 characters')
+    showError('lastNameInput', checkout.value.validation.lastNameMinLength)
     isValid = false
   } else {
     clearError('lastNameInput')
@@ -453,10 +457,10 @@ const submitShippingInfo = () => {
 
   // Address validation
   if (!address) {
-    showError('addressInput', 'Address is required')
+    showError('addressInput', checkout.value.validation.addressRequired)
     isValid = false
   } else if (address.length < 10) {
-    showError('addressInput', 'Please enter a complete address')
+    showError('addressInput', checkout.value.validation.addressInvalid)
     isValid = false
   } else {
     clearError('addressInput')
@@ -464,7 +468,7 @@ const submitShippingInfo = () => {
 
   // City validation
   if (!city) {
-    showError('cityInput', 'City is required')
+    showError('cityInput', checkout.value.validation.cityRequired)
     isValid = false
   } else {
     clearError('cityInput')
@@ -472,10 +476,10 @@ const submitShippingInfo = () => {
 
   // State validation
   if (!state) {
-    showError('stateInput', 'State is required')
+    showError('stateInput', checkout.value.validation.stateRequired)
     isValid = false
   } else if (state.length < 2) {
-    showError('stateInput', 'Please enter a valid state')
+    showError('stateInput', checkout.value.validation.stateInvalid)
     isValid = false
   } else {
     clearError('stateInput')
@@ -483,10 +487,10 @@ const submitShippingInfo = () => {
 
   // ZIP validation
   if (!zip) {
-    showError('zipInput', 'ZIP code is required')
+    showError('zipInput', checkout.value.validation.zipRequired)
     isValid = false
   } else if (!validateZip(zip)) {
-    showError('zipInput', 'Please enter a valid 6-digit ZIP code')
+    showError('zipInput', checkout.value.validation.zipInvalid)
     isValid = false
   } else {
     clearError('zipInput')
@@ -522,10 +526,10 @@ const submitPaymentInfo = () => {
 
   // Card Number validation
   if (!cardNumber) {
-    showError('cardNumberInput', 'Card number is required')
+    showError('cardNumberInput',checkout.value.validation.cardNumberRequired)
     isValid = false
   } else if (!validateCardNumber(cardNumber)) {
-    showError('cardNumberInput', 'Please enter a valid card number')
+    showError('cardNumberInput', checkout.value.validation.cardNumberInvalid)
     isValid = false
   } else {
     clearError('cardNumberInput')
@@ -533,10 +537,10 @@ const submitPaymentInfo = () => {
 
   // Expiry validation
   if (!expiry) {
-    showError('expiryInput', 'Expiry date is required')
+    showError('expiryInput', checkout.value.validation.expiryRequired)
     isValid = false
   } else if (!validateExpiry(expiry)) {
-    showError('expiryInput', 'Please enter a valid expiry date (MM/YY)')
+    showError('expiryInput', checkout.value.validation.expiryInvalid)
     isValid = false
   } else {
     clearError('expiryInput')
@@ -544,10 +548,10 @@ const submitPaymentInfo = () => {
 
   // CVV validation
   if (!cvv) {
-    showError('cvvInput', 'CVV is required')
+    showError('cvvInput', checkout.value.validation.cvvRequired)
     isValid = false
   } else if (!validateCVV(cvv)) {
-    showError('cvvInput', 'Please enter a valid CVV (3 or 4 digits)')
+    showError('cvvInput', checkout.value.validation.cvvInvalid)
     isValid = false
   } else {
     clearError('cvvInput')
@@ -555,10 +559,10 @@ const submitPaymentInfo = () => {
 
   // Card Name validation
   if (!cardName) {
-    showError('cardNameInput', 'Name on card is required')
+    showError('cardNameInput', checkout.value.validation.cardNameRequired)
     isValid = false
   } else if (cardName.length < 3) {
-    showError('cardNameInput', 'Please enter the complete name as shown on card')
+    showError('cardNameInput', checkout.value.validation.cardNameInvalid)
     isValid = false
   } else {
     clearError('cardNameInput')
