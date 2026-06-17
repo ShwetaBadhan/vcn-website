@@ -9,7 +9,7 @@ export const ABOUT_PAGE_DATA = {
             title: "Major Milestones",
 
             description:
-                "Since our inception in 2009, VCN has grown from a vision-driven initiative into a trusted name in the wellness and direct selling industry. What began as a commitment to deliver high-quality, nature-inspired products has evolved into a strong nationwide presence backed by a dedicated network of distributors and loyal customers. Over the years, we have expanded our product range, strengthened our systems, and continuously adapted to changing market needs. Each milestone in our journey reflects our focus on quality, innovation, and empowering individuals, driving us forward with the same passion to create a healthier and more prosperous future for all."
+                "A legacy is made of moments. Our company has a history as remarkable and unique as the people who created it"
         },
 
         timeline: [

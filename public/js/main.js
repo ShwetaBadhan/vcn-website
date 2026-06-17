@@ -59,36 +59,6 @@ const swiper = new Swiper('.vcn-whole-body-swiper', {
   autoHeight: true, // Optional: if you want dynamic height per slide
 });
 
-const testimonialswiper = new Swiper('.vcn-swiper-container', {
-  slidesPerView: 'auto',
-  spaceBetween: 30,
-  centeredSlides: true,
-  initialSlide: 1, // 👈 Start from slide 2 (index starts at 0)
-
-  pagination: {
-    el: '.vcn-custom-pagination',
-    clickable: true,
-  },
-  breakpoints: {
-    320: {
-      slidesPerView: 1.2,
-      spaceBetween: 20,
-    },
-    640: {
-      slidesPerView: 1.4,
-      spaceBetween: 25,
-    },
-    768: {
-      slidesPerView: 1.6,
-      spaceBetween: 30,
-    },
-    1024: {
-      slidesPerView: 1.8,
-      spaceBetween: 35,
-    },
-  }
-});
-
 // Audio button functionality
 document.querySelectorAll('.vcn-audio-button').forEach(button => {
   button.addEventListener('click', function (e) {

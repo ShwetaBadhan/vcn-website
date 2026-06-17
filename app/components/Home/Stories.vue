@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted, computed } from 'vue'
+import { onMounted, onUnmounted, computed, watch, nextTick } from 'vue'
 import { useCmsStore } from '~/stores/cms'
 import { useCmsApi } from '~/composables/useCmsApi'
 
@@ -54,6 +54,12 @@ const cleanImageUrl = (url) => {
   return url.replace(/&/g, '').replace(/\\/g, '/')
 }
 
+const getGalleryImage = (index) => {
+  const images = galleryImages.value
+  if (!images || images.length === 0) return ''
+  return images[index % images.length]
+}
+
 onMounted(() => {
   const gallery = document.querySelector('.vcn-stories-media-gallery-track')
   const sectionEl = document.querySelector('.vcn-stories-section')
@@ -90,6 +96,14 @@ onMounted(() => {
     if (rafId) cancelAnimationFrame(rafId)
   })
 })
+
+watch(storyCards, () => {
+  nextTick(() => {
+    if (typeof window !== 'undefined' && window.AOS) {
+      window.AOS.refresh()
+    }
+  })
+}, { deep: true })
 </script>
 
 <template>
@@ -104,22 +118,91 @@ onMounted(() => {
       <!-- Media Gallery (Images/Videos) -->
       <div class="vcn-stories-media-gallery">
         <div class="vcn-stories-media-gallery-track">
-          <div v-for="(img, i) in galleryImages" :key="i" class="vcn-stories-media-item">
-            <img :src="cleanImageUrl(img)" :alt="`Story ${i + 1}`" loading="lazy" />
+          <!-- Col 1 -->
+          <div class="vcn-stories-media-column col-tall">
+            <div class="vcn-stories-media-item item-circle">
+              <img :src="cleanImageUrl(getGalleryImage(0))" alt="Story 1" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Col 2 -->
+          <div class="vcn-stories-media-column col-tall">
+            <div class="vcn-stories-media-item item-tall-capsule">
+              <img :src="cleanImageUrl(getGalleryImage(1))" alt="Story 2" loading="lazy" />
+            </div>
+          </div>
+          <!-- Col 4 -->
+          <div class="vcn-stories-media-column col-stacked">
+            <div class="vcn-stories-media-item item-oval">
+              <img :src="cleanImageUrl(getGalleryImage(3))" alt="Story 4" loading="lazy" />
+            </div>
+            <div class="vcn-stories-text-card card-light">
+              <div class="card-header">
+              </div>
+              <div class="card-body">
+                <p class="card-quote">"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi voluptate
+                  distinctio beatae illum quas odit."</p>
+              </div>
+              <div class="card-footer">
+                <span class="card-logo fast-company">FAST COMPANY</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Col 5 -->
+          <div class="vcn-stories-media-column col-tall">
+            <div class="vcn-stories-media-item item-tall-capsule">
+              <img :src="cleanImageUrl(getGalleryImage(4))" alt="Story 5" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Col 6 -->
+          <div class="vcn-stories-media-column col-stacked">
+            <div class="vcn-stories-text-card card-dark">
+              <div class="card-header">
+              </div>
+              <div class="card-body">
+                <p class="card-quote">"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis dicta
+                  architecto dolores aut fuga magnam nobis sunt officiis rerum sequi."</p>
+              </div>
+              <div class="card-footer">
+                <span class="card-logo forbes">Forbes</span>
+              </div>
+            </div>
+            <div class="vcn-stories-media-item item-oval">
+              <img :src="cleanImageUrl(getGalleryImage(5))" alt="Story 6" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Col 7 -->
+          <div class="vcn-stories-media-column col-stacked">
+            <div class="vcn-stories-media-item item-oval">
+              <img :src="cleanImageUrl(getGalleryImage(6))" alt="Story 7" loading="lazy" />
+            </div>
+            <div class="vcn-stories-text-card card-light">
+              <div class="card-header">
+              </div>
+              <div class="card-body">
+                <p class="card-quote">"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi voluptate distinctio
+                  beatae illum quas odit."</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Content Cards -->
       <div class="vcn-stories-cards-grid">
-        <div v-for="(card, i) in storyCards" :key="i" class="vcn-stories-card" data-aos="fade-up"
-          data-aos-duration="400" :data-aos-delay="i * 100">
-          <div class="vcn-stories-card-content">
-            <h3 class="vcn-stories-card-title">{{ card.title }}</h3>
-            <p class="vcn-stories-card-description">
-              {{ card.description }}
-            </p>
-            <a :href="card.buttonLink" class="vcn-stories-card-btn">{{ card.buttonText }}</a>
+        <div v-for="(card, i) in storyCards" :key="i" data-aos="fade-up"
+          data-aos-duration="400" :data-aos-delay="i * 100" style="display: flex; flex-direction: column;">
+          <div class="vcn-stories-card" style="width: 100%; height: 100%;">
+            <div class="vcn-stories-card-content">
+              <h3 class="vcn-stories-card-title">{{ card.title }}</h3>
+              <p class="vcn-stories-card-description">
+                {{ card.description }}
+              </p>
+              <a :href="card.buttonLink" class="vcn-stories-card-btn">{{ card.buttonText }}</a>
+            </div>
           </div>
         </div>
       </div>
@@ -144,26 +227,24 @@ onMounted(() => {
 
 /* ========== SECTION TITLE ========== */
 .vcn-stories-title {
-  font-size: 2.5rem;
+  font-size: 3.2rem !important;
   font-weight: 600;
   color: var(--vcn-primary);
   line-height: 1.3;
   margin-bottom: 50px;
-  max-width: 600px;
+  max-width: 800px;
 }
 
 /* ========== MEDIA GALLERY ========== */
 .vcn-stories-media-gallery {
   display: flex;
-  gap: 20px;
   margin-bottom: 50px;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 5px 0;
+  padding: 10px 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
   height: auto;
-  max-height: 340px;
 }
 
 .vcn-stories-media-gallery::-webkit-scrollbar {
@@ -172,21 +253,36 @@ onMounted(() => {
 
 .vcn-stories-media-gallery-track {
   display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.vcn-stories-media-column {
+  display: flex;
+  flex-direction: column;
   gap: 20px;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.col-tall {
+  width: 290px;
+}
+
+.col-stacked {
+  width: 320px;
 }
 
 .vcn-stories-media-item {
-  flex-shrink: 0;
-  border-radius: 20px;
+  width: 100%;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease;
   position: relative;
-  max-height: 320px;
 }
 
 .vcn-stories-media-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .vcn-stories-media-item img {
@@ -196,27 +292,145 @@ onMounted(() => {
   display: block;
 }
 
-/* Different sizes for gallery items */
-.vcn-stories-media-item:nth-child(1) { width: 280px; height: 320px; }
-.vcn-stories-media-item:nth-child(1) img { height: 320px; border-radius: 50%; }
+.item-tall-capsule {
+  height: 460px;
+  border-radius: 32px;
+}
 
-.vcn-stories-media-item:nth-child(2) { width: 260px; height: 320px; }
-.vcn-stories-media-item:nth-child(2) img { height: 320px; }
+.item-circle {
+  height: 290px;
+  border-radius: 50%;
+}
 
-.vcn-stories-media-item:nth-child(3) { width: 280px; height: 320px; }
-.vcn-stories-media-item:nth-child(3) img { height: 320px; }
+.item-oval {
+  height: 220px;
+  border-radius: 50%;
+}
 
-.vcn-stories-media-item:nth-child(4) { width: 300px; height: 320px; }
-.vcn-stories-media-item:nth-child(4) img { height: 150px; }
+.vcn-stories-media-item .card-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(18, 36, 16, 0.95) 0%, rgba(18, 36, 16, 0.5) 80%, transparent 100%);
+  padding: 40px 20px 20px 20px;
+  color: #ffffff;
+  z-index: 2;
+  box-sizing: border-box;
+}
 
-.vcn-stories-media-item:nth-child(5) { width: 260px; height: 320px; }
-.vcn-stories-media-item:nth-child(5) img { height: 320px; }
+.vcn-stories-media-item .card-quote {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
+  font-weight: 500;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
 
-.vcn-stories-media-item:nth-child(6) { width: 280px; height: 320px; }
-.vcn-stories-media-item:nth-child(6) img { height: 320px; }
+/* ========== TEXT CARDS IN GALLERY ========== */
+.vcn-stories-text-card {
+  height: 220px;
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
 
-.vcn-stories-media-item:nth-child(7) { width: 280px; height: 320px; }
-.vcn-stories-media-item:nth-child(7) img { height: 150px; }
+.vcn-stories-text-card:hover {
+  transform: scale(1.03);
+}
+
+.vcn-stories-text-card.card-light {
+  background-color: #f2f2ef;
+  color: #1a3417;
+}
+
+.vcn-stories-text-card.card-dark {
+  background-color: #122410;
+  color: #ffffff;
+}
+
+.card-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.card-share-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.card-light .card-share-btn {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #1a3417;
+}
+
+.card-light .card-share-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.card-dark .card-share-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.card-dark .card-share-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.card-body {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.card-quote {
+  font-size: 0.95rem;
+  line-height: 1.45;
+  font-weight: 500;
+  margin: 0;
+  text-align: left;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.card-logo {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.card-logo.fast-company {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.card-logo.forbes {
+  font-family: 'Georgia', serif;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: -0.2px;
+}
 
 /* Content Cards Grid */
 .vcn-stories-cards-grid {
@@ -363,8 +577,9 @@ onMounted(() => {
 
 @media (max-width: 1200px) {
   .vcn-stories-title {
-    font-size: 2.2rem;
+    font-size: 2.8rem !important;
   }
+
   .vcn-stories-cards-grid {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   }
@@ -377,61 +592,163 @@ onMounted(() => {
     padding-top: 60px;
     padding-bottom: 60px;
   }
+
   .vcn-stories-title {
-    font-size: 2rem;
+    font-size: 2.5rem !important;
   }
+
   .vcn-stories-card-title {
-    font-size: 2rem;
+    font-size: 2.2rem !important;
   }
-  .vcn-stories-media-item:nth-child(n) {
-    width: 200px !important;
+
+  .vcn-stories-media-gallery-track {
+    gap: 16px;
   }
+
+  .vcn-stories-media-column {
+    gap: 16px;
+  }
+
+  .col-tall {
+    width: 220px;
+  }
+
+  .col-stacked {
+    width: 250px;
+  }
+
+  .item-tall-capsule {
+    height: 340px;
+    border-radius: 24px;
+  }
+
+  .item-circle {
+    height: 220px;
+  }
+
+  .item-oval {
+    height: 162px;
+  }
+
+  .vcn-stories-text-card {
+    height: 162px;
+    border-radius: 18px;
+    padding: 16px;
+  }
+
+  .card-quote {
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+
+  .card-logo {
+    font-size: 1rem;
+  }
+
+  .card-share-btn {
+    width: 30px;
+    height: 30px;
+  }
+  .vcn-stories-media-item .card-body {
+    padding: 24px 12px 12px 12px;
+  }
+  .vcn-stories-media-item .card-quote {
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+
   .vcn-stories-cards-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .vcn-stories-card {
+    min-height: 480px !important;
   }
 }
 
 @media (max-width: 768px) {
   .vcn-stories-title {
-    font-size: 1.8rem;
+    font-size: 2.5rem !important;
   }
+
   .vcn-stories-cards-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 15px;
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
   }
+
   .vcn-stories-card {
-    min-height: 280px;
-    padding: 24px 15px;
+    min-height: 420px !important;
+    padding: 40px 24px !important;
   }
+
   .vcn-stories-card-title {
-    font-size: 1.25rem;
+    font-size: 2.0rem !important;
   }
+
   .vcn-stories-card-description {
-    font-size: 0.9rem;
-    margin-bottom: 20px;
+    font-size: 1.1rem !important;
+    margin-bottom: 24px !important;
   }
-  .vcn-stories-media-item:nth-child(1),
-  .vcn-stories-media-item:nth-child(8) {
-    width: 200px;
-    height: 200px;
+
+  .vcn-stories-card-btn {
+    padding: 12px 30px !important;
   }
-  .vcn-stories-media-item:nth-child(2),
-  .vcn-stories-media-item:nth-child(3),
-  .vcn-stories-media-item:nth-child(4),
-  .vcn-stories-media-item:nth-child(5),
-  .vcn-stories-media-item:nth-child(6),
-  .vcn-stories-media-item:nth-child(9),
-  .vcn-stories-media-item:nth-child(10),
-  .vcn-stories-media-item:nth-child(11),
-  .vcn-stories-media-item:nth-child(12),
-  .vcn-stories-media-item:nth-child(13) {
+
+  .vcn-stories-media-gallery-track {
+    gap: 12px;
+  }
+
+  .vcn-stories-media-column {
+    gap: 12px;
+  }
+
+  .col-tall {
     width: 180px;
-    height: 280px;
   }
-  .vcn-stories-media-item:nth-child(7),
-  .vcn-stories-media-item:nth-child(14) {
-    width: 200px;
-    height: 200px;
+
+  .col-stacked {
+    width: 210px;
+  }
+
+  .item-tall-capsule {
+    height: 280px;
+    border-radius: 18px;
+  }
+
+  .item-circle {
+    height: 180px;
+  }
+
+  .item-oval {
+    height: 134px;
+  }
+
+  .vcn-stories-text-card {
+    height: 134px;
+    border-radius: 14px;
+    padding: 12px;
+  }
+
+  .card-quote {
+    font-size: 0.72rem;
+    line-height: 1.3;
+  }
+
+  .card-logo {
+    font-size: 0.85rem;
+  }
+
+  .card-share-btn {
+    width: 24px;
+    height: 24px;
+  }
+  .vcn-stories-media-item .card-body {
+    padding: 20px 10px 10px 10px;
+  }
+  .vcn-stories-media-item .card-quote {
+    font-size: 0.65rem;
+    line-height: 1.3;
   }
 }
 
@@ -442,41 +759,105 @@ onMounted(() => {
     padding-top: 40px;
     padding-bottom: 40px;
   }
+
   .vcn-stories-title {
-    font-size: 1.5rem;
+    font-size: 2.1rem !important;
   }
+
   .vcn-stories-cards-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
   }
+
   .vcn-stories-card {
-    min-height: 240px;
-    padding: 16px 10px;
-    border-radius: 16px;
+    min-height: 380px !important;
+    padding: 30px 20px !important;
+    border-radius: 20px !important;
   }
+
   .vcn-stories-card-title {
-    font-size: 1.05rem;
+    font-size: 1.8rem !important;
   }
+
   .vcn-stories-card-description {
-    font-size: 0.8rem;
-    margin-bottom: 15px;
-    line-height: 1.4;
+    font-size: 1.0rem !important;
+    margin-bottom: 20px !important;
+    line-height: 1.5 !important;
   }
-  .vcn-stories-media-item:nth-child(n) {
-    width: 150px !important;
+
+  .vcn-stories-card-btn {
+    padding: 10px 24px !important;
+  }
+
+  .vcn-stories-media-gallery-track {
+    gap: 8px;
+  }
+
+  .vcn-stories-media-column {
+    gap: 8px;
+  }
+
+  .col-tall {
+    width: 140px;
+  }
+
+  .col-stacked {
+    width: 160px;
+  }
+
+  .item-tall-capsule {
+    height: 220px;
+    border-radius: 14px;
+  }
+
+  .item-circle {
+    height: 140px;
+  }
+
+  .item-oval {
+    height: 106px;
+  }
+
+  .vcn-stories-text-card {
+    height: 106px;
+    border-radius: 10px;
+    padding: 8px;
+  }
+
+  .card-quote {
+    font-size: 0.6rem;
+    line-height: 1.25;
+  }
+
+  .card-logo {
+    font-size: 0.7rem;
+  }
+
+  .card-share-btn {
+    width: 20px;
+    height: 20px;
+  }
+  .vcn-stories-media-item .card-body {
+    padding: 16px 8px 8px 8px;
+  }
+  .vcn-stories-media-item .card-quote {
+    font-size: 0.55rem;
+    line-height: 1.25;
   }
 }
 
 @media (max-width: 480px) {
   .vcn-stories-title {
-    font-size: 1.4rem;
+    font-size: 1.9rem !important;
   }
+
   .vcn-stories-card-title {
-    font-size: 0.95rem;
+    font-size: 1.6rem !important;
   }
+
   .vcn-stories-card {
-    padding: 12px 8px;
-    border-radius: 12px;
+    padding: 24px 16px !important;
+    border-radius: 16px !important;
   }
 }
 </style>

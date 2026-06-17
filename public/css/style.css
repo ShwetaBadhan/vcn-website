@@ -3026,115 +3026,7 @@ body.checkout-page .navbar .desktop-nav .dropdown-footer {
   max-width: 600px;
 }
 
-/* ========== MEDIA GALLERY ========== */
-.vcn-stories-media-gallery {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 50px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 5px 0;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  height: auto;
-  max-height: 340px;
-}
-
-.vcn-stories-media-gallery::-webkit-scrollbar {
-  display: none;
-}
-
-.vcn-stories-media-gallery-track {
-  display: flex;
-  gap: 20px;
-}
-
-.vcn-stories-media-item {
-  flex-shrink: 0;
-  border-radius: 20px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  position: relative;
-  max-height: 320px;
-}
-
-.vcn-stories-media-item:hover {
-  transform: scale(1.05);
-}
-
-/* Different sizes for variety - Larger sizes */
-.vcn-stories-media-item:nth-child(1) {
-  width: 280px;
-  height: 320px;
-}
-
-.vcn-stories-media-item:nth-child(1) img {
-  height: 320px;
-  border-radius: 50%;
-}
-
-.vcn-stories-media-item:nth-child(2) {
-  width: 260px;
-  height: 320px;
-}
-
-.vcn-stories-media-item:nth-child(2) img {
-  height: 320px;
-}
-
-.vcn-stories-media-item:nth-child(3) {
-  width: 280px;
-  height: 320px;
-}
-
-.vcn-stories-media-item:nth-child(3) img {
-  height: 320px;
-}
-
-.vcn-stories-media-item:nth-child(4) {
-  width: 300px;
-  height: 320px;
-}
-
-.vcn-stories-media-item:nth-child(4) img {
-  height: 150px;
-}
-
-.vcn-stories-media-item:nth-child(5) {
-  width: 260px;
-  height: 320px;
-}
-
-.vcn-stories-media-item:nth-child(5) img {
-  height: 320px;
-}
-
-.vcn-stories-media-item:nth-child(6) {
-  width: 280px;
-  height: 320px;
-}
-
-.vcn-stories-media-item:nth-child(6) img {
-  height: 320px;
-}
-
-.vcn-stories-media-item:nth-child(7) {
-  width: 280px;
-  height: 320px;
-}
-
-.vcn-stories-media-item:nth-child(7) img {
-  height: 150px;
-}
-
-.vcn-stories-media-item img,
-.vcn-stories-media-item video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+/* Global media gallery styles removed to avoid conflicts with Stories.vue scoped styles */
 
 /* Overlay for text on media */
 .vcn-stories-media-overlay {
@@ -3326,31 +3218,7 @@ body.checkout-page .navbar .desktop-nav .dropdown-footer {
     font-size: 1rem;
   }
 
-  .vcn-stories-media-item:nth-child(1),
-  .vcn-stories-media-item:nth-child(8) {
-    width: 200px;
-    height: 200px;
-  }
-
-  .vcn-stories-media-item:nth-child(2),
-  .vcn-stories-media-item:nth-child(3),
-  .vcn-stories-media-item:nth-child(4),
-  .vcn-stories-media-item:nth-child(5),
-  .vcn-stories-media-item:nth-child(6),
-  .vcn-stories-media-item:nth-child(9),
-  .vcn-stories-media-item:nth-child(10),
-  .vcn-stories-media-item:nth-child(11),
-  .vcn-stories-media-item:nth-child(12),
-  .vcn-stories-media-item:nth-child(13) {
-    width: 180px;
-    height: 280px;
-  }
-
-  .vcn-stories-media-item:nth-child(7),
-  .vcn-stories-media-item:nth-child(14) {
-    width: 200px;
-    height: 200px;
-  }
+  /* Media gallery responsive sizing overrides removed to avoid conflicts with Stories.vue scoped styles */
 }
 
 @media (max-width: 480px) {
@@ -14527,20 +14395,7 @@ video {
   }
 }
 
-/* ==========================================================================
-   STORIES SECTION RESPONSIVE
-   ========================================================================== */
-@media (max-width: 992px) {
-  .vcn-stories-media-item:nth-child(n) {
-    width: 200px !important;
-  }
-}
-
-@media (max-width: 576px) {
-  .vcn-stories-media-item:nth-child(n) {
-    width: 150px !important;
-  }
-}
+/* Global stories responsive section overrides removed to avoid conflicts */
 
 /* BottomFooter styles moved to component scoped styles to avoid conflicts */
 

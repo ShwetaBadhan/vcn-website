@@ -4,7 +4,7 @@
       <div class="row g-0">
 
         <!-- Sidebar -->
-        <div class="col-md-3 col-lg-3 sidebar-section d-none d-md-block">
+        <div class="col-md-3 col-lg-3 sidebar-section">
           <AboutSidebar />
         </div>
 

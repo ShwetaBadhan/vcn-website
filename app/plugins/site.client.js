@@ -66,26 +66,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       })
     }
 
-    if (window.Swiper && document.querySelector('.vcn-swiper-container')) {
-      new Swiper('.vcn-swiper-container', {
-        centeredSlides: true,
-        slidesPerView: 1,
-        spaceBetween: 20,
-        observer: true,
-        observeParents: true,
-        autoHeight: true,
-        pagination: {
-          el: '.vcn-custom-pagination',
-          clickable: true
-        },
-        breakpoints: {
-          992: {
-            slidesPerView: 1.8
-          }
-        }
-      })
-    }
-
     /* ===============================
        INTERSECTION OBSERVER
     ================================ */

@@ -4,6 +4,10 @@ export default defineNuxtConfig({
 
   devtools: { enabled: false },
 
+  experimental: {
+    appManifest: false
+  },
+
   modules: ['@nuxt/ui', '@pinia/nuxt', 'nuxt-toast'],
 
   toast: {

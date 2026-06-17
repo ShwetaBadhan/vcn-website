@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <!-- Left Sidebar Navigation -->
-        <div class="col-md-3 col-lg-3 sidebar-section d-none d-md-block">
+        <div class="col-md-3 col-lg-3 sidebar-section">
           <AboutSidebar />
         </div>
         <div class="col-md-9 col-lg-9">

@@ -45,3 +45,51 @@ const offers = computed(() =>
       </div>
     </section>
 </template>
+
+<style scoped>
+@media (max-width: 991px) {
+  /* Reduce gap from hero section */
+  .vcn-cobiotics-section {
+    padding-top: 25px !important;
+  }
+
+  /* Increase font size of heading */
+  .vcn-cobiotics-title {
+    font-size: 3.2rem !important;
+  }
+
+  /* Increase size of main image */
+  .vcn-cobiotics-main-image img {
+    width: 100% !important;
+    max-width: 500px !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
+  /* Show other thumbnail images in 3 columns */
+  .vcn-cobiotics-thumbnails-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 15px !important;
+    max-width: 500px !important;
+    margin: 0 auto !important;
+  }
+  
+  .vcn-cobiotics-thumbnail-box {
+    aspect-ratio: 1 / 1 !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .vcn-cobiotics-title {
+    font-size: 2.8rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .vcn-cobiotics-title {
+    font-size: 2.4rem !important;
+  }
+}
+</style>

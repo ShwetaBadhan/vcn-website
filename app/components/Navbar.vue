@@ -33,13 +33,18 @@
             <li class="nav-item dropdown">
               <a class="nav-link" href="/all-products">Shop</a>
               <ul class="dropdown-menu">
-                <!-- Dynamic products from backend (limit 5) -->
-                <li v-for="product in shopProducts" :key="product.id">
-                  <a class="dropdown-item" :href="`/product-details/${product.slug}`">
-                    <img :src="productStore.getPrimaryImage(product)" :alt="product.name" />
-                    {{ product.name }}
-                  </a>
+                <!-- Scrollable product list -->
+                <li class="dropdown-products-scroll">
+                  <ul class="dropdown-products-list">
+                    <li v-for="product in shopProducts" :key="product.id">
+                      <a class="dropdown-item" :href="`/product-details/${product.slug}`">
+                        <img :src="productStore.getPrimaryImage(product)" :alt="product.name" />
+                        {{ product.name }}
+                      </a>
+                    </li>
+                  </ul>
                 </li>
+                <!-- Fixed footer pinned at bottom -->
                 <li class="dropdown-footer">
                   <a href="/all-products">Shop All Products →</a>
                 </li>
@@ -225,12 +230,15 @@
           <!-- Shop Accordion -->
           <div class="dropdown-content" id="shopAccordion" show>
             <div class="dropdown-menu-mobile">
-              <!-- Dynamic products from backend (limit 5) -->
-              <a v-for="product in shopProducts" :key="product.id" class="dropdown-item"
-                :href="`/product-details/${product.slug}`">
-                <img :src="productStore.getPrimaryImage(product)" :alt="product.name" />
-                {{ product.name }}
-              </a>
+              <!-- Scrollable product list -->
+              <div class="mobile-products-scroll">
+                <a v-for="product in shopProducts" :key="product.id" class="dropdown-item"
+                  :href="`/product-details/${product.slug}`">
+                  <img :src="productStore.getPrimaryImage(product)" :alt="product.name" />
+                  {{ product.name }}
+                </a>
+              </div>
+              <!-- Fixed footer pinned at bottom -->
               <div class="dropdown-footer">
                 <a href="/all-products">Shop All Products →</a>
               </div>
@@ -662,10 +670,71 @@ onUnmounted(() => {
   transform: translateX(100%);
 }
 
-/* Responsive */
-@media (max-width: 480px) {
+/* Responsive Styles for all devices */
+
+/* Small laptops and landscape tablets (992px to 1200px) */
+@media (max-width: 1200px) {
+  .navbar {
+    padding: 6px 20px !important;
+  }
+  .desktop-nav .nav-link {
+    padding: 4px 12px !important;
+    font-size: 15px;
+  }
+  .nav-left-wrapper {
+    gap: 8px;
+    padding: 4px 16px;
+  }
+  .nav-right-wrapper {
+    gap: 10px;
+    padding: 4px 8px;
+  }
+}
+
+/* Mobile & Tablets (max-width: 991px) */
+@media (max-width: 991px) {
+  .navbar {
+    padding: 15px 30px !important;
+  }
+  
+  .navbar-collapse {
+    max-height: calc(100vh - var(--top-header-height, 28px) - 80px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Portrait Tablets / Large Phones (max-width: 768px) */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 12px 20px !important;
+  }
+}
+
+/* Phones (max-width: 576px) */
+@media (max-width: 576px) {
+  .navbar {
+    padding: 10px 15px !important;
+  }
+  
   .slide-form-container {
     max-width: 100%;
+  }
+  
+  .form-content {
+    padding: 60px 20px 20px;
+  }
+}
+
+/* Small Phones (max-width: 380px) */
+@media (max-width: 380px) {
+  .navbar {
+    padding: 8px 10px !important;
+  }
+  
+  .mobile-cart {
+    font-size: 13px;
+    gap: 3px;
   }
 }
 </style>

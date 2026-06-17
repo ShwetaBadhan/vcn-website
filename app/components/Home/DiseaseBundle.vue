@@ -211,15 +211,30 @@ export default {
   padding-top: 20px; /* small internal gap so header content isn't flush to top */
 }
 
+.vcn-human-heading {
+  font-size: 3.2rem !important;
+}
+
 @media (max-width: 991px) {
   .disease-bundles-container {
     top: 90px !important;
     height: calc(100vh - 90px) !important;
   }
+  .vcn-human-heading {
+    font-size: 2.6rem !important;
+  }
+  .vcn-human-left-content {
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
 }
 
 /* Responsive 2-column layout for disease grid on mobile */
 @media (max-width: 576px) {
+  .vcn-human-heading {
+    font-size: 1.9rem !important;
+  }
+
   .disease-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 12px !important;

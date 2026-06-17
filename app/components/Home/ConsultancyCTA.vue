@@ -90,7 +90,7 @@ const bgImage = computed(() => getCmsImageUrl(section.value?.backgroundImage, ''
 }
 
 .mid-cta-heading {
-  font-size: 36px;
+  font-size: 46px;
   font-weight: 700;
   color: var(--vcn-primary);
   line-height: 1.3;
@@ -116,7 +116,7 @@ const bgImage = computed(() => getCmsImageUrl(section.value?.backgroundImage, ''
   }
 
   .mid-cta-heading {
-    font-size: 32px;
+    font-size: 42px;
   }
 
   .mid-cta-text {
@@ -125,7 +125,7 @@ const bgImage = computed(() => getCmsImageUrl(section.value?.backgroundImage, ''
 
   .mid-cta-content {
     padding: 30px 0;
-    text-align: center;
+    text-align: left !important;
   }
 
   .mid-cta-image-wrapper {
@@ -140,7 +140,7 @@ const bgImage = computed(() => getCmsImageUrl(section.value?.backgroundImage, ''
   }
 
   .mid-cta-heading {
-    font-size: 28px;
+    font-size: 38px;
   }
 
   .mid-cta-text {
@@ -148,8 +148,8 @@ const bgImage = computed(() => getCmsImageUrl(section.value?.backgroundImage, ''
   }
 
   .view-more-btn {
-    padding: 12px 40px !important;
-    font-size: 15px;
+    padding: 10px 24px !important;
+    font-size: 14px !important;
   }
 }
 
@@ -159,7 +159,7 @@ const bgImage = computed(() => getCmsImageUrl(section.value?.backgroundImage, ''
   }
 
   .mid-cta-heading {
-    font-size: 22px;
+    font-size: 1.5rem !important;
   }
 
   .mid-cta-text {
@@ -168,10 +168,10 @@ const bgImage = computed(() => getCmsImageUrl(section.value?.backgroundImage, ''
   }
 
   .view-more-btn {
-    padding: 12px 32px !important;
-    font-size: 14px;
-    width: 100%;
-    max-width: 100%;
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+    width: auto !important;
+    max-width: none !important;
   }
 }
 </style>
