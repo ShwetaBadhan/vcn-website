@@ -12,33 +12,32 @@
           <span>VCN</span>
         </div>
 
-        
-          <h2 class="vcn-human-heading" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">{{ heading
-          }}</h2>
 
-          <p data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">
-            {{ description }}
-          </p>
+        <h2 class="vcn-human-heading" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">{{ heading
+        }}</h2>
 
-          <button class="vcn-human-cta-button" id="openBundles" @click="openBundles" data-aos="zoom-in"
-            data-aos-duration="800" data-aos-delay="400">
-            {{ ctaText }}
-            <span class="vcn-human-border">
-              <span class="vcn-human-play-icon">></span>
-            </span>
-          </button>
+        <p data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">
+          {{ description }}
+        </p>
+
+        <button class="vcn-human-cta-button" id="openBundles" @click="openBundles" data-aos="zoom-in"
+          data-aos-duration="800" data-aos-delay="400">
+          {{ ctaText }}
+          <span class="vcn-human-border">
+            <span class="vcn-human-play-icon">></span>
+          </span>
+        </button>
       </div>
 
-      <!-- Right Content - Video/Bundles Area
+      <!-- Right Content - Video/Bundles Area -->
       <div class="vcn-human-right-content">
         <div class="video-container" id="videoContainer">
-          <div class="vcn-human-image-wrapper">
-            <video id="myVideo" muted loop autoplay playsinline preload="auto" 
-class="vcn-human-main-image"></video>
-            <img src="/img/image/skelton.png" class="vcn-human-main-image" />
+          <div class="vcn-human-image-wrapper" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
+            <video id="myVideo" muted loop autoplay playsinline preload="auto" class="vcn-human-main-image"></video>
+            <!-- <img src="/img/image/skelton.png" class="vcn-human-main-image" /> -->
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
 
     <!-- Disease Bundles Container -->
@@ -208,7 +207,8 @@ export default {
   z-index: 10010 !important;
   pointer-events: auto !important;
   overflow-y: auto !important;
-  padding-top: 20px; /* small internal gap so header content isn't flush to top */
+  padding-top: 20px;
+  /* small internal gap so header content isn't flush to top */
 }
 
 .vcn-human-heading {
@@ -220,9 +220,11 @@ export default {
     top: 90px !important;
     height: calc(100vh - 90px) !important;
   }
+
   .vcn-human-heading {
     font-size: 2.6rem !important;
   }
+
   .vcn-human-left-content {
     text-align: left !important;
     align-items: flex-start !important;

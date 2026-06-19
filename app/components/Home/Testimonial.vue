@@ -63,7 +63,15 @@ const initSwiper = () => {
 
   swiperInstance = new window.Swiper('.vcn-swiper-container', {
     slidesPerView: 1,
+    centeredSlides: false,
     spaceBetween: 20,
+    breakpoints: {
+      768: {
+        slidesPerView: 'auto',
+        centeredSlides: true,
+        spaceBetween: 30
+      }
+    },
     loop: slideCount >= 2,
     autoplay: slideCount >= 2 ? {
       delay: 4000,
@@ -153,21 +161,24 @@ onBeforeUnmount(() => {
 <style scoped>
 .vcn-testimonial-section {
   background: linear-gradient(180deg, #e8f5e0 0%, #f0f8ec 100%);
-  padding: 80px 20px;
+  padding: 40px 15px; /* Mobile first padding */
   position: relative;
+  overflow: hidden;
 }
 
 .vcn-testimonial-container {
   margin: 0 auto;
+  width: 100%;
 }
 
 .vcn-testimonial-header {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 35px;
+  padding: 0 15px;
 }
 
 .vcn-testimonial-title {
-  font-size: 2.5rem;
+  font-size: 1.45rem;
   font-weight: 700;
   color: var(--vcn-primary);
   line-height: 1.3;
@@ -175,7 +186,7 @@ onBeforeUnmount(() => {
 }
 
 .vcn-testimonial-subtitle {
-  font-size: 1rem;
+  font-size: 0.88rem;
   color: var(--vcn-dark);
   font-weight: 400;
   text-align: center;
@@ -193,14 +204,15 @@ onBeforeUnmount(() => {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100% !important; /* Full width on mobile/tablet */
 }
 
 .vcn-testimonial-card {
   background: #4a5d4a;
-  border-radius: 24px;
+  border-radius: 16px;
   overflow: hidden;
-  max-width: 600px;
-  width: 100%;
+  width: 100% !important;
+  max-width: 500px !important; /* Original constraints on mobile */
   position: relative;
   aspect-ratio: 16/9.3;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -217,7 +229,7 @@ onBeforeUnmount(() => {
 /* Audio Control */
 .vcn-audio-controls-global {
   position: relative;
-  margin: 30px auto 20px auto;
+  margin: 20px auto 20px auto;
   background: #c9f5a6;
   border-radius: 40px;
   padding: 6px 10px 6px 14px;
@@ -269,7 +281,7 @@ onBeforeUnmount(() => {
 /* Custom Pagination */
 .vcn-custom-pagination {
   position: relative;
-  margin-top: 30px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -295,66 +307,59 @@ onBeforeUnmount(() => {
   transform: scale(1.1);
 }
 
-/* Responsive breakpoint overrides */
-@media (min-width: 1400px) {
+/* Big Screen Override (min-width: 768px) */
+@media (min-width: 768px) {
   .vcn-testimonial-section {
-    padding-left: 160px;
-    padding-right: 160px;
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding: 80px 0;
   }
-}
 
-@media (max-width: 1399px) {
-  .vcn-testimonial-section {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-}
-
-@media (max-width: 991px) {
-  .vcn-testimonial-section {
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 60px;
-    padding-bottom: 60px;
-  }
-}
-
-@media (max-width: 768px) {
-  .vcn-testimonial-title {
-    font-size: 1.85rem;
-  }
-  .vcn-testimonial-card {
-    max-width: 100%;
-    border-radius: 16px;
-  }
   .vcn-testimonial-header {
-    margin-bottom: 35px;
+    margin-bottom: 50px;
+    padding: 0 20px;
   }
-}
 
-@media (max-width: 576px) {
-  .vcn-testimonial-section {
-    padding: 40px 15px;
-  }
   .vcn-testimonial-title {
-    font-size: 1.45rem;
+    font-size: 2.5rem;
   }
+
   .vcn-testimonial-subtitle {
-    font-size: 0.88rem;
+    font-size: 1rem;
   }
+
+  .vcn-swiper-container {
+    overflow: visible !important;
+  }
+
+  :deep(.swiper-slide) {
+    width: 78vw !important;
+    max-width: 1050px !important;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease;
+  }
+
+  :deep(.swiper-slide:not(.swiper-slide-active)) {
+    opacity: 0.55;
+    transform: scale(0.93);
+  }
+
+  .vcn-testimonial-card {
+    max-width: none !important;
+    aspect-ratio: 16/9;
+    border-radius: 24px;
+  }
+
   .vcn-custom-pagination {
-    margin-top: 20px;
+    margin-top: 30px;
+  }
+
+  .vcn-audio-controls-global {
+    margin-top: 30px;
   }
 }
 
+/* Extra small devices styling */
 @media (max-width: 480px) {
   .vcn-testimonial-title {
     font-size: 1.35rem;
-  }
-  .vcn-audio-controls-global {
-    margin-top: 20px;
   }
 }
 </style>

@@ -389,7 +389,7 @@ body.menu-open .navbar-brand.d-lg-none {
 .dropdown-footer {
   padding: 20px;
   text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.295);
   margin-top: 10px;
 }
 
@@ -767,58 +767,72 @@ body.checkout-page .navbar .desktop-nav .dropdown-footer {
   }
 
   .desktop-nav .dropdown-menu {
-    background: rgba(85, 85, 85, 0.8) !important;
+    background: rgba(85, 85, 85, 0.95) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     border-radius: 20px !important;
-    padding: 8px !important;
-    max-height: 450px;
-    overflow-y: auto;
-    overflow-x: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
-    display: block;
+    display: block !important;
     opacity: 0;
     visibility: hidden;
     max-height: 0;
-    padding: 0 8px;
+    padding: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: absolute !important;
     left: 0;
     right: 0;
     top: calc(100% + 12px);
     width: 100%;
-    /* Hide scrollbar for all browsers */
-    scrollbar-width: none;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* IE and Edge */
+    overflow: hidden !important;
   }
 
   .desktop-nav .dropdown:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
     max-height: 450px;
-    padding: 8px;
+    padding-bottom: 50px !important; /* Make room for the absolute footer */
   }
 
-  .desktop-nav .dropdown-menu::-webkit-scrollbar {
-    display: none;
+  /* Scrollable product list inside desktop dropdown */
+  .desktop-nav .dropdown-products-scroll {
+    max-height: 390px !important; /* Limit products list height */
+    overflow-y: auto !important;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+    list-style: none;
+    padding: 8px !important;
+    margin: 0;
+  }
+  
+  .desktop-nav .dropdown-products-scroll::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Webkit */
     width: 0;
     height: 0;
   }
 
-  .desktop-nav .dropdown-menu::-webkit-scrollbar-track {
-    display: none;
-    background: transparent;
+  .desktop-nav .dropdown-products-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
-  .desktop-nav .dropdown-menu::-webkit-scrollbar-thumb {
-    display: none;
-    background: transparent;
-  }
-
-  .desktop-nav .dropdown-menu::-webkit-scrollbar-corner {
-    display: none;
-    background: transparent;
+  /* Pinned footer inside desktop dropdown */
+  .desktop-nav .dropdown-footer {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 50px !important;
+    background: rgba(85, 85, 85, 0.98) !important; /* Solid cover background */
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-bottom-left-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+    list-style: none;
+    z-index: 10 !important;
   }
 
   .desktop-nav .dropdown-item {
@@ -2877,10 +2891,10 @@ body.checkout-page .navbar .desktop-nav .dropdown-footer {
   background: #4a5d4a;
   border-radius: 24px;
   overflow: hidden;
-  max-width: 600px;
+  max-width: none;
   width: 100%;
   position: relative;
-  aspect-ratio: 16/9.3;
+  aspect-ratio: 16/9;
 }
 
 .vcn-testimonial-image {
@@ -14475,31 +14489,50 @@ video {
 /* Removed the lone border-radius property to fix CSS syntax errors */
 
 /* Mobile Shop Dropdown Pin & Scroll Fix */
+#shopAccordion.dropdown-content {
+  position: relative !important;
+  transition: max-height 0.3s ease;
+}
+
 #shopAccordion.dropdown-content.show {
-  overflow-y: hidden !important;
-  display: flex !important;
-  flex-direction: column !important;
-  max-height: 50vh !important;
+  display: block !important;
+  max-height: 350px !important; /* Fixed maximum height */
+  overflow: hidden !important;
+  padding-bottom: 50px !important; /* Make room for the absolute footer */
 }
 
 #shopAccordion .dropdown-menu-mobile {
-  display: flex !important;
-  flex-direction: column !important;
+  display: block !important;
   height: 100% !important;
-  max-height: 50vh !important;
   overflow: hidden !important;
 }
 
 #shopAccordion .mobile-products-scroll {
-  flex: 1 !important;
+  max-height: 300px !important; /* Limit products list height */
   overflow-y: auto !important;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 5px;
+  padding: 10px 15px !important;
 }
 
 #shopAccordion .dropdown-footer {
-  flex-shrink: 0 !important;
-  margin-top: auto !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 15px 0 5px 0 !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 50px !important;
+  background: rgba(30, 30, 30, 0.98) !important; /* Solid cover background */
+  border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 10 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#shopAccordion .dropdown-footer a {
+  color: white !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  display: inline-block !important;
 }

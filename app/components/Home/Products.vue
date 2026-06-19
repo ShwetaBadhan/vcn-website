@@ -159,7 +159,7 @@ if (productStore.products.length === 0) {
 }
 
 .vcn-whole-body-product-image {
-    max-width: 205px !important;
+    max-width: 290px !important;
     /* increased size of images */
     aspect-ratio: 1 / 1 !important;
     /* same aspect ratio */

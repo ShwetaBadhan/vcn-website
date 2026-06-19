@@ -59,7 +59,7 @@ onMounted(() => {
 <!-- Global CSS Custom Variables for TopHeader heights -->
 <style>
 :root {
-  --top-header-height: 32px;
+  --top-header-height: 40px;
 }
 
 @media (max-width: 1200px) {
@@ -82,13 +82,13 @@ onMounted(() => {
 
 @media (max-width: 576px) {
   :root {
-    --top-header-height: 24px;
+    --top-header-height: 30px;
   }
 }
 
 @media (max-width: 380px) {
   :root {
-    --top-header-height: 22px;
+    --top-header-height: 30px;
   }
 }
 </style>
