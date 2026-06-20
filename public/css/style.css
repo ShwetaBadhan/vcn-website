@@ -4633,7 +4633,7 @@ body.checkout-page .navbar .desktop-nav .dropdown-footer {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 68px 0;
+  padding: 50px !important;
   color: white;
   border-radius: 32px;
   position: relative;

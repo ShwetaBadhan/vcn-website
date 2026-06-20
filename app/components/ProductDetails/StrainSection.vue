@@ -107,6 +107,13 @@ const cleanUrl = (url) => {
   margin: 0 auto;
 }
 
+@media (max-width: 992px) {
+  .strains-badges-grid-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px 15px !important;
+  }
+}
+
 @media (max-width: 767.98px) {
   .strains-product-image {
     width: 90%;

@@ -1,21 +1,23 @@
 <template>
   <section class="health-section-bg">
     <div class="row mt-5">
-      <div class="col-12 col-md-4 col-lg-3 health-section-below d-flex align-items-center justify-content-center">
+      <div class="col-12 col-md-4 col-lg-3 health-section-below d-flex align-items-center justify-content-center order-2 order-md-1">
         <video src="" class="video-centered" autoplay muted loop playsinline ></video>
       </div>
-      <div class="col-12 col-md-8 col-lg-9">
+      <div class="col-12 col-md-8 col-lg-9 order-1 order-md-2">
         <div class="vcn-viacap-hero-area-below h-100">
           <div class="vcn-probiotic-container">
             <div class="vcn-probiotic-content-wrapper">
               <!-- Left Content -->
               <div class="vcn-probiotic-left-content">
-                <h2 class="alternate-heading">
-                  2-in-1 Ayurvedic Formula Optimized for Complete Diabetic Wellness
-                </h2>
-                <div class="vcn-probiotic-callout-text">
-                  DBT Care Plus unique herbal blend is engineered for targeted
-                  action — controlling blood sugar while healing the body from within.
+                <div class="vcn-probiotic-heading-group">
+                  <h2 class="alternate-heading">
+                    2-in-1 Ayurvedic Formula Optimized for Complete Diabetic Wellness
+                  </h2>
+                  <div class="vcn-probiotic-callout-text">
+                    DBT Care Plus unique herbal blend is engineered for targeted
+                    action — controlling blood sugar while healing the body from within.
+                  </div>
                 </div>
               </div>
 
@@ -71,6 +73,12 @@
   width: 100%;
   height: auto;
   display: block;
+}
+
+.vcn-probiotic-heading-group {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 /* Fix the buggy global margin-top from style.css */
@@ -194,6 +202,32 @@
 
 /* Responsive stack behavior for tablets/mobile */
 @media (max-width: 991.98px) {
+
+  .health-section-bg {
+    padding: 1.5rem 1rem;
+  }
+
+  .health-section-below {
+    padding: 0 24px;
+    margin-top: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .video-centered {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .vcn-viacap-hero-area-below {
+    padding: 0 12px;
+  }
+
   .vcn-probiotic-content-wrapper {
     display: flex;
     flex-direction: column;
@@ -201,89 +235,150 @@
   }
 
   .vcn-probiotic-left-content {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    padding: 0 1rem;
-    max-width: 100%;
-  }
-
-  .vcn-probiotic-left-content .vcn-probiotic-callout-text {
-    max-width: 100%;
-    margin: 0 auto;
+    display: contents !important;
   }
 
   .vcn-probiotic-right-content {
-    margin-top: 0.75rem;
-    padding: 0 1rem;
-    width: 100%;
+    display: contents !important;
+  }
+
+  .vcn-probiotic-heading-group {
+    order: 1 !important;
+    gap: 20px;
+    width: 100% !important;
+  }
+
+  .alternate-heading {
+    font-size: 2.5rem !important;
+    line-height: 1.25;
+    margin: 0;
+    text-align: left;
+  }
+
+  .vcn-probiotic-heading-group .vcn-probiotic-callout-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+    text-align: left;
   }
 
   .vcn-probiotic-product-display {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: auto;
-    gap: 1.5rem;
+    order: 2 !important;
+    min-height: 500px !important;
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    margin: 10px 0 !important;
   }
 
   .alternate-image {
-    width: 100%;
-    max-width: 260px;
-    padding: 0;
-    margin: 1rem auto;
-    display: flex;
-    justify-content: center;
-    order: 2; /* Put capsule image in the middle */
+    position: absolute !important;
+    left: auto !important;
+    right: -50px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 85% !important;
+    max-width: 650px !important;
+    height: auto !important;
+    z-index: 5 !important;
   }
 
   .alternate-image img {
-    max-width: 220px;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block !important;
   }
 
   .vcn-probiotic-callout {
-    position: relative !important;
-    top: auto !important;
-    bottom: auto !important;
-    left: auto !important;
-    right: auto !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    background: rgba(255, 255, 255, 0.15) !important;
-    backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    border-radius: 12px;
-    padding: 15px 20px;
-    box-sizing: border-box;
-    text-align: center;
+    position: absolute !important;
+    width: 45% !important;
+    padding: 0 !important;
+    padding-top: 15px !important;
+    background: transparent !important;
+    border: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    z-index: 10 !important;
+    text-align: left !important;
   }
 
   .alternative-callout-top {
-    order: 1; /* Above image */
+    top: 10% !important;
+    left: 0 !important;
+    right: auto !important;
+    bottom: auto !important;
   }
 
   .alternative-callout-bottom {
-    order: 3; /* Below image */
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: auto !important;
   }
 
-  /* Hide connection arrows on mobile stack */
+  /* Connecting lines on mobile relative to the callouts themselves */
   .alternative-callout-top::before,
   .alternative-callout-bottom::before {
-    display: none !important;
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important; /* extends to the end of the callout */
+    height: 1px !important;
+    background-color: rgba(255, 255, 255, 0.4) !important;
+    background-image: none !important;
+    rotate: 0deg !important;
+    bottom: auto !important;
+    right: auto !important;
+    z-index: 10 !important;
+    display: block !important;
+  }
+
+  /* White dots at the end of the lines relative to the callouts */
+  .alternative-callout-top::after,
+  .alternative-callout-bottom::after {
+    content: "" !important;
+    position: absolute !important;
+    top: -2.5px !important;
+    right: -2px !important; /* places dot exactly at the end of the line */
+    left: auto !important;
+    width: 6px !important;
+    height: 6px !important;
+    background-color: #fff !important;
+    border-radius: 50% !important;
+    z-index: 11 !important;
+    display: block !important;
+    box-sizing: border-box;
   }
 }
 
 @media (max-width: 575.98px) {
+
   .health-section-bg {
-    padding: 1rem 0;
+    padding: 1rem 0.75rem;
+  }
+
+  .health-section-below {
+    padding: 0 32px;
+  }
+
+  .video-centered {
+    max-width: 220px;
+  }
+
+  .vcn-probiotic-product-display {
+    min-height: 580px !important;
+  }
+
+  .alternate-image {
+    max-width: 320px !important;
   }
 
   .alternate-heading {
-    font-size: 1.25rem;
-    line-height: 1.3;
-  }
-
-  .vcn-probiotic-left-content .vcn-probiotic-callout-text {
-    font-size: 0.95rem;
+    font-size: 2.0rem !important;
   }
 }
 </style>

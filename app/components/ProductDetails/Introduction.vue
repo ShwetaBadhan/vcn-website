@@ -3,22 +3,69 @@
     <div class="container-fluid">
       <div class="row">
         <!-- Left Column - Product Images -->
-        <!-- MAIN PRODUCT IMAGE -->
         <div class="col-lg-7">
-          <div class="product-img-wrapper">
-            <div class="product-image-cards">
-              <img id="mainImage" :src="displayImage" :alt="productName" @click="openProductPreview(displayImage)" />
+          <!-- Desktop Version: main image + thumbnails -->
+          <div class="d-none d-md-block">
+            <div class="product-img-wrapper">
+              <div class="product-image-cards">
+                <video 
+                  v-if="!selectedImage"
+                  id="mainImage" 
+                  src="/img/single%20product/vcn-seed-vdo.mp4" 
+                  autoplay 
+                  loop 
+                  muted 
+                  playsinline 
+                  style="width: 100%; height: 100%; object-fit: contain; border-radius: 20px;"
+                ></video>
+                <img 
+                  v-else
+                  id="mainImage" 
+                  :src="displayImage" 
+                  :alt="productName" 
+                  @click="openProductPreview(displayImage)" 
+                />
+              </div>
+            </div>
+
+            <!-- THUMBNAILS - Dynamic product images -->
+            <div class="row g-2 mt-2" v-if="allProductImages.length > 0">
+              <div v-for="(img, index) in allProductImages" :key="index" class="col-6 mb-2">
+                <div class="product-gallery">
+                  <div class="gallery-item" :class="{ 'active': selectedImage === img }">
+                    <img class="thumb" :src="img" :alt="productName" @click="selectImage(img)" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- THUMBNAILS - Dynamic product images -->
-          <div class="row g-2 mt-2" v-if="allProductImages.length > 0">
-            <div v-for="(img, index) in allProductImages" :key="index" class=" col-6 mb-2">
-              <div class="product-gallery">
-                <div class="gallery-item" :class="{ 'active': selectedImage === img }">
-                  <img class="thumb" :src="img" :alt="productName" @click="selectImage(img)" />
+          <!-- Mobile Version: Swiper Carousel -->
+          <div class="d-block d-md-none">
+            <div class="swiper product-images-swiper">
+              <div class="swiper-wrapper">
+                <!-- Slide 1: Video -->
+                <div class="swiper-slide">
+                  <div class="mobile-swiper-image-card">
+                    <video 
+                      src="/img/single%20product/vcn-seed-vdo.mp4" 
+                      autoplay 
+                      loop 
+                      muted 
+                      playsinline 
+                      style="width: 100%; height: 100%; object-fit: contain;"
+                    ></video>
+                  </div>
+                </div>
+                <!-- Other Slides: Images -->
+                <div v-for="(img, index) in allProductImages" :key="index" class="swiper-slide">
+                  <div class="mobile-swiper-image-card">
+                    <img :src="img" :alt="productName" @click="openProductPreview(img)" class="mobile-swiper-image" />
+                  </div>
                 </div>
               </div>
+              <!-- Swiper pagination dots -->
+              <div class="swiper-pagination product-images-swiper-pagination"></div>
             </div>
           </div>
         </div>
@@ -116,22 +163,24 @@
                   Add VCN-02 Daily Multivitamin to your routine and save on your
                   first order.
                 </p>
-                <div class="bundle-price">
-                  <span class="current-price">₹67.48</span>
-                  <span class="original-price">₹89.98</span>
-                </div>
-              </div>
-              <div class="bundle-action">
-                <ClientOnly>
-                  <button v-if="!isBundleInCart" @click="addBundleToCart" class="add-button">
-                    Add
-                  </button>
-                  <div v-else class="bundle-quantity-control">
-                    <button class="bundle-qty-btn minus" @click="decrementBundle">−</button>
-                    <span class="bundle-qty-value">{{ getBundleQuantity() }}</span>
-                    <button class="bundle-qty-btn plus" @click="incrementBundle">+</button>
+                <div class="bundle-bottom-row">
+                  <div class="bundle-price">
+                    <span class="current-price">₹67.48</span>
+                    <span class="original-price">₹89.98</span>
                   </div>
-                </ClientOnly>
+                  <div class="bundle-action">
+                    <ClientOnly>
+                      <button v-if="!isBundleInCart" @click="addBundleToCart" class="add-button">
+                        Add
+                      </button>
+                      <div v-else class="bundle-quantity-control">
+                        <button class="bundle-qty-btn minus" @click="decrementBundle">−</button>
+                        <span class="bundle-qty-value">{{ getBundleQuantity() }}</span>
+                        <button class="bundle-qty-btn plus" @click="incrementBundle">+</button>
+                      </div>
+                    </ClientOnly>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -142,7 +191,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue'
+import { ref, onMounted, computed, watch, nextTick, onBeforeUnmount } from 'vue'
 import { useCartStore } from '~/stores/cart'
 import { useProductStore } from '~/stores/product'
 import { useAuthCart } from '~/composables/useAuthCart'
@@ -166,6 +215,9 @@ const averageRating = ref(0)
 const totalReviews = ref(0)
 const isLoadingReviews = ref(false)
 
+// Swiper state
+const productSwiperInstance = ref(null)
+
 // Get product slug from URL path
 const productSlug = computed(() => route.params.slug)
 
@@ -187,7 +239,32 @@ if (productSlug.value) {
   loading.value = false
 }
 
-// Initialize cart on client
+// Swiper initialization function
+const initProductSwiper = () => {
+  if (typeof window === 'undefined' || !window.Swiper) {
+    setTimeout(initProductSwiper, 100)
+    return
+  }
+
+  const container = document.querySelector('.product-images-swiper')
+  if (!container) return
+
+  if (productSwiperInstance.value) {
+    productSwiperInstance.value.destroy(true, true)
+    productSwiperInstance.value = null
+  }
+
+  productSwiperInstance.value = new window.Swiper('.product-images-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    pagination: {
+      el: '.product-images-swiper-pagination',
+      clickable: true
+    }
+  })
+}
+
+// Initialize cart and swiper on client
 onMounted(async () => {
   await initializeCart()
   await cartStore.loadCart()
@@ -198,6 +275,18 @@ onMounted(async () => {
 
   // Fetch reviews
   await fetchReviews()
+
+  if (process.client) {
+    initProductSwiper()
+  }
+})
+
+
+onBeforeUnmount(() => {
+  if (productSwiperInstance.value) {
+    productSwiperInstance.value.destroy(true, true)
+    productSwiperInstance.value = null
+  }
 })
 
 // Fetch reviews from API
@@ -247,39 +336,7 @@ const productMrp = computed(() => {
   return mrp ? parseFloat(mrp).toFixed(2) : null
 })
 const productImage = computed(() => {
-  // Product Images
-  if (product.value?.images?.length) {
-    const primaryImage =
-      product.value.images.find(img => img.isPrimary) ||
-      product.value.images[0]
-
-    if (primaryImage?.media) {
-      return (
-        primaryImage.media.variants?.webp ||
-        primaryImage.media.webpUrl ||
-        primaryImage.media.fileUrl
-      )
-    }
-  }
-
-  // Variant Images
-  if (product.value?.variants?.length) {
-    const defaultVariant =
-      product.value.variants.find(v => v.isDefault) ||
-      product.value.variants[0]
-
-    if (defaultVariant?.productImages?.length) {
-      const primaryImage =
-        defaultVariant.productImages.find(img => img.isPrimary) ||
-        defaultVariant.productImages[0]
-
-      if (primaryImage?.media?.fileUrl) {
-        return primaryImage.media.fileUrl
-      }
-    }
-  }
-
-  return '/img/products/New-Project.png'
+  return '/img/single%20product/seed%201.webp'
 })
 
 // Track selected main image
@@ -287,73 +344,21 @@ const selectedImage = ref(null)
 
 // Select image for main preview
 const selectImage = (imageSrc) => {
-  selectedImage.value = imageSrc
+  if (selectedImage.value === imageSrc) {
+    selectedImage.value = null
+  } else {
+    selectedImage.value = imageSrc
+  }
 }
 
 // All product images (primary + variants) excluding current display image
 const allProductImages = computed(() => {
-  const images = []
-
-  // Add primary product image first
-  const primaryImg = productImage.value
-  if (primaryImg && !images.includes(primaryImg)) {
-    images.push(primaryImg)
-  }
-
-  // Product images
-  if (product.value?.images?.length) {
-    product.value.images.forEach(img => {
-      const imageUrl =
-        img?.media?.variants?.webp ||
-        img?.media?.webpUrl ||
-        img?.media?.fileUrl
-
-      if (imageUrl && !images.includes(imageUrl)) {
-        images.push(imageUrl)
-      }
-    })
-  }
-
-  // Variant images
-  if (product.value?.variants?.length) {
-    product.value.variants.forEach(variant => {
-      variant.productImages?.forEach(img => {
-        const imageUrl =
-          img?.media?.variants?.webp ||
-          img?.media?.webpUrl ||
-          img?.media?.fileUrl
-
-        if (imageUrl && !images.includes(imageUrl)) {
-          images.push(imageUrl)
-        }
-      })
-    })
-  }
-
-  // Fallback images from public/img/single product/
-  const fallbacks = [
+  return [
     '/img/single%20product/seed%201.webp',
     '/img/single%20product/seed%202.webp',
-    '/img/single%20product/seed%203.webp'
+    '/img/single%20product/seed%203.webp',
+    '/img/single%20product/vcnimage-fallback.webp'
   ]
-
-  // Add unique fallbacks until we have 4 images
-  for (const fb of fallbacks) {
-    if (images.length >= 4) break
-    if (!images.includes(fb)) {
-      images.push(fb)
-    }
-  }
-
-  // In case we still need more, duplicate them
-  let fallbackIndex = 0
-  while (images.length < 4 && fallbacks.length > 0) {
-    const fb = fallbacks[fallbackIndex % fallbacks.length]
-    images.push(fb)
-    fallbackIndex++
-  }
-
-  return images.slice(0, 4) // Ensure we limit it to exactly 4 for a perfect 2x2 grid
 })
 
 // Main image to display
@@ -370,6 +375,15 @@ watch(() => product.value, (newProduct) => {
   // Reset selected image when product changes
   selectedImage.value = null
 }, { immediate: true })
+
+// Watch images to re-initialize swiper if they load/change dynamically
+watch(() => allProductImages.value, () => {
+  if (process.client) {
+    nextTick(() => {
+      initProductSwiper()
+    })
+  }
+}, { deep: true })
 
 // Bundle product data (can be updated based on API later)
 const bundleProduct = {
@@ -552,63 +566,179 @@ const openProductPreview = (imageSrc) => {
 </script>
 
 <style scoped>
-/* Fix bundle button visibility and styling */
+/* Custom premium style for bundle card to match the design */
+.bundle-card {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  background-color: #f5f7f3 !important; /* Soft light green */
+  border-radius: 20px !important; /* Premium rounded corners */
+  padding: 16px 20px !important;
+  gap: 20px !important;
+  max-width: 600px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+  text-align: left !important;
+}
+
+.bundle-image {
+  flex-shrink: 0 !important;
+}
+
+.bundle-image img {
+  width: 110px !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+
+.bundle-content {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.bundle-content h3 {
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  color: #1e331e !important; /* Dark green theme color */
+  margin: 0 0 6px 0 !important;
+  letter-spacing: -0.2px !important;
+}
+
+.bundle-content p {
+  font-size: 14.5px !important;
+  color: #1e331e !important; /* Match text color */
+  opacity: 0.9 !important;
+  margin: 0 0 12px 0 !important;
+  line-height: 1.4 !important;
+}
+
+.bundle-bottom-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  gap: 15px !important;
+  flex-wrap: wrap !important;
+}
+
+.bundle-price {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.bundle-price .current-price {
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  color: #1e331e !important;
+}
+
+.bundle-price .original-price {
+  font-size: 15px !important;
+  color: #889488 !important;
+  text-decoration: line-through !important;
+}
+
+.bundle-action {
+  display: inline-flex !important;
+}
+
 .bundle-action .add-button {
-  border: 2px solid var(--vcn-primary) !important;
-  color: white !important;
-  background-color: var(--vcn-primary) !important;
-  font-weight: 600;
-  padding: 5px 20px;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 15px;
-  text-decoration: none;
-  width: 100%;
+  border: 1px solid #1e331e !important; /* Thin border */
+  color: #1e331e !important;
+  background-color: transparent !important;
+  font-weight: 600 !important;
+  padding: 6px 28px !important;
+  border-radius: 30px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  font-size: 14.5px !important;
+  text-decoration: underline !important; /* Underline text like the image */
+  width: auto !important;
+  display: inline-block !important;
 }
 
 .bundle-action .add-button:hover {
-  background-color: var(--vcn-primary) !important;
-  border: 2px solid var(--vcn-primary) !important;
+  background-color: #1e331e !important;
   color: white !important;
+  text-decoration: none !important;
 }
 
 .bundle-quantity-control {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: white;
-  border: 2px solid var(--vcn-primary);
-  border-radius: 25px;
-  padding: 8px 16px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: white !important;
+  border: 1px solid #1e331e !important;
+  border-radius: 25px !important;
+  padding: 6px 12px !important;
 }
 
 .bundle-qty-btn {
-  background: none;
-  border: none;
-  color: var(--vcn-primary);
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: background-color 0.2s;
+  background: none !important;
+  border: none !important;
+  color: #1e331e !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  width: 20px !important;
+  height: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
 }
 
 .bundle-qty-btn:hover {
-  background-color: var(--vcn-primary);
-  color: white;
+  background-color: #1e331e !important;
+  color: white !important;
 }
 
 .bundle-qty-value {
-  color: var(--vcn-primary);
-  font-weight: 600;
-  min-width: 20px;
-  text-align: center;
+  color: #1e331e !important;
+  font-weight: 600 !important;
+  min-width: 15px !important;
+  text-align: center !important;
+}
+
+/* Responsiveness adjustments for smaller mobile screens */
+@media (max-width: 480px) {
+  .bundle-card {
+    padding: 12px 14px !important;
+    gap: 12px !important;
+  }
+
+  .bundle-image img {
+    width: 80px !important;
+  }
+
+  .bundle-content h3 {
+    font-size: 16px !important;
+  }
+
+  .bundle-content p {
+    font-size: 12.5px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .bundle-bottom-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  .bundle-price .current-price {
+    font-size: 16px !important;
+  }
+
+  .bundle-price .original-price {
+    font-size: 13px !important;
+  }
+
+  .bundle-action .add-button {
+    padding: 4px 20px !important;
+    font-size: 13px !important;
+  }
 }
 
 /* Variant Selector Styles */
@@ -736,6 +866,58 @@ const openProductPreview = (imageSrc) => {
   transform: scale(1.02);
 }
 
+/* Mobile Swiper for Product Images */
+.product-images-swiper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.mobile-swiper-image-card {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 0px;
+}
+
+.mobile-swiper-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain !important;
+  cursor: pointer;
+}
+
+.product-images-swiper-pagination {
+  position: relative !important;
+  margin-top: 15px !important;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  bottom: auto !important;
+}
+
+.product-images-swiper-pagination :deep(.swiper-pagination-bullet) {
+  width: 8px !important;
+  height: 8px !important;
+  background-color: #cccccc !important;
+  opacity: 1 !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease !important;
+}
+
+.product-images-swiper-pagination :deep(.swiper-pagination-bullet-active) {
+  background-color: var(--vcn-primary) !important;
+  width: 20px !important;
+  border-radius: 4px !important;
+}
+
 /* Active thumbnail highlight */
 .gallery-item.active {
   border: 2px solid var(--vcn-primary) !important;
@@ -838,26 +1020,30 @@ const openProductPreview = (imageSrc) => {
 
   .product-details-title {
     font-size: 22px !important;
-    text-align: center;
+    text-align: left !important;
   }
 
   .rating-section {
-    justify-content: center;
+    justify-content: flex-start !important;
   }
 
   .price-section {
-    text-align: center;
+    text-align: left !important;
   }
 
   .vcn-cobiotics-badge {
     display: block;
     width: fit-content;
-    margin: 10px auto !important;
+    margin: 10px 0 !important;
   }
 
   .delivery-info {
-    text-align: center;
+    text-align: left !important;
     font-size: 0.95rem;
+  }
+
+  .subscribe-text {
+    text-align: left !important;
   }
 
   .vcn-acc-header {
@@ -878,7 +1064,7 @@ const openProductPreview = (imageSrc) => {
   }
 
   .variant-options {
-    justify-content: center;
+    justify-content: flex-start !important;
   }
 
   .variant-btn {
@@ -901,6 +1087,34 @@ const openProductPreview = (imageSrc) => {
 
   .subscribe-text {
     font-size: 0.9rem !important;
+    text-align: left !important;
   }
+}
+
+/* Video Thumbnail styling */
+.video-thumb-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 51, 30, 0.05);
+  color: #1e331e;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gallery-item.active .video-thumb-preview {
+  background: rgba(30, 51, 30, 0.1);
+  color: var(--vcn-primary);
+}
+
+.video-thumb-preview i {
+  font-size: 24px;
 }
 </style>
