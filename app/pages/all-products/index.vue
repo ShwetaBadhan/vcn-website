@@ -159,8 +159,14 @@ const handleImageError = (event, product) => {
 
 <style scoped>
 .vcn-breadcrumb-container {
-  margin-top: -90px !important;
+  margin-top: -120px !important;
   padding-top: 85px !important;
+}
+
+@media (max-width: 991px) {
+  .vcn-breadcrumb-container {
+    margin-top: -140px !important;
+  }
 }
 
 .vcn-whole-body-product-badges {

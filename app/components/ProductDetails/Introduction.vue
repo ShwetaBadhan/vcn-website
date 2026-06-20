@@ -766,8 +766,8 @@ const openProductPreview = (imageSrc) => {
   cursor: pointer;
   transition: opacity 0.2s;
   display: block;
-  width: 80% !important;
-  height: 70% !important;
+  width: 100% !important;
+  height: 100% !important;
   max-width: 100% !important;
   max-height: 100% !important;
   object-fit: contain !important;
