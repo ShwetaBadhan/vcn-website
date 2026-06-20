@@ -8,115 +8,103 @@
         </div>
         <div class="col-md-9 col-lg-9">
           <div class="leadership-page">
+            
             <!-- Hero Section -->
-            <section class="hero-sectioning">
+            <section class="hero-sectioning" data-aos="fade-up" data-aos-duration="600">
+              <div class="hero-glow-blob"></div>
               <div class="container-fluid">
-                <div class="row align-items-center">
-                  <div class="col-lg-6">
-                    <div class="hero-image">
-                      <img :src="leadership.hero.image" :alt="leadership.hero.title" />
+                <div class="row align-items-center position-relative">
+                  <div class="col-lg-6 order-2 order-lg-1">
+                    <div class="hero-contents">
+                      <div class="hero-tag">OUR VISIONARIES</div>
+                      <h1 class="hero-title">{{ leadership.hero.title }}</h1>
+                      <div class="hero-divider"></div>
+                      <p class="hero-text">
+                        {{ leadership.hero.description }}
+                      </p>
                     </div>
                   </div>
-                  <div class="col-lg-6">
-                    <div class="hero-contents">
-                      <h1 class="hero-title">{{ leadership.hero.title }}</h1>
-
-
-                      <p class="hero-text">
-                              {{ leadership.hero.description }}
-                      </p>
+                  <div class="col-lg-6 order-1 order-lg-2">
+                    <div class="hero-image-wrapper">
+                      <div class="hero-image-backdrop"></div>
+                      <img :src="leadership.hero.image" :alt="leadership.hero.title" class="hero-img" />
                     </div>
                   </div>
                 </div>
               </div>
             </section>
 
-            <!--   Section -->
-            <!-- <section class="management-section">
+            <!-- Board of Directors Section -->
+            <section class="board-section" data-aos="fade-up" data-aos-duration="600">
               <div class="container">
-                <h2 class="section-title">Management</h2>
-                <div class="row">
-                  <div v-for="(member, index) in managementTeam" :key="index" class="col-lg-4 col-md-6 mb-4">
+                <div class="section-header">
+                  <h2 class="section-title">
+                    {{ leadership.boardSection.title }}
+                  </h2>
+                  <div class="section-title-line"></div>
+                </div>
+
+                <div class="team-grid">
+                  <div
+                    v-for="(member, index) in leadership.boardSection.members"
+                    :key="index"
+                    class="team-member-wrapper"
+                    data-aos="fade-up"
+                    :data-aos-delay="index * 100"
+                    data-aos-duration="500"
+                  >
                     <div class="team-card">
-                      <div class="team-image">
-                        <img :src="member.image" :alt="member.name" />
+                      <div class="team-image-container">
+                        <img
+                          :src="member.image"
+                          :alt="member.name"
+                          class="team-img"
+                        />
                       </div>
+
                       <div class="team-info">
-                        <h3 class="team-name">{{ member.name }}</h3>
-                        <p class="team-titles">{{ member.title }}</p>
-                        <button @click="openBio(member)" class="view-bio-btn">
-                          View Bio
+                        <h3 class="team-name">
+                          {{ member.name }}
+                        </h3>
+
+                        <p class="team-titles">
+                          {{ member.title }}
+                        </p>
+
+                        <button
+                          @click="openBio(member)"
+                          class="view-bio-link"
+                        >
+                          <span>{{ leadership.boardSection.btntext }}</span>
+                          <svg class="bio-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                          </svg>
                         </button>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="text-center mt-4">
-                  <button class="view-all-btn">
-                    <i class="bi bi-arrow-down"></i> View All
-                  </button>
-                </div>
               </div>
-            </section> -->
-
-            <!-- Board of Directors Section -->
-            <section class="board-section">
-  <div class="container">
-    <h2 class="section-title">
-      {{ leadership.boardSection.title }}
-    </h2>
-
-    <div class="row">
-      <div
-        v-for="(member, index) in leadership.boardSection.members"
-        :key="index"
-        class="col-lg-4 col-md-6 mb-4"
-      >
-        <div class="team-card">
-          <div class="team-image">
-            <img
-              :src="member.image"
-              :alt="member.name"
-            />
-          </div>
-
-          <div class="team-info">
-            <h3 class="team-name">
-              {{ member.name }}
-            </h3>
-
-            <p class="team-titles">
-              {{ member.title }}
-            </p>
-
-            <button
-              @click="openBio(member)"
-              class="view-bio-btn"
-            >
-              {{ leadership.boardSection.btntext }}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+            </section>
 
             <!-- Connect Section -->
-            <section class="connect-section">
-              <div class="container">
+            <section class="connect-section" data-aos="zoom-in" data-aos-duration="600">
+              <div class="connect-bg-mesh"></div>
+              <div class="container position-relative">
                 <div class="row align-items-center">
-                  <div class="col-lg-4">
+                  <div class="col-lg-5">
                     <h2 class="connect-title">{{ leadership.connectSection.title }}</h2>
                   </div>
-                  <div class="col-lg-5">
+                  <div class="col-lg-4">
                     <p class="connect-text">
-                     {{leadership.connectSection.description }}
+                      {{ leadership.connectSection.description }}
                     </p>
                   </div>
-                  <div class="col-lg-3">
+                  <div class="col-lg-3 text-lg-end mt-4 mt-lg-0">
                     <button class="contact-btn">
-                      <i class="bi bi-plus-circle"></i> {{ leadership.connectSection.buttonText }}
+                      <i class="bi" :class="leadership.connectSection.icon || 'bi-plus-circle'"></i>
+                      <span>{{ leadership.connectSection.buttonText }}</span>
                     </button>
                   </div>
                 </div>
@@ -124,37 +112,58 @@
             </section>
 
             <!-- Bio Modal -->
-            <div v-if="showModal" class="modal-overlay" @click.self="closeBio">
-              <div class="modal-content">
-                <button class="modal-close" @click="closeBio">
-                  <i class="bi bi-x"></i>
-                </button>
-                <div class="modal-body">
-                  <div class="modal-image">
-                    <img :src="selectedMember.image" :alt="selectedMember.name" />
-                  </div>
-                  <div class="modal-info">
-                    <h2 class="modal-name">{{ selectedMember.name }}</h2>
-                    <p class="modal-title">{{ selectedMember.title }}</p>
-                    <div class="modal-description">
-                      <p>{{ selectedMember.bio }}</p>
+            <Transition name="fade">
+              <div v-if="showModal" class="modal-overlay" @click.self="closeBio">
+                <div class="modal-card">
+                  <button class="modal-close-btn" @click="closeBio" aria-label="Close modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+                  <div class="modal-grid">
+                    <div class="modal-sidebar-img">
+                      <img :src="selectedMember.image" :alt="selectedMember.name" />
                     </div>
-                    <div class="modal-details" v-if="
-                      selectedMember.education || selectedMember.experience
-                    ">
-                      <div v-if="selectedMember.education" class="detail-section">
-                        <h4>Education</h4>
-                        <p>{{ selectedMember.education }}</p>
+                    <div class="modal-bio-content">
+                      <div class="modal-header-info">
+                        <h2 class="modal-name">{{ selectedMember.name }}</h2>
+                        <p class="modal-title">{{ selectedMember.title }}</p>
                       </div>
-                      <div v-if="selectedMember.experience" class="detail-section">
-                        <h4>Experience</h4>
-                        <p>{{ selectedMember.experience }}</p>
+                      <div class="modal-divider"></div>
+                      <div class="modal-bio-text">
+                        <p>{{ selectedMember.bio }}</p>
+                      </div>
+                      
+                      <!-- Professional Details Timeline/Grid -->
+                      <div class="modal-credentials" v-if="selectedMember.education || selectedMember.experience">
+                        <div v-if="selectedMember.education" class="credential-item">
+                          <div class="credential-header">
+                            <svg class="cred-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                              <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
+                            </svg>
+                            <h4>Education</h4>
+                          </div>
+                          <p>{{ selectedMember.education }}</p>
+                        </div>
+                        <div v-if="selectedMember.experience" class="credential-item">
+                          <div class="credential-header">
+                            <svg class="cred-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                            <h4>Experience</h4>
+                          </div>
+                          <p>{{ selectedMember.experience }}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Transition>
+
           </div>
         </div>
       </div>
@@ -265,354 +274,567 @@ const closeBio = () => {
 </script>
 
 <style scoped>
+/* Page Layout */
+.leadership-page {
+  font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+  color: #2c3e50;
+  overflow: hidden;
+}
+
 /* Hero Section */
 .hero-sectioning {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  padding: 80px 0;
-  margin-bottom: 60px;
+  background: linear-gradient(135deg, #f0f4f1 0%, #e1ebe5 100%);
+  padding: 50px 30px;
+  margin-bottom: 30px;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.hero-image img {
-  width: 100%;
-  max-width: 600px;
-  border-radius: 8px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+.hero-glow-blob {
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(76, 175, 80, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+  z-index: 1;
+  pointer-events: none;
 }
 
-.hero-contents {
-  padding: 40px;
+.hero-tag {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #2e7d32;
+  margin-bottom: 16px;
 }
 
 .hero-title {
-  font-size: 56px;
-  font-weight: 300;
+  font-size: 48px;
+  font-weight: 700;
   color: #1a4d2e;
-  margin-bottom: 24px;
-  line-height: 1.2;
+  margin-bottom: 20px;
+  line-height: 1.15;
 }
 
-.hero-texts {
+.hero-divider {
+  width: 60px;
+  height: 4px;
+  background: #2e7d32;
+  border-radius: 2px;
+  margin-bottom: 24px;
+}
+
+.hero-text {
   font-size: 16px;
   line-height: 1.8;
-  color: #555;
+  color: #4a5d4e;
+  max-width: 520px;
 }
 
-/* Section Titles */
+.hero-image-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image-backdrop {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: -20px;
+  bottom: -20px;
+  background: rgba(46, 125, 50, 0.08);
+  border-radius: 20px;
+  z-index: 1;
+}
+
+.hero-img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  transition: transform 0.5s ease;
+  object-fit: cover;
+}
+
+.hero-sectioning:hover .hero-img {
+  transform: translateY(-5px);
+}
+
+/* Section Header */
+.section-header {
+  margin-bottom: 50px;
+  position: relative;
+}
+
 .section-title {
-  font-size: 40px;
-  font-weight: 300;
+  font-size: 36px;
+  font-weight: 700;
   color: #1a4d2e;
-  margin-bottom: 40px;
-  text-align: left;
+  margin-bottom: 12px;
+}
+
+.section-title-line {
+  width: 50px;
+  height: 3px;
+  background: #b89047;
+  border-radius: 2px;
+}
+
+/* Board Section */
+.board-section {
+  padding: 40px 0;
+  background: #fcfdfd;
+}
+
+.team-grid {
+  row-gap: 30px;
+}
+
+.team-member-wrapper {
+  height: 100%;
 }
 
 /* Team Cards */
 .team-card {
   background: white;
-  border-radius: 8px;
+  border-radius: 16px;
   overflow: hidden;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.team-image {
+.team-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(26, 77, 46, 0.08);
+}
+
+.team-image-container {
+  position: relative;
   width: 100%;
-  height: 320px;
+  height: 350px;
   overflow: hidden;
+  background: #eef2ef;
+}
+
+.team-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: filter 0.6s ease, transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.team-card:hover .team-img {
+  filter: grayscale(0%);
+  transform: scale(1.04);
+}
+
+.team-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(26, 77, 46, 0.4);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease;
+  z-index: 3;
+}
+
+.team-card:hover .team-card-overlay {
+  opacity: 1;
+}
+
+.overlay-bio-btn {
+  background: white;
+  color: #1a4d2e;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(15px);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), background-color 0.3s ease;
+}
+
+.overlay-bio-btn:hover {
   background: #f5f5f5;
 }
 
-.team-image img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.team-card:hover .team-image img {
-  transform: scale(1.05);
+.team-card:hover .overlay-bio-btn {
+  transform: translateY(0);
 }
 
 .team-info {
-  padding: 24px;
-  text-align: center;
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: space-between;
 }
 
 .team-name {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
   color: #1a4d2e;
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
+  text-align: center;
 }
 
 .team-titles {
   font-size: 14px;
-  color: #666;
-  margin: 0 0 16px 0;
-  line-height: 1.4;
+  font-weight: 500;
+  color: #889e90;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   text-align: center;
 }
 
-.view-bio-btn {
+.view-bio-link {
   background: none;
   border: none;
   color: #1a4d2e;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  padding: 8px 16px;
-  transition: all 0.3s ease;
-  text-decoration: underline;
-}
-
-.view-bio-btn:hover {
-  color: #2d7a4a;
-}
-
-/* View All Button */
-.view-all-btn {
-  background: white;
-  border: 2px solid #1a4d2e;
-  color: #1a4d2e;
-  padding: 12px 40px;
-  border-radius: 25px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-flex;
+  padding: 0;
+  display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  transition: color 0.3s ease;
+  position: relative;
 }
 
-.view-all-btn:hover {
-  background: #1a4d2e;
-  color: white;
+.view-bio-link span::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #b89047;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
 }
 
-.view-all-btn i {
-  font-size: 16px;
+.view-bio-link:hover {
+  color: #b89047;
 }
 
-/* Board Section */
-.board-section {
-  padding: 80px 0;
-  background: #f9f9f9;
+.view-bio-link:hover span::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.bio-arrow {
+  transition: transform 0.3s ease;
+}
+
+.view-bio-link:hover .bio-arrow {
+  transform: translateX(4px);
 }
 
 /* Connect Section */
 .connect-section {
-  background: #4caf50;
-  padding: 60px 40px;
-  border-radius: 8px;
-  margin: 80px auto;
+  background: linear-gradient(135deg, #113c22 0%, #1a4d2e 100%);
+  padding: 45px 40px;
+  border-radius: 24px;
+  margin: 40px auto;
   max-width: 1200px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(26, 77, 46, 0.25);
+}
+
+.connect-bg-mesh {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
+  pointer-events: none;
 }
 
 .connect-title {
-  font-size: 32px;
-  font-weight: 400;
+  font-size: 36px;
+  font-weight: 700;
   color: white;
   margin: 0;
+  line-height: 1.2;
 }
 
 .connect-text {
   font-size: 16px;
-  line-height: 1.6;
-  color: white;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
   margin: 0;
 }
 
 .contact-btn {
-  background: transparent;
-  border: 2px solid white;
-  color: white;
-  padding: 14px 32px;
-  border-radius: 25px;
-  font-size: 14px;
-  font-weight: 600;
+  background: #ffffff;
+  border: none;
+  color: #1a4d2e;
+  padding: 15px 36px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), background-color 0.2s ease;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .contact-btn:hover {
-  background: white;
-  color: #4caf50;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  background-color: #f8faf9;
+}
+
+.contact-btn:active {
+  transform: translateY(-1px);
 }
 
 .contact-btn i {
   font-size: 18px;
 }
 
-/* Modal Styles */
+/* Modal Styling with Transition fade */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(11, 31, 18, 0.7);
+  backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 99999;
   padding: 20px;
-  overflow-y: auto;
 }
 
-.modal-content {
+.modal-card {
   background: white;
-  border-radius: 12px;
-  max-width: 900px;
+  border-radius: 24px;
+  max-width: 950px;
   width: 100%;
-  max-height: 90vh;
+  max-height: 85vh;
   overflow-y: auto;
   position: relative;
-  animation: modalSlideIn 0.3s ease;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-@keyframes modalSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.modal-close {
+.modal-close-btn {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 24px;
+  right: 24px;
   background: white;
-  border: none;
-  width: 40px;
-  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  color: #333;
+  color: #1a4d2e;
   z-index: 10;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.modal-close:hover {
-  background: #f5f5f5;
+.modal-close-btn:hover {
+  background: #1a4d2e;
+  color: white;
   transform: rotate(90deg);
 }
 
-.modal-body {
-  display: flex;
-  flex-direction: column;
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 @media (min-width: 768px) {
-  .modal-body {
-    flex-direction: row;
+  .modal-grid {
+    grid-template-columns: 42% 58%;
   }
 }
 
-.modal-image {
+.modal-sidebar-img {
   width: 100%;
-  height: 400px;
+  height: 420px;
   overflow: hidden;
+  background: #eef2ef;
 }
 
 @media (min-width: 768px) {
-  .modal-image {
-    width: 40%;
-    height: auto;
+  .modal-sidebar-img {
+    height: 100%;
+    min-height: 520px;
   }
 }
 
-.modal-image img {
+.modal-sidebar-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.modal-info {
-  padding: 40px;
-  flex: 1;
+.modal-bio-content {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-header-info {
+  margin-bottom: 20px;
 }
 
 .modal-name {
   font-size: 32px;
-  font-weight: 600;
+  font-weight: 700;
   color: #1a4d2e;
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
 }
 
 .modal-title {
-  font-size: 18px;
-  color: #666;
-  margin: 0 0 24px 0;
-  font-weight: 500;
-}
-
-.modal-description p {
-  font-size: 16px;
-  line-height: 1.8;
-  color: #555;
-  margin-bottom: 24px;
-}
-
-.detail-section {
-  margin-bottom: 24px;
-}
-
-.detail-section h4 {
   font-size: 16px;
   font-weight: 600;
-  color: #1a4d2e;
-  margin: 0 0 8px 0;
-}
-
-.detail-section p {
-  font-size: 15px;
-  line-height: 1.6;
-  color: #666;
+  color: #889e90;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   margin: 0;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+.modal-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.06);
+  margin-bottom: 24px;
+}
+
+.modal-bio-text p {
+  font-size: 16px;
+  line-height: 1.85;
+  color: #4a5568;
+  margin-bottom: 28px;
+}
+
+/* Professional Credentials */
+.modal-credentials {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding-top: 24px;
+}
+
+@media (min-width: 576px) {
+  .modal-credentials {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.credential-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.credential-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.cred-icon {
+  color: #b89047;
+}
+
+.credential-item h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a4d2e;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.credential-item p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #718096;
+  margin: 0;
+}
+
+/* Transitions */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .hero-sectioning {
+    padding: 35px 20px;
+  }
+
   .hero-title {
-    font-size: 36px;
-  }
-
-  .section-title {
-    font-size: 32px;
-  }
-
-  .team-image {
-    height: 280px;
+    font-size: 38px;
   }
 
   .connect-section {
-    padding: 40px 20px;
-    margin: 40px 20px;
+    padding: 35px 24px;
+    margin: 30px 15px;
   }
 
   .connect-title {
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-contents {
+    padding: 30px 0 0 0;
   }
 
-  .contact-btn {
-    margin-top: 20px;
+  .hero-image-backdrop {
+    display: none;
+  }
+
+  .modal-bio-content {
+    padding: 32px;
   }
 }
 </style>
