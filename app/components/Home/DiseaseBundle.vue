@@ -216,23 +216,71 @@ export default {
 }
 
 @media (max-width: 991px) {
-  .disease-bundles-container {
-    top: 90px !important;
-    height: calc(100vh - 90px) !important;
+  .vcn-human-section {
+    min-height: auto !important;
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
   }
 
-  .vcn-human-heading {
-    font-size: 2.6rem !important;
+  .vcn-human-container {
+    gap: 20px !important;
   }
 
   .vcn-human-left-content {
     text-align: left !important;
     align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 0 !important;
+  }
+
+  .vcn-human-left-content p {
+    margin: 0 !important;
+  }
+
+  .vcn-human-logo {
+    margin: 0 !important;
+  }
+
+  .vcn-human-heading {
+    font-size: 2.6rem !important;
+    margin: 0 !important;
+  }
+
+  .disease-bundles-container {
+    top: 90px !important;
+    height: calc(100vh - 90px) !important;
+  }
+
+  .vcn-human-right-content,
+  .video-container,
+  .vcn-human-image-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+  }
+
+  .vcn-human-main-image {
+    display: block !important;
+    width: 100% !important;
+    max-width: 450px !important;
+    margin: 0 auto !important;
+    aspect-ratio: 3/4 !important;
+    object-fit: cover !important;
+    border-radius: 20px !important;
   }
 }
 
 /* Responsive 2-column layout for disease grid on mobile */
 @media (max-width: 576px) {
+  .vcn-human-section {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+
+  .vcn-human-left-content {
+    gap: 10px !important;
+  }
+
   .vcn-human-heading {
     font-size: 1.9rem !important;
   }

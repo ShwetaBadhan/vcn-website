@@ -59,36 +59,36 @@ onMounted(() => {
 <!-- Global CSS Custom Variables for TopHeader heights -->
 <style>
 :root {
-  --top-header-height: 40px;
+  --top-header-height: 45px;
 }
 
 @media (max-width: 1200px) {
   :root {
-    --top-header-height: 31px;
+    --top-header-height: 36px;
   }
 }
 
 @media (max-width: 991px) {
   :root {
-    --top-header-height: 28px;
+    --top-header-height: 33px;
   }
 }
 
 @media (max-width: 768px) {
   :root {
-    --top-header-height: 26px;
+    --top-header-height: 31px;
   }
 }
 
 @media (max-width: 576px) {
   :root {
-    --top-header-height: 30px;
+    --top-header-height: 35px;
   }
 }
 
 @media (max-width: 380px) {
   :root {
-    --top-header-height: 30px;
+    --top-header-height: 35px;
   }
 }
 </style>
@@ -97,7 +97,7 @@ onMounted(() => {
 .top-header {
   width: 100%;
   background-color: var(--vcn-light);
-  padding: 6px 12px;
+  padding: 8.5px 12px;
   position: fixed;
   top: 0;
   left: 0;
@@ -155,7 +155,7 @@ onMounted(() => {
 
 @media (max-width: 991px) {
   .top-header {
-    padding: 5px 10px;
+    padding: 7.5px 10px;
   }
   .top-header p {
     font-size: 0.9rem;
@@ -165,7 +165,7 @@ onMounted(() => {
 
 @media (max-width: 768px) {
   .top-header {
-    padding: 4px 8px;
+    padding: 6.5px 8px;
   }
   .top-header p {
     font-size: 0.85rem;
@@ -175,7 +175,7 @@ onMounted(() => {
 
 @media (max-width: 576px) {
   .top-header {
-    padding: 4px 6px;
+    padding: 6.5px 6px;
   }
   .top-header p {
     font-size: 0.78rem;
@@ -185,7 +185,7 @@ onMounted(() => {
 
 @media (max-width: 380px) {
   .top-header {
-    padding: 3px 4px;
+    padding: 5.5px 4px;
   }
   .top-header p {
     font-size: 0.72rem;

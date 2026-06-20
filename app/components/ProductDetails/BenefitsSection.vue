@@ -124,7 +124,96 @@ const journeyHowToUse = computed(() => {
 })
 </script>
 <style scoped>
+/* Image Large styling */
+.image-large {
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  height: 340px;
+}
+
+.image-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Image Small & Circle styling */
+.image-small-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.image-small {
+  width: 100%;
+  height: 220px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.image-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-circle {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .center-img {
   border-radius: 50%;
+}
+
+/* Desktop layout overrides matching the mockup image.png */
+@media (min-width: 768px) {
+  .image-grid {
+    display: flex;
+    flex-direction: column !important; /* Stack top and bottom vertically */
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .image-large {
+    flex: none !important;
+    width: 100% !important;
+    height: 360px; /* Perfect height for the top visual card */
+  }
+
+  .image-small-container {
+    flex-direction: row-reverse !important; /* Row layout: Circle on right, Rectangle on left */
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .image-small {
+    flex: 1 !important;
+    height: 240px; /* Equal height with circle container */
+  }
+
+  .image-circle {
+    flex: 0 0 240px !important; /* Keep circle perfectly round */
+    height: 240px;
+    margin: 0 !important;
+  }
 }
 </style>

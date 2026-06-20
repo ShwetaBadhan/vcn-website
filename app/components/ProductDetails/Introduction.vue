@@ -294,13 +294,19 @@ const selectImage = (imageSrc) => {
 const allProductImages = computed(() => {
   const images = []
 
+  // Add primary product image first
+  const primaryImg = productImage.value
+  if (primaryImg && !images.includes(primaryImg)) {
+    images.push(primaryImg)
+  }
+
   // Product images
   if (product.value?.images?.length) {
     product.value.images.forEach(img => {
       const imageUrl =
-  img?.media?.variants?.webp ||
-  img?.media?.webpUrl ||
-  img?.media?.fileUrl
+        img?.media?.variants?.webp ||
+        img?.media?.webpUrl ||
+        img?.media?.fileUrl
 
       if (imageUrl && !images.includes(imageUrl)) {
         images.push(imageUrl)
@@ -313,9 +319,9 @@ const allProductImages = computed(() => {
     product.value.variants.forEach(variant => {
       variant.productImages?.forEach(img => {
         const imageUrl =
-  img?.media?.variants?.webp ||
-  img?.media?.webpUrl ||
-  img?.media?.fileUrl
+          img?.media?.variants?.webp ||
+          img?.media?.webpUrl ||
+          img?.media?.fileUrl
 
         if (imageUrl && !images.includes(imageUrl)) {
           images.push(imageUrl)
@@ -324,7 +330,30 @@ const allProductImages = computed(() => {
     })
   }
 
-  return images
+  // Fallback images from public/img/single product/
+  const fallbacks = [
+    '/img/single%20product/seed%201.webp',
+    '/img/single%20product/seed%202.webp',
+    '/img/single%20product/seed%203.webp'
+  ]
+
+  // Add unique fallbacks until we have 4 images
+  for (const fb of fallbacks) {
+    if (images.length >= 4) break
+    if (!images.includes(fb)) {
+      images.push(fb)
+    }
+  }
+
+  // In case we still need more, duplicate them
+  let fallbackIndex = 0
+  while (images.length < 4 && fallbacks.length > 0) {
+    const fb = fallbacks[fallbackIndex % fallbacks.length]
+    images.push(fb)
+    fallbackIndex++
+  }
+
+  return images.slice(0, 4) // Ensure we limit it to exactly 4 for a perfect 2x2 grid
 })
 
 // Main image to display

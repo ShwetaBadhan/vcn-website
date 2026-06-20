@@ -16,8 +16,7 @@
           <div class="col-lg-6 mb-4">
             <!-- Video wrapper (only for video + optional overlays/controls) -->
             <div class="vcn-video-wrapper">
-              <img :src="featureImage || cleanUrl('/img/dbt/389size.png')" alt="Doctor"
-                style="width: 100%; height: auto; display: block; border-radius: 30px;" />
+              <img :src="featureImage || cleanUrl('/img/dbt/389size.png')" alt="Doctor" class="vcn-showcase-img" />
             </div>
             <!-- <div class="vcn-video-wrapper">
             <div class="vcn-video-controls">
@@ -119,5 +118,30 @@ const cleanUrl = (url) => {
 .vcn-feature-card img {
   width: 60px;
   height: 60px;
+}
+
+.vcn-video-wrapper {
+  aspect-ratio: auto !important;
+  height: auto !important;
+  background: transparent !important;
+  overflow: visible !important;
+}
+
+.vcn-showcase-img {
+  height: 480px !important;
+  width: auto !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
+  display: block;
+  margin: 0 auto;
+  border-radius: 30px;
+}
+
+@media (max-width: 991px) {
+  .vcn-showcase-img {
+    height: auto !important;
+    max-height: 480px !important;
+    width: 100% !important;
+  }
 }
 </style>
