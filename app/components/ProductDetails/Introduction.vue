@@ -936,7 +936,7 @@ const openProductPreview = (imageSrc) => {
   overflow: hidden;
   border-radius: 8px;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 500 / 294;
   height: auto !important;
   /* background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.05); */
@@ -1116,5 +1116,107 @@ const openProductPreview = (imageSrc) => {
 
 .video-thumb-preview i {
   font-size: 24px;
+}
+
+@media (min-width: 992px) {
+  .product-details-title {
+    font-size: 25px !important;
+  }
+
+  .rating-text {
+    font-size: 13px !important;
+  }
+
+  .product-details-description {
+    font-size: 14px !important;
+  }
+
+  .variant-label {
+    font-size: 12px !important;
+  }
+
+  .variant-sku {
+    font-size: 11px !important;
+  }
+
+  .variant-weight {
+    font-size: 10px !important;
+  }
+
+  .variant-price {
+    font-size: 14px !important;
+  }
+
+  .variant-mrp {
+    font-size: 11px !important;
+  }
+
+  .variant-sku-display,
+  .variant-weight-display,
+  .variant-discount {
+    font-size: 11.5px !important;
+  }
+
+  .vcn-cobiotics-badge {
+    font-size: 12.5px !important;
+  }
+
+  .price-section .current-price {
+    font-size: 24px !important;
+  }
+
+  .price-section .old-price {
+    font-size: 15px !important;
+  }
+
+  .delivery-info {
+    font-size: 13.5px !important;
+  }
+
+  .btn-start-now {
+    font-size: 14px !important;
+  }
+
+  .subscribe-text {
+    font-size: 13.5px !important;
+  }
+
+  .vcn-acc-header {
+    font-size: 17px !important;
+    padding: 15px 0 !important;
+  }
+
+  .vcn-acc-icon {
+    font-size: 18px !important;
+  }
+
+  .vcn-acc-body {
+    padding: 5px 0 12px 0 !important;
+  }
+
+  .vcn-benefits-list li {
+    font-size: 13.5px !important;
+    padding: 5px 0 5px 18px !important;
+  }
+
+  .bundle-content h3 {
+    font-size: 17px !important;
+  }
+
+  .bundle-content p {
+    font-size: 13px !important;
+  }
+
+  .bundle-price .current-price {
+    font-size: 17px !important;
+  }
+
+  .bundle-price .original-price {
+    font-size: 13px !important;
+  }
+
+  .bundle-action .add-button {
+    font-size: 13px !important;
+  }
 }
 </style>

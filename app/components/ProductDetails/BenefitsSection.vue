@@ -216,4 +216,21 @@ const journeyHowToUse = computed(() => {
     margin: 0 !important;
   }
 }
+
+/* Responsive How to Use Card to prevent overflowing screen */
+.how-to-use-card {
+  width: 100% !important;
+  max-width: 500px !important;
+}
+
+@media (max-width: 480px) {
+  .how-to-use-card {
+    padding: 1rem !important;
+    gap: 0.75rem !important;
+  }
+  .capsule-icon img {
+    width: 60px !important;
+    height: auto !important;
+  }
+}
 </style>

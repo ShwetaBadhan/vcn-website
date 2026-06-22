@@ -274,10 +274,10 @@
   .alternate-image {
     position: absolute !important;
     left: auto !important;
-    right: -50px !important;
+    right: -80px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    width: 85% !important;
+    width: 115% !important;
     max-width: 650px !important;
     height: auto !important;
     z-index: 5 !important;
@@ -374,7 +374,8 @@
   }
 
   .alternate-image {
-    max-width: 320px !important;
+    max-width: 420px !important;
+    right: -90px !important;
   }
 
   .alternate-heading {

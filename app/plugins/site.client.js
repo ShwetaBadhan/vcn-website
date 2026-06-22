@@ -50,7 +50,17 @@ export default defineNuxtPlugin((nuxtApp) => {
         slidesPerView: 1,
         spaceBetween: 20,
         loop: detailSlideCount >= 2, // Only enable loop if enough slides
-        autoplay: { delay: 3500, disableOnInteraction: false }
+        autoplay: { delay: 3500, disableOnInteraction: false },
+        pagination: {
+          el: '.vcn-product-detail-swiper-pagination',
+          clickable: true
+        },
+        breakpoints: {
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 24
+          }
+        }
       })
     }
 
